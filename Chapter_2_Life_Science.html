@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 Life Science Chapter 2 - জীবনের প্রবাহমানতা</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a7a4a;
+            --primary-hover: #2aad68;
+            --accent: #f9a825;
+            --bg-main: #f0faf4;
+            --bg-card: #ffffff;
+            --bg-selected: #e8f4ec;
+            --text-main: #1c2e24;
+            --text-meta: #5a7a66;
+            --border-color: #c5dccb;
+            --alert-danger: #dc3545;
+            --correct: #28a745;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Tiro Bangla', serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+        .en-font { font-family: 'Syne', sans-serif; }
+        .hidden { display: none !important; }
+
+        /* ===== STATIC NEUTRAL HEADER STYLE ===== */
+        .header {
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(10, 92, 54, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #0a5c36;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-emblem {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #0a5c36 0%, #1e824c 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 4px 12px rgba(10, 92, 54, 0.2);
+            flex-shrink: 0;
+        }
+
+        .brand-text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .coaching-main-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #0a5c36;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .coaching-subtitle {
+            font-size: 0.75rem;
+            color: #556c5e;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            margin-top: 1px;
+            text-transform: uppercase;
+        }
+
+        .coaching-tagline {
+            font-size: 0.65rem;
+            color: #f5a623;
+            font-weight: 600;
+            margin-top: 1px;
+            letter-spacing: 0.1px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .timer-box {
+            background: rgba(10, 92, 54, 0.08);
+            padding: 6px 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #0a5c36;
+        }
+
+        .timer-box.danger { background: var(--alert-danger); color: white; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        .user-info { background: #0a5c36; color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; }
+
+        /* Main Container */
+        .main-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+        /* Hub View */
+        .hub-header { text-align: center; margin-bottom: 30px; }
+        .hub-header h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 10px; }
+        .set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .set-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+        .set-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(26,122,74,0.1); }
+        .set-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .set-name { font-size: 1.3rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; font-family: 'Syne', sans-serif;}
+        .set-topic { font-size: 0.95rem; color: var(--text-meta); margin-bottom: 15px; height: 40px; }
+        .set-meta-info { display: flex; justify-content: center; gap: 10px; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
+        .set-meta-info span { background: var(--bg-main); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+        .attempt-badge { position: absolute; top: 10px; right: 10px; background: #ffeeba; color: #856404; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+        .attempt-badge.locked { background: var(--alert-danger); color: white; border: none; }
+
+        /* Quiz View */
+        .quiz-info { background: var(--bg-card); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+        .q-block { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .q-text { font-size: 1.2rem; font-weight: bold; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
+        .options-grid { display: flex; flex-direction: column; gap: 10px; }
+        .opt { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 1.05rem; }
+        .opt:hover:not(.selected):not(.correct):not(.wrong) { background: var(--bg-main); border-color: var(--primary); }
+        .opt.selected { background: var(--bg-selected); border-color: var(--primary); }
+        .opt-circle { min-width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Syne', sans-serif; color: var(--text-meta); flex-shrink: 0; }
+        .opt.selected .opt-circle { background: var(--primary); color: white; border-color: var(--primary); }
+        .opt.correct { background: #e8f7ef; border-color: var(--correct); }
+        .opt.correct .opt-circle { background: var(--correct); border-color: var(--correct); color: white; }
+        .opt.wrong { background: #fdf0f0; border-color: var(--alert-danger); }
+        .opt.wrong .opt-circle { background: var(--alert-danger); border-color: var(--alert-danger); color: white; }
+        .explanation { margin-top: 15px; padding: 15px; background: #e8f4ec; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #2c4035; line-height: 1.5;}
+
+        .btn-submit { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; font-family: 'Tiro Bangla', serif; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(26,122,74,0.2); transition: 0.2s; }
+        .btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+        .btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: bold;}
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        /* Modals */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto;}
+        .modal-box { background: white; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin: auto;}
+        .modal-box input { width: 100%; padding: 12px 15px; margin: 10px 0; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: 'Syne', sans-serif; box-sizing: border-box; outline: none; transition: 0.2s; }
+        .modal-box input:focus { border-color: var(--primary); }
+
+        .result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto; padding: 20px; }
+        .result-box { background: white; padding: 2.5rem 2rem; border-radius: 16px; width: 100%; max-width: 450px; text-align: center; margin: auto; }
+        .result-score { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin: 15px 0; }
+        .result-bars { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+        .result-bar { background: var(--bg-main); padding: 15px; border-radius: 12px; width: 100px; border: 1px solid var(--border-color); }
+
+        /* Mobile Adaptations */
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 10px; text-align: center; padding: 10px 10px; }
+            .logo-link { flex-direction: column; gap: 6px; }
+            .brand-text-container { text-align: center; }
+            .coaching-main-title { font-size: 1.2rem; }
+            .coaching-subtitle { font-size: 0.7rem; }
+            .coaching-tagline { font-size: 0.6rem; }
+            .header-right { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== DYNAMIC HEADER START ===== -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo / Brand -->
+            <a href="#" class="logo-link" onclick="location.reload(); return false;">
+                <div class="logo-emblem" id="dynamicEmblem">🧬</div>
+                <div class="brand-text-container">
+                    <span class="coaching-main-title" id="dynamicTitle">Life Science - Chapter 2</span>
+                    <span class="coaching-subtitle" id="dynamicSubtitle">জীবনের প্রবাহমানতা</span>
+                    <span class="coaching-tagline" id="dynamicTagline">দশম শ্রেণি (Class 10)</span>
+                </div>
+            </a>
+            <!-- Header Right -->
+            <div class="header-right">
+                <div class="timer-box en-font hidden" id="timerBox">⏱ <span id="timerDisplay">10:00</span></div>
+                <div class="user-info en-font" id="userDisplay" style="font-weight: bold;">👤 Guest</div>
+            </div>
+        </div>
+    </header>
+    <!-- ===== DYNAMIC HEADER END ===== -->
+
+    <div class="main-container">
+        <!-- HUB VIEW -->
+        <div id="hubView">
+            <div class="hub-header">
+                <h1 style="color: var(--primary); margin-bottom: 10px;">জীবন বিজ্ঞান - Class 10 Chapter 2</h1>
+                <p style="color: var(--text-meta);">জীবনের প্রবাহমানতা</p>
+            </div>
+            <div class="set-grid" id="setGrid"></div>
+            <div style="text-align:center; margin-top:40px;">
+                <button class="btn-primary" style="background:var(--text-meta); width: auto; padding: 12px 25px;" onclick="window.history.back()">← Main Dashboard-এ ফিরুন</button>
+            </div>
+        </div>
+
+        <!-- QUIZ VIEW -->
+        <div id="quizView" class="hidden">
+            <div class="quiz-info">
+                <div id="quizTitle">Set Name</div>
+                <div id="quizMetaInfo" class="en-font">15 Questions | 10 Mins</div>
+            </div>
+            <div id="quizList"></div>
+            <button class="btn-submit" id="submitTestBtn" onclick="submitQuiz()">Test জমা দিন ও ফলাফল দেখুন</button>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div class="modal-overlay hidden" id="loginModal">
+        <div class="modal-box">
+            <h2 style="color: var(--primary); margin-top:0;">লগইন করুন</h2>
+            <p style="color: var(--text-meta); margin-bottom: 15px; font-size: 0.9rem;">Test শুরু করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন</p>
+            <div id="loginSetName" style="background: var(--bg-main); padding: 8px; border-radius: 8px; font-weight:bold; color:var(--primary); margin-bottom:15px; font-family: 'Syne', sans-serif; font-size: 0.95rem;">Set Name</div>
+            <input type="text" id="loginUsername" placeholder="Username">
+            <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()">
+            <div id="loginError" class="hidden" style="color: var(--alert-danger); margin: 10px 0; font-weight:bold; font-size: 0.9rem;"></div>
+            <div style="display: flex; gap: 10px; margin-top:15px; justify-content: center;">
+                <button class="btn-primary" style="width: 100%; padding: 12px;" onclick="doLogin()">লগইন করুন</button>
+                <button class="btn-primary" style="background: var(--alert-danger); width: 100%; padding: 12px;" onclick="closeLogin()">বাতিল</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESULT MODAL -->
+    <div class="result-overlay hidden" id="resultModal">
+        <div class="result-box">
+            <div style="font-size: 3.5rem; margin-bottom:0; line-height: 1;" id="resultIcon">🌟</div>
+            <h2 style="margin:10px 0; color: var(--text-main);">আপনার ফলাফল</h2>
+            <div class="result-score en-font" id="finalScore">100%</div>
+            <div id="resultGrade" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--accent);">অসাধারণ!</div>
+            <div class="result-bars">
+                <div class="result-bar">
+                    <div style="font-size:1.8rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbCorrect">0</div>
+                    <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">সঠিক</div>
+                </div>
+                <div class="result-bar">
+                    <div style="font-size:1.8rem; font-weight: 800; color:var(--alert-danger);" class="en-font" id="rbWrong">0</div>
+                    <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">ভুল / স্কিপ</div>
+                </div>
+            </div>
+            <p style="background: var(--bg-main); padding: 10px; border-radius: 8px; color:var(--text-meta); font-weight:bold; font-size:0.95rem; margin-bottom:25px;" id="attemptInfo" class="en-font">বাকি আছে 10 বার</p>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <button class="btn-primary" style="background: #28a745; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="closeResultModal()">উত্তর ও ব্যাখ্যা দেখুন</button>
+                <button class="btn-primary" style="background: #17a2b8; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="restartQuiz()">আবার চেষ্টা করো</button>
+                <button class="btn-primary" style="background: var(--text-meta); width: 100%; padding: 14px; font-size: 1.05rem;" onclick="window.location.reload()">Chapter Hub-এ ফিরুন</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========================================================================
+        // 🎨 DYNAMIC BRANDING LOGIC
+        // ========================================================================
+        const STORE_CONFIGS = {
+            "guru": {
+                title: "Guru Book Store Jhalda",
+                mainTitle: "Guru Book Store",
+                subtitle: "Jhalda",
+                tagline: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+                emblem: "G",
+                waMsg: "Hello Guru Book Store Jhalda, I need a username and password for Class 10 Life Science Chapter 2."
+            },
+            "saraswati": {
+                title: "Saraswati Book Store",
+                mainTitle: "Saraswati Book Store",
+                subtitle: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+                tagline: "শিক্ষা ও প্রগতির বিশ্বস্ত সঙ্গী",
+                emblem: "S",
+                waMsg: "Hello Saraswati Book Store, I need a username and password for Class 10 Life Science Chapter 2."
+            }
+        };
+
+        function applyBranding() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let storeKey = urlParams.get('store') || localStorage.getItem("activeStore") || "";
+            storeKey = storeKey.toLowerCase();
+            if (storeKey && STORE_CONFIGS[storeKey]) {
+                const config = STORE_CONFIGS[storeKey];
+                document.title = `${config.title} - Class 10 Life Science Chapter 2`;
+                document.getElementById("dynamicEmblem").innerText = config.emblem;
+                document.getElementById("dynamicTitle").innerText = config.mainTitle;
+                document.getElementById("dynamicSubtitle").innerText = config.subtitle;
+                document.getElementById("dynamicTagline").innerText = config.tagline;
+                localStorage.setItem("activeStore", storeKey);
+            } else {
+                document.title = "Class 10 Life Science Chapter 2 - জীবনের প্রবাহমানতা";
+                document.getElementById("dynamicEmblem").innerText = "🧬";
+                document.getElementById("dynamicTitle").innerText = "Life Science - Chapter 2";
+                document.getElementById("dynamicSubtitle").innerText = "জীবনের প্রবাহমানতা";
+                document.getElementById("dynamicTagline").innerText = "দশম শ্রেণি (Class 10)";
+            }
+        }
+
+        // ========================================================================
+        // 📝 QUIZ CONFIGURATION
+        // ========================================================================
+        const STORAGE_KEY_ATTEMPTS = "testBazarAttempts_Life10_Ch2_SpecificSets";
+        const MAX_ATTEMPTS = 10;
+        const TIME_LIMIT = 10 * 60; // 10 Minutes
+
+
+const QUIZ_SETS = {
+    1: {
+        name: "সেট ১", icon: "🧬", topic: "ক্রোমোজোম, DNA এবং জিন",
+        questions: [
+            { q: "১. ইউক্যারিওটিক কোশের ক্রোমোজোমের নামকরণ প্রথম কোন্ বিজ্ঞানী করেন?", opts: ["চার্লস ডারউইন", "জোহানসেন", "ওয়ালডেয়ার", "ওয়াটসন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৮৮৮ খ্রিস্টাব্দে বিজ্ঞানী ওয়ালডেয়ার প্রথম ক্রোমোজোম (Chromosome) শব্দটির নামকরণ করেন, যা গ্রিক শব্দ 'chroma' (রং) এবং 'soma' (দেহ) থেকে উদ্ভূত।" },
+            { q: "২. DNA-র দ্বিতন্ত্রী সর্পিল মডেল (Double helix model) কে আবিষ্কার করেন?", opts: ["জোহানসেন", "ওয়াটসন, ক্রিক এবং উইলকিনস", "হাওয়ার্ড ও পেল্ক", "রবার্ট হুক"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯৫৩ খ্রিস্টাব্দে ওয়াটসন, ক্রিক এবং উইলকিনস DNA-র দ্বিতন্ত্রী গঠন সংক্রান্ত যুগান্তকারী মডেল উপস্থাপন করেন এবং এর জন্য ১৯৬২ সালে তাঁরা নোবেল পুরস্কার পান।" },
+            { q: "৩. ক্রোমোজোমের যে নির্দিষ্ট স্থানে জিন অবস্থান করে, তাকে কী বলে?", opts: ["সেন্ট্রোমিয়ার", "লোকাস", "টেলোমিয়ার", "স্যাটেলাইট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ক্রোমোজোমের উপর যে নির্দিষ্ট বিন্দু বা স্থানে একটি নির্দিষ্ট জিন অবস্থান করে, তাকে ওই জিনের লোকাস (Locus) বলা হয়।" },
+            { q: "৪. RNA-তে থাইমিনের (Thymine) পরিবর্তে কোন্ নাইট্রোজেন বেস থাকে?", opts: ["অ্যাডিনিন", "গুয়ানিন", "সাইটোসিন", "ইউরাসিল"], ans: 3, exp: "<b>ব্যাখ্যা:</b> RNA অণুতে পিরিমিডিন বেস হিসেবে থাইমিনের পরিবর্তে ইউরাসিল (Uracil) উপস্থিত থাকে।" },
+            { q: "৫. একটি নিউক্লিওটাইড কী কী অংশ নিয়ে গঠিত হয়?", opts: ["শুধুমাত্র শর্করা ও ফসফেট", "শর্করা, ফসফেট ও নাইট্রোজেন বেস", "শর্করা ও প্রোটিন", "নাইট্রোজেন বেস ও প্রোটিন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> একটি নিউক্লিওটাইড মূলত পেন্টোজ শর্করা, একটি ফসফেট গ্রুপ এবং একটি নাইট্রোজেন ঘটিত ক্ষারক (Base) নিয়ে গঠিত হয়।" },
+            { q: "৬. মানবদেহে কত জোড়া অটোজোম থাকে?", opts: ["২২ জোড়া", "২৩ জোড়া", "১ জোড়া", "৪৪ জোড়া"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মানুষের প্রতিটি দেহকোশে মোট ২৩ জোড়া ক্রোমোজোমের মধ্যে ২২ জোড়া বা ৪৪টি অটোজোম থাকে, যা লিঙ্গ নির্ধারণ ছাড়া দেহের অন্যান্য বৈশিষ্ট্য নিয়ন্ত্রণ করে।" },
+            { q: "৭. ক্রোমোজোম গঠনে ৮টি হিস্টোন প্রোটিনকে (অক্টামার) পেঁচিয়ে থাকা DNA অণুর গোলাকার গঠনটিকে কী বলে?", opts: ["ক্রোমাটিড", "নিউক্লিওজোম", "টেলোমিয়ার", "কাইনেটোকোর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দুটি স্তরে থাকা মোট আটটি হিস্টোন (H2A, H2B, H3, H4) প্রোটিনকে পেঁচিয়ে দ্বিতন্ত্রী DNA অণু গোলাকার নিউক্লিওজোম তৈরি করে যা পুঁতির মালার মতো দেখায়।" },
+            { q: "৮. DNA অণুর একটি সম্পূর্ণ পাকে (Full turn) মোট কত জোড়া নিউক্লিওটাইড থাকে?", opts: ["৫ জোড়া", "১০ জোড়া", "২০ জোড়া", "১৫ জোড়া"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দ্বিতন্ত্রী DNA কুণ্ডলে প্রতিটি সম্পূর্ণ পাকে (যার দৈর্ঘ্য 34 Å) মোট ১০ জোড়া নিউক্লিওটাইড অবস্থান করে।" },
+            { q: "৯. ক্রোমোজোম, DNA এবং জিনের সঠিক আন্তঃসম্পর্ক নির্দেশক ক্রম কোনটি?", opts: ["জিন → ক্রোমোজোম → DNA", "DNA → জিন → ক্রোমোজোম", "নিউক্লিয় জালক → ক্রোমোজোম → DNA → জিন", "ক্রোমোজোম → DNA → জিন"], ans: 3, exp: "<b>ব্যাখ্যা:</b> নিউক্লিয়াসের ক্রোমাটিন বা নিউক্লিয় জালক কুণ্ডলীকৃত হয়ে ক্রোমোজোম তৈরি করে, ক্রোমোজোমের প্রধান উপাদান হলো DNA এবং DNA-এর নির্দিষ্ট কার্যকরী সংকেতবাহী অংশই হলো জিন।" },
+            { q: "১০. সেন্ট্রাল ডগমা (Central Dogma) অনুযায়ী DNA থেকে RNA তৈরির পদ্ধতিকে কী বলা হয়?", opts: ["রেপ্লিকেশন", "ট্রান্সলেশন", "ট্রান্সক্রিপশন", "রিভার্স ট্রান্সক্রিপশন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ক্রিক প্রস্তাবিত সেন্ট্রাল ডগমা অনুযায়ী DNA থেকে RNA সংশ্লেষের প্রক্রিয়াকে ট্রান্সক্রিপশন বলে এবং RNA থেকে প্রোটিন তৈরিকে ট্রান্সলেশন বলে।" },
+            { q: "১১. মানুষের জিনোমে ইউক্রোমাটিনের পরিমাণ প্রায় কত শতাংশ?", opts: ["৫%", "৫০%", "৯২%", "৯৯%"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ক্ষারীয় রঞ্জকে হালকা রং ধারণ করা এবং সক্রিয় জিন বহনকারী ইউক্রোমাটিন মানুষের জিনোমে প্রায় ৯২% স্থান দখল করে থাকে।" },
+            { q: "১২. ক্রোমোজোমের কোন্ অংশে মিয়োসিস বিভাজনের সময় ক্রসিং ওভার (Crossing over) ঘটে?", opts: ["হেটেরোক্রোমাটিন", "ইউক্রোমাটিন", "সেন্ট্রোমিয়ার", "টেলোমিয়ার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ইউক্রোমাটিন অংশ জিনগতভাবে সক্রিয় হওয়ায় মিয়োসিস কোশ বিভাজনের সময় কেবলমাত্র এই অংশেই ক্রসিং ওভার ঘটে।" },
+            { q: "১৩. লিঙ্গ নির্ধারণে সাহায্যকারী ক্রোমোজোমকে কী বলে?", opts: ["অটোজোম", "অ্যালোজোম বা সেক্স ক্রোমোজোম", "মেটাসেন্ট্রিক", "স্যাটেলাইট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> যে ক্রোমোজোম জীবের লিঙ্গ নির্ধারণে সাহায্য করে, তাকে অ্যালোজোম বা সেক্স ক্রোমোজোম বলে (মানুষের ক্ষেত্রে X এবং Y)।" },
+            { q: "১৪. হ্যাপ্লয়েড সেটের সম্পূর্ণ জিনসমষ্টিকে একত্রে কী বলে?", opts: ["জিনোম", "অ্যালিল", "লোকাস", "ক্রোমাটিড"], ans: 0, exp: "<b>ব্যাখ্যা:</b> কোনো জীবের একটি হ্যাপ্লয়েড সেটে (n) উপস্থিত সম্পূর্ণ জিনের সমষ্টিকে জিনোম (Genome) বলা হয়।" },
+            { q: "১৫. মানুষের একটি পরিণত ও জীবিত লোহিত রক্তকণিকায় ক্রোমোজোমের সংখ্যা কত?", opts: ["৪৬টি", "২৩টি", "শূন্য (০)", "২২টি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> স্তন্যপায়ীর পরিণত লোহিত রক্তকণিকায় কোনো নিউক্লিয়াস থাকে না, তাই সেখানে ক্রোমোজোম বা DNA-ও থাকে না এবং এদের কোশ বিভাজনও হয় না।" }
+        ]
+    },
+    2: {
+        name: "সেট ২", icon: "🔬", topic: "ক্রোমোজোমের প্রকারভেদ ও গঠন",
+        questions: [
+            { q: "১. মানুষের দেহকোশে অটোজোমের (Autosome) সংখ্যা কত?", opts: ["৪৬টি", "২৩টি", "৪৪টি বা ২২ জোড়া", "২ জোড়া"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মানুষের দেহকোশে থাকা মোট ৪৬টি ক্রোমোজোমের মধ্যে ৪৪টি বা ২২ জোড়া হলো অটোজোম, যা লিঙ্গ নির্ধারণ ছাড়া দেহের অন্যান্য বৈশিষ্ট্য নিয়ন্ত্রণ করে।" },
+            { q: "২. একজন স্বাভাবিক মহিলার দেহকোশের ক্রোমোজোম বিন্যাস কোনটি?", opts: ["44A + XY", "44A + XX", "22A + XX", "22A + X"], ans: 1, exp: "<b>ব্যাখ্যা:</b> স্ত্রী বা মহিলার দেহকোশে ৪৪টি অটোজোম এবং ২ টি (XX) যৌন ক্রোমোজোম থাকে, তাই ক্রোমোজোম বিন্যাস হলো 44A + XX।" },
+            { q: "৩. ক্রোমোজোমের যে অংশে দুটি ক্রোমাটিড পরস্পর যুক্ত থাকে, তাকে কী বলে?", opts: ["টেলোমিয়ার", "সেন্ট্রোমিয়ার", "স্যাটেলাইট", "নিউক্লিওজোম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> একটি ক্রোমোজোমের দুটি ক্রোমাটিড যে নির্দিষ্ট খাঁজ অংশে পরস্পর যুক্ত থাকে, তাকে সেন্ট্রোমিয়ার বা প্রাথমিক খাঁজ বলা হয়।" },
+            { q: "৪. সেন্ট্রোমিয়ার ক্রোমোজোমের ঠিক মাঝখানে অবস্থান করলে তাকে কী বলে?", opts: ["মেটাসেন্ট্রিক", "সাবমেটাসেন্ট্রিক", "অ্যাক্রোসেন্ট্রিক", "টেলোসেন্ট্রিক"], ans: 0, exp: "<b>ব্যাখ্যা:</b> সেন্ট্রোমিয়ার ক্রোমোজোমের ঠিক মাঝখানে অবস্থান করলে ক্রোমোজোমের বাহু দুটি সমান হয় এবং অ্যানাফেজ দশায় এটি 'V' আকৃতি ধারণ করে। একে মেটাসেন্ট্রিক বলে।" },
+            { q: "৫. অ্যানাফেজ দশায় 'L' আকৃতি ধারণকারী ক্রোমোজোমকে কী বলে?", opts: ["মেটাসেন্ট্রিক", "সাবমেটাসেন্ট্রিক", "অ্যাক্রোসেন্ট্রিক", "টেলোসেন্ট্রিক"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সেন্ট্রোমিয়ার ক্রোমোজোমের মাঝখানের কাছাকাছি থাকলে অ্যানাফেজ দশায় এটি 'L' আকৃতির হয়, একে সাবমেটাসেন্ট্রিক ক্রোমোজোম বলা হয়।" },
+            { q: "৬. ক্রোমোজোমের গৌণ খাঁজ বা NOR (Nucleolar Organizing Region) কোন্ অঙ্গাণু গঠনে সক্রিয় ভূমিকা নেয়?", opts: ["মাইটোকনড্রিয়া", "রাইবোজোম", "নিউক্লিওলাস", "সেন্ট্রোজোম"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ক্রোমোজোমের গৌণ খাঁজ অঞ্চলটি নিউক্লিওলাসের সাথে যুক্ত থাকে এবং রাইবোজোমাল RNA তৈরি করে নিউক্লিওলাস সংগঠনে সাহায্য করে।" },
+            { q: "৭. ক্রোমোজোমের গৌণ খাঁজের পরবর্তী ক্ষুদ্র গোলাকার প্রান্তীয় অংশটিকে কী বলে?", opts: ["স্যাটেলাইট", "টেলোমিয়ার", "সেন্ট্রোমিয়ার", "কাইনেটোকোর"], ans: 0, exp: "<b>ব্যাখ্যা:</b> গৌণ খাঁজের পরবর্তী ক্ষুদ্র গোলাকার অংশকে স্যাটেলাইট বলে এবং এই অংশ বহনকারী ক্রোমোজোমকে SAT ক্রোমোজোম বলা হয়।" },
+            { q: "৮. ক্রোমোজোমের দুই প্রান্তকে কী বলা হয়?", opts: ["সেন্ট্রোমিয়ার", "ক্রোমাটিড", "টেলোমিয়ার", "স্যাটেলাইট"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ক্রোমোজোমের প্রান্তদ্বয়কে টেলোমিয়ার বলে, এই অঞ্চলের অবিচ্ছিন্ন গঠন ক্রোমোজোমের নির্দিষ্ট রূপ নিয়ন্ত্রণ করে এবং ক্ষয়ের হাত থেকে রক্ষা করে।" },
+            { q: "৯. একটি আদর্শ ইউক্যারিওটিক ক্রোমোজোমের প্রধান প্রোটিন উপাদান কোনটি?", opts: ["নন-হিস্টোন প্রোটিন", "হিস্টোন প্রোটিন (ক্ষারীয়)", "অ্যালবুমিন", "ফাইব্রিন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ক্রোমোজোমের মোট প্রোটিনের প্রায় ৫৫% হলো ক্ষারীয় প্রকৃতির হিস্টোন প্রোটিন, যা DNA-এর সাথে যুক্ত থাকে।" },
+            { q: "১০. মানুষের জননকোশ বা গ্যামেটে (শুক্রাণু/ডিম্বাণু) ক্রোমোজোম সংখ্যা কত?", opts: ["৪৬টি", "২৩ জোড়া", "২৩টি", "২২টি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মানুষের দেহকোশে ৪৬টি (2n) ক্রোমোজোম থাকলেও মিয়োসিস বিভাজনের ফলে জননকোশে ক্রোমোজোম সংখ্যা অর্ধেক বা ২৩টি (n) অর্থাৎ হ্যাপ্লয়েড হয়ে যায়।" },
+            { q: "১১. ফার্ণ (Ophioglossum reticulatum)-এর দেহকোশে ক্রোমোজোম সংখ্যা (2n) কত?", opts: ["৪৬", "১৪", "১২৬০", "১৬০০"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অফিওগ্লসাম রেটিকিউলেটাম নামক ফার্ণের দেহকোশের নিউক্লিয়াসে ক্রোমোজোম সংখ্যা অত্যন্ত বেশি, অর্থাৎ 2n = 1260।" },
+            { q: "১২. যে ক্রোমোজোমে দুটি সেন্ট্রোমিয়ার থাকে তাকে কী বলে?", opts: ["মনোসেন্ট্রিক", "ডাইসেন্ট্রিক", "পলিসেন্ট্রিক", "অ্যাসেন্ট্রিক"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সেন্ট্রোমিয়ারের সংখ্যার ওপর ভিত্তি করে যে ক্রোমোজোমে দুটি সেন্ট্রোমিয়ার থাকে তাকে ডাইসেন্ট্রিক ক্রোমোজোম বলা হয়।" },
+            { q: "১৩. ক্রোমোজোমের যে কুণ্ডলীস্থিত ক্রোমোনিমা তন্তু সহজে পৃথক করা যায় না, তাকে কী বলে?", opts: ["প্যারানেমিক কুণ্ডলী", "প্লেকটোনেমিক কুণ্ডলী", "সোলেনয়েড কুণ্ডলী", "নিউক্লিওজোম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ক্রোমোজোমের কুণ্ডলীস্থিত ক্রোমোনিমা তন্তু যদি পরস্পরের সাথে গভীরভাবে পেঁচিয়ে থাকে এবং সহজে পৃথক করা না যায়, তাকে প্লেকটোনেমিক কুণ্ডলী বলে।" },
+            { q: "১৪. ক্রোমোজোমের বাইরের পাতলা আবরণীকে কী বলা হয়?", opts: ["পেলিকল", "ম্যাট্রিক্স", "প্লাজমালেমা", "টেলোমিয়ার"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ধ্রুপদী ধারণা অনুযায়ী ক্রোমোজোমের বাইরে যে পাতলা আবরণী থাকে তাকে পেলিকল (Pellicle) বলা হয়।" },
+            { q: "১৫. ক্যারিওটাইপের (Karyotype) প্রতিনিধিত্বমূলক ক্রোমোজোম যুগ্মগুলির অঙ্কিত ক্রমসজ্জাকে কী বলে?", opts: ["ইডিওগ্রাম", "পেডিগ্রি", "সেন্ট্রাল ডগমা", "জিনোম"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ক্যারিওটাইপের চিত্রগত বা রেখাচিত্রের মাধ্যমে উপস্থাপিত ক্রোমোজোমের ক্রমসজ্জাকে ইডিওগ্রাম (Idiogram) বলা হয়।" }
+        ]
+    },
+    3: {
+        name: "সেট ৩", icon: "🦠", topic: "কোশচক্র ও কোশ বিভাজন",
+        questions: [
+            { q: "১. যে কোশ বিভাজনে বেমযন্ত্র বা স্পিন্ডল ফাইবার গঠন ছাড়াই নিউক্লিয়াস ও সাইটোপ্লাজম সরাসরি বিভাজিত হয়, তাকে কী বলে?", opts: ["মাইটোসিস", "মিয়োসিস", "অ্যামাইটোসিস", "সাইটোকাইনেসিস"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অ্যামাইটোসিস বা প্রত্যক্ষ কোশ বিভাজনে নিউক্লিওপর্দা অবলুপ্ত হয় না এবং বেমযন্ত্র ছাড়াই কোশটি ডাম্বেল আকার ধারণ করে সরাসরি দুটি অপত্য কোশে ভাগ হয়।" },
+            { q: "২. ঈস্ট, অ্যামিবা ও ব্যাকটেরিয়ার মতো নিম্নশ্রেণির জীবে প্রধানত কোন্ কোশ বিভাজন দেখা যায়?", opts: ["মিয়োসিস", "অ্যামাইটোসিস", "মাইটোসিস", "সাইটোকাইনেসিস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নিম্নশ্রেণির এককোশী জীবে দ্রুত বংশবৃদ্ধির জন্য সরল ও প্রত্যক্ষ কোশ বিভাজন পদ্ধতি অ্যামাইটোসিস সম্পন্ন হয়।" },
+            { q: "৩. মাইটোসিস কোশ বিভাজন প্রধানত জীবদেহের কোথায় ঘটে?", opts: ["জনন মাতৃকোশে", "শুক্রাশয়ে", "ডিম্বাশয়ে", "দেহকোশে বা সোমাটিক কোশে"], ans: 3, exp: "<b>ব্যাখ্যা:</b> মাইটোসিস মূলত উদ্ভিদের বর্ধনশীল অঞ্চলে এবং প্রাণীর দেহকোশে (ত্বক, ভ্রূণ, অস্থিমজ্জা) ঘটে যার ফলে জীবের বৃদ্ধি ও ক্ষত নিরাময় হয়।" },
+            { q: "৪. কোশচক্রের ইন্টারফেজ দশার কোন্ উপদশায় DNA সংশ্লেষিত বা প্রতিলিপিকরণ হয়?", opts: ["G1 দশা", "S দশা", "G2 দশা", "M দশা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ইন্টারফেজের S দশা বা সংশ্লেষণ (Synthesis) দশায় কোশের DNA সংশ্লেষিত হয়ে দ্বিগুণ হয়।" },
+            { q: "৫. কোশচক্রের কোন্ দশায় কোশ সাময়িক বা স্থায়ীভাবে বিভাজন প্রক্রিয়া থেকে নিজেকে প্রত্যাহার করে নেয়?", opts: ["S দশা", "G2 দশা", "G0 দশা", "প্রফেজ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ইন্টারফেজের প্রাথমিক অবস্থায় কোশ যখন বিভাজন থেকে বিরত হয়ে নিষ্ক্রিয়ভাবে অবস্থান করে, তাকে G0 দশা বলে (যেমন- মানুষের স্নায়ুকোশ)।" },
+            { q: "৬. মাইটোসিস কোশ বিভাজনের কোন্ দশায় ক্রোমোজোমগুলি বেমযন্ত্রের বিষুব বা নিরক্ষীয় অঞ্চলে একতলে সজ্জিত হয়?", opts: ["প্রফেজ", "মেটাফেজ", "অ্যানাফেজ", "টেলোফেজ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মেটাফেজ দশায় ক্রোমোজোমগুলি কাইনেটোকোর অনুনালিকার সাহায্যে বেমযন্ত্রের মাঝখানে বা বিষুব অঞ্চলে সজ্জিত হয়ে মেটাফেজ প্লেট গঠন করে।" },
+            { q: "৭. মাইটোসিস বিভাজনের সবচেয়ে ক্ষণস্থায়ী বা সংক্ষিপ্ত দশা কোনটি?", opts: ["প্রফেজ", "মেটাফেজ", "অ্যানাফেজ", "টেলোফেজ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অ্যানাফেজ হলো কোশচক্রের সংক্ষিপ্ততম দশা, যেখানে সেন্ট্রোমিয়ার বিভাজিত হয়ে অপত্য ক্রোমোজোমগুলি মেরুর দিকে ধাবমান হয়।" },
+            { q: "৮. উদ্ভিদকোশের সাইটোকাইনেসিস বা সাইটোপ্লাজম বিভাজন কোন্ পদ্ধতিতে সম্পন্ন হয়?", opts: ["ক্লিভেজ পদ্ধতি", "ফারোয়িং পদ্ধতি", "কোশপাত বা সেল প্লেট গঠন", "মুকুলোদ্গম"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উদ্ভিদকোশে অ্যানাফেজের শেষে ফ্রাগমোপ্লাস্ট ও ভেসিকলগুলি একত্রিত হয়ে কোশপাত (Cell plate) গঠনের মাধ্যমে সাইটোকাইনেসিস সম্পন্ন হয়।" },
+            { q: "৯. প্রাণীকোশের মাইটোসিস বিভাজনে বেমতন্তু গঠনে কোন্ কোশীয় অঙ্গাণু প্রধান ভূমিকা নেয়?", opts: ["রাইবোজোম", "সেন্ট্রোজোম", "মাইটোকনড্রিয়া", "গলগি বস্তু"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রাণীকোশের সেন্ট্রোজোমের সেন্ট্রিওল দুটি বিভক্ত হয়ে দুই মেরুতে যায় এবং তাদের থেকে নির্গত অ্যাস্ট্রাল রশ্মি মিলিত হয়ে বেমযন্ত্র গঠন করে।" },
+            { q: "১০. অ্যানাফেজ দশায় ক্রোমোজোমের মেরুমুখী চলনে প্রয়োজনীয় শক্তি (ATP) কোন্ অঙ্গাণু সরবরাহ করে?", opts: ["রাইবোজোম", "লাইসোজোম", "মাইটোকনড্রিয়া", "এন্ডোপ্লাজমিক রেটিকুলাম"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কোশ বিভাজনের সময়, বিশেষ করে অ্যানাফেজে ক্রোমোজোমের মেরুমুখী চলনে মোটর প্রোটিনকে চালনা করার জন্য প্রয়োজনীয় ATP মাইটোকনড্রিয়া প্রদান করে।" },
+            { q: "১১. মাইটোসিসের কোন্ দশায় নিউক্লিয়পর্দা ও নিউক্লিওলাসের পুনরাবির্ভাব ঘটে এবং ক্রোমোজোমগুলি সরু সুতোর মতো হয়?", opts: ["প্রফেজ", "মেটাফেজ", "অ্যানাফেজ", "টেলোফেজ"], ans: 3, exp: "<b>ব্যাখ্যা:</b> টেলোফেজ দশায় দুই মেরুতে ক্রোমোজোমগুলিকে ঘিরে নিউক্লিয় পর্দা তৈরি হয়, নিউক্লিওলাস ফিরে আসে এবং ক্রোমোজোম জল শোষণ করে দীর্ঘ ও অস্পষ্ট হয়।" },
+            { q: "১২. কোশচক্রে বিভিন্ন চেক পয়েন্টের (Check points) কাজ বিঘ্নিত হলে কী ঘটবে?", opts: ["কোশ বিভাজন বন্ধ হয়ে যাবে বা অনিয়ন্ত্রিত বিভাজনে টিউমার সৃষ্টি হবে", "কোশটি গ্যামেটে পরিণত হবে", "কোশের আকার ছোট হয়ে যাবে", "ক্রসিং ওভার ঘটবে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> চেক পয়েন্টগুলি ঠিকমতো কাজ না করলে কোশ বিভাজন অনিয়ন্ত্রিত হয়ে পড়ে, যার ফলে বিনাইন বা ম্যালিগন্যান্ট টিউমার (ক্যানসার) সৃষ্টি হতে পারে।" },
+            { q: "১৩. প্রাণীকোশের সাইটোকাইনেসিস কোন্ পদ্ধতিতে ঘটে?", opts: ["কোশপাত গঠন", "ক্লিভেজ বা ফারোয়িং", "ফ্রাগমোপ্লাস্ট গঠন", "সাইটোপ্লাজমিক স্ট্রিমিং"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রাণীকোশে কোশপর্দা বাইরের দিক থেকে ভেতরের দিকে খাঁজ বা ফারো (furrow) সৃষ্টির মাধ্যমে ক্রমশ গভীর হয়ে ক্লিভেজ পদ্ধতিতে সাইটোপ্লাজমকে বিভক্ত করে।" },
+            { q: "১৪. কোশচক্র নিয়ন্ত্রণের জন্য দায়ী প্রোটিন এবং উৎসেচকের নাম কী?", opts: ["হিস্টোন ও পলিমারেজ", "সাইক্লিন এবং কাইনেজ (CDK)", "মায়োসিন ও লাইপেজ", "অ্যাকটিন ও অ্যামাইলেজ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কোশচক্রের বিভিন্ন চেক পয়েন্টে রাসায়নিক নিয়ন্ত্রণের জন্য সাইক্লিন প্রোটিন এবং সাইক্লিন নিয়ন্ত্রিত উৎসেচক কাইনেজ (CDK) কাজ করে।" },
+            { q: "১৫. কোন কোশ বিভাজনকে সমবিভাজন (Equational division) বলা হয়?", opts: ["মাইটোসিস", "মিয়োসিস", "অ্যামাইটোসিস", "বহুবিভাজন"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মাইটোসিস বিভাজনে মাতৃকোশ ও অপত্যকোশের ক্রোমোজোম সংখ্যা এবং গুণ অপরিবর্তিত বা সমান থাকে, তাই একে সমবিভাজন বা সদৃশ বিভাজন বলে।" }
+        ]
+    },
+    4: {
+        name: "সেট ৪", icon: "🧩", topic: "মিয়োসিস ও কোশ অঙ্গাণুর ভূমিকা",
+        questions: [
+            { q: "১. মিয়োসিস (Meiosis) কোশ বিভাজনকে 'হ্রাস বিভাজন' বলা হয় কেন?", opts: ["কোশের আকার ছোট হয়ে যায় বলে", "অপত্য কোশে ক্রোমোজোম সংখ্যা মাতৃকোশের অর্ধেক হয়ে যায় বলে", "DNA-এর পরিমাণ দ্বিগুণ হয় বলে", "সাইটোপ্লাজম কমে যায় বলে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মিয়োসিস প্রক্রিয়ায় একটি ডিপ্লয়েড (2n) মাতৃকোশ থেকে হ্যাপ্লয়েড (n) অপত্য কোশ তৈরি হয়, অর্থাৎ ক্রোমোজোম সংখ্যা অর্ধেক হ্রাস পায়।" },
+            { q: "২. মিয়োসিস কোশ বিভাজন পদ্ধতিতে একটি মাতৃকোশ থেকে মোট কয়টি অপত্য কোশ সৃষ্টি হয়?", opts: ["২টি", "৪টি", "৮টি", "অসংখ্য"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মিয়োসিস বিভাজনে নিউক্লিয়াস ও সাইটোপ্লাজম পরপর দুবার বিভাজিত হয়ে একটি ডিপ্লয়েড জনন মাতৃকোশ থেকে ৪টি হ্যাপ্লয়েড অপত্য কোশ (গ্যামেট) উৎপন্ন করে।" },
+            { q: "৩. মিয়োসিসের প্রথম প্রফেজের জাইগোটিন উপদশায় সমধর্মী জিন সমৃদ্ধ দুটি সমসংস্থ ক্রোমোজোমের জোড় বাঁধাকে কী বলে?", opts: ["বাইভ্যালেন্ট বা ডায়াড", "টেট্রাড", "কায়াজমা", "ক্রসিং ওভার"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পিতা ও মাতার কাছ থেকে আসা সমসংস্থ ক্রোমোজোম দুটি জাইগোটিন উপদশায় পরস্পর আকৃষ্ট হয়ে যে জোড় গঠন করে তাকে বাইভ্যালেন্ট (Bivalent) বা ডায়াড বলে।" },
+            { q: "৪. মিয়োসিস বিভাজনে ক্রসিং ওভার (Crossing over) বা খণ্ডাংশ বিনিময় কোন্ দশায় ঘটে?", opts: ["মেটাফেজ-১", "প্রফেজ-১ এর প্যাকাইটিন উপদশায়", "অ্যানাফেজ-১", "প্রফেজ-১ এর লেপটোটিন উপদশায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রথম প্রফেজের প্যাকাইটিন উপদশায় সমসংস্থ ক্রোমোজোমের দুটি নন-সিস্টার ক্রোমাটিডের মধ্যে খণ্ডের আদানপ্রদান বা ক্রসিং ওভার ঘটে।" },
+            { q: "৫. ক্রসিং ওভার ঘটার সময় নন-সিস্টার ক্রোমাটিডগুলির মধ্যে যে X আকৃতির গঠন তৈরি হয়, তাকে কী বলে?", opts: ["সেন্ট্রোমিয়ার", "টেট্রাড", "কায়াজমা", "লোকাস"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সমসংস্থ ক্রোমোজোমের দুটি নন-সিস্টার ক্রোমাটিডের মধ্যে খণ্ড বিনিময়ের ঘটনাস্থলে যে 'X' আকৃতির গঠন তৈরি হয়, তাকে কায়াজমা বলে।" },
+            { q: "৬. জননকোশে জিনগত ভেদ বা প্রজননিক প্রকরণ (Variation) সৃষ্টির মূল কারণ কোনটি?", opts: ["মাইটোসিস বিভাজন", "ক্রসিং ওভার ও জিনের পুনঃসংযুক্তি", "সমবিভাজন", "সাইটোকাইনেসিস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মিয়োসিসে ক্রসিং ওভারের ফলে ক্রোমাটিডের মধ্যে জিনের সজ্জারীতি পাল্টে যায়, যা অপত্য জীবে নতুন বৈশিষ্ট্য বা প্রকরণ সৃষ্টি করে।" },
+            { q: "৭. মিয়োসিস বিভাজন প্রধানত জীবদেহের কোথায় সম্পন্ন হয়?", opts: ["স্নায়ুকোশে", "মূলের অগ্রভাগে", "জনন মাতৃকোশে বা রেণু মাতৃকোশে", "ত্বকের কোশে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্রাণীদেহে শুক্রাশয় ও ডিম্বাশয়ের জনন মাতৃকোশে গ্যামেটে উৎপাদনের সময় এবং উদ্ভিদে রেণু উৎপাদনের সময় রেণু মাতৃকোশে মিয়োসিস ঘটে।" },
+            { q: "৮. একটি বাইভ্যালেন্ট বা সমসংস্থ ক্রোমোজোম জোড়ায় মোট কয়টি ক্রোমাটিড থাকে?", opts: ["২টি", "৪টি", "৮টি", "৬টি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বাইভ্যালেন্টে থাকা প্রতিটি ক্রোমোজোম দুটি করে ক্রোমাটিড তৈরি করে, ফলে মোট ৪টি ক্রোমাটিড থাকে, তাই একে টেট্রাড বলা হয়।" },
+            { q: "৯. যৌন জননে সক্ষম জীবের জীবনচক্রে ডিপ্লয়েড (2n) ও হ্যাপ্লয়েড (n) দশার পর্যায়ক্রমিক আবর্তনকে কী বলে?", opts: ["মেটামরফোসিস", "রূপান্তর", "জনুক্রম (Alternation of generations)", "পুনরুৎপাদন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> জীবের জীবনচক্রে জননকোশের মিলনে সৃষ্ট ডিপ্লয়েড দশা এবং মিয়োসিস বিভাজনে উৎপন্ন হ্যাপ্লয়েড দশা চক্রাকারে আবর্তিত হয়, একে জনুক্রম বলে (যেমন ফার্ণে দেখা যায়)।" },
+            { q: "১০. প্রজাতির ক্রোমোজোম সংখ্যা বংশ পরম্পরায় ধ্রুবক বা নির্দিষ্ট রাখতে সাহায্য করে কোন্ কোশ বিভাজন?", opts: ["মিয়োসিস", "মাইটোসিস", "অ্যামাইটোসিস", "দ্বিবিভাজন"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মিয়োসিস পদ্ধতিতে গ্যামেটে ক্রোমোজোম সংখ্যা অর্ধেক (n) হয়, ফলে নিষেকের পর জাইগোটে পুনরায় ডিপ্লয়েড (2n) অবস্থা ফিরে আসে এবং ক্রোমোজোম সংখ্যা ধ্রুবক থাকে।" },
+            { q: "১১. মিয়োসিস-I এর অ্যানাফেজ-I দশায় কোন্ গঠনটি পরস্পর বিচ্ছিন্ন হয়ে বিপরীত মেরুতে গমন করে?", opts: ["সিস্টার ক্রোমাটিড", "সমসংস্থ ক্রোমোজোম", "নিউক্লিওলাস", "সেন্ট্রোমিয়ার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> অ্যানাফেজ-I দশায় সমসংস্থ ক্রোমোজোম যুগলের প্রতিটি ক্রোমোজোম তার দুটি ক্রোমাটিড সহ পরস্পর বিপরীত মেরুর দিকে সরে যায়, সেন্ট্রোমিয়ারের বিভাজন হয় না।" },
+            { q: "১২. মিয়োসিস-II এর অ্যানাফেজ-II দশায় মূলত কার পৃথকীকরণ ঘটে?", opts: ["সমসংস্থ ক্রোমোজোম", "ক্রোমাটিড", "কায়াজমা", "বেমতক্ত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মিয়োসিস-II হলো সমবিভাজন। এর অ্যানাফেজ উপদশায় সেন্ট্রোমিয়ার লম্বালম্বি দ্বিধাবিভক্ত হয় এবং প্রতি ক্রোমোজোমের ক্রোমাটিড দুটি পৃথক হয়ে বিপরীত মেরুতে যায়।" },
+            { q: "১৩. কোশ বিভাজনকালে রাইবোজোম (Ribosome) অঙ্গাণুর প্রধান কাজ কী?", opts: ["শক্তি উৎপন্ন করা", "প্রোটিন সংশ্লেষ করা", "বেমতক্ত গঠন করা", "নিউক্লিয়াস তৈরি করা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কোশচক্রে প্রোটিন তৈরি, সেন্ট্রোজোম ও কাইনেটোকোর গঠন এবং মোটর প্রোটিন সৃষ্টিসহ বিভাজনের জন্য প্রয়োজনীয় প্রোটিন রাইবোজোমের সান্নিধ্যেই সংশ্লেষিত হয়।" },
+            { q: "১৪. একই ক্রোমোজোমের দুটি ক্রোমাটিডকে কী বলা হয়?", opts: ["নন-সিস্টার ক্রোমাটিড", "সিস্টার ক্রোমাটিড বা ভগিনী ক্রোমাটিড", "সমসংস্থ ক্রোমাটিড", "কাইনেটোকোর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> একটি ক্রোমোজোম লম্বালম্বিভাবে বিভাজিত হয়ে যে দুটি সমগুণসম্পন্ন ক্রোমাটিড তৈরি করে, তাদের ভগিনী বা সিস্টার ক্রোমাটিড বলে।" },
+            { q: "১৫. ড্রায়োপটেরিস (Dryopteris) নামক ফার্ণের জীবনচক্রে কোন বৈশিষ্ট্যটি দেখা যায়?", opts: ["শুধুমাত্র হ্যাপ্লয়েড দশা", "শুধুমাত্র ডিপ্লয়েড দশা", "অঙ্গসংস্থানিক জনুক্রম", "অযৌন জননের অভাব"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ফার্ণের জীবনচক্রে হ্যাপ্লয়েড (লিঙ্গধর) এবং ডিপ্লয়েড (রেণুধর) জনু দুটিই দীর্ঘস্থায়ী এবং পৃথক উদ্ভিদদশা গঠন করে, যাকে প্রকৃত অঙ্গসংস্থানিক জনুক্রম বলে।" }
+        ]
+    },
+    5: {
+        name: "সেট ৫", icon: "🌱", topic: "জনন (অযৌন ও অঙ্গজ জনন)",
+        questions: [
+            { q: "১. যে জনন প্রক্রিয়ায় গ্যামেট উৎপাদন ছাড়াই রেণুর সাহায্যে বা দেহকোশ বিভাজিত হয়ে অপত্য জীব সৃষ্টি হয়, তাকে কী বলে?", opts: ["যৌন জনন", "অযৌন জনন", "অপুংজনি", "সিনগ্যামি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> অযৌন জননে দুটি ভিন্ন লিঙ্গের প্রয়োজন হয় না; জীব এককভাবেই মাইটোসিস বা রেণু উৎপাদনের মাধ্যমে সমপ্রকৃতির অপত্য সৃষ্টি করে।" },
+            { q: "২. প্লাসমোডিয়ামের (Plasmodium) ক্ষেত্রে বহুবিভাজন পদ্ধতিকে কী বলা হয়?", opts: ["দ্বিবিভাজন", "সাইজোগনি বা সাইজন্ট দশায় বহুবিভাজন", "প্লাজমোটোমি", "কোরকোড্রম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্লাসমোডিয়ামের সাইজন্ট দশায় বহুবিভাজন ঘটে এবং অসংখ্য মেরোজয়েট অপত্য তৈরি হয়।" },
+            { q: "৩. মাতৃদেহের বাইরে কোরক বা বাড (Bud) সৃষ্টি করে বংশবিস্তার বা কোরকোড্রম করে কোন্ প্রাণী?", opts: ["অ্যামিবা", "প্যারামেসিয়াম", "হাইড্রা", "কেঁচো"], ans: 2, exp: "<b>ব্যাখ্যা:</b> হাইড্রা এবং ঈস্ট কোরকোড্রম পদ্ধতিতে দেহের বাইরে কোরক সৃষ্টি করে যা পরিণত হয়ে মাতৃদেহ থেকে বিচ্ছিন্ন হয়ে অপত্য সৃষ্টি করে।" },
+            { q: "৪. খণ্ডীভবন (Fragmentation) প্রক্রিয়ায় অযৌন জনন সম্পন্ন করে কোন্ উদ্ভিদ?", opts: ["ক্ল্যামাইডোমোনাস", "স্পাইরোগাইরা", "ঈস্ট", "পেনিসিলিয়াম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> স্পাইরোগাইরার দেহ খণ্ডিত হলে প্রতিটি খণ্ড বিভাজন ও বৃদ্ধির মাধ্যমে নতুন উদ্ভিদের সৃষ্টি করে, একে খণ্ডীভবন বলে।" },
+            { q: "৫. কাটা দেহাংশ থেকে সম্পূর্ণ জীবদেহ পুনর্গঠন বা পুনরুৎপাদন (Regeneration) দেখা যায় কোন্ প্রাণীতে?", opts: ["প্লাসমোডিয়াম", "হাইড্রা", "প্ল্যানেরিয়া", "অ্যামিবা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্ল্যানেরিয়ার জীবদেহ বিভিন্ন খণ্ডে বিভাজিত হলে প্রত্যেক খণ্ডের বিভাজন, বৃদ্ধি এবং বিভেদনের মাধ্যমে সম্পূর্ণ নতুন অপত্য জীব পরিণত হয়।" },
+            { q: "৬. বহুনউক্লিয়াসযুক্ত কোশে নিউক্লিয়াসের বিভাজন না হয়ে শুধুমাত্র সাইটোপ্লাজমের বিভাজনকে কী বলে?", opts: ["সাইটোকাইনেসিস", "প্লাজমোটোমি", "ক্লিভেজ", "কোরকোড্রম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ওপালিনা নামক জীবে বহু নিউক্লিয়াসযুক্ত অবস্থায় কেবল সাইটোপ্লাজম বিভাজিত হয়ে অপত্য সৃষ্টি করে, একে প্লাজমোটোমি বলে।" },
+            { q: "৭. রাঙালু এবং পটলের ক্ষেত্রে কোন্ অঙ্গের সাহায্যে প্রাকৃতিক অঙ্গজ জনন সম্পন্ন হয়?", opts: ["পাতা", "কান্ড", "মূল", "মুকুল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> রাঙালু এবং পটলের রসালো মূল মাটিতে পুঁতে দিলে তা থেকে অঙ্গজ জননের মাধ্যমে নতুন চারাগাছ জন্মায়।" },
+            { q: "৮. পাথরকুচি (Bryophyllum) কোন্ অঙ্গের সাহায্যে প্রাকৃতিক অঙ্গজ বংশবিস্তার করে?", opts: ["মূলের সাহায্যে", "কাক্ষিক মুকুলের সাহায্যে", "পাতার অস্থানিক মুকুলের সাহায্যে", "অর্ধবায়বীয় কাণ্ডের সাহায্যে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পাথরকুচি পাতার কিনারা থেকে অস্থানিক মুকুল বা পত্রাশ্রয়ী মুকুল তৈরি হয় যা মাটিতে পড়লে নতুন উদ্ভিদের সৃষ্টি করে।" },
+            { q: "৯. কৃত্রিম অঙ্গজ জননে শাখা কলমের (Stem cutting) কাটা অংশে দ্রুত অস্থানিক মূল সৃষ্টির জন্য কোন্ হরমোন প্রয়োগ করা হয়?", opts: ["জিব্বেরেলিন", "সাইটোকাইনিন", "কৃত্রিম অক্সিন (NAA, IBA)", "ইথিলিন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> শাখা কলমের কাটা অংশ কয়েকদিন কৃত্রিম অক্সিন (NAA বা IBA) দ্রবণে ডুবিয়ে রাখলে সেখান থেকে খুব দ্রুত অস্থানিক মূল সৃষ্টি হয়।" },
+            { q: "১০. জোড় কলম (Grafting) পদ্ধতিতে যে মূলসমেত গাছটির ওপর অন্য ডাল লাগানো হয় তাকে কী বলে?", opts: ["সিয়ন (Scion)", "স্টক (Stock)", "ক্যালাস", "এক্সপ্ল্যান্ট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জোড় কলমে যার ওপর ডাল জোড়া লাগানো হয় তাকে স্টক বলে, এবং যে উন্নত মানের ডালটি জোড়া হয় তাকে সিয়ন বলে।" },
+            { q: "১১. একবীজপত্রী উদ্ভিদে জোড় কলম করা যায় না কেন?", opts: ["এদের মূল থাকে না", "এদের কাণ্ডে ক্যাম্বিয়াম (Cambium) কলা থাকে না", "এরা অযৌন জনন করে না", "এদের ফুল ফোটে না"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জোড় কলমে স্টক ও সিয়নের ক্যাম্বিয়াম কলা জুড়ে গিয়ে কোশ বিভাজন ঘটে, যেহেতু একবীজপত্রী উদ্ভিদে ক্যাম্বিয়াম থাকে না তাই এদের জোড় কলম হয় না।" },
+            { q: "১২. অণুবিস্তারণ বা মাইক্রোপ্রোপাগেশন (Micropropagation) পদ্ধতিতে কর্ষণ মাধ্যমে ব্যবহৃত উদ্ভিদের ক্ষুদ্র অংশটিকে কী বলে?", opts: ["ক্যালাস", "সিয়ন", "এক্সপ্ল্যান্ট (Explant)", "এমব্রয়েড"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মাইক্রোপ্রোপাগেশনে উদ্ভিদের শীর্ষমুকুল, পাতা বা কলার যে ক্ষুদ্র অংশটিকে কর্ষণ মাধ্যমে (Culture medium) রাখা হয় তাকে এক্সপ্ল্যান্ট বলে।" },
+            { q: "১৩. মাইক্রোপ্রোপাগেশন পদ্ধতিতে এক্সপ্ল্যান্ট বিভাজিত হয়ে প্রথমে যে অবিভেদিত কোশপুঞ্জ গঠন করে তাকে কী বলে?", opts: ["স্টক", "ক্যালাস (Callus)", "প্ল্যান্টলেট", "জাইগোট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উপযুক্ত পুষ্টিমাধ্যমে এক্সপ্ল্যান্ট কোশ বিভাজনের দ্বারা বৃদ্ধি পেয়ে একটি অবিভেদিত কোশপুঞ্জ তৈরি করে, যাকে ক্যালাস বলা হয়।" },
+            { q: "১৪. অণুবিস্তারণের অন্তিম পর্যায়ে গবেষণাগারের চারাগাছগুলিকে গ্রিন হাউসে উপযুক্ত পরিবেশে মানিয়ে নেওয়ার পদ্ধতিকে কী বলে?", opts: ["হার্ডেনিং (Hardening)", "সিয়ন গ্রাফটিং", "ইমাসকুলেশন", "সিনগ্যামি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> কর্ষণ মাধ্যম থেকে প্ল্যান্টলেট বা চারাগাছগুলিকে গ্রিন হাউসে উপযুক্ত তাপমাত্রা ও আর্দ্রতায় মানিয়ে নেওয়ার পদ্ধতিকে হার্ডেনিং বলে।" },
+            { q: "১৫. মস ও ফার্ণের ডিপ্লয়েড দেহে রেণুস্থলীর রেণুমাতৃকোশ বিভাজিত হয়ে কী উৎপন্ন করে?", opts: ["পুং গ্যামেট", "হ্যাপ্লয়েড রেণু", "ক্যালাস", "জাইগোট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মস ও ফার্ণের রেণুমাতৃকোশ মিয়োসিস পদ্ধতিতে বিভাজিত হয়ে হ্যাপ্লয়েড রেণু উৎপাদন করে, যা অযৌন জননের একক।" }
+        ]
+    },
+    6: {
+        name: "সেট ৬", icon: "🌸", topic: "সপুষ্পক উদ্ভিদের যৌন জনন",
+        questions: [
+            { q: "১. ফুলের কোন্ বর্ণময় স্তবকটি কীটপতঙ্গকে আকৃষ্ট করে পরাগযোগে পরোক্ষভাবে সাহায্য করে?", opts: ["বৃত্তি", "পুংস্তবক", "দলমণ্ডল (পাপড়ি)", "স্ত্রীস্তবক"], ans: 2, exp: "<b>ব্যাখ্যা:</b> দলমণ্ডল বা পাপড়িগুলি রঙিন ও বর্ণময় হওয়ার কারণে এরা কীটপতঙ্গকে আকৃষ্ট করে এবং ইতর পরাগযোগ ঘটাতে সাহায্য করে।" },
+            { q: "২. ফুলের জনন প্রক্রিয়ায় অংশগ্রহণকারী অত্যাবশ্যকীয় স্তবক কোনগুলি?", opts: ["বৃতি ও দলমণ্ডল", "পুংস্তবক ও স্ত্রীস্তবক", "পুষ্পাক্ষ ও বৃতি", "পাপড়ি ও পুংকেশর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পুংস্তবক পরাগরেণু উৎপাদন করে এবং স্ত্রীস্তবক ডিম্বাণু উৎপাদন করে সরাসরি জননে সাহায্য করে, তাই এরা ফুলের অত্যাবশ্যকীয় স্তবক।" },
+            { q: "৩. কোনো ফুলের পরাগরেণু সেই গাছেরই অন্য একটি ফুলের গর্ভমুণ্ডে স্থানান্তরিত হওয়াকে কী বলে?", opts: ["অটোগ্যামি", "গেইটোনোগ্যামি (Geitonogamy)", "ইতর পরাগযোেগ", "হাইড্রিল্যা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> একই উদ্ভিদের দুটো ভিন্ন ফুলের মধ্যে পরাগযোগ ঘটলে তাকে গেইটোনোগ্যামি বলে, যা এক প্রকার স্বপরাগযোগ (যেমন- লাউ, কুমড়ো)।" },
+            { q: "৪. বায়ু দ্বারা পরাগযোগ (Anemophily) ঘটে কোন্ উদ্ভিদে?", opts: ["পাতাঝাঁজি", "শিমূল", "ধান", "আম"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ধানের ফুল বর্ণহীন, গন্ধহীন ও ছোট হয় এবং পরাগরেণু হালকা হওয়ায় এরা বায়ুর মাধ্যমে পরাগযোগ সম্পন্ন করে।" },
+            { q: "৫. জলের সাহায্যে পরাগযোগ (হাইড্রোফিলি) ঘটে কোন্ উদ্ভিদে?", opts: ["পাতাঝাঁজি বা ভ্যালিসনেরিয়া", "পদ্ম", "কচুরিপানা", "শালুক"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পাতাঝাঁজি একটি জলজ উদ্ভিদ যার স্ত্রীফুলের পুষ্পদণ্ড জলের উপর উঠে আসে এবং জলের মাধ্যমে এদের পরাগযোগ ঘটে।" },
+            { q: "৬. পক্ষীপরাগী (অরনিথোফিলি) উদ্ভিদের উদাহরণ কোনটি?", opts: ["ধান ও গম", "শিমূল ও পলাশ", "আম ও জাম", "পাতাঝাঁজি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শিমূল ও পলাশ ফুল বড়ো, উজ্জ্বল বর্ণ বিশিষ্ট এবং সুস্বাদু মকরন্দযুক্ত হওয়ায় পাখিরা এদের পরাগযোগে সাহায্য করে।" },
+            { q: "৭. শিমূল ও পলাশ গাছে কোন্ বাহক পরাগযোগে সাহায্য করে?", opts: ["বায়ু", "জল", "পতঙ্গ", "পাখি (Ornithophily)"], ans: 3, exp: "<b>ব্যাখ্যা:</b> শিমূল ও পলাশ ফুল বড়ো, উজ্জ্বল বর্ণ বিশিষ্ট এবং সুস্বাদু মকরন্দযুক্ত হওয়ায় পাখিরা এদের পরাগযোগে সাহায্য করে।" },
+            { q: "৮. সপুষ্পক উদ্ভিদের নিষেকের সময় পরাগনালি যদি ডিম্বকরন্ধ্র দিয়ে ডিম্বকে প্রবেশ করে, তবে তাকে কী বলে?", opts: ["মেসোেগ্যামি", "চ্যালাজোগ্যামি", "পোরোগ্যামি", "সিনগ্যামি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পরাগনালি ডিম্বকরন্ধ্র দিয়ে প্রবেশ করলে তাকে পোরোগ্যামি, ডিম্বকমূল পথে প্রবেশ করলে চ্যালাজোগ্যামি এবং ডিম্বকত্বক দিয়ে প্রবেশ করলে মেসোেগ্যামি বলে।" },
+            { q: "৯. পরাগরেণুর পরিস্ফুরণের পর পরাগনালির মধ্যে জেনারেটিভ নিউক্লিয়াসটি বিভাজিত হয়ে কয়টি পুংগ্যামেট (পুংজননকোশ) গঠন করে?", opts: ["১টি", "২টি", "৩টি", "৪টি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পরাগনালির মধ্যে থাকা জনন নিউক্লিয়াসটি মাইটোসিস পদ্ধতিতে বিভাজিত হয়ে নিষেকের জন্য দুটি হ্যাপ্লয়েড পুংগ্যামেট তৈরি করে।" },
+            { q: "১০. সপুষ্পক উদ্ভিদের ডিম্বকের ভ্রূণস্থলীর কেন্দ্রে থাকা ডিপ্লয়েড (2n) নিউক্লিয়াসটিকে কী বলে?", opts: ["ডিম্বাণু", "সহকারী কোশ", "প্রতিপাদ কোশ", "নির্ণীত নিউক্লিয়াস"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ভ্রূণস্থলীর কেন্দ্রে দুটি নিউক্লিয়াস জুড়ে গিয়ে একটি ডিপ্লয়েড নির্ণীত নিউক্লিয়াস (Definitive nucleus) গঠন করে।" },
+            { q: "১১. সপুষ্পক উদ্ভিদে দ্বিতীয় পুংগ্যামেটটি নির্ণীত নিউক্লিয়াসকে (2n) নিষিক্ত করে কী গঠন করে?", opts: ["জাইগোট", "সস্য নিউক্লিয়াস (3n)", "ভ্রূণ", "বীজত্বক"], ans: 1, exp: "<b>ব্যাখ্যা:</b> একটি পুংগ্যামেট (n) নির্ণীত নিউক্লিয়াসকে (2n) নিষিক্ত করে ট্রিপ্লয়েড (3n) সস্য নিউক্লিয়াস তৈরি করে যা বীজের সস্য গঠন করে।" },
+            { q: "১২. সপুষ্পক উদ্ভিদের নিষেককে 'দ্বিনিষেক' (Double fertilization) বলা হয় কেন?", opts: ["দুটি পরাগরেণু একসাথে মিলিত হয় বলে", "পুংগ্যামেট দুটি ডিম্বাণু ও নির্ণীত নিউক্লিয়াস উভয়কেই নিষিক্ত করে বলে", "দুবার ফুল ফোটে বলে", "স্ত্রীস্তবক দুবার বিভাজিত হয় বলে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> একটি পুংগ্যামেট ডিম্বাণুকে এবং অপরটি নির্ণীত নিউক্লিয়াসকে নিষিক্ত করে, অর্থাৎ নিষেকের ঘটনা দুবার ঘটে বলে একে দ্বিনিষেক বলে।" },
+            { q: "১৩. নিষেকের পর সপুষ্পক উদ্ভিদের ডিম্বাশয় (Ovary) কিসে রূপান্তরিত হয়?", opts: ["বীজে", "ফলে", "ক্রণে", "সস্যে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পরাগমিলন ও নিষেকের পর অভ্যন্তরীণ অক্সিনের প্রভাবে বৃদ্ধি পেয়ে ডিম্বাশয়টি সম্পূর্ণ ফলে পরিণত হয়।" },
+            { q: "১৪. নিষেকের পর উদ্ভিদের ডিম্বক (Ovule) কিসে রূপান্তরিত হয়?", opts: ["ফলে", "ফলত্বকে", "বীজে", "সস্যে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> নিষেকের ফলে জাইগোট বিভাজিত হয়ে ভ্রূণ তৈরি করে এবং ভ্রূণসহ সম্পূর্ণ ডিম্বকটি বীজে পরিণত হয়।" },
+            { q: "১৫. প্রথম পুংগ্যামেটটি (n) ডিম্বাণুকে (n) নিষিক্ত করে যে ডিপ্লয়েড কোশটি তৈরি করে তার নাম কী?", opts: ["সস্য", "জাইগোট (2n)", "ভ্রূণস্থলী", "মেগাস্পোর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> হ্যাপ্লয়েড পুংগ্যামেট এবং হ্যাপ্লয়েড স্ত্রীগ্যামেটের (ডিম্বাণু) মিলনের ফলে ডিপ্লয়েড জাইগোট গঠিত হয়, যা থেকে পরে নতুন চারাগাছ জন্মায়।" }
+        ]
+    },
+    7: {
+        name: "সেট ৭", icon: "👶", topic: "জীবের বৃদ্ধি এবং মানব বিকাশ",
+        questions: [
+            { q: "১. যে শারীরবৃত্তীয় প্রক্রিয়ায় জীবদেহে অপচিতির তুলনায় উপচিতির হার বেড়ে গিয়ে আকার ও শুষ্ক ওজনের স্থায়ী পরিবর্তন ঘটে, তাকে কী বলে?", opts: ["রেচন", "বৃদ্ধি (Growth)", "জনন", "পরিপাক"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উপচিতি বা গঠনমূলক বিপাকের হার বেশি হলে কোশীয় বস্তুর সংযোজন ঘটে এবং জীবদেহের আয়তন ও শুষ্ক ওজন স্থায়ীভাবে বেড়ে যায়, যাকে বৃদ্ধি বলে।" },
+            { q: "২. বৃদ্ধির প্রথম দশা বা পর্যায় কোনটি?", opts: ["কোশীয় বিভেদন দশা", "কোশ দীঘীকরণ দশা", "কোশ বিভাজন দশা", "জরা দশা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বহুকোশী জীবদেহের বৃদ্ধি শুরু হয় মাইটোসিস বিভাজনের মাধ্যমে কোশের সংখ্যা বৃদ্ধির মধ্য দিয়ে, যা বৃদ্ধির প্রথম দশা।" },
+            { q: "৩. কোশের আয়তন বৃদ্ধি পাওয়া এবং উদ্ভিদকোশে ভ্যাকুওল (Vacuole) তৈরি হওয়া বৃদ্ধির কোন্ দশার বৈশিষ্ট্য?", opts: ["কোশ বিভাজন দশা", "কোশ দীঘীকরণ দশা", "কোশীয় বিভেদন দশা", "বয়ঃসন্ধি দশা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> এই দশায় কোশগুলি প্রসারিত হয় এবং জৈব বস্তু সংশ্লেষ ও ভ্যাকুওলে রসস্ফীতির কারণে কোশের অপরিবর্তনীয় আয়তন বৃদ্ধি পায়।" },
+            { q: "৪. কোশগুলির পরিবর্তন ও রূপান্তর ঘটে কলা, অঙ্গ এবং তন্ত্র সৃষ্টি হয় বৃদ্ধির কোন্ অন্তিম দশায়?", opts: ["কোশ বিভাজন দশা", "বয়ঃসন্ধি দশা", "কোশ দীঘীকরণ দশা", "কোশীয় বিভেদন দশা"], ans: 3, exp: "<b>ব্যাখ্যা:</b> এটি বৃদ্ধির পরিণত দশা যেখানে অবিভেদিত কোশগুলি কাজের তাগিদে পরিবর্তিত হয়ে ত্বক, পেশি, রেচনতন্ত্র বা জাইলেম-ফ্লোয়েম এর মতো কলা ও অঙ্গ গঠন করে।" },
+            { q: "৫. মানব বিকাশের প্রথম দশা কোনটি?", opts: ["শৈশব", "সদ্যোজাত", "বয়ঃসন্ধি", "পরিণত দশা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শিশু ভূমিষ্ঠ হওয়ার পর ০-১ বছর বয়স পর্যন্ত সময়কালকে মানব বিকাশের সদ্যোজাত দশা বলা হয়।" },
+            { q: "৬. সদ্যোজাত শিশুর পুষ্টি পদার্থ সংগ্রহের জন্য যে বিশেষ স্নায়বিক প্রতিবর্ত দেখা যায়, তার নাম কী?", opts: ["হাঁটু ঝাঁকানি", "রুটিং রিফ্লেক্স (Rooting reflex)", "শর্তসাপেক্ষ প্রতিবর্ত", "অর্জিত প্রতিবর্ত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সদ্যোজাত (০-১ বছর) শিশু মায়ের দুধ পানের জন্য স্বভাবজাতভাবে মুখ ঘোরানো ও চোষার যে প্রতিবর্ত ব্যবহার করে, তাকে রুটিং রিফ্লেক্স বলে।" },
+            { q: "৭. মানব বিকাশের কোন্ দশায় দৈহিক ও মানসিক বৃদ্ধি সবচেয়ে দ্রুত হয়?", opts: ["সদ্যোজাত", "শৈশব", "বয়ঃসন্ধি", "বার্ধক্য"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শৈশবকালে (২-১০ বছর) শিশুর চলন ক্ষমতা, কথা বলা, এবং দৈহিক ও মানসিক বৃদ্ধি খুব দ্রুত ঘটে।" },
+            { q: "৮. ১০-১৯ বছর বয়স পর্যন্ত মানব বিকাশের দশাকে কী বলে?", opts: ["শৈশব", "বয়ঃসন্ধি বা কৈশোর", "পরিণত দশা", "বার্ধক্য"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১০ থেকে ১৯ বছর বয়স পর্যন্ত সময়কালকে বয়ঃসন্ধিকাল বা কৈশোর দশা বলা হয়।" },
+            { q: "৯. বয়ঃসন্ধিকালে ছেলে-মেয়েদের মধ্যে দ্রুত শারীরিক ও মানসিক পরিবর্তন ঘটায় কোন্ উপাদান?", opts: ["ভিটামিন", "হরমোন", "খাদ্য", "উৎসেচক"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বয়ঃসন্ধিকালে গোনাড বা জননগ্রন্থিগুলি থেকে নিঃসৃত হরমোনের (যেমন টেস্টোস্টেরন, ইস্ট্রোজেন) প্রভাবে দেহে দ্রুত বৃদ্ধি ও মানসিক পরিবর্তন ঘটে।" },
+            { q: "১০. পরিণত দশায় (২০-৬০ বছর) মানুষের কোন বিকাশ সম্পন্ন হয়?", opts: ["দ্রুত দৈহিক বৃদ্ধি", "পেশাগত ও সামাজিক দায়িত্ববোধ", "স্মৃতিভ্রম", "মুখ ঘোরানোর প্রতিবর্ত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পরিণত দশায় মানুষ পেশাগত জীবনে প্রবেশ করে এবং সামাজিক দায়িত্ব পালন করতে শেখে।" },
+            { q: "১১. মানব বিকাশের কোন্ দশায় বিভিন্ন ধরনের প্রক্ষোভিক বিকাশ (Emotional development) তীব্র হয়?", opts: ["সদ্যোজাত", "শৈশব", "বয়ঃসন্ধি", "পরিণত দশা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৩-১৯ বছর বয়সে হরমোনের ব্যাপক পরিবর্তনের কারণে কিশোর-কিশোরীদের মধ্যে রাগ, অভিমান, আকর্ষণ ইত্যাদি প্রক্ষোভিক বা মানসিক আবেগের প্রবল বিকাশ ঘটে।" },
+            { q: "১২. মানুষের দীর্ঘাস্থিগুলির (Long bones) বৃদ্ধি সম্পূর্ণভাবে বন্ধ হয়ে যায় কোন্ দশায়?", opts: ["শৈশব", "বয়ঃসন্ধি", "পরিণত দশা (২০-৫৫ বছর)", "সদ্যোজাত"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পরিণত দশায় পৌঁছোনোর পর মানুষের অস্থি ও পেশির বৃদ্ধি নিয়ন্ত্রিত হয়ে যায় এবং দৈহিক উচ্চতা আর বাড়ে না।" },
+            { q: "১৩. মহিলাদের ক্ষেত্রে সাধারণত ৪৫-৫০ বছর বয়সে জনন চক্র স্থায়ীভাবে বন্ধ হয়ে যাওয়াকে কী বলে?", opts: ["মেনার্কি", "মেনোপজ (Menopause)", "ডায়াপজ", "পিউবার্টি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পরিণত দশার শেষের দিকে (৪৫-৫০ বছর) মহিলাদের রজঃচক্র বা জনন চক্র স্থায়ীভাবে বন্ধ হয়ে যাওয়াকে মেনোপজ বলে।" },
+            { q: "১৪. মানুষের দৃষ্টিশক্তি ও শ্রবণশক্তি দুর্বল হতে শুরু করে মানব জীবনের কোন্ দশায়?", opts: ["শৈশব", "বয়ঃসন্ধি", "পরিণত", "বার্ধক্য দশায় (Senescence)"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ৬০ বছরের ঊর্ধ্বে বার্ধক্য দশায় দেহের বিভিন্ন তন্ত্র ও অঙ্গের কার্যকারিতা কমে যাওয়ায় দৃষ্টিশক্তি ও শ্রবণশক্তি দুর্বল হতে শুরু করে।" },
+            { q: "১৫. বার্ধক্য দশায় বা অন্তিম পরিণতি দশায় মানবদেহে কোন্ পরিবর্তনটি পরিলক্ষিত হয়?", opts: ["পেশি ও অস্থি সুগঠিত হয়", "দীর্ঘাস্থির বৃদ্ধি দ্রুত হয়", "মস্তিষ্কের আয়তন কমে ও স্মৃতিশক্তি হ্রাস পায়", "থাইমাস গ্রন্থির বৃদ্ধি ঘটে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বার্ধক্যে দেহের সামগ্রিক ক্ষয় শুরু হয়, রক্তের O2 পরিবহণ ক্ষমতা কমে যায়, ত্বক কুঞ্চিত হয় এবং মস্তিষ্কের কার্যকারিতা কমে স্মৃতিশক্তি হ্রাস পায়।" }
+        ]
+    }
+};
+       let loggedInUser = null;
+        let currentSetId = null;
+        let questions = [];
+        let score = 0;
+        let wrongAnswers = 0;
+        let userAnswers = {};
+        let isReviewMode = false;
+        let timerInterval;
+        let timeLeft = TIME_LIMIT;
+
+        window.onload = () => {
+            applyBranding(); // পেজ লোড হওয়ার সাথে সাথে ব্র্যান্ডিং সেট করবে
+            buildHub();
+        };
+
+        function buildHub() {
+            const grid = document.getElementById('setGrid');
+            grid.innerHTML = '';
+            let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+            for(let id in QUIZ_SETS) {
+                const set = QUIZ_SETS[id];
+                let attemptCount = 0;
+                let isLocked = false;
+                if(loggedInUser) {
+                    attemptCount = userAttempts[loggedInUser + "_" + id] || 0;
+                    isLocked = attemptCount >= MAX_ATTEMPTS;
+                }
+                const card = document.createElement('div');
+                card.className = 'set-card';
+                let badge = '';
+                if(loggedInUser) {
+                    badge = `<div class="attempt-badge ${isLocked ? 'locked' : ''}">${isLocked ? 'সম্পূর্ণ' : attemptCount + '/' + MAX_ATTEMPTS}</div>`;
+                }
+                card.innerHTML = `
+                    ${badge}
+                    <div class="set-icon">${set.icon}</div>
+                    <div class="set-name">${set.name}</div>
+                    <div class="set-topic">${set.topic}</div>
+                    <div class="set-meta-info en-font">
+                        <span>${set.questions.length} Qs</span>
+                        <span>10 Mins</span>
+                    </div>
+                `;
+                card.onclick = () => { selectSet(id); };
+                grid.appendChild(card);
+            }
+        }
+
+        function selectSet(setId) {
+            if(loggedInUser) {
+                let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+                let attemptCount = userAttempts[loggedInUser + "_" + setId] || 0;
+                if(attemptCount >= MAX_ATTEMPTS) {
+                    alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+                    return;
+                }
+                startQuiz(setId);
+            } else {
+                currentSetId = setId;
+                document.getElementById('loginUsername').value = '';
+                document.getElementById('loginPassword').value = '';
+                document.getElementById('loginError').classList.add('hidden');
+                document.getElementById('loginSetName').innerText = QUIZ_SETS[setId].name + ": " + QUIZ_SETS[setId].topic;
+                document.getElementById('loginModal').classList.remove('hidden');
+            }
+        }
+
+        function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+
+        function doLogin() {
+            const u = document.getElementById('loginUsername').value.trim();
+            const p = document.getElementById('loginPassword').value.trim();
+            const err = document.getElementById('loginError');
+            const GLOBAL_USERS = JSON.parse(localStorage.getItem("testBazarGlobalUsers")) || {};
+            if(!u || !p) { err.innerText = "ইউজারনেম এবং পাসওয়ার্ড দিন!"; err.classList.remove('hidden'); return; }
+            if(GLOBAL_USERS[u] && GLOBAL_USERS[u] === p) {
+                loggedInUser = u;
+                document.getElementById('userDisplay').innerText = `👤 ${u}`;
+                closeLogin();
+                buildHub();
+                if(currentSetId) {
+                    startQuiz(currentSetId);
+                }
+            } else {
+                err.innerText = "ইউজারনেম বা পাসওয়ার্ড ভুল!";
+                err.classList.remove('hidden');
+            }
+        }
+
+        function incrementAttempt(user, setId) {
+            let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+            let key = user + "_" + setId;
+            userAttempts[key] = (userAttempts[key] || 0) + 1;
+            localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(userAttempts));
+        }
+
+        function startQuiz(setId) {
+            currentSetId = setId;
+            incrementAttempt(loggedInUser, setId);
+            questions = QUIZ_SETS[setId].questions;
+            userAnswers = {};
+            isReviewMode = false;
+            score = 0;
+            wrongAnswers = 0;
+            timeLeft = TIME_LIMIT;
+            document.getElementById('hubView').classList.add('hidden');
+            document.getElementById('resultModal').classList.add('hidden');
+            document.getElementById('quizView').classList.remove('hidden');
+            document.getElementById('timerBox').classList.remove('hidden');
+            document.getElementById('timerBox').classList.remove('danger');
+            document.getElementById('submitTestBtn').classList.remove('hidden');
+            document.getElementById('quizTitle').innerText = QUIZ_SETS[setId].name + " | " + QUIZ_SETS[setId].topic;
+            clearInterval(timerInterval);
+            timerInterval = setInterval(tick, 1000);
+            renderQuestions();
+        }
+
+        function tick() {
+            timeLeft--;
+            const m = Math.floor(timeLeft / 60);
+            const s = timeLeft % 60;
+            document.getElementById('timerDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+            if (timeLeft <= 60) document.getElementById('timerBox').classList.add('danger');
+            if (timeLeft <= 0) { submitQuiz(); }
+        }
+
+        const LABELS = ['A', 'B', 'C', 'D'];
+
+        function renderQuestions() {
+            const quizList = document.getElementById('quizList');
+            let html = '';
+            questions.forEach((q, i) => {
+                html += `<div class="q-block" id="qBlock_${i}">
+                    <div class="q-text">${q.q}</div>
+                    <div class="options-grid">`;
+                q.opts.forEach((opt, j) => {
+                    html += `<div class="opt" id="opt_${i}_${j}" onclick="selectOpt(${i}, ${j})">
+                        <div class="opt-circle">${LABELS[j]}</div>
+                        <div class="opt-text">${opt}</div>
+                    </div>`;
+                });
+                html += `</div>
+                    <div class="explanation hidden" id="exp_${i}">${q.exp}</div>
+                </div>`;
+            });
+            quizList.innerHTML = html;
+            window.scrollTo(0, 0);
+        }
+
+        function selectOpt(qIdx, optIdx) {
+            if (isReviewMode) return;
+            userAnswers[qIdx] = optIdx;
+            const block = document.getElementById(`qBlock_${qIdx}`);
+            const opts = block.querySelectorAll('.opt');
+            opts.forEach(o => o.classList.remove('selected'));
+            document.getElementById(`opt_${qIdx}_${optIdx}`).classList.add('selected');
+        }
+
+        function submitQuiz() {
+            if (isReviewMode) return;
+            const answeredCount = Object.keys(userAnswers).length;
+            if (timeLeft > 0 && answeredCount < questions.length) {
+                const confirmSubmit = confirm(`আপনি মাত্র ${answeredCount} টি প্রশ্নের উত্তর দিয়েছেন। আপনি কি সত্যিই Test জমা দিতে চান?`);
+                if(!confirmSubmit) return;
+            }
+            isReviewMode = true;
+            clearInterval(timerInterval);
+            document.getElementById('timerBox').classList.add('hidden');
+            document.getElementById('submitTestBtn').classList.add('hidden');
+            score = 0;
+            wrongAnswers = 0;
+            questions.forEach((q, i) => {
+                const selected = userAnswers[i];
+                const block = document.getElementById(`qBlock_${i}`);
+                const opts = block.querySelectorAll('.opt');
+                opts.forEach(o => o.classList.remove('selected'));
+                if (selected !== undefined) {
+                    if (selected === q.ans) {
+                        score++;
+                        document.getElementById(`opt_${i}_${selected}`).classList.add('correct');
+                    } else {
+                        wrongAnswers++;
+                        document.getElementById(`opt_${i}_${selected}`).classList.add('wrong');
+                        document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+                    }
+                } else {
+                    document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+                }
+                document.getElementById(`exp_${i}`).classList.remove('hidden');
+            });
+            const skipped = questions.length - (score + wrongAnswers);
+            const pct = Math.round((score / questions.length) * 100);
+            document.getElementById('finalScore').textContent = `${pct}%`;
+            document.getElementById('rbCorrect').textContent = score;
+            document.getElementById('rbWrong').textContent = wrongAnswers + skipped;
+            let icon = '💪', grade = 'চেষ্টা চালিয়ে যাও!';
+            if(pct >= 90) { icon = '🌟'; grade = 'অসাধারণ!'; }
+            else if(pct >= 70) { icon = '👍'; grade = 'খুব ভালো!'; }
+            else if(pct >= 50) { icon = '📚'; grade = 'ভালো চেষ্টা!'; }
+            document.getElementById('resultIcon').textContent = icon;
+            document.getElementById('resultGrade').textContent = grade;
+            let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+            let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+            let remaining = MAX_ATTEMPTS - attemptCount;
+            document.getElementById('attemptInfo').innerText = `বাকি আছে ${remaining} বার Test দেওয়ার সুযোগ (সর্বোচ্চ ${MAX_ATTEMPTS} বার)`;
+            document.getElementById('resultModal').classList.remove('hidden');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function restartQuiz() {
+            closeResultModal();
+            let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+            let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+            if(attemptCount >= MAX_ATTEMPTS) {
+                alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+                document.getElementById('quizView').classList.add('hidden');
+                document.getElementById('hubView').classList.remove('hidden');
+                buildHub();
+                return;
+            }
+            startQuiz(currentSetId);
+        }
+    </script>
+</body>
+</html>
+
