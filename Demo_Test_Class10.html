@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Bazar - Free Demo Tests</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a7a4a; --primary-hover: #2aad68; --accent: #f9a825;
+            --bg-main: #f0faf4; --bg-card: #ffffff; --bg-selected: #e8f4ec;
+            --text-main: #1c2e24; --text-meta: #5a7a66; --border-color: #c5dccb;
+            --alert-danger: #dc3545; --correct: #28a745;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Tiro Bangla', serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+        .en-font { font-family: 'Syne', sans-serif; }
+        .hidden { display: none !important; }
+
+        .top-bar { background: var(--primary); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); flex-wrap: wrap; gap: 8px; }
+        .logo { font-size: 1.3rem; font-weight: 800; cursor: pointer; }
+        .logo span { color: var(--accent); }
+        .timer-box { background: rgba(255,255,255,0.2); padding: 4px 14px; border-radius: 8px; font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 5px; }
+        .timer-box.danger { background: var(--alert-danger); animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        .user-info { background: rgba(255,255,255,0.2); padding: 4px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; }
+
+        .main-container { max-width: 950px; margin: 0 auto; padding: 15px; }
+
+        /* Hub View */
+        .hub-header { text-align: center; margin-bottom: 25px; background: linear-gradient(135deg, #f9a825, #f57f17); padding: 25px; border-radius: 12px; color: white; box-shadow: 0 5px 15px rgba(249,168,37,0.3);}
+        .hub-header h1 { font-size: 1.8rem; margin-bottom: 8px; }
+        .hub-header p { font-size: 1rem; opacity: 0.9; }
+
+        .set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+        .set-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 18px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+        .set-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 8px 20px rgba(26,122,74,0.15); }
+        .set-icon { font-size: 2.5rem; margin-bottom: 6px; }
+        .set-name { font-size: 1.2rem; font-weight: bold; color: var(--text-main); font-family: 'Syne', sans-serif;}
+        .set-topic { font-size: 0.95rem; color: var(--text-meta); margin-bottom: 10px; font-weight: bold;}
+        .set-meta-info { display: flex; justify-content: center; gap: 10px; font-size: 0.8rem; font-weight: bold; color: var(--primary); flex-wrap: wrap; }
+        .set-meta-info span { background: var(--bg-main); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
+        .free-badge { position: absolute; top: -10px; right: -10px; background: #dc3545; color: white; font-size: 0.7rem; font-weight: bold; padding: 4px 10px; border-radius: 20px; box-shadow: 0 4px 10px rgba(220,53,69,0.3); font-family: 'Syne', sans-serif;}
+
+        /* Quiz View */
+        .quiz-info { background: var(--bg-card); border: 1px solid var(--border-color); padding: 12px 15px; border-radius: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); font-size: 0.95rem; flex-wrap: wrap; gap: 8px; }
+        .section-divider { background: var(--bg-main); padding: 10px 15px; border-radius: 8px; font-weight: bold; color: var(--text-main); font-size: 1rem; border-left: 4px solid var(--primary); margin: 18px 0 12px; }
+        .sub-section-divider { background: #f8f4e8; padding: 8px 15px; border-radius: 6px; font-weight: bold; color: var(--text-meta); font-size: 0.9rem; margin: 12px 0 8px; border-left: 3px solid var(--accent); }
+
+        .q-block { background: var(--bg-card); border: 1px solid var(--border-color); padding: 14px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+        .q-text { font-size: 1rem; font-weight: bold; color: var(--text-main); margin-bottom: 10px; line-height: 1.5; }
+        .q-text .q-label { color: var(--primary); font-weight: bold; }
+
+        .options-grid { display: flex; flex-direction: column; gap: 6px; }
+        .opt { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer; transition: 0.2s; font-size: 0.95rem; }
+        .opt:hover:not(.selected):not(.correct):not(.wrong) { background: var(--bg-main); border-color: var(--primary); }
+        .opt.selected { background: var(--bg-selected); border-color: var(--primary); }
+        .opt-circle { min-width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Syne', sans-serif; color: var(--text-meta); flex-shrink: 0; font-size: 0.7rem; }
+        .opt.selected .opt-circle { background: var(--primary); color: white; border-color: var(--primary); }
+        .opt.correct { background: #e8f7ef; border-color: var(--correct); }
+        .opt.correct .opt-circle { background: var(--correct); border-color: var(--correct); color: white; }
+        .opt.wrong { background: #fdf0f0; border-color: var(--alert-danger); }
+        .opt.wrong .opt-circle { background: var(--alert-danger); border-color: var(--alert-danger); color: white; }
+
+        .explanation { margin-top: 10px; padding: 10px; background: #e8f4ec; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; font-size: 0.9rem; color: #2c4035; line-height: 1.5; }
+
+        .written-answer-box { background: #f8f9fa; padding: 12px; border-radius: 8px; border: 1px dashed var(--border-color); margin-top: 8px; }
+        .written-answer-box .label { font-size: 0.85rem; color: var(--text-meta); font-weight: bold; }
+        .written-answer-box .answer-area { min-height: 50px; background: white; border-radius: 6px; padding: 10px; margin-top: 6px; border: 1px solid var(--border-color); color: var(--text-meta); font-style: italic; }
+        .written-answer-box .answer-area.large { min-height: 120px; }
+        .written-answer-box .answer-area.medium { min-height: 80px; }
+
+        .btn-submit { background: var(--primary); color: white; border: none; padding: 14px; width: 100%; border-radius: 10px; font-size: 1.1rem; font-weight: bold; font-family: 'Tiro Bangla', serif; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(26,122,74,0.2); transition: 0.2s; }
+        .btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+
+        .btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: bold;}
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        /* Result Modal */
+        .result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto; padding: 20px; }
+        .result-box { background: white; padding: 2rem 1.5rem; border-radius: 16px; width: 100%; max-width: 480px; text-align: center; margin: auto; }
+        .result-score { font-size: 3.5rem; font-weight: 800; color: var(--primary); line-height: 1; margin: 10px 0; }
+        .result-bars { display: flex; justify-content: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+        .result-bar { background: var(--bg-main); padding: 12px; border-radius: 12px; width: 90px; border: 1px solid var(--border-color); }
+        .result-bar .label { font-size: 0.8rem; font-weight: 600; color: var(--text-meta); }
+
+        .back-home-btn { background: var(--text-meta); color: white; border: none; padding: 12px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; font-weight: bold; transition: 0.2s; width: 100%; }
+        .back-home-btn:hover { background: #4a5a5a; }
+
+        .mcq-badge { display: inline-block; background: #e8730a; color: white; font-size: 0.7rem; font-weight: bold; padding: 2px 10px; border-radius: 20px; margin-left: 8px; }
+        .writing-badge { display: inline-block; background: #1a7a4a; color: white; font-size: 0.7rem; font-weight: bold; padding: 2px 10px; border-radius: 20px; margin-left: 8px; }
+        .or-badge { display: inline-block; background: #6c757d; color: white; font-size: 0.65rem; font-weight: bold; padding: 2px 8px; border-radius: 20px; margin: 0 4px; }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="logo en-font" onclick="window.location.reload()">Test<span>Bazar</span></div>
+        <div class="timer-box en-font hidden" id="timerBox">⏱ <span id="timerDisplay">10:00</span></div>
+        <div class="user-info en-font">🆓 Free Demo User</div>
+    </header>
+
+    <div class="main-container">
+        <!-- HUB VIEW -->
+        <div id="hubView">
+            <div class="hub-header">
+                <h1>🎯 ফ্রি ডেমো টেস্ট (Free Demo)</h1>
+                <p>৪টি ভিন্ন বিষয়ের ১৫টি করে প্রশ্ন + মাধ্যমিক ইতিহাসের পূর্ণাঙ্গ মক টেস্ট। যেকোনো একটি নির্বাচন করে টেস্ট শুরু করুন। <b>পাসওয়ার্ডের প্রয়োজন নেই!</b></p>
+            </div>
+
+            <div class="set-grid" id="setGrid">
+                <!-- Sets will be dynamically injected here -->
+            </div>
+
+            <div style="text-align:center; margin-top:35px;">
+                <button class="back-home-btn" onclick="window.location.href='index.html'">← Main Dashboard-এ ফিরুন</button>
+            </div>
+        </div>
+
+        <!-- QUIZ VIEW -->
+        <div id="quizView" class="hidden">
+            <div class="quiz-info">
+                <div id="quizTitle">Set Name</div>
+                <div id="quizMetaInfo" class="en-font">Questions | Time</div>
+            </div>
+            <div id="quizList"></div>
+            <button class="btn-submit" id="submitTestBtn" onclick="submitQuiz()">✅ Test জমা দিন ও ফলাফল দেখুন</button>
+        </div>
+    </div>
+
+    <!-- RESULT MODAL -->
+    <div class="result-overlay hidden" id="resultModal">
+        <div class="result-box">
+            <div style="font-size: 3rem; margin-bottom:0; line-height: 1;" id="resultIcon">🌟</div>
+            <h2 style="margin:8px 0; color: var(--text-main); font-size:1.3rem;">আপনার ফলাফল</h2>
+            <div class="result-score en-font" id="finalScore">100%</div>
+            <div id="resultGrade" style="font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: var(--accent);">অসাধারণ!</div>
+
+            <div class="result-bars">
+                <div class="result-bar">
+                    <div style="font-size:1.6rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbCorrect">0</div>
+                    <div class="label">সঠিক</div>
+                </div>
+                <div class="result-bar">
+                    <div style="font-size:1.6rem; font-weight: 800; color:var(--alert-danger);" class="en-font" id="rbWrong">0</div>
+                    <div class="label">ভুল</div>
+                </div>
+                <div class="result-bar">
+                    <div style="font-size:1.6rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbMarks">0</div>
+                    <div class="label">প্রাপ্ত নম্বর</div>
+                </div>
+            </div>
+
+            <p style="background: var(--bg-main); padding: 8px; border-radius: 8px; color:var(--text-meta); font-weight:bold; font-size:0.85rem; margin-bottom:18px;">
+                📌 এটি একটি ফ্রি ডেমো টেস্ট। আপনি যতবার খুশি চেষ্টা করতে পারেন।
+            </p>
+
+            <div style="display:flex; flex-direction:column; gap:8px;">
+                <button class="btn-primary" style="background: #28a745; width: 100%; padding: 12px;" onclick="closeResultModal()">📖 উত্তর ও ব্যাখ্যা দেখুন</button>
+                <button class="btn-primary" style="background: #17a2b8; width: 100%; padding: 12px;" onclick="restartQuiz()">🔄 আবার চেষ্টা করো</button>
+                <button class="back-home-btn" onclick="window.location.reload()">🏠 Demo Hub-এ ফিরুন</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+const TIME_LIMIT = 10 * 60; // Default 10 minutes
+const LABELS = ['ক', 'খ', 'গ', 'ঘ'];
+
+// ================== SET 1: ভৌতবিজ্ঞান ==================
+const SET1_QUESTIONS = [
+    { q: "১. বায়ুমণ্ডলে কোন গ্যাসীয় উপাদানের পরিমাণ সর্বাধিক?", opts: ["অক্সিজেন", "কার্বন ডাইঅক্সাইড", "নাইট্রোজেন", "আর্গন"], ans: 2, exp: "বায়ুমণ্ডলের গ্যাসীয় উপাদানের মধ্যে সবচেয়ে বেশি থাকে নাইট্রোজেন (৭৮.০৯%)।" },
+    { q: "২. বায়ুমণ্ডলের কোন স্তরকে 'ক্ষুব্ধমণ্ডল' বলা হয়?", opts: ["মেসোস্ফিয়ার", "স্ট্র্যাটোস্ফিয়ার", "থার্মোস্ফিয়ার", "ট্রপোস্ফিয়ার"], ans: 3, exp: "ট্রপোস্ফিয়ার হলো বায়ুমণ্ডলের সবচেয়ে নীচের স্তর, যেখানে ঝড়-বৃষ্টি হয়।" },
+    { q: "৩. আদর্শ জ্বালানির একটি প্রধান বৈশিষ্ট্য কী?", opts: ["তাপন মূল্য খুব কম", "দহনে প্রচুর ধোঁয়া", "উচ্চ তাপন মূল্য ও কম দূষণ", "খুব দুর্লভ"], ans: 2, exp: "একটি আদর্শ জ্বালানির উচ্চ তাপন মূল্য থাকতে হবে এবং দূষণ কম ঘটাতে হবে।" },
+    { q: "৪. মিথেন হাইড্রেট থেকে মিথেন আলাদা করতে কোন গ্যাস প্রবেশ করানো হয়?", opts: ["কার্বন ডাইঅক্সাইড", "অক্সিজেন", "হাইড্রোজেন", "নাইট্রোজেন"], ans: 0, exp: "মিথেন হাইড্রেট স্তরে CO₂ গ্যাস প্রবেশ করালে মিথেন গ্যাস প্রতিস্থাপিত হয়।" },
+    { q: "৫. সুস্থায়ী সমাজ বলতে কী বোঝায়?", opts: ["শুধু নতুন কারখানা তৈরি", "প্রকৃতির স্বার্থে কাজ করে দীর্ঘস্থায়ী", "জীবাশ্ম জ্বালানির ওপর নির্ভরশীল", "সম্পদের যথেচ্ছ অপচয়"], ans: 1, exp: "সুস্থায়ী সমাজ প্রকৃতির ক্ষতি না করে পরিবেশ ও অর্থনীতিকে একসঙ্গে রক্ষা করে।" },
+    { q: "৬. স্থির উষ্ণতায় PV = ধ্রুবক — এটি কার সূত্র?", opts: ["চার্লসের", "বয়েলের", "অ্যাভোগাড্রো", "গে-লুসাকের"], ans: 1, exp: "এটি রবার্ট বয়েলের সূত্র।" },
+    { q: "৭. সার্বজনীন গ্যাস ধ্রুবক R-এর মান কীসের ওপর নির্ভর করে?", opts: ["ভরের", "প্রকৃতির", "চাপের", "কোনোটিই নয়"], ans: 3, exp: "R-এর মান গ্যাসের প্রকৃতি বা ভৌত অবস্থার ওপর নির্ভরশীল নয়।" },
+    { q: "৮. গ্যাসের অণুগুলির মধ্যে আকর্ষণ বলের মান কত?", opts: ["অত্যন্ত বেশি", "শূন্য বা নগণ্য", "পাত্রের আয়তনের সমান", "অসীম"], ans: 1, exp: "আদর্শ গ্যাসের অণুগুলির মধ্যে কোনো আকর্ষণ বা বিকর্ষণ বল থাকে না।" },
+    { q: "৯. পরম শূন্য উষ্ণতায় আদর্শ গ্যাসের আয়তন কত হয়?", opts: ["অসীম", "দ্বিগুণ", "শূন্য", "ঋণাত্মক"], ans: 2, exp: "চার্লসের সূত্র অনুযায়ী, 0 K-তে আদর্শ গ্যাসের আয়তন শূন্য হয়।" },
+    { q: "১০. রাসায়নিক বিক্রিয়ায় অংশগ্রহণকারী পদার্থগুলিকে কী বলে?", opts: ["বিক্রিয়াজাত পদার্থ", "বিক্রিয়ক", "অনুঘটক", "দ্রাবক"], ans: 1, exp: "রাসায়নিক বিক্রিয়ায় যে পদার্থগুলি অংশগ্রহণ করে তাদের বিক্রিয়ক বলা হয়।" },
+    { q: "১১. 100g CaCO₃ বিয়োজনে কত CO₂ পাওয়া যায়?", opts: ["22g", "44g", "56g", "100g"], ans: 1, exp: "CaCO₃ থেকে ঠিক 44 গ্রাম CO₂ গ্যাস পাওয়া যায়।" },
+    { q: "১২. কোনটির তাপীয় প্রসারণ সবচেয়ে বেশি?", opts: ["কঠিন", "তরল", "গ্যাসীয়", "সমান"], ans: 2, exp: "গ্যাসীয় পদার্থের তাপীয় প্রসারণ সর্বোচ্চ হয়।" },
+    { q: "১৩. গরুর গাড়ির চাকায় লোহার বেড় কেমন হয়?", opts: ["সামান্য বড়", "সামান্য ছোট", "একেবারে সমান", "অনেক বড়"], ans: 1, exp: "লোহার বেড়টিকে চাকার পরিধির চেয়ে সামান্য ছোট করে তৈরি করা হয়।" },
+    { q: "১৪. তামা ও লোহার দ্বিধাতব পাতকে উত্তপ্ত করলে কী হয়?", opts: ["সোজা থাকবে", "তামার দিকে বেঁকে যাবে", "লোহার দিকে বেঁকে যাবে", "গুটিয়ে যাবে"], ans: 2, exp: "তামার প্রসারণ লোহার চেয়ে বেশি হওয়ায় পাতটি লোহার দিকে বেঁকে যায়।" },
+    { q: "১৫. দৈর্ঘ্য প্রসারণ গুণাঙ্ক কোনটির ওপর নির্ভর করে না?", opts: ["তাপমাত্রার একক", "ভরের একক", "দৈর্ঘ্যের একক", "সময়ের একক"], ans: 2, exp: "দৈর্ঘ্য প্রসারণ গুণাঙ্ক শুধুমাত্র তাপমাত্রার এককের ওপর নির্ভর করে।" }
+];
+
+// ================== SET 2: জীবন বিজ্ঞান ==================
+const SET2_QUESTIONS = [
+    { q: "১. জগদীশচন্দ্র বসু কী যন্ত্র আবিষ্কার করেন?", opts: ["সিসমোগ্রাফ", "ক্রেসকোগ্রাফ", "স্পেকট্রোমিটার", "থার্মোমিটার"], ans: 1, exp: "ক্রেসকোগ্রাফ যন্ত্রের সাহায্যে তিনি প্রমাণ করেন উদ্ভিদেরও অনুভূতি আছে।" },
+    { q: "২. লজ্জাবতীর পাতার চলনকে কী বলে?", opts: ["থার্মোন্যাস্টিক", "ফোটোন্যাস্টিক", "সিসমোন্যাস্টিক", "কেমোন্যাস্টিক"], ans: 2, exp: "স্পর্শ বা আঘাতের দ্বারা নিয়ন্ত্রিত চলনকে সিসমোন্যাস্টিক চলন বলে।" },
+    { q: "৩. উদ্ভিদের পাতা আলোর সাথে তির্যকভাবে বাড়াকে কী বলে?", opts: ["আলোক অনুকূলবর্তী", "আলোক প্রতিকূলবর্তী", "তির্যকবর্তী", "অভিকর্ষ অনুকূলবর্তী"], ans: 2, exp: "পাতা আলোর উৎসের সাপেক্ষে আড়াআড়িভাবে বৃদ্ধি পায়।" },
+    { q: "৪. উদ্ভিদহরমোনের উপস্থিতি প্রথম কে প্রমাণ করেন?", opts: ["বেলিস ও স্টারলিং", "চার্লস ও ফ্রান্সিস ডারউইন", "জগদীশচন্দ্র বসু", "কুরোশোয়া"], ans: 1, exp: "১৮৮০ সালে চার্লস ও ফ্রান্সিস ডারউইন এটি প্রমাণ করেন।" },
+    { q: "৫. সাইকেল চালানো কোন ধরনের প্রতিবর্ত?", opts: ["জন্মগত", "অর্জিত", "উপরিগত", "গভীর"], ans: 1, exp: "অভিজ্ঞতা ও অভ্যাসের মাধ্যমে শেখা কাজগুলো অর্জিত প্রতিবর্ত।" },
+    { q: "৬. চোখের কোন অংশে স্পষ্ট প্রতিবিম্ব গঠিত হয়?", opts: ["অন্ধবিন্দু", "পীতবিন্দু", "কর্নিয়া", "লেন্স"], ans: 1, exp: "রেটিনার পীতবিন্দুতে বস্তুর সবচেয়ে স্পষ্ট প্রতিবিম্ব গঠিত হয়।" },
+    { q: "৭. প্যাভলভ কোন প্রতিবর্তের কথা প্রমাণ করেন?", opts: ["জন্মগত", "শর্তসাপেক্ষ", "শর্ত নিরপেক্ষ", "রাসায়নিক"], ans: 1, exp: "অভ্যাসের দ্বারা শর্তসাপেক্ষ প্রতিবর্ত ক্রিয়া তৈরি করা সম্ভব।" },
+    { q: "৮. অ্যামিবার গমন অঙ্গের নাম কী?", opts: ["সিলিয়া", "ফ্ল্যাজেলা", "ক্ষণপদ", "মায়োটোম"], ans: 2, exp: "অ্যামিবা সিউডোপোডিয়া বা ক্ষণপদ তৈরি করে চলাচল করে।" },
+    { q: "৯. মসের শুক্রাণুর চলনকে কী বলে?", opts: ["ফোটোট্যাকটিক", "কেমোট্যাকটিক", "হাইড্রোট্রপিক", "কেমোন্যাস্টিক"], ans: 1, exp: "রাসায়নিক উদ্দীপকের প্রভাবে চলনকে কেমোট্যাকটিক বলে।" },
+    { q: "১০. মস্তিষ্কের আবরণীর নাম কী?", opts: ["প্লুরা", "পেরিকার্ডিয়াম", "মেনিনজেস", "ক্যাপসুল"], ans: 2, exp: "মস্তিষ্ক ও সুষুম্নাকাণ্ড মেনিনজেস নামক পর্দায় আবৃত।" },
+    { q: "১১. বার্ধক্যে কী পরিবর্তন হয়?", opts: ["পেশি সুগঠিত হয়", "দীর্ঘাস্থি দ্রুত বাড়ে", "মস্তিষ্কের আয়তন কমে", "থাইমাস বাড়ে"], ans: 2, exp: "বার্ধক্যে মস্তিষ্কের কার্যকারিতা কমে স্মৃতিশক্তি হ্রাস পায়।" },
+    { q: "১২. বংশগতির একক কোনটি?", opts: ["ক্রোমোজোম", "DNA", "জিন", "RNA"], ans: 2, exp: "বংশগতির গঠনগত ও কার্যগত এককের নাম জিন।" },
+    { q: "১৩. 'জিন' শব্দটি প্রথম কে ব্যবহার করেন?", opts: ["মেন্ডেল", "জোহানসেন", "ডারউইন", "ডি ব্রিস"], ans: 1, exp: "জোহানসেন ১৯০৯ সালে প্রথম 'জিন' শব্দটি ব্যবহার করেন।" },
+    { q: "১৪. মেন্ডেল কত জোড়া বৈশিষ্ট্য নিয়ে কাজ করেছিলেন?", opts: ["৩", "৭", "১৪", "২১"], ans: 1, exp: "মেন্ডেল সাতজোড়া চরিত্র নিয়ে কাজ করেছিলেন।" },
+    { q: "১৫. মটরবীজের প্রকট বৈশিষ্ট্য কী?", opts: ["কুঞ্চিত", "সবুজ", "হলুদ", "গোলাকার"], ans: 3, exp: "বীজের আকারের ক্ষেত্রে প্রকট বৈশিষ্ট্য হলো গোলাকার।" }
+];
+
+// ================== SET 3: ইতিহাস ==================
+const SET3_QUESTIONS = [
+    { q: "১. 'অ্যানাল' পত্রিকা কবে প্রকাশিত হয়?", opts: ["১৯২০", "১৯২৯", "১৯৬০", "১৯৭০"], ans: 1, exp: "১৯২৯ সালে ফরাসি ঐতিহাসিকদের দ্বারা 'অ্যানাল' প্রকাশিত হয়।" },
+    { q: "২. সাবল্টার্ন স্টাডিজ কবে শুরু হয়?", opts: ["১৯৬০", "১৯৭০", "১৯৮২", "১৯৮৮"], ans: 2, exp: "রণজিৎ গুহের 'সাবল্টার্ন স্টাডিজ' ১৯৮২ সালে প্রকাশিত হয়।" },
+    { q: "৩. মোহনবাগান কবে IFA শিল্ড জয় করে?", opts: ["১৮৮৯", "১৮৯৬", "১৯১১", "১৯২০"], ans: 2, exp: "১৯১১ সালে মোহনবাগান ইংরেজদের হারিয়ে শিল্ড জিতেছিল।" },
+    { q: "৪. 'খেলা যখন ইতিহাস' গ্রন্থটির লেখক কে?", opts: ["রামচন্দ্র গুহ", "বোরিয়া মজুমদার", "রিচার্ড হোল্ট", "কৌশিক বন্দ্যোপাধ্যায়"], ans: 3, exp: "কৌশিক বন্দ্যোপাধ্যায় এই গ্রন্থটি রচনা করেছেন।" },
+    { q: "৫. কাঁচা লঙ্কা ও আলু কাদের প্রভাবে এসেছে?", opts: ["ইংরেজ", "ফরাসি", "পোর্তুগিজ", "ওলন্দাজ"], ans: 2, exp: "পোর্তুগিজদের মাধ্যমে কাঁচা লঙ্কা ও আলু ভারতে আসে।" },
+    { q: "৬. ভারতীয় সংগীতের উৎস কোন বেদ?", opts: ["ঋগ্বেদ", "সামবেদ", "যজুর্বেদ", "অথর্ববেদ"], ans: 1, exp: "প্রাচীন ভারতীয় সংগীতের প্রধান উৎস 'সামবেদ'।" },
+    { q: "৭. কথাকলি কোন রাজ্যের নৃত্য?", opts: ["তামিলনাড়ু", "অন্ধ্রপ্রদেশ", "কর্ণাটক", "কেরল"], ans: 3, exp: "কথাকলি কেরল রাজ্যের ঐতিহ্যবাহী নৃত্য।" },
+    { q: "৮. 'রাধা-কৃষ্ণ' চিত্রমালা কার?", opts: ["গগনেন্দ্রনাথ", "অবনীন্দ্রনাথ", "নন্দলাল বসু", "বিনোদবিহারী"], ans: 1, exp: "অবনীন্দ্রনাথ ঠাকুর ১৮৯৫ সালে এটি সৃষ্টি করেন।" },
+    { q: "৯. প্রথম সামরিক ইতিহাসচর্চা কোথায়?", opts: ["আমেরিকা", "ফ্রান্স", "ইংল্যান্ড", "জার্মানি"], ans: 2, exp: "১৯৭০-এর দশকে ইংল্যান্ডে প্রথম সামরিক ইতিহাসচর্চা শুরু হয়।" },
+    { q: "১০. 'মিলিটারি হিস্ট্রি অফ ইন্ডিয়া' কার?", opts: ["সুরেন্দ্রনাথ সেন", "যদুনাথ সরকার", "রামচন্দ্র গুহ", "কৌশিক বন্দ্যোপাধ্যায়"], ans: 1, exp: "স্যার যদুনাথ সরকার এই গ্রন্থ রচনা করেছেন।" },
+    { q: "১১. পরিবেশ ইতিহাসচর্চা কোথায় শুরু?", opts: ["ইংল্যান্ড", "ফ্রান্স", "ভারত", "আমেরিকা"], ans: 3, exp: "আমেরিকা যুক্তরাষ্ট্রে প্রথম পরিবেশ ইতিহাসচর্চা শুরু হয়।" },
+    { q: "১২. প্রথম বিশ্ব পরিবেশ দিবস কবে?", opts: ["৫ জুন ১৯৭০", "৫ জুন ১৯৭৩", "৫ জুন ১৯৭৪", "৫ জুন ১৯৮৫"], ans: 2, exp: "১৯৭৪ সালের ৫ জুন প্রথম বিশ্ব পরিবেশ দিবস পালিত হয়।" },
+    { q: "১৩. জাতীয় মহাফেজখানা কোথায়?", opts: ["কলকাতা", "মুম্বাই", "চেন্নাই", "দিল্লি"], ans: 3, exp: "ভারতের জাতীয় মহাফেজখানা দিল্লিতে অবস্থিত।" },
+    { q: "১৪. 'আত্মজীবনী ইতিহাসকারকে ভুল পথে নিয়ে যায়'—কার মন্তব্য?", opts: ["এ. জে. পি. টেলর", "ডেভিড আর্নল্ড", "রিচার্ড হোল্ট", "আলফ্রেড ক্রসবি"], ans: 0, exp: "ঐতিহাসিক এ. জে. পি. টেলর এই মন্তব্য করেছেন।" },
+    { q: "১৫. কেশবচন্দ্র সেনের আত্মজীবনী কোনটি?", opts: ["সত্তর বৎসর", "জীবনবেদ", "সেদিনের কথা", "একাত্তরের ডায়েরী"], ans: 1, exp: "কেশবচন্দ্র সেন 'জীবনবেদ' নামক আত্মজীবনী রচনা করেন।" }
+];
+
+// ================== SET 4: ভূগোল ==================
+const SET4_QUESTIONS = [
+    { q: "১. অসমতল ভূমি সমতলে পরিণত হওয়াকে কী বলে?", opts: ["নগ্নীভবন", "আরোহণ", "পর্যায়ন", "অবরোহণ"], ans: 2, exp: "এই সমতলীকরণ প্রক্রিয়াকে পর্যায়ন বলে।" },
+    { q: "২. নিচের কোনটি বহির্জাত প্রক্রিয়া?", opts: ["ভূমিকম্প", "অগ্ন্যুৎপাত", "পাত সঞ্চালন", "নদীর কাজ"], ans: 3, exp: "নদী, হিমবাহ প্রভৃতি বহির্জাত প্রক্রিয়া।" },
+    { q: "৩. 'পর্যায়ন' শব্দটি প্রথম কে ব্যবহার করেন?", opts: ["গিলবার্ট", "পাওয়েল", "ডেভিস", "পেঙ্ক"], ans: 0, exp: "গ্রোভ কার্ল গিলবার্ট প্রথম পর্যায়ন শব্দটি ব্যবহার করেন।" },
+    { q: "৪. 'ক্ষয়ের শেষ সীমা' ধারণার প্রবর্তক কে?", opts: ["চেম্বারলিন", "সালিসবেরি", "পাওয়েল", "হপকিন্স"], ans: 2, exp: "জে. ডব্লিউ. পাওয়েল এই ধারণা প্রবর্তন করেন।" },
+    { q: "৫. শিলা বিচূর্ণ হয়ে স্বস্থানে পড়াকে কী বলে?", opts: ["ক্ষয়ীভবন", "আবহবিকার", "পুঞ্জিত ক্ষয়", "নগ্নীভবন"], ans: 1, exp: "আবহবিকারে শিলা নিজ স্থানে চূর্ণবিচূর্ণ হয়।" },
+    { q: "৬. ভারতের বৃহত্তম নদী-দ্বীপ কোনটি?", opts: ["মাজুলি", "সাগরদ্বীপ", "ঘোড়ামারা", "নিউমুর"], ans: 0, exp: "ব্রহ্মপুত্র নদের মাজুলি ভারতের বৃহত্তম নদী-দ্বীপ।" },
+    { q: "৭. সমভূমিতে নদীর বাঁককে কী বলে?", opts: ["খরস্রোত", "শৃঙ্খলিত শৈলশিরা", "মিয়েন্ডার", "ক্যানিয়ন"], ans: 2, exp: "সমভূমিতে নদীর এঁকেবেঁকে প্রবাহকে মিয়েন্ডার বলে।" },
+    { q: "৮. বায়ুমণ্ডলে সর্বাধিক গ্যাস কোনটি?", opts: ["CO₂", "O₂", "N₂", "Ar"], ans: 2, exp: "বায়ুমণ্ডলে সবচেয়ে বেশি নাইট্রোজেন (৭৮.০৮%)।" },
+    { q: "৯. অক্সিজেনের শতকরা পরিমাণ কত?", opts: ["২০.৯৪%", "২১.৯৪%", "১৯.০৮%", "৭৮.০৮%"], ans: 0, exp: "অক্সিজেন প্রায় ২০.৯৪%।" },
+    { q: "১০. প্রমাণ বায়ুচাপ কত?", opts: ["১০১২.২", "১০১৩.২৫", "১০১৪.২", "১০১৫.২"], ans: 1, exp: "৪৫° অক্ষরেখায় প্রমাণ চাপ ১০১৩.২৫ মিলিবার।" },
+    { q: "১১. পৃথিবীর কত % জলভাগ?", opts: ["৬১.৪%", "৭১.৪%", "৮১.৪%", "৯১.৪%"], ans: 1, exp: "ভূপৃষ্ঠের প্রায় ৭১.৪% জলভাগ।" },
+    { q: "১২. সমুদ্রস্রোতের গড় গতিবেগ কত?", opts: ["১-২", "৫-১০", "২০-২৫", "৫০"], ans: 1, exp: "ঘণ্টায় ৫-১০ কিলোমিটার।" },
+    { q: "১৩. দ্রুততম উষ্ণ স্রোত কোনটি?", opts: ["কুরোশিয়ো", "উপসাগরীয়", "আগুলহাস", "ব্রাজিল"], ans: 1, exp: "উপসাগরীয় স্রোত পৃথিবীর দ্রুততম।" },
+    { q: "১৪. জোয়ারভাটার প্রধান কারণ কী?", opts: ["ভূমিকম্প", "উষ্ণতা", "চাঁদ-সূর্যের আকর্ষণ", "বায়ুপ্রবাহ"], ans: 2, exp: "চাঁদ-সূর্যের মহাকর্ষীয় আকর্ষণই প্রধান কারণ।" },
+    { q: "১৫. কোনটি বিষাক্ত বর্জ্য নয়?", opts: ["পলিথিন", "ক্যাডমিয়াম", "ধানের খোসা", "ফ্লাই অ্যাশ"], ans: 2, exp: "ধানের খোসা প্রকৃতিতে সহজে মিশে যায়।" }
+];
+
+// ================== SET 5: মাধ্যমিক ইতিহাস (Complete) ==================
+const SET5_QUESTIONS = [
+    // SECTION 'ক' - 20 MCQ
+    { q: '১.১ "আলম আরা” চলচ্চিত্রটির পরিচালক ছিলেন-', opts: ['অমর চৌধুরী', 'জ্যোতিষ ব্যানার্জি', 'মৃণাল সেন', 'আরদেশির ইরানি'], ans: 3, exp: '"আলম আরা" (১৯৩১) ছিল ভারতের প্রথম সবাক চলচ্চিত্র, যার পরিচালক ছিলেন আরদেশির ইরানি।' },
+    { q: '১.২ "বঙ্গদর্শনের যুগ” বলা হয়-', opts: ['১৮৬০-এর দশককে', '১৮৭০-এর দশককে', '১৮৮০-এর দশককে', '১৮৯০-এর দশককে'], ans: 1, exp: 'বঙ্কিমচন্দ্রের "বঙ্গদর্শন" ১৮৭২ সালে প্রকাশিত হয়, তাই ১৮৭০-এর দশককে "বঙ্গদর্শনের যুগ" বলা হয়।' },
+    { q: '১.৩ ক্যালকাটা স্কুল বুক সোসাইটির প্রথম সম্পাদক ছিলেন-', opts: ['রাধাকান্ত দেব', 'ডেভিড হেয়ার', 'বিদ্যাসাগর', 'গৌরমোহন বিদ্যালঙ্কার'], ans: 0, exp: '১৮১৭ সালে প্রতিষ্ঠিত এই সোসাইটির প্রথম সম্পাদক ছিলেন রাজা রাধাকান্ত দেব।' },
+    { q: '১.৪ "সন্ন্যাসী-ফকির বিদ্রোহ" প্রথম শুরু হয়েছিল-', opts: ['ঢাকায়', 'পাবনায়', 'মেদিনীপুরে', 'ছোটোনাগপুরে'], ans: 0, exp: '১৭৬০-এর দশকে ঢাকায় প্রথম সন্ন্যাসী-ফকির বিদ্রোহের সূত্রপাত হয়।' },
+    { q: '১.৫ "জমি আল্লাহর দান" বলেছিলেন-', opts: ['তিতুমির', 'গোলাম মাসুম', 'শরিয়ত উল্লাহ', 'দুদু মিঞা'], ans: 3, exp: 'ফরায়েজি আন্দোলনের নেতা দুদু মিঞা (১৮১৯-১৮৬২) এই কথা বলেছিলেন।' },
+    { q: '১.৬ ১৮৮৩ সালের সর্বভারতীয় জাতীয় সম্মেলনে সভাপতিত্ব করেন-', opts: ['উমেশচন্দ্র বন্দ্যোপাধ্যায়', 'সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়', 'দ্বারকানাথ গঙ্গোপাধ্যায়', 'রামতনু লাহিড়ী'], ans: 3, exp: '১৮৮৩ সালের ডিসেম্বরে কলকাতায় এই সম্মেলনে সভাপতিত্ব করেন রামতনু লাহিড়ী।' },
+    { q: '১.৭ "ভারতমাতা” চিত্রটির নামকরণ করেন-', opts: ['রবীন্দ্রনাথ ঠাকুর', 'অবনীন্দ্রনাথ ঠাকুর', 'গগনেন্দ্রনাথ ঠাকুর', 'ভগিনী নিবেদিতা'], ans: 3, exp: 'ভগিনী নিবেদিতা অবনীন্দ্রনাথের আঁকা "ভারতমাতা" চিত্রটির নামকরণ করেন।' },
+    { q: '১.৮ "মেজর হিউসন”কে গুলি করে হত্যা করেছিলেন-', opts: ['তাঁতিয়া টোপি', 'নানা সাহেব', 'মঙ্গল পাণ্ডে', 'কুনওয়ার সিং'], ans: 2, exp: '১৮৫৭ সালের ২৯ মার্চ ব্যারাকপুরে মঙ্গল পাণ্ডে মেজর হিউসনকে হত্যা করেন।' },
+    { q: '১.৯ "বাল্যবিবাহ" পুস্তকটির রচয়িতা ছিলেন-', opts: ['বিদ্যাসাগর', 'রামসুন্দর বসাক', 'মদনমোহন তর্কালঙ্কার', 'রামরাম বসু'], ans: 0, exp: 'ঈশ্বরচন্দ্র বিদ্যাসাগর ১৮৫০ সালে "বাল্যবিবাহ" রচনা করেন।' },
+    { q: '১.১০ "মাদাম কামা" তেরঙ্গা পতাকা উত্তোলন করেন-', opts: ['লন্ডনে', 'প্যারিসে', 'স্টুটগার্টে', 'বার্লিনে'], ans: 2, exp: '১৯০৭ সালে জার্মানির স্টুটগার্টে মাদাম কামা ভারতের প্রথম জাতীয় পতাকা উত্তোলন করেন।' },
+    { q: '১.১১ "সত্যশোধক সমাজ” প্রতিষ্ঠা করেন-', opts: ['জ্যোতিবা ফুলে', 'গান্ধীজি', 'আম্বেদকর', 'শ্রীনারায়ণ গুরু'], ans: 0, exp: 'জ্যোতিরাও ফুলে ১৮৭৩ সালে "সত্যশোধক সমাজ" প্রতিষ্ঠা করেন।' },
+    { q: '১.১২ "প্রান্তিক মানব" স্মৃতিকথাটির রচয়িতা-', opts: ['প্রফুল্ল চক্রবর্তী', 'সুফিয়া কামাল', 'খুশবন্ত সিং', 'জ্যোর্তিময়ী দেবী'], ans: 0, exp: 'প্রফুল্ল চক্রবর্তী "প্রান্তিক মানব" রচনা করেন।' },
+    { q: '১.১৩ সিকিম ভারতের অঙ্গরাজ্যে পরিণত হয়-', opts: ['১৯৫৪', '১৯৬১', '১৯৬৩', '১৯৭৫'], ans: 3, exp: '১৯৭৫ সালের ১৬ মে সিকিম ভারতের ২২তম অঙ্গরাজ্যে পরিণত হয়।' },
+    { q: '১.১৪ ভারতের রাজকীয় বনবিভাগের প্রথম ইন্সপেক্টর জেনারেল ছিলেন-', opts: ['জোহান ক্রুগার', 'এলিয়াস ফিসার', 'ডিয়েট্রিস ব্রান্ডিস', 'ফ্রেডারিক হফম্যান'], ans: 2, exp: '১৮৬৪ সালে ডিয়েট্রিস ব্রান্ডিস প্রথম ইন্সপেক্টর জেনারেল নিযুক্ত হন।' },
+    { q: '১.১৫ "দেশপ্রাণ" নামে পরিচিত ছিলেন-', opts: ['অশ্বিনীকুমার দত্ত', 'সতীশচন্দ্র সামন্ত', 'যতীন্দ্রমোহন সেনগুপ্ত', 'বীরেন্দ্রনাথ শাসমল'], ans: 3, exp: 'বিপ্লবী বীরেন্দ্রনাথ শাসমল "দেশপ্রাণ" নামে পরিচিত।' },
+    { q: '১.১৬ ভারতের প্রথম শ্রমিক সংগঠন ছিল-', opts: ['গিরনি কামগার ইউনিয়ন', 'মাদ্রাজ লেবার ইউনিয়ন', 'ইন্ডিয়ান মিলহ্যান্ডস্', 'সর্বভারতীয় ট্রেড ইউনিয়ন'], ans: 1, exp: '১৯১৮ সালে মাদ্রাজে "মাদ্রাজ লেবার ইউনিয়ন" প্রতিষ্ঠিত হয়।' },
+    { q: '১.১৭ "বঙ্গালক্ষ্মীর ব্রতকথা" রচনা করেন-', opts: ['রবীন্দ্রনাথ', 'অবনীন্দ্রনাথ', 'রজনীকান্ত সেন', 'রামেন্দ্রসুন্দর ত্রিবেদী'], ans: 3, exp: 'রামেন্দ্রসুন্দর ত্রিবেদী এই গ্রন্থ রচনা করেন।' },
+    { q: '১.১৮ এজাভা সম্প্রদায়ের নেতা ছিলেন-', opts: ['রামস্বামী নাইকার', 'ত্যাগরাজা চেট্টি', 'নারায়ণ গুরু', 'আম্বেদকর'], ans: 2, exp: 'শ্রী নারায়ণ গুরু (১৮৫৫-১৯২৮) এজাভা সম্প্রদায়ের নেতা ছিলেন।' },
+    { q: '১.১৯ ভাষাভিত্তিক অন্ধ্রপ্রদেশ গঠিত হয়-', opts: ['১৯৪৭', '১৯৫০', '১৯৫৩', '১৯৫৬'], ans: 2, exp: 'পোট্টি শ্রীরামুলুর অনশনের পর ১৯৫৩ সালের ১ অক্টোবর অন্ধ্রপ্রদেশ গঠিত হয়।' },
+    { q: '১.২০ "রেনেসাঁস" শব্দটি-', opts: ['ইংরেজি', 'ফরাসি', 'ইতালিয়', 'ল্যাটিন'], ans: 1, exp: '"রেনেসাঁস" (Renaissance) একটি ফরাসি শব্দ, যার অর্থ "পুনর্জন্ম"।' },
+    
+    // SECTION 'খ' - 16 Questions
+    { q: '২.১.১ "বিশ্বভারতী" বিশ্ববিদ্যালয়ের প্রথম উপাচার্যের নাম কী?', type: 'written', ans: '১৯৫১ সালে বিশ্বভারতী কেন্দ্রীয় বিশ্ববিদ্যালয়ের মর্যাদা পেলে প্রথম উপাচার্য হন রবীন্দ্রনাথের পুত্র রথীন্দ্রনাথ ঠাকুর।' },
+    { q: '২.১.২ "গণবাণী” পত্রিকার সম্পাদকের নাম লেখো।', type: 'written', ans: '"গণবাণী” পত্রিকার সম্পাদক ছিলেন ভারতের কমিউনিস্ট নেতা মুজফ্ফর আহমদ।' },
+    { q: '২.১.৩ "হকির জাদুকর" কাকে বলা হয়?', type: 'written', ans: 'প্রখ্যাত ভারতীয় হকি খেলোয়াড় মেজর ধ্যানচাঁদ-কে "হকির জাদুকর" বলা হয়।' },
+    { q: '২.১.৪ "অ্যানাটমি" গ্রন্থের বঙ্গানুবাদ কে করেন?', type: 'written', ans: 'কলকাতা মেডিকেল কলেজের শিক্ষক পণ্ডিত মধুসূদন গুপ্ত "অ্যানাটমি" গ্রন্থের বঙ্গানুবাদ করেন।' },
+    { q: '২.২.১ রবার্ট মে চুঁচুড়ায় একটি বালিকা বিদ্যালয় প্রতিষ্ঠা করেন।', type: 'written', ans: 'ভুল। রবার্ট মে চুঁচুড়ায় ছেলেদের জন্য ইংরেজি বিদ্যালয় প্রতিষ্ঠা করেছিলেন।' },
+    { q: '২.২.২ ভারত সভার মুখপত্র ছিল "দি বেঙ্গলি” পত্রিকা।', type: 'written', ans: 'ঠিক। সুরেন্দ্রনাথ বন্দ্যোপাধ্যায় সম্পাদিত "দি বেঙ্গলি" ছিল ভারত সভার মুখপত্র।' },
+    { q: '২.২.৩ "দলিত” কথাটি প্রথম ব্যবহার করেন জ্যোতিবা ফুলে।', type: 'written', ans: 'ঠিক। জ্যোতিরাও ফুলে মহারাষ্ট্রে সমাজ সংস্কারের সময় "দলিত" শব্দটি জনপ্রিয় করেন।' },
+    { q: '২.২.৪ যামিনী রায় পোশাক পরিচ্ছদের ইতিহাস চর্চার সঙ্গে যুক্ত ছিলেন।', type: 'written', ans: 'ভুল। যামিনী রায় ছিলেন চিত্রশিল্পী, তিনি চিত্রকলার সাথে যুক্ত।' },
+    { q: '২.৩.১ সি. ভি. রমণ →', type: 'written', ans: 'কলকাতা (IACS-এ গবেষণা করতেন)' },
+    { q: '২.৩.২ বাবা রামচন্দ্র →', type: 'written', ans: 'উত্তরপ্রদেশ (কৃষক সভার নেতা ছিলেন)' },
+    { q: '২.৩.৩ উষাবেন মেহতা →', type: 'written', ans: 'বোম্বাই (গোপন বেতার কেন্দ্র পরিচালনা করেন)' },
+    { q: '২.৩.৪ হেমু কালানি →', type: 'written', ans: 'সিন্ধুপ্রদেশ (রেললাইন ওড়ানোর দায়ে ফাঁসি হয়)' },
+    { q: '২.৫.১ বিবৃতি: সাঁওতাল বিদ্রোহকে মহাবিদ্রোহের অগ্রদূত বলা হয়।', type: 'written', ans: 'ব্যাখ্যা-২: মহাবিদ্রোহের আগে এটি ছিল এক তাৎপর্যপূর্ণ বিদ্রোহ।' },
+    { q: '২.৫.২ বিবৃতি: স্বদেশী আন্দোলনে কৃষকরা ব্যাপকভাবে যোগদান করেনি।', type: 'written', ans: 'ব্যাখ্যা-৩: আন্দোলনের নেতৃবৃন্দ কৃষক স্বার্থ সম্পর্কে উদাসীন ছিলেন।' },
+    { q: '২.৫.৩ বিবৃতি: বাংলায় উদ্বাস্তু সমস্যা ছিল পাঞ্জাবের তুলনায় দীর্ঘস্থায়ী।', type: 'written', ans: 'ব্যাখ্যা-১: বাংলায় উদ্বাস্তুদের আগমন ছিল একটি দীর্ঘকালীন প্রক্রিয়া।' },
+    { q: '২.৫.৪ বিবৃতি: দেবেন্দ্রনাথ ঠাকুর ১৮৪৩ সালে ব্রাহ্মসমাজে যোগদান করেন এবং এটি গুরুত্বপূর্ণ ঘটনা।', type: 'written', ans: 'ব্যাখ্যা-৩: তিনি ব্রাহ্মসমাজের সংস্কার করেন এবং নতুন প্রাণ সঞ্চার করেন।' },
+    
+    // SECTION 'গ' - 16 Questions (2 marks each)
+    { q: '৩.১ আধুনিক ইতিহাস চর্চায় সাধারণ মানুষের কর্মধারার ওপর বেশি জোর দেওয়া হয় কেন?', type: 'written', ans: 'আধুনিক ইতিহাস চর্চায় রাজা-মহারাজাদের পরিবর্তে কৃষক, শ্রমিক, আদিবাসী বা সাধারণ মানুষের ওপর বেশি জোর দেওয়া হয় কারণ, ইতিহাস হলো সমগ্র মানবসমাজের বিবর্তনের ধারা।' },
+    { q: '৩.২ সোমপ্রকাশকে বাংলার প্রথম রাজনৈতিক সংবাদপত্র বলার কারণ কী?', type: 'written', ans: '"সোমপ্রকাশ" (১৮৫৮) পত্রিকায় নির্ভীকভাবে নীলকরদের অত্যাচার, ব্রিটিশদের সাম্রাজ্যবাদী নীতি এবং বিভিন্ন আর্থসামাজিক সমস্যার কড়া সমালোচনা করা হতো বলেই একে প্রথম রাজনৈতিক সংবাদপত্র বলা হয়।' },
+    { q: '৩.৩ আলেকজান্ডার ডাফ স্মরণীয় কেন?', type: 'written', ans: 'তিনি ১৮৩০ সালে কলকাতায় "জেনারেল অ্যাসেম্বলিজ ইন্সটিটিউশন" (বর্তমান স্কটিশ চার্চ কলেজ) প্রতিষ্ঠা করেন।' },
+    { q: '৩.৪ স্বামী বিবেকানন্দের বেদান্তবাদকে কেন "নব্য" বলা হয়?', type: 'written', ans: 'তিনি বেদান্তকে কেবল সন্ন্যাসীদের মধ্যে সীমাবদ্ধ না রেখে মানবসেবা ও বিশ্বজনীনতার আদর্শে প্রচার করেন।' },
+    { q: '৩.৫ কোল বিদ্রোহের গুরুত্ব কী ছিল?', type: 'written', ans: 'বিদ্রোহের ফলে ব্রিটিশরা কোলদের জন্য পৃথক "দক্ষিণ-পশ্চিম সীমান্ত এজেন্সি" গঠন করতে বাধ্য হয় এবং রাজস্ব হ্রাস করে।' },
+    { q: '৩.৬ উনিশ শতকের দ্বিতীয়ার্ধকে "সভা-সমিতির যুগ” বলার যৌক্তিকতা উল্লেখ করো।', type: 'written', ans: 'এই সময়ে ভারতসভা, জমিদার সভা, পুনা সার্বজনিক সভার মতো অসংখ্য রাজনৈতিক প্রতিষ্ঠান গড়ে ওঠে।' },
+    { q: '৩.৭ মুদ্রণের ইতিহাসে ১৮০০ খ্রিস্টাব্দ গুরুত্বপূর্ণ কেন?', type: 'written', ans: '১৮০০ সালে "শ্রীরামপুর ত্রয়ী" শ্রীরামপুর ব্যাপটিস্ট মিশন প্রেস প্রতিষ্ঠা করেন।' },
+    { q: '৩.৮ রাজেন্দ্রনাথ মুখার্জিকে স্মরণ করার কারণ উল্লেখ করো।', type: 'written', ans: 'তিনি ছিলেন প্রখ্যাত স্থপতি ও প্রকৌশলী, যিনি হাওড়া ব্রিজ ও ভিক্টোরিয়া মেমোরিয়াল নির্মাণে অবদান রেখেছিলেন।' },
+    { q: '৩.৯ "মাদারি পাসি" কে ছিলেন?', type: 'written', ans: 'তিনি ১৯২১-২২ সালে উত্তরপ্রদেশের "একা" আন্দোলনের প্রধান কৃষক নেতা ছিলেন।' },
+    { q: '৩.১০ আইন অমান্য আন্দোলনে নারী সমাজ কীরূপ ভূমিকা নিয়েছিল?', type: 'written', ans: 'তারা ডান্ডি অভিযানে লবণ তৈরি, বিদেশি দ্রব্য পিকেটিং ও কারাবরণে অংশগ্রহণ করেছিলেন।' },
+    { q: '৩.১১ "বি-বা-দী" কারা?', type: 'written', ans: 'বিনয় বসু, বাদল গুপ্ত ও দীনেশ গুপ্ত — যারা ১৯৩০ সালে রাইটার্স বিল্ডিং আক্রমণে অংশ নেন।' },
+    { q: '৩.১২ স্বাধীন ভারতের পক্ষে দেশীয় রাজ্যগুলির স্বাধীন অস্তিত্ব মেনে নেওয়া সম্ভব ছিল না কেন?', type: 'written', ans: 'দেশীয় রাজ্যগুলির স্বাধীন অস্তিত্ব মেনে নিলে ভারতের ভৌগোলিক ও রাজনৈতিক ঐক্য বিঘ্নিত হতো।' },
+    { q: '৩.১৩ "নিম্নবর্গের ইতিহাসচর্চা" বা "Subaltern studies" বলতে কী বোঝ?', type: 'written', ans: 'যে ইতিহাস চর্চায় সমাজের নিচুতলার মানুষ—কৃষক, শ্রমিক, আদিবাসী ও নারীদের জীবন ও সংগ্রামের ওপর গুরুত্ব দেওয়া হয়।' },
+    { q: '৩.১৪ "ডিনামাইট ষড়যন্ত্র" কী?', type: 'written', ans: 'মাস্টারদা সূর্য সেনের পরিকল্পনায় চট্টগ্রামে আদালত ও জেলখানা উড়িয়ে দেওয়ার গোপন পরিকল্পনা, যা পুলিশের কাছে ফাঁস হয়।' },
+    { q: '৩.১৫ ১৯৫০ সালে নেহেরু-লিয়াকত চুক্তি কেন স্বাক্ষরিত হয়?', type: 'written', ans: 'উদ্বাস্তু সমস্যা ও সংখ্যালঘুদের নিরাপত্তা নিশ্চিত করতে এই চুক্তি স্বাক্ষরিত হয়।' },
+    { q: '৩.১৬ "সাম্প্রদায়িক বাঁটোয়ারা" নীতি কী?', type: 'written', ans: '১৯৩২ সালে ব্রিটিশ প্রধানমন্ত্রী প্রতিটি সম্প্রদায়ের জন্য পৃথক নির্বাচনের ব্যবস্থা করেন।' },
+    
+    // SECTION 'ঘ' - 4 Questions (4 marks each)
+    { q: '৪.১ নারী শিক্ষা প্রসারে ঈশ্বরচন্দ্র বিদ্যাসাগরের অবদান লেখো।', type: 'written', ans: 'বিদ্যাসাগর নারী শিক্ষার জন্য ৩৫টি বালিকা বিদ্যালয় প্রতিষ্ঠা করেন। তিনি বেথুন স্কুলের সহযোগী ছিলেন এবং "নারীশিক্ষা ভাণ্ডার" ও "স্ত্রীশিক্ষা সম্মিলনী" গঠন করেন।' },
+    { q: '৪.২ "গ্রামবার্তা প্রকাশিকা"য় উনিশ শতকের বাংলার গ্রামীণ সমাজের কীরূপ ছবি ফুটে উঠেছে?', type: 'written', ans: 'এই পত্রিকায় গ্রামের সুদখোর মহাজন, অত্যাচারী জমিদার ও নীলকরদের শোষণের চিত্র ফুটে উঠেছে। এটি কৃষক বিদ্রোহকে সমর্থন করত এবং গ্রামীণ লোকসংস্কৃতি প্রকাশ করত।' },
+    { q: '৪.৩ "বঙ্গভাষা প্রকাশিকা সভা" ও "জমিদার সভা" তাদের উদ্দেশ্য পূরণে কতদূর সফল হয়েছিল?', type: 'written', ans: 'বঙ্গভাষা প্রকাশিকা সভা (১৮৩৬) বাংলা ভাষা চর্চার পাশাপাশি করের প্রতিবাদ করে। জমিদার সভা (১৮৩৮) জমিদারদের স্বার্থ রক্ষায় আবেদনের রীতি চালু করে। এরা উচ্চবিত্তের মধ্যে সীমাবদ্ধ থাকলেও ভারতের সংঘবদ্ধ রাজনৈতিক আন্দোলনের পথপ্রদর্শক ছিল।' },
+    { q: '৪.৪ বারাসাত বিদ্রোহের প্রকৃতি বা বৈশিষ্ট্য বিশ্লেষণ করো।', type: 'written', ans: 'তিতুমিরের নেতৃত্বে ১৮৩১ সালের বারাসাত বিদ্রোহ ধর্মীয় আন্দোলন থেকে কৃষক বিদ্রোহে রূপ নেয়। এটি জমিদার, নীলকর ও ব্রিটিশদের বিরুদ্ধে ছিল এবং নিম্নবর্গের মানুষ অংশ নেয়। বাঁশের কেল্লা তৈরি করে তিতুমির ব্রিটিশদের বিরুদ্ধে যুদ্ধ ঘোষণা করেন।' },
+    
+    // SECTION 'ঙ' - 1 Question (8 marks) with OR
+    { q: '৫.১ ডিরোজিওর নেতৃত্বে নব্যবঙ্গ (Young Bengal) আন্দোলনের সংক্ষিপ্ত পরিচয় দাও। তাদের আন্দোলনের সীমাবদ্ধতাগুলি কী ছিল? (৫+৩)', type: 'written', ans: 'হেনরি ডিরোজিওর নেতৃত্বে হিন্দু কলেজের তরুণরা ১৮২৮ সালে অ্যাকাডেমিক অ্যাসোসিয়েশন গঠন করে জাতিভেদ, সতীদাহ প্রথার বিরোধিতা করেন। তাঁরা নারীমুক্তি ও সংবাদপত্রের স্বাধীনতার পক্ষে ছিলেন। কিন্তু এই আন্দোলন শুধুমাত্র শহরের ইংরেজি শিক্ষিত তরুণদের মধ্যে সীমাবদ্ধ ছিল। তাঁরা হিন্দু ধর্মের চরম বিদ্রূপ করতেন এবং গঠনমূলক কর্মসূচির অভাবে ডিরোজিওর মৃত্যুর পর অনেকেই ব্রিটিশ চাকরিতে যোগ দেন।' },
+    { q: '৫.২ "সভা সমিতির যুগ" বলতে কী বোঝায়? ভারত সভার নেতৃত্বে পরিচালিত আন্দোলনগুলির পরিচয় দাও। (৩+৫)', type: 'written', ans: 'উনিশ শতকের দ্বিতীয়ার্ধকে "সভা-সমিতির যুগ" বলা হয়। এই সময়ে ভারতসভা, জমিদার সভা, পুনা সার্বজনিক সভার মতো অসংখ্য রাজনৈতিক প্রতিষ্ঠান গড়ে ওঠে। ভারত সভা (১৮৭৬) সিভিল সার্ভিস আন্দোলন, অস্ত্র আইন ও সংবাদপত্র আইনের বিরোধিতা এবং ইলবার্ট বিল আন্দোলনে গুরুত্বপূর্ণ ভূমিকা পালন করে।' },
+    { q: '৫.৩ বারদৌলি সত্যাগ্রহ আন্দোলনের একটি সংক্ষিপ্ত বিবরণ দাও। তুমি কী মনে করো যে, এই আন্দোলন ভূমিহীন কৃষকশ্রেণি এবং কৃষিশ্রমিকদের স্বার্থরক্ষায় সফল হয়েছিল? (৫+৩)', type: 'written', ans: '১৯২৮ সালে গুজরাটের বারদৌলিতে সর্দার বল্লভভাই প্যাটেলের নেতৃত্বে কৃষকরা বর্ধিত খাজনার বিরুদ্ধে সত্যাগ্রহ শুরু করে। হিন্দু-মুসলিম ঐক্য ও নারীরা অংশগ্রহণ করে। সরকার শেষ পর্যন্ত খাজনা বৃদ্ধির হার কমাতে বাধ্য হয়। এই আন্দোলন ভূমিহীন কৃষিশ্রমিকদের অর্থনৈতিক লাভের চেয়ে সামাজিক মর্যাদা বৃদ্ধিতে বেশি সফল হয়েছিল।' }
+];
+
+// ================== ALL SETS ==================
+const ALL_SETS = {
+    1: { name: 'Set 1', icon: '⚛️', topic: 'ভৌতবিজ্ঞান', questions: SET1_QUESTIONS, time: 10 * 60 },
+    2: { name: 'Set 2', icon: '🌿', topic: 'জীবন বিজ্ঞান', questions: SET2_QUESTIONS, time: 10 * 60 },
+    3: { name: 'Set 3', icon: '📜', topic: 'ইতিহাস', questions: SET3_QUESTIONS, time: 10 * 60 },
+    4: { name: 'Set 4', icon: '🌍', topic: 'ভূগোল', questions: SET4_QUESTIONS, time: 10 * 60 },
+    5: { name: '📜 মাধ্যমিক ইতিহাস', icon: '📚', topic: 'পূর্ণাঙ্গ মক টেস্ট ২০২৭', questions: SET5_QUESTIONS, time: 3 * 60 * 60 + 15 * 60 }
+};
+
+// ================== STATE VARIABLES ==================
+let currentSetId = null;
+let currentQuestions = [];
+let score = 0;
+let wrongAnswers = 0;
+let userAnswers = {};
+let isReviewMode = false;
+let timerInterval;
+let timeLeft = 600;
+
+window.onload = () => { buildHub(); };
+
+function buildHub() {
+    const grid = document.getElementById('setGrid');
+    grid.innerHTML = '';
+
+    for(let id in ALL_SETS) {
+        const set = ALL_SETS[id];
+        const isHistory = (id == 5);
+        const timeDisplay = isHistory ? '৩ ঘণ্টা ১৫ মিনিট' : '১০ মিনিট';
+        const qCount = set.questions.length;
+
+        const card = document.createElement('div');
+        card.className = 'set-card';
+        card.innerHTML = `
+            <div class="free-badge">FREE</div>
+            <div class="set-icon">${set.icon}</div>
+            <div class="set-name">${set.name}</div>
+            <div class="set-topic">${set.topic}</div>
+            <div class="set-meta-info en-font">
+                <span>${qCount} Qs</span>
+                <span>${timeDisplay}</span>
+            </div>
+        `;
+
+        card.onclick = () => { startQuiz(id); };
+        grid.appendChild(card);
+    }
+}
+
+function startQuiz(setId) {
+    currentSetId = setId;
+    const set = ALL_SETS[setId];
+    currentQuestions = set.questions.map((q, idx) => {
+        return { ...q, id: idx, type: q.type || 'mcq' };
+    });
+    userAnswers = {};
+    isReviewMode = false;
+    score = 0;
+    wrongAnswers = 0;
+    timeLeft = set.time || 600;
+
+    document.getElementById('hubView').classList.add('hidden');
+    document.getElementById('resultModal').classList.add('hidden');
+    document.getElementById('quizView').classList.remove('hidden');
+
+    document.getElementById('timerBox').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('danger');
+    document.getElementById('submitTestBtn').classList.remove('hidden');
+
+    const isHistory = (setId == 5);
+    document.getElementById('quizTitle').innerHTML = set.icon + ' ' + set.name + ' | ' + set.topic;
+    document.getElementById('quizMetaInfo').innerHTML = (isHistory ? '৩ ঘণ্টা ১৫ মিনিট' : '১০ মিনিট') + ' | ' + currentQuestions.length + ' Questions';
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tick, 1000);
+
+    renderQuestions();
+}
+
+function tick() {
+    timeLeft--;
+    const hrs = Math.floor(timeLeft / 3600);
+    const mins = Math.floor((timeLeft % 3600) / 60);
+    const secs = timeLeft % 60;
+    
+    if (hrs > 0) {
+        document.getElementById('timerDisplay').textContent = 
+            (hrs < 10 ? '0' : '') + hrs + ':' + 
+            (mins < 10 ? '0' : '') + mins + ':' + 
+            (secs < 10 ? '0' : '') + secs;
+    } else {
+        document.getElementById('timerDisplay').textContent = 
+            (mins < 10 ? '0' : '') + mins + ':' + 
+            (secs < 10 ? '0' : '') + secs;
+    }
+    
+    if (timeLeft <= 60) document.getElementById('timerBox').classList.add('danger');
+    if (timeLeft <= 0) { submitQuiz(); }
+}
+
+function renderQuestions() {
+    const quizList = document.getElementById('quizList');
+    let html = '';
+    const isHistory = (currentSetId == 5);
+
+    if (isHistory) {
+        // History Test - Show all questions with sections
+        // Find where sections start
+        const mcqCount = 20;
+        const writtenStart = 20;
+        
+        // Section 'ক' - MCQ
+        html += `<div class="section-divider">📌 বিভাগ – "ক" (বহু বিকল্পভিত্তিক প্রশ্ন) — ২০×১ = ২০ নম্বর <span class="mcq-badge">MCQ</span></div>`;
+        for (let i = 0; i < mcqCount && i < currentQuestions.length; i++) {
+            html += buildMCQHtml(i, currentQuestions[i]);
+        }
+
+        // Sections 'খ', 'গ', 'ঘ', 'ঙ' - Written
+        const writtenSections = [
+            { start: 20, end: 36, label: 'খ', name: 'খ (স্বল্প উত্তর) — ১৬×১ = ১৬', badge: 'লিখিত' },
+            { start: 36, end: 52, label: 'গ', name: 'গ (২-৩ বাক্যে) — ১৬×২ = ৩২', badge: 'লিখিত' },
+            { start: 52, end: 56, label: 'ঘ', name: 'ঘ (সাত/আট বাক্যে) — ৪×৪ = ১৬', badge: 'লিখিত' },
+            { start: 56, end: currentQuestions.length, label: 'ঙ', name: 'ঙ (১৫/১৬ বাক্যে) — ১×৮ = ৮', badge: 'লিখিত' }
+        ];
+
+        writtenSections.forEach(section => {
+            if (section.start >= currentQuestions.length) return;
+            const end = Math.min(section.end, currentQuestions.length);
+            html += `<div class="section-divider">📌 বিভাগ – "${section.label}" (${section.name}) <span class="writing-badge">${section.badge}</span></div>`;
+            for (let i = section.start; i < end; i++) {
+                const q = currentQuestions[i];
+                html += buildWrittenHtml(i, q);
+            }
+        });
+    } else {
+        // Other sets - Show all questions as MCQ
+        currentQuestions.forEach((q, i) => {
+            html += buildMCQHtml(i, q);
+        });
+    }
+
+    quizList.innerHTML = html;
+    window.scrollTo(0, 0);
+}
+
+function buildMCQHtml(index, q) {
+    let html = `<div class="q-block" id="qBlock_${index}">
+        <div class="q-text"><span class="q-label">প্রশ্ন ${index+1}:</span> ${q.q}</div>
+        <div class="options-grid">`;
+
+    for (let j = 0; j < 4; j++) {
+        const optText = q.opts[j] || `বিকল্প ${j+1}`;
+        html += `<div class="opt" id="opt_${index}_${j}" onclick="selectOpt(${index}, ${j})">
+                    <div class="opt-circle">${LABELS[j]}</div>
+                    <div class="opt-text">${optText}</div>
+                 </div>`;
+    }
+
+    html += `   </div>
+                <div class="explanation hidden" id="exp_${index}">${q.exp || q.ans || ''}</div>
+             </div>`;
+    return html;
+}
+
+function buildWrittenHtml(index, q) {
+    const isSectionE = (index >= 56);
+    const isSectionD = (index >= 52 && index < 56);
+    const markText = isSectionE ? '৮ নম্বর' : (isSectionD ? '৪ নম্বর' : (index >= 36 ? '২ নম্বর' : '১ নম্বর'));
+    const answerHeight = isSectionE ? 'large' : (isSectionD ? 'medium' : '');
+    
+    return `<div class="q-block" id="qBlock_${index}" style="border-left: 4px solid #f9a825;">
+        <div class="q-text"><span class="q-label">প্রশ্ন ${index+1} (${markText}):</span> ${q.q}</div>
+        <div class="written-answer-box">
+            <div class="label">📝 আপনার উত্তর লিখুন:</div>
+            <div class="answer-area ${answerHeight}">
+                (আপনার উত্তর খাতায় লিখুন)
+            </div>
+        </div>
+        <div class="explanation hidden" id="exp_${index}" style="margin-top: 10px;">
+            <b>উত্তর:</b> ${q.ans}
+        </div>
+     </div>`;
+}
+
+function selectOpt(qIdx, optIdx) {
+    if (isReviewMode) return;
+    const q = currentQuestions[qIdx];
+    if (q.type === 'written') return;
+    
+    userAnswers[qIdx] = optIdx;
+
+    const block = document.getElementById(`qBlock_${qIdx}`);
+    const opts = block.querySelectorAll('.opt');
+    opts.forEach(o => o.classList.remove('selected'));
+    document.getElementById(`opt_${qIdx}_${optIdx}`).classList.add('selected');
+}
+
+function submitQuiz() {
+    if (isReviewMode) return;
+
+    const answeredCount = Object.keys(userAnswers).length;
+    if (timeLeft > 0 && answeredCount < 20) {
+        const confirmSubmit = confirm(`আপনি মাত্র ${answeredCount} টি MCQ প্রশ্নের উত্তর দিয়েছেন। আপনি কি সত্যিই Test জমা দিতে চান?`);
+        if(!confirmSubmit) return;
+    }
+
+    isReviewMode = true;
+    clearInterval(timerInterval);
+    document.getElementById('timerBox').classList.add('hidden');
+    document.getElementById('submitTestBtn').classList.add('hidden');
+
+    // Evaluate MCQ questions
+    let mcqScore = 0;
+    let mcqWrong = 0;
+
+    currentQuestions.forEach((q, i) => {
+        if (q.type === 'written') {
+            document.getElementById(`exp_${i}`).classList.remove('hidden');
+            return;
+        }
+        
+        const selected = userAnswers[i];
+        const block = document.getElementById(`qBlock_${i}`);
+        const opts = block.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.remove('selected'));
+
+        if (selected !== undefined) {
+            if (selected === q.ans) {
+                mcqScore++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('correct');
+            } else {
+                mcqWrong++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('wrong');
+                document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+            }
+        } else {
+            document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+        }
+
+        document.getElementById(`exp_${i}`).classList.remove('hidden');
+    });
+
+    const totalMCQ = currentQuestions.filter(q => q.type !== 'written').length;
+    const pct = totalMCQ > 0 ? Math.round((mcqScore / totalMCQ) * 100) : 0;
+
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('rbCorrect').textContent = mcqScore;
+    document.getElementById('rbWrong').textContent = totalMCQ - mcqScore;
+    document.getElementById('rbMarks').textContent = mcqScore;
+
+    let icon = '💪', grade = 'চেষ্টা চালিয়ে যাও!';
+    if(pct >= 90) { icon = '🌟'; grade = 'অসাধারণ! এক্সেলেন্ট!'; }
+    else if(pct >= 75) { icon = '👍'; grade = 'খুব ভালো!'; }
+    else if(pct >= 50) { icon = '📚'; grade = 'ভালো চেষ্টা, আরও অনুশীলন দরকার!'; }
+
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultGrade').textContent = `গ্রেড: ${grade}`;
+    document.getElementById('resultModal').classList.remove('hidden');
+}
+
+function closeResultModal() {
+    document.getElementById('resultModal').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+    closeResultModal();
+    startQuiz(currentSetId);
+}
+</script>
+</body>
+</html>
