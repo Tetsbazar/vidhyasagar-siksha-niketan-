@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 Geography Chapter 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #1a7a4a; --primary-hover: #2aad68; --accent: #f9a825;
+--bg-main: #f0faf4; --bg-card: #ffffff; --bg-selected: #e8f4ec;
+--text-main: #1c2e24; --text-meta: #5a7a66; --border-color: #c5dccb;
+--alert-danger: #dc3545; --correct: #28a745;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Tiro Bangla', serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+.en-font { font-family: 'Syne', sans-serif; }
+.hidden { display: none !important; }
+
+.header {
+background: #ffffff;
+box-shadow: 0 4px 20px rgba(10, 92, 54, 0.08);
+position: sticky;
+top: 0;
+z-index: 1000;
+border-bottom: 3px solid #0a5c36;
+}
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 8px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo-link {
+display: flex;
+align-items: center;
+gap: 10px;
+text-decoration: none;
+cursor: pointer;
+}
+.logo-emblem {
+width: 45px;
+height: 45px;
+background: linear-gradient(135deg, #0a5c36 0%, #1e824c 100%);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.4rem;
+font-weight: 800;
+color: white;
+box-shadow: 0 4px 12px rgba(10, 92, 54, 0.2);
+flex-shrink: 0;
+}
+.brand-text-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.coaching-main-title {
+font-size: 1.4rem;
+font-weight: 800;
+color: #0a5c36;
+letter-spacing: -0.5px;
+line-height: 1.1;
+}
+.coaching-subtitle {
+font-size: 0.75rem;
+color: #556c5e;
+font-weight: 700;
+letter-spacing: 0.3px;
+margin-top: 1px;
+text-transform: uppercase;
+}
+.coaching-tagline {
+font-size: 0.65rem;
+color: #f5a623;
+font-weight: 600;
+margin-top: 1px;
+letter-spacing: 0.1px;
+}
+.header-right {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.timer-box {
+background: rgba(10, 92, 54, 0.08);
+padding: 6px 15px;
+border-radius: 8px;
+font-weight: 700;
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+gap: 5px;
+color: #0a5c36;
+}
+.timer-box.danger { background: var(--alert-danger); color: white; animation: pulse 1s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.user-info { background: #0a5c36; color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; }
+
+.main-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.hub-header { text-align: center; margin-bottom: 30px; }
+.hub-header h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 10px; }
+.set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+.set-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+.set-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(26,122,74,0.1); }
+.set-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.set-name { font-size: 1.3rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; font-family: 'Syne', sans-serif;}
+.set-topic { font-size: 0.95rem; color: var(--text-meta); margin-bottom: 15px; height: 40px; }
+.set-meta-info { display: flex; justify-content: center; gap: 10px; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
+.set-meta-info span { background: var(--bg-main); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+.attempt-badge { position: absolute; top: 10px; right: 10px; background: #ffeeba; color: #856404; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+.attempt-badge.locked { background: var(--alert-danger); color: white; border: none; }
+
+.quiz-info { background: var(--bg-card); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+.q-block { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.q-text { font-size: 1.2rem; font-weight: bold; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
+.options-grid { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 1.05rem; }
+.opt:hover:not(.selected):not(.correct):not(.wrong) { background: var(--bg-main); border-color: var(--primary); }
+.opt.selected { background: var(--bg-selected); border-color: var(--primary); }
+.opt-circle { min-width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Syne', sans-serif; color: var(--text-meta); flex-shrink: 0; }
+.opt.selected .opt-circle { background: var(--primary); color: white; border-color: var(--primary); }
+.opt.correct { background: #e8f7ef; border-color: var(--correct); }
+.opt.correct .opt-circle { background: var(--correct); border-color: var(--correct); color: white; }
+.opt.wrong { background: #fdf0f0; border-color: var(--alert-danger); }
+.opt.wrong .opt-circle { background: var(--alert-danger); border-color: var(--alert-danger); color: white; }
+.explanation { margin-top: 15px; padding: 15px; background: #e8f4ec; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #2c4035; line-height: 1.5;}
+.btn-submit { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; font-family: 'Tiro Bangla', serif; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(26,122,74,0.2); transition: 0.2s; }
+.btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+.btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: bold;}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto;}
+.modal-box { background: white; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin: auto;}
+.modal-box input { width: 100%; padding: 12px 15px; margin: 10px 0; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: 'Syne', sans-serif; box-sizing: border-box; outline: none; transition: 0.2s; }
+.modal-box input:focus { border-color: var(--primary); }
+.result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto; padding: 20px; }
+.result-box { background: white; padding: 2.5rem 2rem; border-radius: 16px; width: 100%; max-width: 450px; text-align: center; margin: auto; }
+.result-score { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin: 15px 0; }
+.result-bars { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.result-bar { background: var(--bg-main); padding: 15px; border-radius: 12px; width: 100px; border: 1px solid var(--border-color); }
+
+@media (max-width: 768px) {
+.header-container { flex-direction: column; gap: 10px; text-align: center; padding: 10px 10px; }
+.logo-link { flex-direction: column; gap: 6px; }
+.brand-text-container { text-align: center; }
+.coaching-main-title { font-size: 1.2rem; }
+.coaching-subtitle { font-size: 0.7rem; }
+.coaching-tagline { font-size: 0.6rem; }
+.header-right { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="#" class="logo-link" onclick="location.reload(); return false;">
+            <div class="logo-emblem" id="dynamicEmblem">🌊</div>
+            <div class="brand-text-container">
+                <span class="coaching-main-title" id="dynamicTitle">Geography - Chapter 3</span>
+                <span class="coaching-subtitle" id="dynamicSubtitle">বারিমণ্ডল (সমুদ্রস্রোত ও জোয়ার-ভাটা)</span>
+                <span class="coaching-tagline" id="dynamicTagline">দশম শ্রেণি (Class 10)</span>
+            </div>
+        </a>
+        <div class="header-right">
+            <div class="timer-box en-font hidden" id="timerBox">⏱ <span id="timerDisplay">10:00</span></div>
+            <div class="user-info en-font" id="userDisplay" style="font-weight: bold;">👤 Guest</div>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <div id="hubView">
+        <div class="hub-header">
+            <h1 style="color: var(--primary); margin-bottom: 10px;">ভূগোল - Class 10 Chapter 3</h1>
+            <p style="color: var(--text-meta);">বারিমণ্ডল (সমুদ্রস্রোত ও জোয়ার-ভাটা)</p>
+        </div>
+        <div class="set-grid" id="setGrid"></div>
+        <div style="text-align:center; margin-top:40px;">
+            <button class="btn-primary" style="background:var(--text-meta); width: auto; padding: 12px 25px;" onclick="window.history.back()">← Main Dashboard-এ ফিরুন</button>
+        </div>
+    </div>
+
+    <div id="quizView" class="hidden">
+        <div class="quiz-info">
+            <div id="quizTitle">Set Name</div>
+            <div id="quizMetaInfo" class="en-font">15 Questions | 10 Mins</div>
+        </div>
+        <div id="quizList"></div>
+        <button class="btn-submit" id="submitTestBtn" onclick="submitQuiz()">Test জমা দিন ও ফলাফল দেখুন</button>
+    </div>
+
+</div>
+
+<div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-box">
+        <h2 style="color: var(--primary); margin-top:0;">লগইন করুন</h2>
+        <p style="color: var(--text-meta); margin-bottom: 15px; font-size: 0.9rem;">Test শুরু করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন</p>
+        <div id="loginSetName" style="background: var(--bg-main); padding: 8px; border-radius: 8px; font-weight:bold; color:var(--primary); margin-bottom:15px; font-family: 'Syne', sans-serif; font-size: 0.95rem;">Set Name</div>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()">
+        <div id="loginError" class="hidden" style="color: var(--alert-danger); margin: 10px 0; font-weight:bold; font-size: 0.9rem;"></div>
+        <div style="display: flex; gap: 10px; margin-top:15px; justify-content: center;">
+            <button class="btn-primary" style="width: 100%; padding: 12px;" onclick="doLogin()">লগইন করুন</button>
+            <button class="btn-primary" style="background: var(--alert-danger); width: 100%; padding: 12px;" onclick="closeLogin()">বাতিল</button>
+        </div>
+    </div>
+</div>
+
+<div class="result-overlay hidden" id="resultModal">
+    <div class="result-box">
+        <div style="font-size: 3.5rem; margin-bottom:0; line-height: 1;" id="resultIcon">🌟</div>
+        <h2 style="margin:10px 0; color: var(--text-main);">আপনার ফলাফল</h2>
+        <div class="result-score en-font" id="finalScore">100%</div>
+        <div id="resultGrade" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--accent);">অসাধারণ!</div>
+        <div class="result-bars">
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbCorrect">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">সঠিক</div>
+            </div>
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--alert-danger);" class="en-font" id="rbWrong">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">ভুল / স্কিপ</div>
+            </div>
+        </div>
+        <p style="background: var(--bg-main); padding: 10px; border-radius: 8px; color:var(--text-meta); font-weight:bold; font-size:0.95rem; margin-bottom:25px;" id="attemptInfo" class="en-font">বাকি আছে 9 বার</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="btn-primary" style="background: #28a745; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="closeResultModal()">উত্তর ও ব্যাখ্যা দেখুন</button>
+            <button class="btn-primary" style="background: #17a2b8; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="restartQuiz()">আবার চেষ্টা করো</button>
+            <button class="btn-primary" style="background: var(--text-meta); width: 100%; padding: 14px; font-size: 1.05rem;" onclick="window.location.reload()">Chapter Hub-এ ফিরুন</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// DYNAMIC BRANDING LOGIC
+// ============================================================
+const STORE_CONFIGS = {
+    "guru": {
+        title: "Guru Book Store Jhalda",
+        mainTitle: "Guru Book Store",
+        subtitle: "Jhalda",
+        tagline: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        emblem: "G"
+    },
+    "saraswati": {
+        title: "Saraswati Book Store",
+        mainTitle: "Saraswati Book Store",
+        subtitle: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        tagline: "শিক্ষা ও প্রগতির বিশ্বস্ত সঙ্গী",
+        emblem: "S"
+    }
+};
+
+function applyBranding() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let storeKey = urlParams.get('store') || localStorage.getItem("activeStore") || "";
+    storeKey = storeKey.toLowerCase();
+
+    if (storeKey && STORE_CONFIGS[storeKey]) {
+        const config = STORE_CONFIGS[storeKey];
+        document.title = `${config.title} - Class 10 Geography Chapter 3`;
+        document.getElementById("dynamicEmblem").innerText = config.emblem;
+        document.getElementById("dynamicTitle").innerText = config.mainTitle;
+        document.getElementById("dynamicSubtitle").innerText = config.subtitle;
+        document.getElementById("dynamicTagline").innerText = config.tagline;
+        localStorage.setItem("activeStore", storeKey);
+    } else {
+        document.title = "Class 10 Geography Chapter 3 - বারিমণ্ডল (সমুদ্রস্রোত ও জোয়ার-ভাটা)";
+        document.getElementById("dynamicEmblem").innerText = "🌊";
+        document.getElementById("dynamicTitle").innerText = "Geography - Chapter 3";
+        document.getElementById("dynamicSubtitle").innerText = "বারিমণ্ডল (সমুদ্রস্রোত ও জোয়ার-ভাটা)";
+        document.getElementById("dynamicTagline").innerText = "দশম শ্রেণি (Class 10)";
+    }
+}
+
+// ============================================================
+// QUIZ DATA - 2 SETS (TOTAL 30 QUESTIONS)
+// ============================================================
+const STORAGE_KEY_ATTEMPTS = "testBazarAttempts_Geography_Ch3_Sets";
+const MAX_ATTEMPTS = 10;
+const TIME_LIMIT = 10 * 60;
+
+// ============================================================
+// সেট ১: সমুদ্রস্রোত
+// ============================================================
+const SET1 = {
+    name: "সেট ১",
+    icon: "🌊",
+    topic: "সমুদ্রস্রোত",
+    questions: [
+        { q: "১. সমুদ্রের জলরাশির নির্দিষ্ট দিকে একমুখী ও অনুভূমিক প্রবাহকে কী বলে?", opts: ["সমুদ্রতরঙ্গ", "সমুদ্রস্রোত", "সুনামি", "মগ্নচড়া"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পৃথিবীর আবর্তনগতি, বায়ুপ্রবাহ, সমুদ্রজলের লবণতা, ঘনত্ব ও উষ্ণতার তারতম্যের জন্য সমুদ্রের নির্দিষ্ট অংশের জল প্রতিনিয়ত নির্দিষ্ট দিকে প্রবাহিত হয়, সমুদ্রজলের এই অনুভূমিক গতিকেই সমুদ্রস্রোত বলে।" },
+        { q: "২. সমুদ্রস্রোত সৃষ্টির প্রধান কারণ কোনটি?", opts: ["পৃথিবীর আবর্তন", "উষ্ণতার পার্থক্য", "বায়ুপ্রবাহ", "বরফের গলন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অধিকাংশ বিজ্ঞানীর মতে সমুদ্রস্রোত সৃষ্টির প্রধান কারণ হলো বায়ুপ্রবাহ; সমুদ্রের ওপর দিয়ে বায়ু যেদিকে প্রবাহিত হয়, ওপরকার জলরাশিকে ঘর্ষণ বলের মাধ্যমে বায়ু সেইদিকেই টেনে নিয়ে যায়।" },
+        { q: "৩. কোন মহাসাগরে ঋতু পরিবর্তনের সাথে সাথে সমুদ্রস্রোতের দিক পরিবর্তন হয়?", opts: ["প্রশান্ত মহাসাগর", "ভারত মহাসাগর", "আটলান্টিক মহাসাগর", "সুমেরু মহাসাগর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারত মহাসাগরে প্রবাহিত মৌসুমি স্রোত গ্রীষ্মকালে দক্ষিণ-পশ্চিম মৌসুমি বায়ুর প্রভাবে ডানদিকে বা দক্ষিণাবর্তে এবং শীতকালে উত্তর-পূর্ব মৌসুমি বায়ুর প্রভাবে ঠিক বিপরীত দিকে বা বামাবর্তে প্রবাহিত হয়।" },
+        { q: "৪. এল নিনো (El Nino) এর প্রভাব প্রধানত কোন মহাসাগরে দেখা যায়?", opts: ["প্রশান্ত মহাসাগর", "ভারত মহাসাগর", "আটলান্টিক মহাসাগর", "উত্তর মহাসাগর"], ans: 0, exp: "<b>ব্যাখ্যা:</b> প্রশান্ত মহাসাগরের পূর্ব প্রান্তে পেরু-ইকুয়েডরের পশ্চিম উপকূল দিয়ে কোনো কোনো বছর ডিসেম্বর-জানুয়ারি মাসে উত্তরমুখী শীতল স্রোতের পরিবর্তে অস্বাভাবিকভাবে দক্ষিণমুখী উষ্ণ স্রোত প্রবাহিত হয়, যাকে এল-নিনো বলে।" },
+        { q: "৫. 'শৈবাল সাগর' (Sargasso Sea) কোন মহাসাগরে সৃষ্টি হয়েছে?", opts: ["প্রশান্ত মহাসাগর", "দক্ষিণ আটলান্টিক মহাসাগর", "উত্তর আটলান্টিক মহাসাগর", "ভারত মহাসাগর"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উত্তর-আটলান্টিক মহাসাগরে উপসাগরীয় স্রোত, উত্তর নিরক্ষীয় স্রোত এবং ক্যানারি স্রোতের মিলনের ফলে সৃষ্ট জলাবর্তের মাঝে স্রোতহীন অংশে বিভিন্ন ধরনের আগাছা ও শৈবাল জন্মায়, একেই শৈবাল সাগর বলে।" },
+        { q: "৬. সমুদ্রস্রোত পরিমাপের একক কী?", opts: ["নট", "মিলিবার", "সেভিয়ারড্রুপ বা ভাদ্রুপ", "কিউসেক"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সমুদ্রস্রোত পরিমাপের একক হলো ভাদ্রুপ বা সেভিয়ারড্রুপ, যেখানে ১ ভাদ্রুপ সমান ১০ লক্ষ ঘনমিটার/সেকেন্ড জল।" },
+        { q: "৭. উষ্ণ ও শীতল স্রোতের মধ্যবর্তী স্পষ্ট সীমারেখাকে কী বলে?", opts: ["হিমশৈল", "হিমপ্রাচীর", "মগ্নচড়া", "হিমানী সম্প্রপাত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সমুদ্রের উষ্ণ স্রোত এবং শীতল স্রোতের মধ্যবর্তী বিভাজন-রেখাকে হিমপ্রাচীর বলে। যেমন উত্তর আমেরিকার পূর্ব উপকূলে উষ্ণ উপসাগরীয় স্রোত এবং শীতল ল্যাব্রাডর স্রোতের মাঝে এটি স্পষ্ট দেখা যায়।" },
+        { q: "৮. গ্র্যান্ড ব্যাংক (Grand Bank) কীসের জন্য বিখ্যাত?", opts: ["খনিজ তেল", "বাণিজ্যিক মৎস্যক্ষেত্র", "প্রবাল প্রাচীর", "গভীর সমুদ্র বন্দর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শীতল স্রোতের সঙ্গে ভেসে আসা হিমশৈল উষ্ণ স্রোতের সংস্পর্শে গলে গিয়ে গ্র্যান্ড ব্যাংকের মতো মগ্নচড়া সৃষ্টি করে, যেখানে অগভীর জলে মাছের প্রধান খাদ্য 'প্ল্যাঙ্কটন' প্রচুর জন্মায় বলে এটি বাণিজ্যিক মৎস্যক্ষেত্র হিসেবে বিখ্যাত।" },
+        { q: "৯. পৃথিবীর আবর্তন গতির কারণে সমুদ্রস্রোত উত্তর গোলার্ধে কোন দিকে বেঁকে যায়?", opts: ["বামদিকে", "ডানদিকে", "সোজা পথে", "কোনোটিই নয়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পৃথিবীর আবর্তনের কারণে সৃষ্ট কোরিওলিস বলের প্রভাবে ফেরেলের সূত্র অনুসরণ করে সমুদ্রস্রোত উত্তর গোলার্ধে ডানদিকে এবং দক্ষিণ গোলার্ধে বামদিকে বেঁকে প্রবাহিত হয়।" },
+        { q: "১০. উষ্ণ সমুদ্রস্রোত সাধারণত সমুদ্রের কোন অংশ দিয়ে প্রবাহিত হয়?", opts: ["অন্তঃপ্রবাহরূপে", "মধ্যভাগ দিয়ে", "পৃষ্ঠপ্রবাহরূপে", "তলদেশ দিয়ে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উষ্ণমণ্ডলের উষ্ণ ও হালকা জল সমুদ্রের ওপরের অংশ দিয়ে পৃষ্ঠপ্রবাহরূপে শীতল মেরু প্রদেশের দিকে বয়ে যায়।" },
+        { q: "১১. লা নিনা (La Nina) এর প্রভাবে ভারতে কী পরিস্থিতির সৃষ্টি হয়?", opts: ["চরম খরা", "অতিবৃষ্টি ও বন্যা", "তুষারপাত", "ভূমিকম্প"], ans: 1, exp: "<b>ব্যাখ্যা:</b> লা নিনার বছরগুলিতে ভারতে স্বাভাবিকের তুলনায় বেশি বৃষ্টিপাত হয় এবং বেশি ঘূর্ণবাতের আগমন ঘটে, ফলে বন্যা ও ভূমিধস বাড়ে।" },
+        { q: "১২. সমুদ্রতরঙ্গে জলরাশির গতিপ্রকৃতি কেমন হয়?", opts: ["অনুভূমিক সরণ", "উল্লম্ব সরণ", "একমুখী প্রবাহ", "স্থির থাকে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সমুদ্রতরঙ্গে জলরাশি এক স্থান থেকে অন্য স্থানে প্রবাহিত হয় না, বরং জলকণা বৃত্তাকার কক্ষপথে কেবল ওপর-নীচে ওঠানামা করে অর্থাৎ উল্লম্ব সরণ ঘটে।" },
+        { q: "১৩. শীতল সমুদ্রস্রোত সাধারণত কোন অঞ্চল থেকে উৎপন্ন হয়?", opts: ["নিরক্ষীয় অঞ্চল", "ক্রান্তীয় অঞ্চল", "উপক্রান্তীয় অঞ্চল", "মেরু অঞ্চল"], ans: 3, exp: "<b>ব্যাখ্যা:</b> উষ্ণমণ্ডলের জলের অভাব পূরণের জন্য মেরু অঞ্চলের শীতল ও ভারী জল সমুদ্রের নিম্নাংশ দিয়ে অন্তঃপ্রবাহরূপে উষ্ণমণ্ডলের দিকে বয়ে আসে।" },
+        { q: "১৪. কোন স্রোতের প্রভাবে নিউফাউন্ডল্যান্ড উপকূলে ঘন কুয়াশা ও ঝড়-ঝঞ্ঝা সৃষ্টি হয়?", opts: ["পেরু স্রোত", "ল্যাব্রাডর স্রোত ও উপসাগরীয় স্রোত", "ক্যানারি স্রোত", "আগুলহাস স্রোত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> যেসব অঞ্চলে উষ্ণ ও শীতল স্রোতের মিলন ঘটে সেখানে উষ্ণতার পার্থক্যের জন্য ঘন কুয়াশা ও প্রবল ঝড়-ঝঞ্ঝা হয়; নিউফাউন্ডল্যান্ড উপকূলে উষ্ণ উপসাগরীয় ও শীতল ল্যাব্রাডর স্রোতের মিলনে এমন ঘটে।" },
+        { q: "১৫. পশ্চিম অস্ট্রেলিয় স্রোতের প্রভাবে কোন মরুভূমির সৃষ্টি হয়েছে?", opts: ["আটাকামা", "সাহারা", "বৃহৎ অস্ট্রেলীয় মরুভূমি", "কালাহারি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ক্রান্তীয় মণ্ডলের উপকূলের পাশ দিয়ে শীতল স্রোত বয়ে গেলে বায়ুতে জলীয় বাষ্পের অভাবে বৃষ্টির সম্ভাবনা কমে মরুভূমির সৃষ্টি হয়; পশ্চিম অস্ট্রেলিয় স্রোতের প্রভাবে অস্ট্রেলিয়ার পশ্চিম প্রান্তে এমন মরুভূমি সৃষ্টি হয়েছে।" }
+    ]
+};
+
+// ============================================================
+// সেট ২: জোয়ার-ভাটা
+// ============================================================
+const SET2 = {
+    name: "সেট ২",
+    icon: "🌙",
+    topic: "জোয়ার-ভাটা",
+    questions: [
+        { q: "১. জোয়ার-ভাটা সৃষ্টির প্রধান কারণ কী কী?", opts: ["বায়ুপ্রবাহ ও সমুদ্রস্রোত", "চাঁদ-সূর্যের আকর্ষণ এবং পৃথিবীর কেন্দ্রাতিগ বল", "ভূমিকম্প ও সুনামি", "নদীর স্রোত ও বৃষ্টিপাত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বৈজ্ঞানিকদের মতে প্রধানত দুটি কারণে জোয়ারভাটা হয়— পৃথিবীর আবর্তন গতির ফলে সৃষ্ট কেন্দ্রাতিগ শক্তি এবং পৃথিবীর ওপর চাঁদ ও সূর্যের মহাকর্ষীয় আকর্ষণ।" },
+        { q: "২. পৃথিবীর ওপর চাঁদের আকর্ষণ বল সূর্যের আকর্ষণ বলের তুলনায় কত গুণ বেশি?", opts: ["২.২ গুণ", "২.৫ গুণ", "৩ গুণ", "৪ গুণ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পৃথিবী থেকে চাঁদের দূরত্ব সূর্যের দূরত্বের তুলনায় ৩৯১ গুণ কম হওয়ায়, পৃথিবীর ওপর সূর্যের তুলনায় চাঁদের মহাকর্ষ শক্তি বা আকর্ষণ বল ২.২ গুণ বেশি হয়।" },
+        { q: "৩. পৃথিবীর কোনো একটি স্থানে দুটি মুখ্য জোয়ারের মধ্যে সময়ের ব্যবধান কত?", opts: ["১২ ঘণ্টা", "১২ ঘণ্টা ২৬ মিনিট", "২৪ ঘণ্টা", "২৪ ঘণ্টা ৫২ মিনিট"], ans: 3, exp: "<b>ব্যাখ্যা:</b> পৃথিবীর আবর্তনের সাথে সাথে চাঁদও নিজ কক্ষপথে এগিয়ে যাওয়ায় পৃথিবীর কোনো নির্দিষ্ট স্থান ২৪ ঘণ্টা ৫২ মিনিট পর পর পুনরায় চাঁদের ঠিক সামনে আসে, তাই দুটি মুখ্য জোয়ারের ব্যবধান প্রায় ২৪ ঘণ্টা ৫২ মিনিট হয়।" },
+        { q: "৪. সিজিগি (Syzygy) বলতে কী বোঝায়?", opts: ["চাঁদ ও সূর্যের সমকোণে অবস্থান", "পৃথিবী, চাঁদ ও সূর্যের একই সরলরেখায় অবস্থান", "চাঁদ ও পৃথিবীর নিকটতম অবস্থান", "চাঁদ ও পৃথিবীর দূরতম অবস্থান"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পৃথিবী, চাঁদ ও সূর্যের মধ্যবিন্দু যখন একটি সরলরেখায় অবস্থান করে, তখন সেই অবস্থানকে 'সিজিগি' বলা হয়, যা অমাবস্যা ও পূর্ণিমা তিথিতে ঘটে।" },
+        { q: "৫. মরা কোটাল (Neap Tide) কোন তিথিতে দেখা যায়?", opts: ["পূর্ণিমা তিথিতে", "অমাবস্যা তিথিতে", "শুক্ল ও কৃষ্ণপক্ষের অষ্টমী তিথিতে", "একাদশী তিথিতে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> শুক্ল ও কৃষ্ণপক্ষের সপ্তমী/অষ্টমী তিথিতে চাঁদ ও সূর্য পৃথিবীর সাপেক্ষে পরস্পর সমকোণে থেকে পৃথিবীকে আকর্ষণ করে বলে জোয়ারের জলস্ফীতি কিছুটা কম হয়, একে মরা কোটাল বলে।" },
+        { q: "৬. ভরা কোটাল বা তেজ কোটাল কখন হয়?", opts: ["অমাবস্যা ও পূর্ণিমা তিথিতে", "শুক্লপক্ষের অষ্টমী তিথিতে", "কৃষ্ণপক্ষের অষ্টমী তিথিতে", "প্রতিদিন"], ans: 0, exp: "<b>ব্যাখ্যা:</b> অমাবস্যা ও পূর্ণিমার দিনে পৃথিবী, চাঁদ ও সূর্য একই সরলরেখায় থাকায় চাঁদ ও সূর্যের মিলিত আকর্ষণে জোয়ারের জল অনেক বেশি ফুলে ওঠে, একে ভরা কোটাল বা তেজ কোটাল বলে।" },
+        { q: "৭. পৃথিবীর কেন্দ্রাতিগ বল বা বিকর্ষণ শক্তির প্রভাবে কোন জোয়ারের সৃষ্টি হয়?", opts: ["মুখ্য জোয়ার", "গৌণ জোয়ার", "ভরা জোয়ার", "মরা জোয়ার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মুখ্য জোয়ারের ঠিক বিপরীত দিকে (প্রতিপাদ স্থানে) পৃথিবীর মাধ্যাকর্ষণ শক্তির তুলনায় আবর্তনজনিত কেন্দ্রাতিগ বল অনেক বেশি প্রবল থাকে, ফলে সেখানকার জলরাশি ফুলে উঠে গৌণ জোয়ারের সৃষ্টি করে।" },
+        { q: "৮. চাঁদ ও পৃথিবীর মধ্যে দূরত্ব যখন সবচেয়ে কম (প্রায় ৩,৫৬,০০০ কিমি) থাকে, তাকে কী বলে?", opts: ["অ্যাপোজি", "পেরিজি", "সিজিগি", "প্রতিযোগ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পৃথিবীকে পরিক্রমণ করার সময় চন্দ্রের কেন্দ্র পৃথিবীর কেন্দ্রের সবথেকে কাছে এলে তাকে চন্দ্রের অনুভূ অবস্থান বা পেরিজি বলে।" },
+        { q: "৯. পেরিজি জোয়ারের তীব্রতা সাধারণ জোয়ারের তুলনায় কতটা বেশি হয়?", opts: ["১০% বেশি", "১৫% বেশি", "২০% বেশি", "২৫% বেশি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পেরিজি বা অনুভূ অবস্থানে চাঁদ ও পৃথিবীর দূরত্ব কম হওয়ায় চাঁদের আকর্ষণ বল সবচেয়ে বেশি হয়, ফলে সাধারণ জোয়ার অপেক্ষা পেরিজি জোয়ার ২০% বেশি প্রবল হয়।" },
+        { q: "১০. চাঁদ ও পৃথিবীর মধ্যে দূরত্ব সর্বাধিক হলে তাকে কী বলে?", opts: ["অ্যাপোজি", "পেরিজি", "সংযোগ", "প্রতিযোগ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পৃথিবীকে পরিক্রমণের সময় চন্দ্রের কেন্দ্র থেকে পৃথিবীর কেন্দ্রের দূরত্ব যখন সর্বাধিক (প্রায় ৪,০৭,০০০ কিমি) হয়, তখন তাকে চন্দ্রের অপভূ অবস্থান বা অ্যাপোজি বলে।" },
+        { q: "১১. জোয়ারের জল নদীর মোহানা দিয়ে প্রবল বেগে সশব্দে নদীতে প্রবেশ করলে তাকে কী বলে?", opts: ["সমুদ্রস্রোত", "হিমানী সম্প্রপাত", "বানডাকা", "সুনামি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> জোয়ারের সময় সমুদ্র স্ফীত হওয়ায় জল মোহানা দিয়ে দ্রুত নদীতে প্রবেশ করে। এই জল মাঝে মাঝে অত্যধিক উঁচু (৫-৭ মিটার) হয়ে প্রবল বেগে সশব্দে নদীতে প্রবেশ করলে তাকে বানডাকা বলে।" },
+        { q: "১২. বর্ষাকালে হুগলি নদীতে যে ভয়ংকর বান ডাকে, তা কী নামে পরিচিত?", opts: ["ষাঁড়াষাঁড়ির বান", "ভোরা বান", "মরা বান", "কটাল বান"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বর্ষাকালে ভরা কোটালের সময় হুগলি নদীতে সৃষ্ট তীব্র গর্জনকারী শক্তিশালী জলোচ্ছ্বাসকে দুটি ষাঁড়ের লড়াইয়ের শব্দের সঙ্গে তুলনা করে 'ষাঁড়াষাঁড়ির বান' বলা হয়।" },
+        { q: "১৩. একটি জোয়ার ও একটি ভাটার মধ্যে গড় সময়ের পার্থক্য কত?", opts: ["১২ ঘণ্টা", "১২ ঘণ্টা ২৬ মিনিট", "৬ ঘণ্টা", "৬ ঘণ্টা ১৩ মিনিট"], ans: 3, exp: "<b>ব্যাখ্যা:</b> জোয়ারভাটার সময়ের হিসাব অনুযায়ী, পৃথিবীর প্রত্যেক জায়গায় একটি জোয়ার হওয়ার প্রায় ৬ ঘণ্টা ১৩ মিনিট পরে সেখানে ভাটা হয়।" },
+        { q: "১৪. প্রতিযোগ (Opposition) অবস্থান কোন তিথিতে ঘটে?", opts: ["অমাবস্যা তিথিতে", "পূর্ণিমা তিথিতে", "অষ্টমী তিথিতে", "একাদশী তিথিতে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সিজিগি অবস্থানের সময় চাঁদ ও সূর্যের মাঝখানে পৃথিবী থাকলে তাকে প্রতিযোগ অবস্থান বলা হয়, যা পূর্ণিমা তিথিতে ঘটে।" },
+        { q: "১৫. সংযোগ (Conjunction) অবস্থান কোন তিথিতে ঘটে?", opts: ["অমাবস্যা তিথিতে", "পূর্ণিমা তিথিতে", "শুক্লপক্ষের অষ্টমী তিথিতে", "কৃষ্ণপক্ষের অষ্টমী তিথিতে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> চাঁদ ও সূর্য পৃথিবীর একই দিকে থাকলে তাকে সংযোগ অবস্থান বলা হয়; এই বিশেষ দিনে অমাবস্যা হয় এবং ভরা কোটাল সৃষ্টি হয়।" }
+    ]
+};
+
+// ============================================================
+// সব সেট একত্রে
+// ============================================================
+const QUIZ_SETS = {
+    "1": SET1,
+    "2": SET2
+};
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+let loggedInUser = null;
+let currentSetId = null;
+let questions = [];
+let score = 0;
+let wrongAnswers = 0;
+let userAnswers = {};
+let isReviewMode = false;
+let timerInterval;
+let timeLeft = TIME_LIMIT;
+
+window.onload = () => {
+    applyBranding();
+    buildHub();
+};
+
+function buildHub() {
+    const grid = document.getElementById('setGrid');
+    grid.innerHTML = '';
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+
+    for(let id in QUIZ_SETS) {
+        const set = QUIZ_SETS[id];
+        let attemptCount = 0;
+        let isLocked = false;
+
+        if(loggedInUser) {
+            attemptCount = userAttempts[loggedInUser + "_" + id] || 0;
+            isLocked = attemptCount >= MAX_ATTEMPTS;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'set-card';
+        let badge = '';
+        if(loggedInUser) {
+            badge = `<div class="attempt-badge ${isLocked ? 'locked' : ''} en-font">${isLocked ? 'সম্পূর্ণ' : attemptCount + '/' + MAX_ATTEMPTS}</div>`;
+        }
+
+        card.innerHTML = `
+            ${badge}
+            <div class="set-icon">${set.icon}</div>
+            <div class="set-name">${set.name}</div>
+            <div class="set-topic">${set.topic}</div>
+            <div class="set-meta-info en-font">
+                <span>${set.questions.length} Qs</span>
+                <span>10 Mins</span>
+            </div>
+        `;
+        card.onclick = () => { selectSet(id); };
+        grid.appendChild(card);
+    }
+}
+
+function selectSet(setId) {
+    if(loggedInUser) {
+        let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+        let attemptCount = userAttempts[loggedInUser + "_" + setId] || 0;
+        if(attemptCount >= MAX_ATTEMPTS) {
+            alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+            return;
+        }
+        startQuiz(setId);
+    } else {
+        currentSetId = setId;
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginError').classList.add('hidden');
+        document.getElementById('loginSetName').innerText = QUIZ_SETS[setId].name + ": " + QUIZ_SETS[setId].topic;
+        document.getElementById('loginModal').classList.remove('hidden');
+    }
+}
+
+function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+
+function doLogin() {
+    const u = document.getElementById('loginUsername').value.trim();
+    const p = document.getElementById('loginPassword').value.trim();
+    const err = document.getElementById('loginError');
+    const GLOBAL_USERS = JSON.parse(localStorage.getItem("testBazarGlobalUsers")) || {};
+
+    if(!u || !p) { err.innerText = "ইউজারনেম এবং পাসওয়ার্ড দিন!"; err.classList.remove('hidden'); return; }
+
+    if(GLOBAL_USERS[u] && GLOBAL_USERS[u] === p) {
+        loggedInUser = u;
+        document.getElementById('userDisplay').innerText = `👤 ${u}`;
+        closeLogin();
+        buildHub();
+        if(currentSetId) {
+            startQuiz(currentSetId);
+        }
+    } else {
+        err.innerText = "ইউজারনেম বা পাসওয়ার্ড ভুল!";
+        err.classList.remove('hidden');
+    }
+}
+
+function incrementAttempt(user, setId) {
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let key = user + "_" + setId;
+    userAttempts[key] = (userAttempts[key] || 0) + 1;
+    localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(userAttempts));
+}
+
+function startQuiz(setId) {
+    currentSetId = setId;
+    incrementAttempt(loggedInUser, setId);
+    questions = QUIZ_SETS[setId].questions;
+    userAnswers = {};
+    isReviewMode = false;
+    score = 0;
+    wrongAnswers = 0;
+    timeLeft = TIME_LIMIT;
+
+    document.getElementById('hubView').classList.add('hidden');
+    document.getElementById('resultModal').classList.add('hidden');
+    document.getElementById('quizView').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('danger');
+    document.getElementById('submitTestBtn').classList.remove('hidden');
+    document.getElementById('quizTitle').innerText = QUIZ_SETS[setId].name + " | " + QUIZ_SETS[setId].topic;
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tick, 1000);
+    renderQuestions();
+}
+
+function tick() {
+    timeLeft--;
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    document.getElementById('timerDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if (timeLeft <= 60) document.getElementById('timerBox').classList.add('danger');
+    if (timeLeft <= 0) { submitQuiz(); }
+}
+
+const LABELS = ['A', 'B', 'C', 'D'];
+
+function renderQuestions() {
+    const quizList = document.getElementById('quizList');
+    let html = '';
+    questions.forEach((q, i) => {
+        html += `<div class="q-block" id="qBlock_${i}">
+            <div class="q-text">${q.q}</div>
+            <div class="options-grid">`;
+        q.opts.forEach((opt, j) => {
+            html += `<div class="opt" id="opt_${i}_${j}" onclick="selectOpt(${i}, ${j})">
+                <div class="opt-circle">${LABELS[j]}</div>
+                <div class="opt-text">${opt}</div>
+            </div>`;
+        });
+        html += `</div>
+            <div class="explanation hidden" id="exp_${i}">${q.exp}</div>
+        </div>`;
+    });
+    quizList.innerHTML = html;
+    window.scrollTo(0, 0);
+}
+
+function selectOpt(qIdx, optIdx) {
+    if (isReviewMode) return;
+    userAnswers[qIdx] = optIdx;
+    const block = document.getElementById(`qBlock_${qIdx}`);
+    const opts = block.querySelectorAll('.opt');
+    opts.forEach(o => o.classList.remove('selected'));
+    document.getElementById(`opt_${qIdx}_${optIdx}`).classList.add('selected');
+}
+
+function submitQuiz() {
+    if (isReviewMode) return;
+    const answeredCount = Object.keys(userAnswers).length;
+    if (timeLeft > 0 && answeredCount < questions.length) {
+        const confirmSubmit = confirm(`আপনি মাত্র ${answeredCount} টি প্রশ্নের উত্তর দিয়েছেন। আপনি কি সত্যিই Test জমা দিতে চান?`);
+        if(!confirmSubmit) return;
+    }
+    isReviewMode = true;
+    clearInterval(timerInterval);
+    document.getElementById('timerBox').classList.add('hidden');
+    document.getElementById('submitTestBtn').classList.add('hidden');
+
+    score = 0;
+    wrongAnswers = 0;
+    questions.forEach((q, i) => {
+        const selected = userAnswers[i];
+        const block = document.getElementById(`qBlock_${i}`);
+        const opts = block.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.remove('selected'));
+        if (selected !== undefined) {
+            if (selected === q.ans) {
+                score++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('correct');
+            } else {
+                wrongAnswers++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('wrong');
+                document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+            }
+        } else {
+            document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+        }
+        document.getElementById(`exp_${i}`).classList.remove('hidden');
+    });
+
+    const skipped = questions.length - (score + wrongAnswers);
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('rbCorrect').textContent = score;
+    document.getElementById('rbWrong').textContent = wrongAnswers + skipped;
+
+    let icon = '💪', grade = 'চেষ্টা চালিয়ে যাও!';
+    if(pct >= 90) { icon = '🌟'; grade = 'অসাধারণ!'; }
+    else if(pct >= 70) { icon = '👍'; grade = 'খুব ভালো!'; }
+    else if(pct >= 50) { icon = '📚'; grade = 'ভালো চেষ্টা!'; }
+
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultGrade').textContent = grade;
+
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    let remaining = MAX_ATTEMPTS - attemptCount;
+    document.getElementById('attemptInfo').innerText = `বাকি আছে ${remaining} বার Test দেওয়ার সুযোগ (সর্বোচ্চ ${MAX_ATTEMPTS} বার)`;
+    document.getElementById('resultModal').classList.remove('hidden');
+}
+
+function closeResultModal() {
+    document.getElementById('resultModal').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+    closeResultModal();
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    if(attemptCount >= MAX_ATTEMPTS) {
+        alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+        document.getElementById('quizView').classList.add('hidden');
+        document.getElementById('hubView').classList.remove('hidden');
+        buildHub();
+        return;
+    }
+    startQuiz(currentSetId);
+}
+</script>
+</body>
+</html>
