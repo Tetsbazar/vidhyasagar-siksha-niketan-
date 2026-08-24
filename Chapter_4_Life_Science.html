@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 Life Science Chapter 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #1a7a4a; --primary-hover: #2aad68; --accent: #f9a825;
+--bg-main: #f0faf4; --bg-card: #ffffff; --bg-selected: #e8f4ec;
+--text-main: #1c2e24; --text-meta: #5a7a66; --border-color: #c5dccb;
+--alert-danger: #dc3545; --correct: #28a745;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Tiro Bangla', serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+.en-font { font-family: 'Syne', sans-serif; }
+.hidden { display: none !important; }
+
+.header {
+background: #ffffff;
+box-shadow: 0 4px 20px rgba(10, 92, 54, 0.08);
+position: sticky;
+top: 0;
+z-index: 1000;
+border-bottom: 3px solid #0a5c36;
+}
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 8px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo-link {
+display: flex;
+align-items: center;
+gap: 10px;
+text-decoration: none;
+cursor: pointer;
+}
+.logo-emblem {
+width: 45px;
+height: 45px;
+background: linear-gradient(135deg, #0a5c36 0%, #1e824c 100%);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.4rem;
+font-weight: 800;
+color: white;
+box-shadow: 0 4px 12px rgba(10, 92, 54, 0.2);
+flex-shrink: 0;
+}
+.brand-text-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.coaching-main-title {
+font-size: 1.4rem;
+font-weight: 800;
+color: #0a5c36;
+letter-spacing: -0.5px;
+line-height: 1.1;
+}
+.coaching-subtitle {
+font-size: 0.75rem;
+color: #556c5e;
+font-weight: 700;
+letter-spacing: 0.3px;
+margin-top: 1px;
+text-transform: uppercase;
+}
+.coaching-tagline {
+font-size: 0.65rem;
+color: #f5a623;
+font-weight: 600;
+margin-top: 1px;
+letter-spacing: 0.1px;
+}
+.header-right {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.timer-box {
+background: rgba(10, 92, 54, 0.08);
+padding: 6px 15px;
+border-radius: 8px;
+font-weight: 700;
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+gap: 5px;
+color: #0a5c36;
+}
+.timer-box.danger { background: var(--alert-danger); color: white; animation: pulse 1s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.user-info { background: #0a5c36; color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; }
+
+.main-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.hub-header { text-align: center; margin-bottom: 30px; }
+.hub-header h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 10px; }
+.set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+.set-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+.set-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(26,122,74,0.1); }
+.set-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.set-name { font-size: 1.3rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; font-family: 'Syne', sans-serif;}
+.set-topic { font-size: 0.95rem; color: var(--text-meta); margin-bottom: 15px; height: 40px; }
+.set-meta-info { display: flex; justify-content: center; gap: 10px; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
+.set-meta-info span { background: var(--bg-main); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+.attempt-badge { position: absolute; top: 10px; right: 10px; background: #ffeeba; color: #856404; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+.attempt-badge.locked { background: var(--alert-danger); color: white; border: none; }
+
+.quiz-info { background: var(--bg-card); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+.q-block { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.q-text { font-size: 1.2rem; font-weight: bold; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
+.options-grid { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 1.05rem; }
+.opt:hover:not(.selected):not(.correct):not(.wrong) { background: var(--bg-main); border-color: var(--primary); }
+.opt.selected { background: var(--bg-selected); border-color: var(--primary); }
+.opt-circle { min-width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Syne', sans-serif; color: var(--text-meta); flex-shrink: 0; }
+.opt.selected .opt-circle { background: var(--primary); color: white; border-color: var(--primary); }
+.opt.correct { background: #e8f7ef; border-color: var(--correct); }
+.opt.correct .opt-circle { background: var(--correct); border-color: var(--correct); color: white; }
+.opt.wrong { background: #fdf0f0; border-color: var(--alert-danger); }
+.opt.wrong .opt-circle { background: var(--alert-danger); border-color: var(--alert-danger); color: white; }
+.explanation { margin-top: 15px; padding: 15px; background: #e8f4ec; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #2c4035; line-height: 1.5;}
+.btn-submit { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; font-family: 'Tiro Bangla', serif; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(26,122,74,0.2); transition: 0.2s; }
+.btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+.btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: bold;}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto;}
+.modal-box { background: white; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin: auto;}
+.modal-box input { width: 100%; padding: 12px 15px; margin: 10px 0; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: 'Syne', sans-serif; box-sizing: border-box; outline: none; transition: 0.2s; }
+.modal-box input:focus { border-color: var(--primary); }
+.result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto; padding: 20px; }
+.result-box { background: white; padding: 2.5rem 2rem; border-radius: 16px; width: 100%; max-width: 450px; text-align: center; margin: auto; }
+.result-score { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin: 15px 0; }
+.result-bars { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.result-bar { background: var(--bg-main); padding: 15px; border-radius: 12px; width: 100px; border: 1px solid var(--border-color); }
+
+@media (max-width: 768px) {
+.header-container { flex-direction: column; gap: 10px; text-align: center; padding: 10px 10px; }
+.logo-link { flex-direction: column; gap: 6px; }
+.brand-text-container { text-align: center; }
+.coaching-main-title { font-size: 1.2rem; }
+.coaching-subtitle { font-size: 0.7rem; }
+.coaching-tagline { font-size: 0.6rem; }
+.header-right { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="#" class="logo-link" onclick="location.reload(); return false;">
+            <div class="logo-emblem" id="dynamicEmblem">🧬</div>
+            <div class="brand-text-container">
+                <span class="coaching-main-title" id="dynamicTitle">Life Science - Chapter 4</span>
+                <span class="coaching-subtitle" id="dynamicSubtitle">অভিব্যক্তি ও অভিযোজন</span>
+                <span class="coaching-tagline" id="dynamicTagline">দশম শ্রেণি (Class 10)</span>
+            </div>
+        </a>
+        <div class="header-right">
+            <div class="timer-box en-font hidden" id="timerBox">⏱ <span id="timerDisplay">10:00</span></div>
+            <div class="user-info en-font" id="userDisplay" style="font-weight: bold;">👤 Guest</div>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <div id="hubView">
+        <div class="hub-header">
+            <h1 style="color: var(--primary); margin-bottom: 10px;">জীবন বিজ্ঞান - Class 10 Chapter 4</h1>
+            <p style="color: var(--text-meta);">অভিব্যক্তি ও অভিযোজন (Evolution & Adaptation)</p>
+        </div>
+        <div class="set-grid" id="setGrid"></div>
+        <div style="text-align:center; margin-top:40px;">
+            <button class="btn-primary" style="background:var(--text-meta); width: auto; padding: 12px 25px;" onclick="window.history.back()">← Main Dashboard-এ ফিরুন</button>
+        </div>
+    </div>
+
+    <div id="quizView" class="hidden">
+        <div class="quiz-info">
+            <div id="quizTitle">Set Name</div>
+            <div id="quizMetaInfo" class="en-font">15 Questions | 10 Mins</div>
+        </div>
+        <div id="quizList"></div>
+        <button class="btn-submit" id="submitTestBtn" onclick="submitQuiz()">Test জমা দিন ও ফলাফল দেখুন</button>
+    </div>
+
+</div>
+
+<div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-box">
+        <h2 style="color: var(--primary); margin-top:0;">লগইন করুন</h2>
+        <p style="color: var(--text-meta); margin-bottom: 15px; font-size: 0.9rem;">Test শুরু করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন</p>
+        <div id="loginSetName" style="background: var(--bg-main); padding: 8px; border-radius: 8px; font-weight:bold; color:var(--primary); margin-bottom:15px; font-family: 'Syne', sans-serif; font-size: 0.95rem;">Set Name</div>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()">
+        <div id="loginError" class="hidden" style="color: var(--alert-danger); margin: 10px 0; font-weight:bold; font-size: 0.9rem;"></div>
+        <div style="display: flex; gap: 10px; margin-top:15px; justify-content: center;">
+            <button class="btn-primary" style="width: 100%; padding: 12px;" onclick="doLogin()">লগইন করুন</button>
+            <button class="btn-primary" style="background: var(--alert-danger); width: 100%; padding: 12px;" onclick="closeLogin()">বাতিল</button>
+        </div>
+    </div>
+</div>
+
+<div class="result-overlay hidden" id="resultModal">
+    <div class="result-box">
+        <div style="font-size: 3.5rem; margin-bottom:0; line-height: 1;" id="resultIcon">🌟</div>
+        <h2 style="margin:10px 0; color: var(--text-main);">আপনার ফলাফল</h2>
+        <div class="result-score en-font" id="finalScore">100%</div>
+        <div id="resultGrade" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--accent);">অসাধারণ!</div>
+        <div class="result-bars">
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbCorrect">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">সঠিক</div>
+            </div>
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--alert-danger);" class="en-font" id="rbWrong">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">ভুল / স্কিপ</div>
+            </div>
+        </div>
+        <p style="background: var(--bg-main); padding: 10px; border-radius: 8px; color:var(--text-meta); font-weight:bold; font-size:0.95rem; margin-bottom:25px;" id="attemptInfo" class="en-font">বাকি আছে 9 বার</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="btn-primary" style="background: #28a745; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="closeResultModal()">উত্তর ও ব্যাখ্যা দেখুন</button>
+            <button class="btn-primary" style="background: #17a2b8; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="restartQuiz()">আবার চেষ্টা করো</button>
+            <button class="btn-primary" style="background: var(--text-meta); width: 100%; padding: 14px; font-size: 1.05rem;" onclick="window.location.reload()">Chapter Hub-এ ফিরুন</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// DYNAMIC BRANDING LOGIC
+// ============================================================
+const STORE_CONFIGS = {
+    "guru": {
+        title: "Guru Book Store Jhalda",
+        mainTitle: "Guru Book Store",
+        subtitle: "Jhalda",
+        tagline: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        emblem: "G"
+    },
+    "saraswati": {
+        title: "Saraswati Book Store",
+        mainTitle: "Saraswati Book Store",
+        subtitle: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        tagline: "শিক্ষা ও প্রগতির বিশ্বস্ত সঙ্গী",
+        emblem: "S"
+    }
+};
+
+function applyBranding() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let storeKey = urlParams.get('store') || localStorage.getItem("activeStore") || "";
+    storeKey = storeKey.toLowerCase();
+
+    if (storeKey && STORE_CONFIGS[storeKey]) {
+        const config = STORE_CONFIGS[storeKey];
+        document.title = `${config.title} - Class 10 Life Science Chapter 4`;
+        document.getElementById("dynamicEmblem").innerText = config.emblem;
+        document.getElementById("dynamicTitle").innerText = config.mainTitle;
+        document.getElementById("dynamicSubtitle").innerText = config.subtitle;
+        document.getElementById("dynamicTagline").innerText = config.tagline;
+        localStorage.setItem("activeStore", storeKey);
+    } else {
+        document.title = "Class 10 Life Science Chapter 4 - অভিব্যক্তি ও অভিযোজন";
+        document.getElementById("dynamicEmblem").innerText = "🧬";
+        document.getElementById("dynamicTitle").innerText = "Life Science - Chapter 4";
+        document.getElementById("dynamicSubtitle").innerText = "অভিব্যক্তি ও অভিযোজন";
+        document.getElementById("dynamicTagline").innerText = "দশম শ্রেণি (Class 10)";
+    }
+}
+
+// ============================================================
+// QUIZ DATA - 6 SETS (TOTAL 90 QUESTIONS)
+// ============================================================
+const STORAGE_KEY_ATTEMPTS = "testBazarAttempts_Life10_Ch4_Sets";
+const MAX_ATTEMPTS = 10;
+const TIME_LIMIT = 10 * 60;
+
+// ============================================================
+// সেট ১: জীবনের উৎপত্তি ও রাসায়নিক বিবর্তন
+// ============================================================
+const SET1 = {
+    name: "সেট ১",
+    icon: "🌍",
+    topic: "জীবনের উৎপত্তি ও রাসায়নিক বিবর্তন",
+    questions: [
+        { q: "১. 'Evolution' বা অভিব্যক্তি শব্দটি প্রথম কোন্ বিজ্ঞানী প্রচলন করেন?", opts: ["আলেকজান্ডার ওপারিন", "হারবার্ট স্পেনসার", "চার্লস ডারউইন", "জে. বি. এস. হ্যালডেন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> 'Evolution' শব্দটির উৎপত্তি 'Evoluere' থেকে যার অর্থ হলো উন্মোচন (Unfold), এবং বিজ্ঞানী হারবার্ট স্পেনসার এই শব্দটির সর্বপ্রথম প্রচলন করেন।" },
+        { q: "২. সৃষ্টির আদিলগ্নে পৃথিবীর আদিম বায়ুমণ্ডলে কোন্ গ্যাসটি মুক্ত অবস্থায় ছিল না?", opts: ["মিথেন", "হাইড্রোজেন", "অ্যামোনিয়া", "অক্সিজেন"], ans: 3, exp: "<b>ব্যাখ্যা:</b> সৃষ্টির আদিপর্বে পৃথিবীর বায়ুমণ্ডলে জলীয় বাষ্প, অ্যামোনিয়া, মিথেন ও অল্প কিছু হাইড্রোজেন থাকলেও কোনো মুক্ত অক্সিজেন ছিল না, অর্থাৎ পরিবেশ বিজারক প্রকৃতির ছিল।" },
+        { q: "৩. 'দি অরিজিন অফ লাইফ অন আর্থ' (The Origin of Life on Earth) পুস্তকটির রচয়িতা কে?", opts: ["জে. বি. এস. হ্যালডেন", "স্ট্যানলি মিলার", "আলেকজান্ডার ওপারিন", "সিডনি ফক্স"], ans: 2, exp: "<b>ব্যাখ্যা:</b> রাশিয়ান বিজ্ঞানী আলেকজান্ডার ওপারিন ১৯২৪ খ্রিস্টাব্দে 'দি অরিজিন অফ লাইফ অন আর্থ' নামক পুস্তকে জীবনের উৎপত্তি সম্বন্ধে তাঁর ধারণা প্রথম প্রকাশ করেন।" },
+        { q: "৪. আদিম পৃথিবীতে সমুদ্রের তপ্ত জলে মিশ্রিত বিভিন্ন জৈব যৌগের মিশ্রণকে 'হট ডাইলিউট স্যুপ' (Hot dilute soup) বা তপ্ত লঘু স্যুপ কে বলেছেন?", opts: ["জে. বি. এস. হ্যালডেন", "আলেকজান্ডার ওপারিন", "হ্যারল্ড উরে", "স্ট্যানলি মিলার"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বিজ্ঞানী হ্যালডেনের মতে প্রাক-পৃথিবীতে বিভিন্ন জৈব যৌগগুলি (পলিপেপটাইড, পলিনিউক্লিওটাইড ইত্যাদি) সমুদ্রের তপ্ত জলে মিশে গিয়ে 'হট ডাইলিউট স্যুপ' গঠন করেছিল।" },
+        { q: "৫. ওপারিনের মতে, বৃহৎ জৈব যৌগগুলি মিলে লাইপোপ্রোটিন আবরণীযুক্ত যে কোলয়েড কণা সৃষ্টি করেছিল, তার নাম কী?", opts: ["মাইক্রোস্ফিয়ার", "কোয়াসারভেট", "প্রোটোসেল", "নগ্ন জিন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ওপারিনের মতে সমুদ্রের হট ডাইলিউট স্যুপে থাকা বৃহৎ জৈব যৌগগুলি একত্রিত হয়ে দ্বিস্তরীয় লাইপোপ্রোটিন আবরণীযুক্ত কোয়াসারভেট নামক কোলয়েড কণা সৃষ্টি করেছিল।" },
+        { q: "৬. কোয়াসারভেটের মধ্যে নগ্ন জিনের (RNA) অনুপ্রবেশ ঘটে যে প্রথম আদিম কোশ তৈরি হয়েছিল, তাকে কী বলে?", opts: ["মাইক্রোস্ফিয়ার", "প্রোটোসেল", "প্রোটিনয়েড", "ইউক্যারিওট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কোয়াসারভেটের মধ্যে নিউক্লিক অ্যাসিড বা নগ্ন জিনের অনুপ্রবেশ ঘটার মাধ্যমে প্রথম প্রোটোসেলের উৎপত্তি হয়েছিল, যা ছিল পরভোজী প্রকৃতির।" },
+        { q: "৭. মিলার ও উরের পরীক্ষায় ব্যবহৃত মিথেন (CH₄), অ্যামোনিয়া (NH₃) ও হাইড্রোজেনের (H₂) আয়তন অনুপাত কত ছিল?", opts: ["১:২:১", "২:১:২", "২:২:১", "১:১:২"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বিজ্ঞানী স্ট্যানলি মিলার এবং হ্যারল্ড উরে তাঁদের পরীক্ষায় ৫ লিটার ফ্লাস্কে CH₄, NH₃ ও H₂ মিশ্রণ ২:২:১ আয়তন অনুপাতে নিয়েছিলেন।" },
+        { q: "৮. মিলার ও উরের পরীক্ষায় প্রাচীন পৃথিবীর বজ্রপাতের পরিবেশ সৃষ্টির জন্য কত ভোল্টের তড়িৎমোক্ষণ করা হয়েছিল?", opts: ["৭৫,০০০ ভোল্ট", "৫০,০০০ ভোল্ট", "২৫,০০০ ভোল্ট", "১০,০০০ ভোল্ট"], ans: 0, exp: "<b>ব্যাখ্যা:</b> আদিম পৃথিবীর তড়িৎক্ষরণ বোঝাতে বড়ো ফ্লাস্কে টাংস্টেন নির্মিত তড়িৎদ্বার দ্বারা ৭৫,০০০ ভোল্ট-এর উচ্চ তড়িৎমোক্ষণ করা হয়েছিল।" },
+        { q: "৯. মিলার ও উরে তাঁদের পরীক্ষায় কোন্ জৈব যৌগটি সংশ্লেষ করতে সক্ষম হয়েছিলেন?", opts: ["গ্লাইকোজেন", "অ্যামাইনো অ্যাসিড", "ফ্যাট", "স্টার্চ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> এক সপ্তাহ ধরে চলা এই পরীক্ষার পর ঘনীভূত তরলে ৫টি অ্যামাইনো অ্যাসিড (গ্লাইসিন, α অ্যালানিন, β অ্যালানিন, অ্যাসপারটিক অ্যাসিড ও α অ্যামাইনো বিউটারিক অ্যাসিড) পাওয়া যায়।" },
+        { q: "১০. আমেরিকান বিজ্ঞানী সিডনি ফক্সের মতে, অ্যামাইনো অ্যাসিড যুক্ত হয়ে প্রথমে প্রোটিনয়েড এবং পরে কী তৈরি হয়েছিল?", opts: ["কোয়াসারভেট", "মাইক্রোস্ফিয়ার", "হট ডাইলিউট স্যুপ", "নগ্ন জিন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিজ্ঞানী সিডনি ফক্সের (১৯৫৭) মতে, সমুদ্রে অনেকগুলি অ্যামাইনো অ্যাসিড যুক্ত হয়ে প্রথমে প্রোটিনয়েড এবং তা থেকেই পরে মাইক্রোস্ফিয়ার তৈরি হয়েছিল।" },
+        { q: "১১. পৃথিবীতে প্রথম এককোশী জীবের উৎপত্তি আনুমানিক কত বিলিয়ন বছর পূর্বে ঘটেছিল?", opts: ["১.৫ বিলিয়ন", "৩.৭ বিলিয়ন", "৪.৬ বিলিয়ন", "৫.৬ বিলিয়ন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পৃথিবী সৃষ্টির পর ধীরে ধীরে তাপমাত্রা কমে আসার পর আজ থেকে আনুমানিক ৩.৭ বিলিয়ন বছর পূর্বে পৃথিবীতে প্রথম এককোশী জীবের উৎপত্তি ঘটে।" },
+        { q: "১২. প্রথম সৃষ্ট প্রোটোসেলগুলি পুষ্টির প্রকৃতি অনুযায়ী কেমন ছিল?", opts: ["স্বভোজী", "রাসায়নিক স্বভোজী", "পরভোজী", "মৃতজীবী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্রোটোসেলগুলি প্রাথমিক পর্যায়ে খাদ্যের জন্য সমুদ্রের জৈব যৌগের ওপর নির্ভরশীল ছিল, তাই এরা পুষ্টিগত দিক থেকে পরভোজী প্রকৃতির ছিল।" },
+        { q: "১৩. আদিম পৃথিবীতে সালোকসংশ্লেষকারী জীবের উদ্ভবের ফলে বায়ুমণ্ডলে কোন্ গ্যাসটি প্রথম সঞ্চিত হতে শুরু করে?", opts: ["মিথেন", "কার্বন ডাই-অক্সাইড", "হাইড্রোজেন সালফাইড", "অক্সিজেন"], ans: 3, exp: "<b>ব্যাখ্যা:</b> আদিম সমুদ্রে স্বভোজী ব্যাকটেরিয়ার আবির্ভাব ঘটলে তারা সালোকসংশ্লেষ শুরু করে এবং এর ফলে বায়ুমণ্ডলে মুক্ত অক্সিজেন সঞ্চিত হতে শুরু করে।" },
+        { q: "১৪. প্রথম ইউক্যারিওটিক বা আদর্শ কোশযুক্ত জীবের আবির্ভাব আনুমানিক কত বিলিয়ন বছর পূর্বে ঘটেছিল?", opts: ["৩.৫ বিলিয়ন", "১.৫ বিলিয়ন", "৫.০ বিলিয়ন", "৪.৬ বিলিয়ন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বায়ুমণ্ডলে মুক্ত অক্সিজেনের উপস্থিতিতে আজ থেকে প্রায় ১.৫ বিলিয়ন বছর পূর্বে প্রথম শ্বসনক্ষম ইউক্যারিওটিক জীবের উৎপত্তি হয়।" },
+        { q: "১৫. প্রথম সৃষ্ট নিউক্লিক অ্যাসিড যা 'নগ্ন জিন' নামে পরিচিত, সেটি রাসায়নিকভাবে কী প্রকৃতির ছিল?", opts: ["DNA", "RNA", "প্রোটিন", "লিপিড"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিজ্ঞানীদের মতে, পলিনিউক্লিওটাইড মিলে প্রথম যে নিউক্লিক অ্যাসিড সৃষ্টি হয়েছিল তা ছিল RNA প্রকৃতির, যাকে নগ্ন জিন বলা হয়।" }
+    ]
+};
+
+// ============================================================
+// সেট ২: জৈব অভিব্যক্তির মতবাদ - ল্যামার্কবাদ
+// ============================================================
+const SET2 = {
+    name: "সেট ২",
+    icon: "🦒",
+    topic: "জৈব অভিব্যক্তির মতবাদ - ল্যামার্কবাদ",
+    questions: [
+        { q: "১. ১৮০৯ খ্রিস্টাব্দে ল্যামার্ক তাঁর বিবর্তন সম্পর্কিত মতবাদ কোন্ গ্রন্থে প্রকাশ করেন?", opts: ["অরিজিন অব স্পিসিস", "ফিলজফিকা জুলজিক", "সিস্টেমা ন্যাচুরি", "দ্য ডিসেন্ট অফ ম্যান"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ফরাসি বিজ্ঞানী জ্যাঁ ব্যাপটিস্ট দ্য ল্যামার্ক ১৮০৯ খ্রিস্টাব্দে তাঁর রচিত 'ফিলজফিকা জুলজিক (Philosophica Zoologiquie)' পুস্তকের মাধ্যমে বিবর্তনবাদের প্রথম ধারণা প্রকাশ করেন।" },
+        { q: "২. ল্যামার্কের বিবর্তন মতবাদের একটি প্রধান প্রতিপাদ্য বিষয় কোনটি?", opts: ["প্রাকৃতিক নির্বাচন", "জীবন সংগ্রাম", "অঙ্গের ব্যবহার ও অব্যবহার", "অত্যধিক হারে বংশবৃদ্ধি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> জৈব বিবর্তনবাদ ব্যাখ্যায় ল্যামার্ক মূলত তিনটি বিষয়ের ওপর জোর দেন: পরিবেশের প্রভাব, অঙ্গের ব্যবহার ও অব্যবহার এবং অর্জিত গুণাবলির বংশানুসরণ।" },
+        { q: "৩. ল্যামার্কের মতে, জিরাফের গলা লম্বা হওয়ার কারণ কী?", opts: ["প্রাকৃতিক নির্বাচন", "মিউটেশন", "উঁচু গাছের পাতা খাওয়ার জন্য গলার ক্রমাগত ব্যবহার", "ছোট গলাযুক্ত জিরাফের মৃত্যু"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ল্যামার্কের মতে, আদিকালের জিরাফের গলা ছোটো ছিল, কিন্তু ক্রমাগত উঁচু গাছ থেকে পাতা আহরণের চেষ্টায় (অঙ্গের ব্যবহার) গলাটি ধীরে ধীরে লম্বা হতে থাকে।" },
+        { q: "৪. সাপের পা অবলুপ্ত হওয়ার ঘটনাটিকে ল্যামার্কের কোন্ সূত্রের সাহায্যে ব্যাখ্যা করা হয়?", opts: ["প্রাকৃতিক নির্বাচন", "অঙ্গের অব্যবহার", "অস্তিত্বের জন্য সংগ্রাম", "প্রকরণ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সাপের পূর্বপুরুষ চার পা বিশিষ্ট হলেও ক্রমাগত বুকের ওপর ভর দিয়ে চলার কারণে পা দীর্ঘকাল ব্যবহৃত হয়নি, ফলে অব্যবহারের সূত্র অনুযায়ী সাপের পায়ের অবলুপ্তি ঘটে।" },
+        { q: "৫. কোনো জীব তার জীবদ্দশায় যে সকল বৈশিষ্ট্য লাভ করে, তা পরবর্তী বংশধরদের মধ্যে সঞ্চারিত হওয়াকে কী বলে?", opts: ["প্রাকৃতিক নির্বাচন", "অর্জিত গুণাবলির বংশানুসরণ", "যোগ্যতমের উদ্বর্তন", "পরিব্যক্তি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ল্যামার্কের মতে, জীব তার জীবদ্দশায় নিজ প্রচেষ্টায় যে বৈশিষ্ট্য অর্জন করে, তা পরবর্তী জনুতে সঞ্চারিত হয়, একে অর্জিত গুণাবলির বংশানুসরণ বা Inheritance of acquired Characters বলে।" },
+        { q: "৬. হাঁসের পায়ে লিপ্তপদ বা ওয়েব (Web) সৃষ্টি হওয়ার কারণ হিসেবে ল্যামার্ক কী যুক্তি দিয়েছেন?", opts: ["জিনের আকস্মিক পরিবর্তন", "জলে সাঁতার কাটার জন্য পায়ের আঙুলের ক্রমাগত ব্যবহার", "প্রাকৃতিক নির্বাচন", "শত্রুর হাত থেকে রক্ষা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> হাঁসের পূর্বপুরুষ ডাঙায় বাস করলেও জলে সাঁতার কাটার সুবিধার্থে ক্রমাগত প্রচেষ্টার ফলেই তাদের পায়ে লিপ্তপদ সৃষ্টি হয়েছে, যা অঙ্গের ব্যবহারের উদাহরণ।" },
+        { q: "৭. ল্যামার্কের মতবাদকে নাকচ করার জন্য কোন্ বিজ্ঞানী ইঁদুরের লেজ কাটার পরীক্ষা করেছিলেন?", opts: ["ডারউইন", "দ্য ভ্রিস", "অগাস্ট ওয়াইসম্যান", "মেন্ডেল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বিজ্ঞানী ওয়াইসম্যান (১৮৯০) টানা ২২ জনু ধরে ইঁদুরের লেজ কেটে প্রমাণ করেন যে ২৩তম জনুতে কোনো লেজবিহীন ইঁদুর জন্মায় না, যা অর্জিত গুণের বংশানুসরণ তত্ত্বকে ভুল প্রমাণ করে।" },
+        { q: "৮. ড্রসোফিলা মাছিকে পরপর ৬০ জনু ধরে অন্ধকার ঘরে রেখে জনন ঘটানোর পরীক্ষায় কী প্রমাণিত হয়?", opts: ["ল্যামার্কবাদ সত্য", "ডারউইনবাদ ভুল", "ল্যামার্কের 'অর্জিত গুণের বংশানুসরণ' মতবাদ গ্রহণযোগ্য নয়", "মাছির চোখ বড় হয়"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অন্ধকার ঘরে ৬০ জনু ধরে মাছিদের প্রজনন ঘটানোর পরও কোনো মাছি অন্ধ হয়ে জন্মায়নি, যা ল্যামার্কের অব্যবহারের ফলে অঙ্গ বিলুপ্তির ধারণাকে নাকচ করে দেয়।" },
+        { q: "৯. বিবর্তন বা অভিব্যক্তির কথা প্রথম কোন্ বিজ্ঞানী তুলে ধরেন বা ব্যাখ্যা করার চেষ্টা করেন?", opts: ["ল্যামার্ক", "ডারউইন", "স্পেনসার", "হ্যালডেন"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ল্যামার্কবাদের গ্রহণযোগ্যতা নিয়ে নানা প্রশ্ন থাকলেও ল্যামার্কই প্রথম ব্যক্তি যিনি জীবদের বিবর্তন হওয়ার কথা সুস্পষ্টভাবে তুলে ধরেন এবং তা ব্যাখ্যা করার চেষ্টা করেন।" },
+        { q: "১০. ল্যামার্কের মতে পরিবেশের পরিবর্তন হলে জীবের মধ্যে কী ঘটে?", opts: ["জীব মারা যায়", "জীব নতুন পরিবেশে খাপ খাইয়ে নিতে অঙ্গের পরিবর্তনসাধন করে", "জীবের জিনে মিউটেশন হয়", "জীবের আকার ছোটো হয়ে যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ল্যামার্কের মতে, পরিবেশের পরিবর্তন জীবকে প্রভাবিত করে এবং পরিবেশের সাথে খাপ খাইয়ে নেওয়ার জন্য জীব তার অঙ্গের পরিবর্তন সাধন করে অর্জিত বৈশিষ্ট্য লাভ করে।" },
+        { q: "১১. ল্যামার্কের মতে একটি প্রজাতি থেকে নতুন প্রজাতির উদ্ভব কীভাবে হয়?", opts: ["প্রাকৃতিক নির্বাচনের মাধ্যমে", "মিউটেশনের ফলে", "প্রতিটি জনুতে অর্জিত বৈশিষ্ট্যের বংশানুসরণের ফলে", "কৃত্রিম নির্বাচনের মাধ্যমে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ল্যামার্কের নতুন প্রজাতির উদ্ভব তত্ত্ব অনুযায়ী, অর্জিত বৈশিষ্ট্য বংশপরম্পরায় সঞ্চারিত হতে হতে যখন অনেক নতুন বৈশিষ্ট্য একত্রিত হয়, তখন নতুন প্রজাতির সৃষ্টি হয়।" },
+        { q: "১২. ল্যামার্ক তাঁর বিবর্তন তত্ত্বে কোন্ বিষয়টির ওপর কোনো গুরুত্ব দেননি?", opts: ["পরিবেশের প্রভাব", "জিনের পরিব্যক্তি বা মিউটেশন", "অঙ্গের ব্যবহার", "অর্জিত গুণ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ল্যামার্কের তত্ত্বে জিন বা মিউটেশনের কোনো উল্লেখ ছিল না, তিনি সম্পূর্ণভাবে ব্যবহার-অব্যবহার এবং অর্জিত গুণের ওপর নির্ভর করেছিলেন।" },
+        { q: "১৩. উটপাখির ডানা নিষ্ক্রিয় অঙ্গে পরিণত হওয়ার ঘটনাটিকে ল্যামার্কবাদ অনুযায়ী কী বলা যায়?", opts: ["প্রাকৃতিক নির্বাচন", "অঙ্গের অব্যবহারের ফল", "মিউটেশন", "সমবৃত্তীয় অঙ্গ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পাখিদের ডানা ওড়ার জন্য থাকলেও উটপাখির মতো দৌড় পাখিরা ডানার ব্যবহার না করার ফলে কালক্রমে তা অব্যবহারের কারণে নিষ্ক্রিয় অঙ্গে পরিণত হয়েছে।" },
+        { q: "১৪. 'অর্জিত গুণাবলির বংশানুসরণ' (Inheritance of acquired Characters)—এটি কার মতবাদ?", opts: ["চার্লস ডারউইন", "জ্যাঁ ব্যাপটিস্ট দ্য ল্যামার্ক", "হুগো দ্য ভ্রিস", "গ্রেগর জোহান মেন্ডেল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ল্যামার্কবাদের অন্যতম প্রধান ভিত্তি হলো অর্জিত গুণাবলির বংশানুসরণ, যেখানে বলা হয় জীবের অর্জিত গুণ পরবর্তী বংশে সঞ্চারিত হয়।" },
+        { q: "১৫. ল্যামার্কের পুরো নাম কী?", opts: ["চার্লস রবার্ট ডারউইন", "জ্যাঁ ব্যাপটিস্ট পেরী অ্যান্টনি দ্য মনেট চেভেলিয়ার দ্য ল্যামার্ক", "থমাস ম্যালথাস", "অগাস্ট ওয়াইসম্যান"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ল্যামার্কের সম্পূর্ণ নাম হলো ফ্রান্সের বিজ্ঞানী জ্যাঁ ব্যাপটিস্ট পেরী অ্যান্টনি দ্য মনেট চেভেলিয়ার দ্য ল্যামার্ক।" }
+    ]
+};
+
+// ============================================================
+// সেট ৩: জৈব অভিব্যক্তির মতবাদ - ডারউইনবাদ
+// ============================================================
+const SET3 = {
+    name: "সেট ৩",
+    icon: "🐦",
+    topic: "জৈব অভিব্যক্তির মতবাদ - ডারউইনবাদ",
+    questions: [
+        { q: "১. চার্লস ডারউইন কোন্ জাহাজে করে গ্যালাপ্যাগোস দ্বীপপুঞ্জে ভ্রমণ করে তাঁর গবেষণার তথ্য সংগ্রহ করেন?", opts: ["এইচ. এম. এস. বিগল", "এইচ. এম. এস. চ্যালেঞ্জার", "সান্তা মারিয়া", "টাইটানিক"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ডারউইন ১৮৩১ থেকে ১৮৩৫ সাল পর্যন্ত এইচ. এম. এস. বিগল (H. M. S. Beagle) জাহাজে করে গ্যালাপ্যাগোস দ্বীপপুঞ্জসহ বিভিন্ন স্থানে ভ্রমণ করে তাঁর গবেষণার নমুনা ও তথ্য সংগ্রহ করেন।" },
+        { q: "২. ১৮৫৯ খ্রিস্টাব্দে ডারউইন তাঁর প্রাকৃতিক নির্বাচন মতবাদ কোন্ গ্রন্থে প্রকাশ করেন?", opts: ["ফিলজফিকা জুলজিক", "অরিজিন অব স্পিসিস বাই মিনস্ অব ন্যাচারাল সিলেকশন", "স্পিসিস প্লান্টারাম", "জেনেরাল মরফোলজি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ডারউইন তাঁর বিখ্যাত তত্ত্ব 'অরিজিন অব স্পিসিস বাই মিনস্ অব ন্যাচারাল সিলেকশন (Origin of Species by means of Natural Selection)' নামক পুস্তকে ১৮৫৯ খ্রিস্টাব্দে প্রকাশ করেন।" },
+        { q: "৩. ডারউইনের মতে প্রতিটি জীব গাণিতিক ও জ্যামিতিক হারে সন্তান উৎপাদন করে, একে কী বলে?", opts: ["অস্তিত্বের জন্য সংগ্রাম", "প্রকরণ", "অত্যধিকহারে বংশবিস্তার", "প্রাকৃতিক নির্বাচন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ডারউইনের মতে, জীবের একটি প্রধান বৈশিষ্ট্য হলো অত্যধিক হারে বংশবৃদ্ধি করা (Prodigality of Production), ফলে পপুলেশনে জীবের সংখ্যা জ্যামিতিক হারে বৃদ্ধি পায়।" },
+        { q: "৪. খাদ্যের অভাব ও বাসস্থানের সীমাবদ্ধতার কারণে জীবদের বেঁচে থাকার জন্য যে লড়াই করতে হয়, ডারউইন তাকে কী বলেছেন?", opts: ["প্রাকৃতিক নির্বাচন", "যোগ্যতমের উদ্বর্তন", "অস্তিত্বের জন্য জীবন সংগ্রাম", "প্রকরণ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> খাদ্য ও বাসস্থান সীমিত হওয়ায় প্রতিটি জীবকে বেঁচে থাকার জন্য প্রতিনিয়ত অন্যান্য জীব ও পরিবেশের সাথে লড়াই করতে হয়, যাকে ডারউইন অস্তিত্বের জন্য জীবন সংগ্রাম (Struggle for Existence) বলেছেন।" },
+        { q: "৫. কুকুরের সঙ্গে কুকুরের বা একই জায়গায় জন্মানো চারাগাছদের লড়াই ডারউইনের মতে কোন্ প্রকারের সংগ্রাম?", opts: ["আন্তঃপ্রজাতি সংগ্রাম", "অন্তঃপ্রজাতি সংগ্রাম", "পরিবেশীয় সংগ্রাম", "কৃত্রিম সংগ্রাম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> একই প্রজাতির বিভিন্ন প্রতিনিধিদের মধ্যে খাদ্য, আশ্রয় ও প্রজননের জন্য যে সংগ্রাম হয়, তাকে অন্তঃপ্রজাতি সংগ্রাম (Intraspecies struggle) বলে।" },
+        { q: "৬. বাঘের সঙ্গে হরিণের বা সাপের সঙ্গে ব্যাঙের জীবন সংগ্রাম কী ধরনের?", opts: ["অন্তঃপ্রজাতি সংগ্রাম", "পরিবেশীয় সংগ্রাম", "আন্তঃপ্রজাতি সংগ্রাম", "অন্তর্দ্বন্দ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বিভিন্ন প্রজাতির জীবদের মধ্যে মূলত খাদ্য ও আশ্রয়ের কারণে যে সংগ্রাম হয়, তাকে আন্তঃপ্রজাতি সংগ্রাম (Interspecies struggle) বলা হয়।" },
+        { q: "৭. ডারউইনের মতে একই পরিবেশে বসবাসকারী একই প্রজাতির দুটি জীবের মধ্যে যে অল্পবিস্তর পার্থক্য দেখা যায়, তাকে কী বলে?", opts: ["মিউটেশন", "প্রকরণ বা ভেদ", "অভিযোজন", "বিবর্তন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ডারউইন লক্ষ করেন, একই পিতামাতার সন্তান বা একই প্রজাতির জীবের মধ্যেও গঠনগত পার্থক্য থাকে, একে তিনি প্রকরণ (Variation) বা ভেদ বলেছেন।" },
+        { q: "৮. অনুকূল প্রকরণযুক্ত জীব জীবন সংগ্রামে জয়ী হয়ে বেঁচে থাকাকে ডারউইন কী আখ্যা দিয়েছেন?", opts: ["প্রাকৃতিক নির্বাচন", "যোগ্যতমের উদ্বর্তন (Survival of the fittest)", "পরিব্যক্তি", "বংশগতি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পরিবেশের সঙ্গে খাপ খাইয়ে যে-সকল জীবের মধ্যে অনুকূল প্রকরণের সৃষ্টি হয় তারাই জীবন সংগ্রামে জয়ী হয় এবং বেঁচে থাকে, একেই যোগ্যতমের উদ্বর্তন বলে।" },
+        { q: "৯. ডারউইনের তত্ত্বের মূল ভিত্তি বা প্রধান চালিকাশক্তি কোনটি?", opts: ["অর্জিত গুণের বংশানুসরণ", "প্রাকৃতিক নির্বাচন", "অঙ্গের ব্যবহার", "মিউটেশন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ডারউইনের তত্ত্ব প্রকৃত অর্থে 'প্রাকৃতিক নির্বাচন মতবাদ' (Theory of Natural Selection)। প্রকৃতি অনুকূল প্রকরণযুক্ত যোগ্যতম জীবকে নির্বাচন করে, যা বিবর্তনের মূল কারণ।" },
+        { q: "১০. ডারউইনের মতে জিরাফের গলা লম্বা হওয়ার প্রকৃত কারণ কী?", opts: ["গলার ক্রমাগত ব্যবহার", "আদিম জিরাফদের মধ্যে দীর্ঘ গ্রীবাযুক্ত জিরাফদের প্রতি প্রাকৃতিক নির্বাচনের আনুকূল্য", "পরিবেশের প্রভাবে নতুন অঙ্গ সৃষ্টি", "গলার অব্যবহার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ডারউইনের মতে, আদি জিরাফদের দলে বিভিন্ন দৈর্ঘ্যের গলাযুক্ত জিরাফ ছিল। তাদের মধ্যে দীর্ঘ গ্রীবাযুক্ত জিরাফেরা উঁচু ডালের পাতা খাওয়ার জন্য যোগ্যতম হিসেবে প্রাকৃতিক নির্বাচনের আনুকূল্য পায় এবং তাদেরই বংশবৃদ্ধি ঘটে।" },
+        { q: "১১. ডারউইনবাদ বা প্রাকৃতিক নির্বাচনবাদের প্রধান ত্রুটি কোনটি?", opts: ["জীবন সংগ্রামের ব্যাখ্যা নেই", "প্রকরণের উৎপত্তি বা কারণ সম্পর্কে কোনো ব্যাখ্যা নেই", "অত্যধিক বংশবৃদ্ধির ধারণা ভুল", "প্রাকৃতিক নির্বাচন ঘটে না"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ডারউইনবাদে প্রকরণের এবং যোগ্যতমের উদ্বর্তনের কথা বলা হলেও এই প্রকরণগুলো কীভাবে সৃষ্টি হয় (অর্থাৎ মিউটেশন) বা বংশানুক্রমিক হয় তার কোনো সুনির্দিষ্ট বৈজ্ঞানিক ব্যাখ্যা তিনি দিতে পারেননি।" },
+        { q: "১২. ডারউইনের মতে খরা, বন্যা, ভূমিকম্প ইত্যাদি প্রতিকূলতার বিরুদ্ধে জীবের বেঁচে থাকার লড়াইকে কী বলে?", opts: ["আন্তঃপ্রজাতি সংগ্রাম", "অন্তঃপ্রজাতি সংগ্রাম", "পরিবেশীয় সংগ্রাম", "প্রাকৃতিক নির্বাচন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পরিবেশের প্রতিকূলতার (যেমন- খরা, বন্যা, শৈত্য) সঙ্গে জীবের প্রতিনিয়ত বেঁচে থাকার সংগ্রামকে পরিবেশীয় সংগ্রাম (Environmental struggle) বলে।" },
+        { q: "১৩. ডারউইন তাঁর তত্ত্বে কোন্ বিষয়টির ওপর গুরুত্ব দিয়েছিলেন, কিন্তু পরিব্যক্তি বা মিউটেশনকে নয়?", opts: ["প্রকরণ বা Variation", "জিনের পরিবর্তন", "অর্জিত গুণ", "ক্রসিং ওভার"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ডারউইন তাঁর তত্ত্বে ছোটো ছোটো ধারাবাহিক প্রকরণকে (variation) বিবর্তনের কারণ হিসেবে গুরুত্ব দিয়েছিলেন, জিনের আকস্মিক পরিবর্তন বা পরিব্যক্তিকে (mutation) নয়।" },
+        { q: "১৪. ডারউইনবাদ এবং সুপ্রজননবিদ্যার (Genetics) সমন্বয়ে গঠিত বিবর্তনের আধুনিক ও সবচেয়ে গ্রহণযোগ্য মতবাদটির নাম কী?", opts: ["নয়া ল্যামার্কবাদ", "সংশ্লেষ মতবাদ বা নয়া ডারউইনিজম", "মিউটেশন তত্ত্ব", "প্যানজেনেসিস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পরবর্তীকালে জেনেটিক্স বা সুপ্রজনন বিদ্যার প্রভাবে ডারউইনবাদ পরিমার্জিত হয়ে 'সংশ্লেষ মতবাদ (Synthetic Theory)' বা নয়া ডারউইনিজম (Neo Darwinism) গঠিত হয়, যা বর্তমানে সবচেয়ে গ্রহণযোগ্য।" },
+        { q: "১৫. ডারউইনের মতবাদ অনুযায়ী নতুন প্রজাতির সৃষ্টি (Origin of New Species) কীভাবে হয়?", opts: ["হঠাৎ মিউটেশনের মাধ্যমে", "অঙ্গের ব্যবহারের মাধ্যমে", "প্রকৃতি দ্বারা নির্বাচিত যোগ্যতম জীবের অনুকূল প্রকরণ বংশপরম্পরায় সঞ্চিত হওয়ার মাধ্যমে", "হাইব্রিডাইজেশন দ্বারা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্রাকৃতিক নির্বাচনে উন্নত ও নতুন বৈশিষ্ট্যযুক্ত জীবেরা যোগ্যতম প্রতিপন্ন হয় এবং তারাই বংশবৃদ্ধির মাধ্যমে ধীরে ধীরে নতুন প্রজাতি হিসেবে প্রকৃতির স্বীকৃতি লাভ করে।" }
+    ]
+};
+
+// ============================================================
+// সেট ৪: অভিব্যক্তির সপক্ষে প্রমাণ
+// ============================================================
+const SET4 = {
+    name: "সেট ৪",
+    icon: "🦴",
+    topic: "অভিব্যক্তির সপক্ষে প্রমাণ",
+    questions: [
+        { q: "১. ভূগর্ভে পাললিক শিলাস্তরের ভাঁজে সুদূর অতীতকালের জীবের প্রস্তরীভূত রূপ বা দেহাংশকে কী বলে?", opts: ["সমসংস্থ অঙ্গ", "জীবাশ্ম বা ফসিল", "কোয়াসারভেট", "নিষ্ক্রিয় অঙ্গ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পাললিক শিলাস্তরের ভাঁজে ভাঁজে সুদূর অতীতকালের জীবের সমগ্রদেহ বা দেহাংশের প্রস্তরীভূত রূপকে অথবা তাদের অস্তিত্বের নির্দেশক কোনো চিহ্নকে জীবাশ্ম (Fossil) বলে।" },
+        { q: "২. ঘোড়ার বিবর্তনের ইতিহাসে সবথেকে প্রাচীন বা 'উষাকালের ঘোড়া' (Dawn horse)-র জীবাশ্মের নাম কী?", opts: ["মেসোহিপ্পাস", "ইকুয়াস", "ইওহিপ্পাস বা হাইরাকোথেরিয়াম", "প্লিওহিপ্পাস"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ইওসিন যুগে (৫৫ মিলিয়ন বছর পূর্বে) পাওয়া ঘোড়ার প্রথম জীবাশ্মটির নাম হাইরাকোথেরিয়াম বা ইওহিপ্পাস, যা উষাকালের ঘোড়া নামে পরিচিত এবং এর উচ্চতা ছিল মাত্র ২৯ সেমি।" },
+        { q: "৩. ঘোড়ার বিবর্তনের ধারায় প্রথম এক-আঙুলযুক্ত (ক্ষুরযুক্ত) ঘোড়ার জীবাশ্ম কোনটি?", opts: ["প্লিওহিপ্পাস", "মেরিচিপ্পাস", "মেসোহিপ্পাস", "ইকুয়াস"], ans: 0, exp: "<b>ব্যাখ্যা:</b> প্লাওসিন যুগে প্রাপ্ত প্লিওহিপ্পাস হলো প্রথম এক আঙুলযুক্ত ঘোড়া, যাদের অগ্র ও পশ্চাদপদে কেবল তৃতীয় আঙুলটি ক্ষুরযুক্ত ছিল।" },
+        { q: "৪. আধুনিক ঘোড়া বা 'ইকুয়াস' (Equus)-এর আবির্ভাব কোন্ যুগে হয়েছিল?", opts: ["ইওসিন", "অলিগোসিন", "প্লাওসিন", "প্লিস্টোসিন"], ans: 3, exp: "<b>ব্যাখ্যা:</b> প্লিস্টোসিন যুগে (১০ লক্ষ বছর পূর্বে) আধুনিক ঘোড়া ইকুয়াসের আবির্ভাব ঘটে, যাদের উচ্চতা প্রায় ১৬০ সেমি এবং এরা দ্রুত দৌড়ানোর জন্য সম্পূর্ণভাবে এক আঙুল (ক্ষুর) বিশিষ্ট।" },
+        { q: "৫. উৎপত্তি এবং গঠনগতভাবে এক হয়েও কার্যগতভাবে পৃথক অঙ্গকে কী বলে?", opts: ["সমবৃত্তীয় অঙ্গ", "সমসংস্থ অঙ্গ", "নিষ্ক্রিয় অঙ্গ", "প্রতিবর্ত অঙ্গ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> যে সকল অঙ্গ উৎপত্তি এবং গঠনগতভাবে এক কিন্তু পরিবেশের কারণে কার্যগতভাবে পৃথক হয়ে গেছে, তাদের সমসংস্থ অঙ্গ (Homologous organs) বলে।" },
+        { q: "৬. মানুষের হাত, পাখির ডানা এবং তিমির প্যাডেল—এগুলি কী ধরনের অঙ্গের উদাহরণ?", opts: ["সমবৃত্তীয় অঙ্গ", "নিষ্ক্রিয় অঙ্গ", "সমসংস্থ অঙ্গ", "প্রতিস্থাপিত অঙ্গ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পাখি, বাদুড়, ঘোড়া, তিমি এবং মানুষের অগ্রপদ সবই হিউমেরাস, রেডিয়াস-আলনা, কারপাল প্রভৃতি একই অস্থি দিয়ে গঠিত হলেও এদের কাজ আলাদা, তাই এরা সমসংস্থ অঙ্গ।" },
+        { q: "৭. সমসংস্থ অঙ্গ কোন্ ধরনের বিবর্তনের সাক্ষ্য বহন করে?", opts: ["অভিসারী বিবর্তন", "অপসারী বিবর্তন (Divergent evolution)", "সমান্তরাল বিবর্তন", "পশ্চাৎমুখী বিবর্তন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সমসংস্থ অঙ্গগুলির উৎপত্তির উৎস এক হলেও পরিবেশগত কারণে তাদের মধ্যে কার্যগতভাবে বৈসাদৃশ্যমূলক অভিব্যক্তি ঘটেছে, তাই এরা অপসারী অভিব্যক্তি বা বিবর্তনের প্রমাণ দেয়।" },
+        { q: "৮. পতঙ্গের ডানা এবং পাখির ডানা—এগুলি কী ধরনের অঙ্গ?", opts: ["সমসংস্থ অঙ্গ", "সমবৃত্তীয় অঙ্গ", "নিষ্ক্রিয় অঙ্গ", "লুপ্তপ্রায় অঙ্গ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পতঙ্গ ও পাখির ডানা ওড়ার কাজ করলেও (বৃত্তি এক), এদের উৎপত্তি ও গঠন সম্পূর্ণ আলাদা। তাই এরা সমবৃত্তীয় (Analogous) অঙ্গের উদাহরণ।" },
+        { q: "৯. সমবৃত্তীয় অঙ্গ কোন্ প্রকার বিবর্তনকে নির্দেশ করে?", opts: ["অপসারী বিবর্তন", "অভিসারী বিবর্তন (Convergent evolution)", "প্রগতিশীল বিবর্তন", "মেগাবিবর্তন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সমবৃত্তীয় অঙ্গগুলি ভিন্ন ভিন্ন উদ্‌দ্বংশীয় জীব থেকে সৃষ্টি হয়ে একই পরিবেশে একই কাজের জন্য অভিযোজিত হয়ে সাদৃশ্যমূলক অভিব্যক্তি ঘটিয়েছে, তাই একে অভিসারী অভিব্যক্তি বলা হয়।" },
+        { q: "১০. মানুষের পৌষ্টিকতন্ত্রে থাকা কোন্ অঙ্গটি গিনিপিগের ক্ষেত্রে সক্রিয় 'সিকাম' হলেও মানুষের দেহে নিষ্ক্রিয় অঙ্গে পরিণত হয়েছে?", opts: ["প্লীহা", "যকৃৎ", "অ্যাপেনডিক্স", "কক্সিক্স"], ans: 2, exp: "<b>ব্যাখ্যা:</b> গিনিপিগের ক্ষেত্রে সিকাম একটি সক্রিয় অঙ্গ কিন্তু মানুষের ক্ষেত্রে এটি কার্যকারিতা হারিয়ে অ্যাপেনডিক্স (appendix) নামক নিষ্ক্রিয় অঙ্গে পরিণত হয়েছে।" },
+        { q: "১১. মানুষের মেরুদণ্ডের শেষ প্রান্তে থাকা নিষ্ক্রিয় অঙ্গটির নাম কী যা বানরের ক্ষেত্রে লেজ হিসেবে সক্রিয়?", opts: ["স্যাক্রাম", "কক্সিক্স", "ইলিয়াম", "পিউবিস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> লেজ বানরের ক্ষেত্রে সক্রিয় হলেও মানুষের ক্ষেত্রে তা মেরুদণ্ডের শেষ প্রান্তে কক্সিক্স (Coccyx) নামে একটি ক্ষুদ্র নিষ্ক্রিয় অঙ্গে পরিণত হয়েছে।" },
+        { q: "১২. মাছ, ব্যাঙ, সরীসৃপ, পাখি ও স্তন্যপায়ীর হৃৎপিণ্ডের গঠনগত জটিলতার ক্রমবৃদ্ধি কোন্ তত্ত্বকে প্রমাণ করে?", opts: ["এরা সকলেই একই উদ্‌দ্বংশীয় জীব থেকে বিবর্তিত হয়েছে", "এরা আলাদা আলাদাভাবে সৃষ্টি হয়েছে", "এদের বিবর্তন হয়নি", "স্তন্যপায়ীরা মাছে রূপান্তরিত হবে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মাছের ২ প্রকোষ্ঠ থেকে শুরু করে উভচর, সরীসৃপ হয়ে পাখি ও স্তন্যপায়ীর সম্পূর্ণ ৪ প্রকোষ্ঠযুক্ত হৃৎপিণ্ডের এই ধারাবাহিক পরিবর্তন প্রমাণ করে যে সকল মেরুদণ্ডী প্রাণী একই উদ্‌দ্বংশীয় জীব থেকে এসেছে।" },
+        { q: "১৩. 'ব্যক্তিজনি জাতিজনিকে পুনরাবৃত্তি করে' (Ontogeny repeats phylogeny)—এই বায়োজেনেটিক সূত্রটি কার?", opts: ["ভন বিয়ার", "চার্লস ডারউইন", "আর্নেস্ট হেকেল", "ল্যামার্ক"], ans: 2, exp: "<b>ব্যাখ্যা:</b> জার্মান বিজ্ঞানী ভন বিয়ারের ভ্রূণতত্ত্ব গবেষণার দ্বারা অনুপ্রাণিত হয়ে আর্নেস্ট হেকেল তাঁর বায়োজেনেটিক সূত্র আবিষ্কার করেন, যেখানে তিনি বলেন 'ব্যক্তিজনি জাতিজনিকে পুনরাবৃত্তি করে'।" },
+        { q: "১৪. ব্যাঙের জীবনচক্রে 'ব্যাঙাচি' দশা কোন্ প্রাণীর সাথে সাদৃশ্য বা উৎপত্তিগত সম্পর্কের প্রমাণ দেয়?", opts: ["সরীসৃপ", "স্তন্যপায়ী", "মাছ", "পাখি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ব্যাঙের জীবন ইতিহাসে জাইগোট থেকে ব্যাঙাচি দশাটি মাছকে স্মরণ করে, যা প্রমাণ করে যে ব্যাঙ বা উভচর শ্রেণির উৎপত্তি মৎস্যজাতীয় প্রাণী থেকে হয়েছে।" },
+        { q: "১৫. উদ্ভিদের সমসংস্থ অঙ্গের একটি সঠিক উদাহরণ হলো—", opts: ["ফণীমনসার পর্ণকাণ্ড ও ঝুমকোলতার আকর্ষ", "পতঙ্গের ডানা ও পাখির ডানা", "মটরগাছের আকর্ষ ও কুমড়োর আকর্ষ", "আলুর স্ফীতকন্দ ও আদার গ্রন্থিকন্দ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ফণীমনসার পর্ণকাণ্ড, ঝুমকোলতার শাখা আকর্ষ এবং শতমূলীর একক পর্ণকাণ্ড এদের সবার উৎপত্তি কাণ্ড থেকে হলেও কাজ আলাদা, তাই এরা উদ্ভিদের সমসংস্থ অঙ্গের উদাহরণ।" }
+    ]
+};
+
+// ============================================================
+// সেট ৫: অভিযোজন (উদ্ভিদ ও প্রাণীর অভিযোজন)
+// ============================================================
+const SET5 = {
+    name: "সেট ৫",
+    icon: "🌵",
+    topic: "উদ্ভিদ ও প্রাণীর অভিযোজন",
+    questions: [
+        { q: "১. বাষ্পমোচন রোধ করার জন্য ক্যাকটাসের পাতা কোন্ অঙ্গে রূপান্তরিত হয়েছে?", opts: ["পর্ণকাণ্ড", "কণ্টক বা কাঁটা", "আকর্ষ", "শল্কপত্র"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ক্যাকটাস বা জাঙ্গল উদ্ভিদে জল সংরক্ষণের উদ্দেশ্যে বাষ্পমোচন রোধ করার জন্য পাতাগুলি কণ্টকে (spine) রূপান্তরিত হয়েছে, যা আত্মরক্ষায়ও সাহায্য করে।" },
+        { q: "২. ক্যাকটাসের সবুজ, রসালো ও চ্যাপ্টা কাণ্ডকে কী বলা হয় যা জল সঞ্চয় ও সালোকসংশ্লেষ করে?", opts: ["রাইজোম", "পর্ণকাণ্ড বা ফিলোেড", "কন্দ", "গ্রন্থিকন্দ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ক্যাকটাসের কাণ্ড সবুজ, রসালো ও চ্যাপ্টা প্রসারিত হয় যাকে পর্ণকাণ্ড বলে। এর ভেতরের মিউসিলেজ জলকে দীর্ঘক্ষণ সংরক্ষণ করে রাখে।" },
+        { q: "৩. রুই মাছের পটকার অগ্র প্রকোষ্ঠে থাকা কোন্ গ্রন্থি গ্যাস উৎপন্ন করে দেহকে ভাসিয়ে তুলতে সাহায্য করে?", opts: ["রেটিয়া মিরাবিলিয়া", "সবুজ গ্রন্থি", "রেড গ্রন্থি (Red gland)", "লালা গ্রন্থি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মাছের পটকার অগ্র প্রকোষ্ঠে অবস্থিত রেড গ্রন্থি (Red gland) গ্যাস উৎপন্ন করলে প্রকোষ্ঠটি ফুলে ওঠে এবং মাছের দেহ হালকা হয়ে জলের ওপর ভেসে ওঠে।" },
+        { q: "৪. রুই মাছ জলের গভীরে ডোবার সময় পটকার কোন্ অংশ গ্যাস শোষণ করে নেয়?", opts: ["রেড গ্রন্থি", "রেটিয়া মিরাবিলিয়া (Rete mirabile)", "বায়ুথলি", "ফুলকা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পটকার ভালভ খুলে গেলে পশ্চাদ প্রকোষ্ঠের রেটিয়া মিরাবিলিয়া নামক রক্তজালক গ্যাসকে শোষণ করে নেয়, ফলে দেহ ভারী হয়ে মাছ জলে ডুবে যায়।" },
+        { q: "৫. উড্ডয়নের সময় পায়রার দেহকে হালকা রাখতে ও অতিরিক্ত অক্সিজেন সরবরাহ করতে ফুসফুসের সাথে কয়টি বায়ুথলি (Air sac) যুক্ত থাকে?", opts: ["৭টি", "৫টি", "৯টি", "১২টি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পায়রার ব্রঙ্কাস থেকে উৎপন্ন পাতলা পর্দাবৃত, পেশী ও রক্তজালকবিহীন ৯টি বায়ুপূর্ণ প্রকোষ্ঠ বা বায়ুথলি থাকে যা দেহকে হালকা করে আকাশে ভাসতে সাহায্য করে।" },
+        { q: "৬. লবণাম্বু উদ্ভিদ বা হ্যালোফাইট (Halophyte)-এর একটি উৎকৃষ্ট উদাহরণ হলো—", opts: ["ক্যাকটাস", "সুন্দরী", "পদ্ম", "রুই"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সুন্দরী গাছ সমুদ্র উপকূলবর্তী অঞ্চলে লবণাক্ত মাটিতে জন্মায় বলে এদের লবণাম্বু উদ্ভিদ বা হ্যালোফাইট বলে।" },
+        { q: "৭. সুন্দরী গাছের শ্বাসমূলে (Pneumatophore) থাকা ছিদ্রগুলিকে কী বলে?", opts: ["পত্ররন্ধ্র", "লেন্টিসেল", "শ্বাসছিদ্র বা নিউমাথোড", "হাইড্রাথোড"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কর্দমাক্ত ও বাতাসবিহীন মাটিতে অক্সিজেনের অভাব থাকায় সুন্দরী গাছের মূল অভিকর্ষের বিপরীতে ওপরে ওঠে। এই শ্বাসমূলের ওপরে থাকা ছিদ্রগুলিকে শ্বাসছিদ্র বা নিউমাটোফোর (Pneumatophore) বলে।" },
+        { q: "৮. সুন্দরী গাছ তার দেহে প্রবেশ করা অতিরিক্ত লবণ কীভাবে রেচন করে?", opts: ["মূলে সঞ্চিত রেখে", "পাতায় অবস্থিত লবণ গ্রন্থিতে সঞ্চয় করে এবং পত্রমোচনের মাধ্যমে", "বাকল মোচনের মাধ্যমে", "তরুক্ষীর হিসেবে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সুন্দরী গাছের পাতায় অবস্থিত লবণ গ্রন্থিতে অতিরিক্ত লবণ সঞ্চিত থাকে এবং উদ্ভিদ পত্রমোচনের সাহায্যে সেই সঞ্চিত লবণ দেহ থেকে রেচন করে থাকে।" },
+        { q: "৯. মরুভূমির চরম শুষ্ক পরিবেশে জল সঞ্চয় করে রাখার জন্য উটের দেহের কোন্ অঙ্গে ফ্যাট সঞ্চিত থাকে?", opts: ["পাকস্থলীতে", "কুঁজে (Hump)", "যকৃতে", "পেশিতে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উটের কুঁজ জল সঞ্চয় করে না, বরং সেখানে ফ্যাট সঞ্চিত থাকে। এই ফ্যাট জারিত হয়ে বিপাকীয় জল উৎপন্ন হয় (১০০ গ্রাম ফ্যাট থেকে ১১০ গ্রাম জল)।" },
+        { q: "১০. উটের লোহিত রক্তকণিকা (RBC) আকৃতিতে কেমন হয়, যা তাকে জলহীন অবস্থায় রক্তজালকের মধ্য দিয়ে প্রবাহিত হতে সাহায্য করে?", opts: ["গোলাকার ও বড়", "ক্ষুদ্র ও ডিম্বাকার", "বেলনাকার", "তারকাকার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উটের RBC ক্ষুদ্র ও ডিম্বাকার হয় বলে জলহীন বা ডিহাইড্রেটেড অবস্থাতেও রক্ত ঘন হয়ে গেলে তা সরু রক্তজালকের মধ্য দিয়ে সহজেই প্রবাহিত হতে পারে।" },
+        { q: "১১. উটের লোহিত রক্তকণিকা (RBC) সর্বাধিক কত শতাংশ পর্যন্ত প্রসারিত হতে বা বৃদ্ধি পেতে পারে?", opts: ["১০০%", "১৫০%", "২৪০%", "৫০০%"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উটের রক্তে প্রচুর জল প্রবেশ করলেও তাদের RBC প্রায় ২৪০% পর্যন্ত বৃদ্ধি পেতে সক্ষম, ফলে অভিস্রবণিক চাপে হিমোলাইসিস ঘটে রক্তকণিকা ফেটে যায় না।" },
+        { q: "১২. উটের পাকস্থলীতে থাকা কোন্ বিশেষ গঠনটি প্রায় ৩৬ লিটার পর্যন্ত জল সঞ্চয় করে রাখতে পারে?", opts: ["ওয়াটার স্যাক (Water sac)", "হেনলির লুপ", "কুঁজ", "মিউকাস স্তর"], ans: 0, exp: "<b>ব্যাখ্যা:</b> উট একবারে প্রচুর জল পান করতে পারে এবং প্রায় ৩৬ লিটার জল পাকস্থলীতে অবস্থিত ওয়াটার স্যাক (water sac)-এ সঞ্চিত করে রাখে।" },
+        { q: "১৩. উটের বৃক্কে থাকা কোন্ অংশের দৈর্ঘ্য খুব বেশি হওয়ায় এরা প্রচুর জল পুনঃশোষণ করে ঘন মূত্র তৈরি করতে পারে?", opts: ["গ্লোমেরুলাস", "হেনলির লুপ", "বোম্যানস ক্যাপসুল", "রেনাল পেলভিস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উটের নেফ্রনে হেনলির লুপ অত্যন্ত দীর্ঘ হয়, যার ফলে জল পুনঃশোষণ বেশি হয় এবং মূত্র ঘন সিরাপের মতো তৈরি হয়, যা জল সংরক্ষণে সাহায্য করে।" },
+        { q: "১৪. সমুদ্র উপকূলবর্তী অঞ্চলের নোনা মাটি যেখানে জল থাকা সত্ত্বেও উদ্ভিদ তা সহজে শোষণ করতে পারে না, তাকে কী বলে?", opts: ["শারীরবৃত্তীয় শুষ্ক মৃত্তিকা", "উর্বর মৃত্তিকা", "জলাভূমি", "মরু মৃত্তিকা"], ans: 0, exp: "<b>ব্যাখ্যা:</b> সমুদ্র উপকূলবর্তী অঞ্চলে NaCl, MgCl₂, MgSO₄ ইত্যাদি লবণ সমৃদ্ধ মাটিতে অতিরিক্ত অভিস্রবণ চাপের কারণে জল শোষণ অসুবিধাজনক হয়, তাই একে শারীরবৃত্তীয় শুষ্ক মৃত্তিকা বলে।" },
+        { q: "১৫. উটের দেহে কত ডিগ্রি সেলসিয়াস তাপমাত্রা পর্যন্ত ঘাম উৎপন্ন হয় না?", opts: ["৩৭°C", "৪০°C", "৪৯°C", "৬০°C"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উটের দেহের তাপমাত্রা নিয়ন্ত্রণের এক বিশেষ ক্ষমতা আছে, এদের দেহের তাপমাত্রা ৪৯°C-এ না পৌঁছানো পর্যন্ত দেহে কোনো ঘাম উৎপন্ন হয় না, যা জলক্ষয় রোধ করে।" }
+    ]
+};
+
+// ============================================================
+// সেট ৬: প্রাণীর আচরণ ও অভিযোজন
+// ============================================================
+const SET6 = {
+    name: "সেট ৬",
+    icon: "🐒",
+    topic: "প্রাণীর আচরণ ও অভিযোজন",
+    questions: [
+        { q: "১. আচরণ বা Behavior বলতে কী বোঝায়?", opts: ["কেবল খাদ্যের খোঁজ করা", "পরিবেশের কোনো ইঙ্গিতের প্রভাবে স্নায়ুতন্ত্রের নিয়ন্ত্রণাধীন জীবের সাড়াপ্রদান", "জিনের পরিবর্তন", "ঘুমানো"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পরিবেশের কোনো ইঙ্গিতের প্রভাবে বা অন্য কোনো জীবের ক্রিয়ার ফলে কোনো একটি জীব স্নায়ুতন্ত্রের নিয়ন্ত্রণাধীন যে ক্রিয়া করে সেটাই হলো আচরণ, যা তাকে পরিবেশে অভিযোজিত হতে সাহায্য করে।" },
+        { q: "২. শিম্পাঞ্জিদের আচরণ এবং সমস্যা সমাধানের ক্ষমতা প্রথম কোন্ বিজ্ঞানী বিস্তারিতভাবে পর্যবেক্ষণ করেন?", opts: ["জেন গুডাল", "কার্ল ভন ফ্রিশ", "চার্লস ডারউইন", "প্যাভলভ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বিখ্যাত প্রাইমেটোলজিস্ট বিজ্ঞানী জেন গুডাল আফ্রিকার জঙ্গলে শিম্পাঞ্জিদের আচরণ এবং তাদের বিভিন্ন সরঞ্জাম ব্যবহারের দক্ষতা গভীরভাবে পর্যবেক্ষণ করেন।" },
+        { q: "৩. শিম্পাঞ্জিরা উইপোকা শিকারের জন্য কোন্ কৌশল ব্যবহার করে?", opts: ["পাথর ছুড়ে ঢিপি ভাঙে", "গাছের ডাল ভেঙে পাতা ছিঁড়ে সেই কাঠি উইয়ের ঢিপিতে ঢুকিয়ে দেয়", "মাটি খুঁড়ে গর্ত করে", "জল ঢেলে দেয়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শিম্পাঞ্জিরা গাছের ডাল ভেঙে পাতা ছিঁড়ে ফেলে একটি সরু কাঠি তৈরি করে এবং তা উইয়ের ঢিপিতে ঢুকিয়ে দিয়ে উইপোকা বের করে আনে, এটি তাদের সমস্যা সমাধানের একটি বড় প্রমাণ।" },
+        { q: "৪. শক্ত খোলাযুক্ত বাদাম ভাঙার জন্য শিম্পাঞ্জিরা কী ব্যবহার করে?", opts: ["দাঁত দিয়ে ভাঙে", "কাঠের টুকরো বা পাথরকে 'হাতুড়ি আর নেহাই'-এর মতো ব্যবহার করে", "উঁচু গাছ থেকে ফেলে দেয়", "জলে ভিজিয়ে রাখে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শিম্পাঞ্জিরা কাঠের টুকরো বা পাথরকে 'হাতুড়ি আর নেহাই'-এর মতো অত্যন্ত দক্ষভাবে ব্যবহার করে বাদামের খোলা ভেঙে ভেতরের শাঁস খায়।" },
+        { q: "৫. পরজীবী দ্বারা আক্রান্ত হলে শিম্পাঞ্জিরা নিজেদের সুস্থ করতে কী করে?", opts: ["মাটি খায়", "ওষধি গাছের পাতা খায়", "রোদে বসে থাকে", "উপবাস করে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পেটে পরজীবী বা কৃমির সংক্রমণ হলে শিম্পাঞ্জিরা নিজেদের সুস্থ করার জন্য প্রায় ১৯টি বিশেষ ভেষজ বা ওষধি গাছের পাতা খায়।" },
+        { q: "৬. মৌমাছিদের নাচের ভাষা বা বার্তা আদানপ্রদানের পদ্ধতি আবিষ্কারের জন্য কোন্ বিজ্ঞানী নোবেল পুরস্কার পান?", opts: ["ল্যামার্ক", "কার্ল ভন ফ্রিশ", "জেন গুডাল", "মেন্ডেল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> অস্ট্রিয়ার বিজ্ঞানী কার্ল ভন ফ্রিশ মৌমাছিদের বার্তা আদানপ্রদানের ভাষা (ওয়াগল ও রাউন্ড ডান্স) আবিষ্কার করেন এবং এই যুগান্তকারী কাজের জন্য নোবেল পুরস্কারে ভূষিত হন।" },
+        { q: "৭. মৌচাক থেকে খাদ্যের উৎস ৫০-৭৫ মিটারের মধ্যে হলে স্কাউট মৌমাছিরা কী ধরনের নাচ প্রদর্শন করে?", opts: ["ওয়াগল ডান্স", "রাউন্ড ডান্স (Round dance) বা চক্রাকার নৃত্য", "লুপ ডান্স", "সোয়াইপ ডান্স"], ans: 1, exp: "<b>ব্যাখ্যা:</b> খাদ্যের উৎস মৌচাক থেকে কাছাকাছি অর্থাৎ ৫০-৭৫ মিটারের মধ্যে হলে স্কাউট মৌমাছিরা চক্রাকারে ঘুরে রাউন্ড ডান্স প্রদর্শন করে।" },
+        { q: "৮. খাদ্যের উৎস ৭৫-১০০ মিটারের বেশি দূরে হলে মৌমাছিরা ইংরেজি কোন্ অক্ষরের মতো 'ওয়াগল নৃত্য' (Waggle dance) করে?", opts: ["S", "8 (আট)", "O", "V"], ans: 1, exp: "<b>ব্যাখ্যা:</b> খাদ্যের দূরত্ব বেশি হলে স্কাউট মৌমাছিরা ইংরেজি '8' অক্ষরের ন্যায় পাক খেয়ে ওয়াগল নৃত্য করে এবং খাদ্যের দিক ও দূরত্ব অন্যান্য কর্মী মৌমাছিদের জানায়।" },
+        { q: "৯. প্রজনন কালে ব্যাঙের ডাক বা ময়ূরের পেখম তুলে নাচা—এগুলি প্রাণীর কীসের উদাহরণ?", opts: ["নিছক খেলা", "শিকার ধরার কৌশল", "জনন প্রক্রিয়ায় সাহায্যকারী আচরণগত অভিযোজন", "আত্মরক্ষা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> জনন প্রক্রিয়ায় বিপরীত লিঙ্গকে আকৃষ্ট করার জন্য ব্যাঙের ডাক বা ময়ূরের পেখম তুলে নাচা হলো প্রাণীদের অস্তিত্ব রক্ষায় সাহায্যকারী বিশেষ আচরণগত অভিযোজন।" },
+        { q: "১০. মৌমাছিদের ওয়াগল (Waggle) কথার প্রকৃত অর্থ কী?", opts: ["বৃত্তাকার", "আন্দোলন বা কাঁপুনি", "স্থির থাকা", "ঘুমন্ত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> 'ওয়াগল' কথার অর্থ হলো আন্দোলন। নাচের সময় মৌমাছিরা তাদের উদর অংশ দ্রুত কম্পিত বা আন্দোলিত করে বলেই একে ওয়াগল ডান্স বলা হয়।" },
+        { q: "১১. মৌচাকে যে মৌমাছিরা খাদ্যের সন্ধান করতে বাইরে যায় তাদের কী বলে?", opts: ["রানি মৌমাছি", "ড্রোন", "স্কাউট কর্মী মৌমাছি", "ফোরেজার"], ans: 2, exp: "<b>ব্যাখ্যা:</b> স্কাউট কর্মী মৌমাছিরাই মূলত খাদ্যের সন্ধান পেলে মৌচাকে ফিরে আসে এবং নৃত্যের মাধ্যমে অন্য ফোরেজার কর্মী মৌমাছিদের খাদ্যের অবস্থান জানায়।" },
+        { q: "১২. শিম্পাঞ্জিরা রাতে ঘুমানোর জন্য কোথায় বাসা তৈরি করে?", opts: ["মাটির গর্তে", "গুহায়", "গাছের ডালে পাতার বাসা বানিয়ে", "ঝোপের আড়ালে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> শিকারি প্রাণীদের হাত থেকে নিজেদের রক্ষা করতে শিম্পাঞ্জিরা গাছের ডালে পাতার বাসা বানিয়ে তাতে ঘুমায়, যা তাদের একটি আচরণগত বৈশিষ্ট্য।" },
+        { q: "১৩. তাড়া খেয়ে সাপের গর্তে ঢুকে পড়া প্রাণীর কোন্ ধরনের আচরণের উদাহরণ?", opts: ["খাদ্য সংগ্রহ", "প্রজনন", "আত্মরক্ষা বা অস্তিত্ব রক্ষা", "আক্রমণ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> তাড়া খেয়ে সাপের গর্তে ঢুকে পড়া বা পুকুরের জলে কিছু ফেললে মাছের গভীরে চলে যাওয়া—এগুলি প্রাণীর অস্তিত্ব রক্ষায় সাহায্যকারী আচরণের উদাহরণ।" },
+        { q: "১৪. আচরণ এবং অভিযোজনের মধ্যে সম্পর্ক কী?", opts: ["এরা একে অপরের বিরোধী", "আচরণ অভিযোজনকে প্রভাবিত করে এবং তার ফলেই জীবের বিবর্তন ঘটে", "আচরণের সাথে অভিযোজনের কোনো সম্পর্ক নেই", "অভিযোজন ক্ষতিকর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জীবের আচরণই তাকে পরিবেশে অভিযোজিত হতে প্রভাবিত করে এবং কালক্রমে এই আচরণের কারণে জীবদেহে গঠনগত পরিবর্তন ঘটে নতুন প্রজাতির সৃষ্টি হয়।" },
+        { q: "১৫. জল থেকে ডাঙায় উঠে দল বেঁধে এলিফ্যান্ট সিলের অপেক্ষা করা তাদের কী প্রকার আচরণের অন্তর্গত?", opts: ["প্রজননগত আচরণ", "খাদ্য সংগ্রহের আচরণ", "আত্মরক্ষার আচরণ", "দেশান্তরের আচরণ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> জল থেকে ডাঙায় উঠে দল বেঁধে এলিফ্যান্ট সিলের অপেক্ষা করার প্রধান উদ্দেশ্য হলো প্রজনন প্রক্রিয়া সম্পন্ন করা, যা জনন প্রক্রিয়ায় সাহায্যকারী একটি আচরণ।" }
+    ]
+};
+
+// ============================================================
+// সব সেট একত্রে
+// ============================================================
+const QUIZ_SETS = {
+    "1": SET1,
+    "2": SET2,
+    "3": SET3,
+    "4": SET4,
+    "5": SET5,
+    "6": SET6
+};
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+let loggedInUser = null;
+let currentSetId = null;
+let questions = [];
+let score = 0;
+let wrongAnswers = 0;
+let userAnswers = {};
+let isReviewMode = false;
+let timerInterval;
+let timeLeft = TIME_LIMIT;
+
+window.onload = () => {
+    applyBranding();
+    buildHub();
+};
+
+function buildHub() {
+    const grid = document.getElementById('setGrid');
+    grid.innerHTML = '';
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+
+    for(let id in QUIZ_SETS) {
+        const set = QUIZ_SETS[id];
+        let attemptCount = 0;
+        let isLocked = false;
+
+        if(loggedInUser) {
+            attemptCount = userAttempts[loggedInUser + "_" + id] || 0;
+            isLocked = attemptCount >= MAX_ATTEMPTS;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'set-card';
+        let badge = '';
+        if(loggedInUser) {
+            badge = `<div class="attempt-badge ${isLocked ? 'locked' : ''} en-font">${isLocked ? 'সম্পূর্ণ' : attemptCount + '/' + MAX_ATTEMPTS}</div>`;
+        }
+
+        card.innerHTML = `
+            ${badge}
+            <div class="set-icon">${set.icon}</div>
+            <div class="set-name">${set.name}</div>
+            <div class="set-topic">${set.topic}</div>
+            <div class="set-meta-info en-font">
+                <span>${set.questions.length} Qs</span>
+                <span>10 Mins</span>
+            </div>
+        `;
+        card.onclick = () => { selectSet(id); };
+        grid.appendChild(card);
+    }
+}
+
+function selectSet(setId) {
+    if(loggedInUser) {
+        let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+        let attemptCount = userAttempts[loggedInUser + "_" + setId] || 0;
+        if(attemptCount >= MAX_ATTEMPTS) {
+            alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+            return;
+        }
+        startQuiz(setId);
+    } else {
+        currentSetId = setId;
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginError').classList.add('hidden');
+        document.getElementById('loginSetName').innerText = QUIZ_SETS[setId].name + ": " + QUIZ_SETS[setId].topic;
+        document.getElementById('loginModal').classList.remove('hidden');
+    }
+}
+
+function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+
+function doLogin() {
+    const u = document.getElementById('loginUsername').value.trim();
+    const p = document.getElementById('loginPassword').value.trim();
+    const err = document.getElementById('loginError');
+    const GLOBAL_USERS = JSON.parse(localStorage.getItem("testBazarGlobalUsers")) || {};
+
+    if(!u || !p) { err.innerText = "ইউজারনেম এবং পাসওয়ার্ড দিন!"; err.classList.remove('hidden'); return; }
+
+    if(GLOBAL_USERS[u] && GLOBAL_USERS[u] === p) {
+        loggedInUser = u;
+        document.getElementById('userDisplay').innerText = `👤 ${u}`;
+        closeLogin();
+        buildHub();
+        if(currentSetId) {
+            startQuiz(currentSetId);
+        }
+    } else {
+        err.innerText = "ইউজারনেম বা পাসওয়ার্ড ভুল!";
+        err.classList.remove('hidden');
+    }
+}
+
+function incrementAttempt(user, setId) {
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let key = user + "_" + setId;
+    userAttempts[key] = (userAttempts[key] || 0) + 1;
+    localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(userAttempts));
+}
+
+function startQuiz(setId) {
+    currentSetId = setId;
+    incrementAttempt(loggedInUser, setId);
+    questions = QUIZ_SETS[setId].questions;
+    userAnswers = {};
+    isReviewMode = false;
+    score = 0;
+    wrongAnswers = 0;
+    timeLeft = TIME_LIMIT;
+
+    document.getElementById('hubView').classList.add('hidden');
+    document.getElementById('resultModal').classList.add('hidden');
+    document.getElementById('quizView').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('danger');
+    document.getElementById('submitTestBtn').classList.remove('hidden');
+    document.getElementById('quizTitle').innerText = QUIZ_SETS[setId].name + " | " + QUIZ_SETS[setId].topic;
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tick, 1000);
+    renderQuestions();
+}
+
+function tick() {
+    timeLeft--;
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    document.getElementById('timerDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if (timeLeft <= 60) document.getElementById('timerBox').classList.add('danger');
+    if (timeLeft <= 0) { submitQuiz(); }
+}
+
+const LABELS = ['A', 'B', 'C', 'D'];
+
+function renderQuestions() {
+    const quizList = document.getElementById('quizList');
+    let html = '';
+    questions.forEach((q, i) => {
+        html += `<div class="q-block" id="qBlock_${i}">
+            <div class="q-text">${q.q}</div>
+            <div class="options-grid">`;
+        q.opts.forEach((opt, j) => {
+            html += `<div class="opt" id="opt_${i}_${j}" onclick="selectOpt(${i}, ${j})">
+                <div class="opt-circle">${LABELS[j]}</div>
+                <div class="opt-text">${opt}</div>
+            </div>`;
+        });
+        html += `</div>
+            <div class="explanation hidden" id="exp_${i}">${q.exp}</div>
+        </div>`;
+    });
+    quizList.innerHTML = html;
+    window.scrollTo(0, 0);
+}
+
+function selectOpt(qIdx, optIdx) {
+    if (isReviewMode) return;
+    userAnswers[qIdx] = optIdx;
+    const block = document.getElementById(`qBlock_${qIdx}`);
+    const opts = block.querySelectorAll('.opt');
+    opts.forEach(o => o.classList.remove('selected'));
+    document.getElementById(`opt_${qIdx}_${optIdx}`).classList.add('selected');
+}
+
+function submitQuiz() {
+    if (isReviewMode) return;
+    const answeredCount = Object.keys(userAnswers).length;
+    if (timeLeft > 0 && answeredCount < questions.length) {
+        const confirmSubmit = confirm(`আপনি মাত্র ${answeredCount} টি প্রশ্নের উত্তর দিয়েছেন। আপনি কি সত্যিই Test জমা দিতে চান?`);
+        if(!confirmSubmit) return;
+    }
+    isReviewMode = true;
+    clearInterval(timerInterval);
+    document.getElementById('timerBox').classList.add('hidden');
+    document.getElementById('submitTestBtn').classList.add('hidden');
+
+    score = 0;
+    wrongAnswers = 0;
+    questions.forEach((q, i) => {
+        const selected = userAnswers[i];
+        const block = document.getElementById(`qBlock_${i}`);
+        const opts = block.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.remove('selected'));
+        if (selected !== undefined) {
+            if (selected === q.ans) {
+                score++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('correct');
+            } else {
+                wrongAnswers++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('wrong');
+                document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+            }
+        } else {
+            document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+        }
+        document.getElementById(`exp_${i}`).classList.remove('hidden');
+    });
+
+    const skipped = questions.length - (score + wrongAnswers);
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('rbCorrect').textContent = score;
+    document.getElementById('rbWrong').textContent = wrongAnswers + skipped;
+
+    let icon = '💪', grade = 'চেষ্টা চালিয়ে যাও!';
+    if(pct >= 90) { icon = '🌟'; grade = 'অসাধারণ!'; }
+    else if(pct >= 70) { icon = '👍'; grade = 'খুব ভালো!'; }
+    else if(pct >= 50) { icon = '📚'; grade = 'ভালো চেষ্টা!'; }
+
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultGrade').textContent = grade;
+
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    let remaining = MAX_ATTEMPTS - attemptCount;
+    document.getElementById('attemptInfo').innerText = `বাকি আছে ${remaining} বার Test দেওয়ার সুযোগ (সর্বোচ্চ ${MAX_ATTEMPTS} বার)`;
+    document.getElementById('resultModal').classList.remove('hidden');
+}
+
+function closeResultModal() {
+    document.getElementById('resultModal').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+    closeResultModal();
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    if(attemptCount >= MAX_ATTEMPTS) {
+        alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+        document.getElementById('quizView').classList.add('hidden');
+        document.getElementById('hubView').classList.remove('hidden');
+        buildHub();
+        return;
+    }
+    startQuiz(currentSetId);
+}
+</script>
+</body>
+</html>
