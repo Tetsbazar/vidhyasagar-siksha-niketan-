@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 Life Science Chapter 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #1a7a4a; --primary-hover: #2aad68; --accent: #f9a825;
+--bg-main: #f0faf4; --bg-card: #ffffff; --bg-selected: #e8f4ec;
+--text-main: #1c2e24; --text-meta: #5a7a66; --border-color: #c5dccb;
+--alert-danger: #dc3545; --correct: #28a745;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Tiro Bangla', serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+.en-font { font-family: 'Syne', sans-serif; }
+.hidden { display: none !important; }
+
+.header {
+background: #ffffff;
+box-shadow: 0 4px 20px rgba(10, 92, 54, 0.08);
+position: sticky;
+top: 0;
+z-index: 1000;
+border-bottom: 3px solid #0a5c36;
+}
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 8px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo-link {
+display: flex;
+align-items: center;
+gap: 10px;
+text-decoration: none;
+cursor: pointer;
+}
+.logo-emblem {
+width: 45px;
+height: 45px;
+background: linear-gradient(135deg, #0a5c36 0%, #1e824c 100%);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.4rem;
+font-weight: 800;
+color: white;
+box-shadow: 0 4px 12px rgba(10, 92, 54, 0.2);
+flex-shrink: 0;
+}
+.brand-text-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.coaching-main-title {
+font-size: 1.4rem;
+font-weight: 800;
+color: #0a5c36;
+letter-spacing: -0.5px;
+line-height: 1.1;
+}
+.coaching-subtitle {
+font-size: 0.75rem;
+color: #556c5e;
+font-weight: 700;
+letter-spacing: 0.3px;
+margin-top: 1px;
+text-transform: uppercase;
+}
+.coaching-tagline {
+font-size: 0.65rem;
+color: #f5a623;
+font-weight: 600;
+margin-top: 1px;
+letter-spacing: 0.1px;
+}
+.header-right {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.timer-box {
+background: rgba(10, 92, 54, 0.08);
+padding: 6px 15px;
+border-radius: 8px;
+font-weight: 700;
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+gap: 5px;
+color: #0a5c36;
+}
+.timer-box.danger { background: var(--alert-danger); color: white; animation: pulse 1s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.user-info { background: #0a5c36; color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; }
+
+.main-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.hub-header { text-align: center; margin-bottom: 30px; }
+.hub-header h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 10px; }
+.set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+.set-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+.set-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(26,122,74,0.1); }
+.set-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.set-name { font-size: 1.3rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; font-family: 'Syne', sans-serif;}
+.set-topic { font-size: 0.95rem; color: var(--text-meta); margin-bottom: 15px; height: 40px; }
+.set-meta-info { display: flex; justify-content: center; gap: 10px; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
+.set-meta-info span { background: var(--bg-main); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+.attempt-badge { position: absolute; top: 10px; right: 10px; background: #ffeeba; color: #856404; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+.attempt-badge.locked { background: var(--alert-danger); color: white; border: none; }
+
+.quiz-info { background: var(--bg-card); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+.q-block { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.q-text { font-size: 1.2rem; font-weight: bold; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
+.options-grid { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 1.05rem; }
+.opt:hover:not(.selected):not(.correct):not(.wrong) { background: var(--bg-main); border-color: var(--primary); }
+.opt.selected { background: var(--bg-selected); border-color: var(--primary); }
+.opt-circle { min-width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Syne', sans-serif; color: var(--text-meta); flex-shrink: 0; }
+.opt.selected .opt-circle { background: var(--primary); color: white; border-color: var(--primary); }
+.opt.correct { background: #e8f7ef; border-color: var(--correct); }
+.opt.correct .opt-circle { background: var(--correct); border-color: var(--correct); color: white; }
+.opt.wrong { background: #fdf0f0; border-color: var(--alert-danger); }
+.opt.wrong .opt-circle { background: var(--alert-danger); border-color: var(--alert-danger); color: white; }
+.explanation { margin-top: 15px; padding: 15px; background: #e8f4ec; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #2c4035; line-height: 1.5;}
+.btn-submit { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; font-family: 'Tiro Bangla', serif; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(26,122,74,0.2); transition: 0.2s; }
+.btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+.btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: bold;}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto;}
+.modal-box { background: white; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin: auto;}
+.modal-box input { width: 100%; padding: 12px 15px; margin: 10px 0; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: 'Syne', sans-serif; box-sizing: border-box; outline: none; transition: 0.2s; }
+.modal-box input:focus { border-color: var(--primary); }
+.result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto; padding: 20px; }
+.result-box { background: white; padding: 2.5rem 2rem; border-radius: 16px; width: 100%; max-width: 450px; text-align: center; margin: auto; }
+.result-score { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin: 15px 0; }
+.result-bars { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.result-bar { background: var(--bg-main); padding: 15px; border-radius: 12px; width: 100px; border: 1px solid var(--border-color); }
+
+@media (max-width: 768px) {
+.header-container { flex-direction: column; gap: 10px; text-align: center; padding: 10px 10px; }
+.logo-link { flex-direction: column; gap: 6px; }
+.brand-text-container { text-align: center; }
+.coaching-main-title { font-size: 1.2rem; }
+.coaching-subtitle { font-size: 0.7rem; }
+.coaching-tagline { font-size: 0.6rem; }
+.header-right { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="#" class="logo-link" onclick="location.reload(); return false;">
+            <div class="logo-emblem" id="dynamicEmblem">🌿</div>
+            <div class="brand-text-container">
+                <span class="coaching-main-title" id="dynamicTitle">Life Science - Chapter 5</span>
+                <span class="coaching-subtitle" id="dynamicSubtitle">পরিবেশ, তার সম্পদ এবং তাদের সংরক্ষণ</span>
+                <span class="coaching-tagline" id="dynamicTagline">দশম শ্রেণি (Class 10)</span>
+            </div>
+        </a>
+        <div class="header-right">
+            <div class="timer-box en-font hidden" id="timerBox">⏱ <span id="timerDisplay">10:00</span></div>
+            <div class="user-info en-font" id="userDisplay" style="font-weight: bold;">👤 Guest</div>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <div id="hubView">
+        <div class="hub-header">
+            <h1 style="color: var(--primary); margin-bottom: 10px;">জীবন বিজ্ঞান - Class 10 Chapter 5</h1>
+            <p style="color: var(--text-meta);">পরিবেশ, তার সম্পদ এবং তাদের সংরক্ষণ (Environment, Resources & Conservation)</p>
+        </div>
+        <div class="set-grid" id="setGrid"></div>
+        <div style="text-align:center; margin-top:40px;">
+            <button class="btn-primary" style="background:var(--text-meta); width: auto; padding: 12px 25px;" onclick="window.history.back()">← Main Dashboard-এ ফিরুন</button>
+        </div>
+    </div>
+
+    <div id="quizView" class="hidden">
+        <div class="quiz-info">
+            <div id="quizTitle">Set Name</div>
+            <div id="quizMetaInfo" class="en-font">15 Questions | 10 Mins</div>
+        </div>
+        <div id="quizList"></div>
+        <button class="btn-submit" id="submitTestBtn" onclick="submitQuiz()">Test জমা দিন ও ফলাফল দেখুন</button>
+    </div>
+
+</div>
+
+<div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-box">
+        <h2 style="color: var(--primary); margin-top:0;">লগইন করুন</h2>
+        <p style="color: var(--text-meta); margin-bottom: 15px; font-size: 0.9rem;">Test শুরু করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন</p>
+        <div id="loginSetName" style="background: var(--bg-main); padding: 8px; border-radius: 8px; font-weight:bold; color:var(--primary); margin-bottom:15px; font-family: 'Syne', sans-serif; font-size: 0.95rem;">Set Name</div>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()">
+        <div id="loginError" class="hidden" style="color: var(--alert-danger); margin: 10px 0; font-weight:bold; font-size: 0.9rem;"></div>
+        <div style="display: flex; gap: 10px; margin-top:15px; justify-content: center;">
+            <button class="btn-primary" style="width: 100%; padding: 12px;" onclick="doLogin()">লগইন করুন</button>
+            <button class="btn-primary" style="background: var(--alert-danger); width: 100%; padding: 12px;" onclick="closeLogin()">বাতিল</button>
+        </div>
+    </div>
+</div>
+
+<div class="result-overlay hidden" id="resultModal">
+    <div class="result-box">
+        <div style="font-size: 3.5rem; margin-bottom:0; line-height: 1;" id="resultIcon">🌟</div>
+        <h2 style="margin:10px 0; color: var(--text-main);">আপনার ফলাফল</h2>
+        <div class="result-score en-font" id="finalScore">100%</div>
+        <div id="resultGrade" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--accent);">অসাধারণ!</div>
+        <div class="result-bars">
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbCorrect">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">সঠিক</div>
+            </div>
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--alert-danger);" class="en-font" id="rbWrong">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">ভুল / স্কিপ</div>
+            </div>
+        </div>
+        <p style="background: var(--bg-main); padding: 10px; border-radius: 8px; color:var(--text-meta); font-weight:bold; font-size:0.95rem; margin-bottom:25px;" id="attemptInfo" class="en-font">বাকি আছে 9 বার</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="btn-primary" style="background: #28a745; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="closeResultModal()">উত্তর ও ব্যাখ্যা দেখুন</button>
+            <button class="btn-primary" style="background: #17a2b8; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="restartQuiz()">আবার চেষ্টা করো</button>
+            <button class="btn-primary" style="background: var(--text-meta); width: 100%; padding: 14px; font-size: 1.05rem;" onclick="window.location.reload()">Chapter Hub-এ ফিরুন</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// DYNAMIC BRANDING LOGIC
+// ============================================================
+const STORE_CONFIGS = {
+    "guru": {
+        title: "Guru Book Store Jhalda",
+        mainTitle: "Guru Book Store",
+        subtitle: "Jhalda",
+        tagline: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        emblem: "G"
+    },
+    "saraswati": {
+        title: "Saraswati Book Store",
+        mainTitle: "Saraswati Book Store",
+        subtitle: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        tagline: "শিক্ষা ও প্রগতির বিশ্বস্ত সঙ্গী",
+        emblem: "S"
+    }
+};
+
+function applyBranding() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let storeKey = urlParams.get('store') || localStorage.getItem("activeStore") || "";
+    storeKey = storeKey.toLowerCase();
+
+    if (storeKey && STORE_CONFIGS[storeKey]) {
+        const config = STORE_CONFIGS[storeKey];
+        document.title = `${config.title} - Class 10 Life Science Chapter 5`;
+        document.getElementById("dynamicEmblem").innerText = config.emblem;
+        document.getElementById("dynamicTitle").innerText = config.mainTitle;
+        document.getElementById("dynamicSubtitle").innerText = config.subtitle;
+        document.getElementById("dynamicTagline").innerText = config.tagline;
+        localStorage.setItem("activeStore", storeKey);
+    } else {
+        document.title = "Class 10 Life Science Chapter 5 - পরিবেশ, তার সম্পদ এবং তাদের সংরক্ষণ";
+        document.getElementById("dynamicEmblem").innerText = "🌿";
+        document.getElementById("dynamicTitle").innerText = "Life Science - Chapter 5";
+        document.getElementById("dynamicSubtitle").innerText = "পরিবেশ, তার সম্পদ এবং তাদের সংরক্ষণ";
+        document.getElementById("dynamicTagline").innerText = "দশম শ্রেণি (Class 10)";
+    }
+}
+
+// ============================================================
+// QUIZ DATA - 6 SETS (TOTAL 90 QUESTIONS)
+// ============================================================
+const STORAGE_KEY_ATTEMPTS = "testBazarAttempts_Life10_Ch5_Sets";
+const MAX_ATTEMPTS = 10;
+const TIME_LIMIT = 10 * 60;
+
+// ============================================================
+// সেট ১: জীব ভূ-রাসায়নিক চক্র (নাইট্রোজেন চক্র)
+// ============================================================
+const SET1 = {
+    name: "সেট ১",
+    icon: "🔄",
+    topic: "জীব ভূ-রাসায়নিক চক্র (নাইট্রোজেন চক্র)",
+    questions: [
+        { q: "১. বায়ুমণ্ডলে নাইট্রোজেনের পরিমাণ আনুমানিক কত শতাংশ?", opts: ["২১.০২%", "৭১.১৭%", "৭৭.১৭%", "৭৮.০৮%"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বায়ুমণ্ডলে ৭৭.১৭% নাইট্রোজেন থাকলেও জীব সরাসরি ওই নাইট্রোজেন গ্রহণ করে দেহের মধ্যে কোনো যৌগ গঠন করতে পারে না।" },
+        { q: "২. ভৌত উপায়ে বিদ্যুৎক্ষরণ ও বজ্রপাতের সময় বাতাসের গ্যাসীয় নাইট্রোজেন অক্সিজেনের সঙ্গে মিলিত হয়ে প্রথমে কোন্ যৌগ তৈরি করে?", opts: ["নাইট্রিক অক্সাইড (NO)", "নাইট্রোজেন পারঅক্সাইড (NO₂)", "নাইট্রিক অ্যাসিড (HNO₃)", "নাইট্রাস অ্যাসিড (HNO₂)"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বিদ্যুৎক্ষরণ ও বজ্রপাতের সময় বাতাসের নাইট্রোজেন গ্যাস অক্সিজেনের সঙ্গে মিলিত হয়ে নাইট্রিক অক্সাইড (NO) তৈরি করে।" },
+        { q: "৩. কোন্ স্বাধীনজীবী ব্যাকটেরিয়া বায়ুর নাইট্রোজেন আবদ্ধ করে মাটিতে নাইট্রোজেন যৌগের পরিমাণ বৃদ্ধি করে?", opts: ["রাইজোবিয়াম", "সিউডোমোনাস ডিনাইট্রিফিকানস", "নাইট্রোসোমোনাস", "অ্যাজোটোব্যাক্টর"], ans: 3, exp: "<b>ব্যাখ্যা:</b> স্বাধীনজীবী ব্যাকটেরিয়া যেমন, অ্যাজোটোব্যাক্টর, স্পাইরিলাম, ক্লসট্রিডিয়াম ইত্যাদি বায়ুর নাইট্রোজেন আবদ্ধ করে N₂ যৌগে পরিণত করে মাটির উর্বরতা বাড়ায়।" },
+        { q: "৪. শিম্বগোত্রীয় উদ্ভিদের মূলে অর্বুদ (nodule) সৃষ্টি করে কোন্ মিথোজীবী ব্যাকটেরিয়া বায়ুর নাইট্রোজেনকে যৌগে পরিণত করে?", opts: ["ব্যাসিলাস", "রাইজোবিয়াম", "নাইট্রোব্যাকটার", "ক্লসট্রিডিয়াম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> রাইজোবিয়াম জাতীয় ব্যাকটেরিয়া মটর, মসুর, ধইঞ্চা প্রভৃতি শিম্ব গোত্রীয় উদ্ভিদের মূলে অর্বুদ সৃষ্টি করে মিথোজীবীরূপে বাস করে বায়ুর নাইট্রোজেনকে যৌগে পরিণত করে।" },
+        { q: "৫. শিম্বগোত্রীয় উদ্ভিদের মূলে প্রাণীদেহের হিমোগ্লোবিন সদৃশ কোন্ যৌগ থাকার কারণে সেখানে রাইজোবিয়াম বাসা বাঁধে?", opts: ["সায়ানোগ্লোবিন", "লেগ হিমোগ্লোবিন", "মেটহিমোগ্লোবিন", "ফাইকোসায়ানিন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শিম্ব গোত্রীয় উদ্ভিদদেহে 'লেগ হিমোগ্লোবিন' নামক এক প্রকার প্রাণীদেহের হিমোগ্লোবিন সদৃশ যৌগ থাকায়, কেবলমাত্র এই গোত্রের উদ্ভিদের মূলেই রাইজোবিয়াম বাসা বাঁধে।" },
+        { q: "৬. সাইকাস (ব্যক্তবীজী গাছ) এবং অ্যাজোলা (জলজ ফার্ন)-এর মূলে বসবাসকারী কোন্ নীলাভ-সবুজ শৈবাল নাইট্রোজেন সংবন্ধন করে?", opts: ["স্পিরুলিনা", "ভলভক্স", "অ্যানাবিনা", "নস্টক"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অ্যাজোলা নামক জলজ ফার্নে ও সাইকাস নামক ব্যক্তবীজী গাছের মূলে বসবাসকারী অ্যানাবিনা নামক নীলাভ-সবুজ-শৈবাল নাইট্রোজেন সংবন্ধন করে।" },
+        { q: "৭. মাটিতে বসবাসকারী ব্যাকটেরিয়া ও ছত্রাকের ক্রিয়ায় উদ্ভিদ ও প্রাণীর মৃতদেহের প্রোটিন বিয়োজিত হয়ে অ্যামোনিয়ায় পরিণত হওয়ার পদ্ধতিকে কী বলে?", opts: ["নাইট্রিফিকেশন", "অ্যামোনিফিকেশন", "ডিনাইট্রিফিকেশন", "নাইট্রোজেন সংবন্ধন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মৃতদেহের প্রোটিন প্রথমে অ্যামাইনো অ্যাসিড, পরে অ্যামোনিয়া যৌগে পরিণত হয়ে থাকে, এই প্রক্রিয়াকে অ্যামোনিফিকেশন বলে।" },
+        { q: "৮. একটি অ্যামোনিফাইং ব্যাকটেরিয়ার (Ammonifying bacteria) উদাহরণ কোনটি?", opts: ["ব্যাসিলাস মাইকয়ডিস", "নাইট্রোসোমোনাস", "থায়োব্যাসিলাস", "অ্যাজোটোব্যাক্টর"], ans: 0, exp: "<b>ব্যাখ্যা:</b> অ্যামোনিফিকেশন প্রক্রিয়ায় অংশগ্রহণকারী ব্যাকটেরিয়াগুলিকে অ্যামোনিফাইং ব্যাকটেরিয়া বলে, যেমন- ব্যাসিলাস মাইকয়ডিস।" },
+        { q: "৯. কোন্ প্রক্রিয়ায় ব্যাকটেরিয়া মাটিতে উপস্থিত অ্যামোনিয়াকে প্রথমে নাইট্রাইট ও পরে নাইট্রেট যৌগে রূপান্তরিত করে?", opts: ["ডিনাইট্রিফিকেশন", "অ্যামোনিফিকেশন", "নাইট্রিফিকেশন", "সালফার চক্র"], ans: 2, exp: "<b>ব্যাখ্যা:</b> যে পদ্ধতিতে বিভিন্ন ব্যাকটেরিয়ার সাহায্যে মাটিতে উপস্থিত অ্যামোনিয়া প্রথমে নাইট্রাইট ও পরে নাইট্রেট যৌগে রূপান্তরিত হয়, তাকে নাইট্রিফিকেশন বলে।" },
+        { q: "১০. অ্যামোনিয়াকে নাইট্রাইটে পরিণত করতে সাহায্য করে কোন্ ব্যাকটেরিয়া?", opts: ["নাইট্রোব্যাকটার", "নাইট্রোসোমোনাস", "থায়োব্যাসিলাস", "সিউডোমোনাস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নাইট্রিফিকেশন প্রক্রিয়ায় অ্যামোনিয়া নাইট্রোসোমোনাস ব্যাকটেরিয়ার সাহায্যে নাইট্রাইটে এবং নাইট্রোব্যাকটারের সাহায্যে নাইট্রেটে পরিণত হয়।" },
+        { q: "১১. মাটি থেকে নাইট্রাইট বা নাইট্রেট বিজারিত হয়ে নাইট্রোজেন গ্যাস হিসেবে বায়ুমণ্ডলে মুক্ত হওয়ার পদ্ধতিকে কী বলে?", opts: ["ডিনাইট্রিফিকেশন", "নাইট্রিফিকেশন", "অ্যামোনিফিকেশন", "বায়ো-ম্যাগনিফিকেশন"], ans: 0, exp: "<b>ব্যাখ্যা:</b> যে পদ্ধতিতে নাইট্রাইট বা নাইট্রেট থেকে নাইট্রোজেন বায়ুমণ্ডলে মুক্ত হয়, তাকে ডিনাইট্রিফিকেশন বলে।" },
+        { q: "১২. একটি ডিনাইট্রিফাইং (Denitrifying) ব্যাকটেরিয়ার উদাহরণ হলো—", opts: ["নাইট্রোসোমোনাস", "রাইজোবিয়াম", "সিউডোমোনাস ডিনাইট্রিফিকানস", "অ্যাজোটোব্যাক্টর"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সিউডোমোনাস ডিনাইট্রিফিকানস এবং থায়োব্যাসিলাস ডিনাইট্রিফিকানস প্রভৃতি ডিনাইট্রিফাইং ব্যাকটেরিয়া নাইট্রেট যৌগকে বিজারিত করে নাইট্রোজেন গ্যাস উৎপন্ন করে।" },
+        { q: "১৩. গ্রিন হাউস গ্যাস নাইট্রাস অক্সাইড (N₂O) বায়ুমণ্ডলের ওপরের স্তরে গিয়ে কোন্ গ্যাসে পরিবর্তিত হয়ে ওজোন স্তরের ঘনত্ব নিয়ন্ত্রণে প্রভাব বিস্তার করে?", opts: ["নাইট্রোজেন ডাই-অক্সাইড (NO₂)", "নাইট্রিক অক্সাইড (NO)", "অ্যামোনিয়া (NH₃)", "কার্বন মনোক্সাইড (CO)"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নাইট্রাস অক্সাইড গ্যাসটি বায়ুমণ্ডলের উপরের স্তরে গিয়ে নাইট্রিক অক্সাইডে (NO) পরিবর্তিত হয়ে ওজোন স্তরের ঘনত্ব নিয়ন্ত্রণে প্রভাব বিস্তার করে।" },
+        { q: "১৪. বৃষ্টির জলের সঙ্গে নাইট্রোজেন পারঅক্সাইড দ্রবীভূত হয়ে কোন্ দুটি অ্যাসিড তৈরি করে যা অম্লবৃষ্টির কারণ?", opts: ["নাইট্রাস অ্যাসিড ও নাইট্রিক অ্যাসিড", "সালফিউরিক অ্যাসিড ও কার্বনিক অ্যাসিড", "হাইড্রোক্লোরিক অ্যাসিড ও নাইট্রিক অ্যাসিড", "ফসফরিক অ্যাসিড ও নাইট্রাস অ্যাসিড"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বৃষ্টির জলের সঙ্গে নাইট্রোজেন পারঅক্সাইড (NO₂) দ্রবীভূত হয়ে নাইট্রাস অ্যাসিড (HNO₂) ও নাইট্রিক অ্যাসিড (HNO₃)-এ রূপান্তরিত হয়।" },
+        { q: "১৫. সবুজ উদ্ভিদ মাটি থেকে নাইট্রোজেনকে প্রধানত কী রূপে গ্রহণ করে নিজদেহে অ্যামাইনো অ্যাসিড ও প্রোটিন উৎপন্ন করে?", opts: ["গ্যাসীয় নাইট্রোজেন", "নাইট্রেট, নাইট্রাইট ও অ্যামোনিয়া", "নাইট্রিক অক্সাইড", "নাইট্রোজেন ডাই-অক্সাইড"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সবুজ উদ্ভিদ মাটি থেকে নাইট্রেট, নাইট্রাইট ও কোনো কোনো ক্ষেত্রে অ্যামোনিয়ারূপে নাইট্রোজেন ঘটিত যৌগ গ্রহণ করে নিজদেহে অ্যামাইনো অ্যাসিড এবং প্রোটিন উৎপন্ন করে।" }
+    ]
+};
+
+// ============================================================
+// সেট ২: পরিবেশ দূষণ (বায়ু, জল, মাটি, শব্দ)
+// ============================================================
+const SET2 = {
+    name: "সেট ২",
+    icon: "🏭",
+    topic: "পরিবেশ দূষণ (বায়ু, জল, মাটি, শব্দ)",
+    questions: [
+        { q: "১. 'বায়ু, জল, মৃত্তিকা ইত্যাদির ভৌত রাসায়নিক ও জৈব ধর্মের অবাঞ্ছিত পরিবর্তন যা মানুষের ওপর প্রভাব বিস্তার করে, তাকে দূষণ বলে।'— এই সংজ্ঞাটি কোন্ বিজ্ঞানীর?", opts: ["ল্যামার্ক", "ওডাম", "মেন্ডেল", "হ্যালডেন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিজ্ঞানী ওডাম-এর মতে, বায়ু, জল, মৃত্তিকা ইত্যাদির ভৌত রাসায়নিক ও জৈব ধর্মের অবাঞ্ছিত পরিবর্তন যা মানুষের ওপর প্রভাব বিস্তার করে, তাকে দূষণ বলে।" },
+        { q: "২. নিচের কোনটি গ্রিন হাউস গ্যাস (GHG) নয়?", opts: ["কার্বন ডাই-অক্সাইড", "মিথেন", "অক্সিজেন", "ক্লোরোফ্লুরো কার্বন (CFC)"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কার্বন ডাই অক্সাইড, মিথেন, ক্লোরোফ্লুরো কার্বন (CFC), ওজোন, জলীয় বাষ্প, নাইট্রাস অক্সাইড প্রভৃতি হলো গ্রিন হাউস গ্যাস।" },
+        { q: "৩. অ্যাসিড বৃষ্টিতে (Acid rain) সবথেকে বেশি পরিমাণে (৬০-৭০%) কোন্ অ্যাসিড থাকে?", opts: ["নাইট্রিক অ্যাসিড (HNO₃)", "হাইড্রোক্লোরিক অ্যাসিড (HCl)", "সালফিউরিক অ্যাসিড (H₂SO₄)", "কার্বনিক অ্যাসিড"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অ্যাসিড বৃষ্টিতে 60-70% H₂SO₄, 40% HNO₃ এবং 3% HCl থাকে।" },
+        { q: "৪. আগ্রার তাজমহল ক্ষতিগ্রস্ত হওয়ার পেছনে কোন্ রাসায়নিক দূষণ দায়ী?", opts: ["কানপুরের চামড়া কারখানা", "মথুরার তৈল শোধনাগারের রাসায়নিক দূষণ", "দিল্লির প্লাস্টিক কারখানা", "ভোপালের গ্যাস দূষণ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মথুরার তৈল শোধনাগারের রাসায়নিক দূষণ আগ্রার অ্যাসিড বৃষ্টির কারণ- যা তাজমহলের প্রভূত ক্ষতিসাধন করছে।" },
+        { q: "৫. জলাশয়ে ফসফেট, নাইট্রেট, ডিটারজেন্ট ইত্যাদির আধিক্যে পুষ্টির প্রাচুর্য ঘটাকে কী বলে?", opts: ["বায়োম্যাগনিফিকেশন", "ইউট্রফিকেশন", "গ্রিন হাউস প্রভাব", "গ্লোবাল ওয়ার্মিং"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জলাশয়ে ফসফেট, নাইট্রেট, ডিটারজেন্ট ইত্যাদির আধিক্যে পুষ্টির প্রাচুর্য ঘটাকে ইউট্রিফিকেশান বলে।" },
+        { q: "৬. ইউট্রফিকেশনের ফলে জলাশয়ে ফাইটোপ্ল্যাংকটন ও শৈবালের অত্যাধিক বৃদ্ধি ঘটে অক্সিজেনের পরিমাণ কমে যাওয়াকে কী বলে?", opts: ["শৈবাল ব্লুম (Algal bloom)", "জু-প্ল্যাংকটন ব্লুম", "হাইড্রোফাইট", "হ্যালোফাইট"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ইউট্রফিকেশনের প্রভাবে ফাইটো প্ল্যাংকটনের সংখ্যা বেড়ে যায় এবং শৈবালের বৃদ্ধি ঘটে ও অক্সিজেনের পরিমাণ কমে যায়, একে শৈবাল ব্লুম (Algal bloom) বলে।" },
+        { q: "৭. জলে জৈব উপাদানের পরিমাণ বৃদ্ধি পেলে, তাদের বিয়োজনে নিয়োজিত জীবাণুর যে পরিমাণ অক্সিজেনের প্রয়োজন হয়, তাকে কী বলে?", opts: ["COD", "BOD (Biological Oxygen Demand)", "DO", "SPM"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জলে জৈব উপাদানের পরিমাণ বৃদ্ধি পেলে, তাদের বিয়োজনে নিয়োজিত জীবাণুর যে অক্সিজেনের প্রয়োজনীয়তা দরকার হয়, তাকে Biological Oxygen Demand বা BOD বলে।" },
+        { q: "৮. 'ভিব্রিও কলেরি' (Vibrio cholerae) নামক ব্যাকটেরিয়া মানুষের দেহে কোন্ রোগ সৃষ্টি করে?", opts: ["টাইফয়েড", "আমাশয়", "কলেরা", "টিটেনাস"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভিব্রিও কলেরি নামক ব্যাকটেরিয়া মানুষের কলেরা রোগ সৃষ্টি করে যা দূষিত জলের মাধ্যমে ছড়ায়।" },
+        { q: "৯. 'সালমোনেলা টাইফোসা' (Salmonella typhosa) জীবাণুটি কোন্ রোগ ছড়ায়?", opts: ["টাইফয়েড", "কলেরা", "যক্ষ্মা", "পোলিও"], ans: 0, exp: "<b>ব্যাখ্যা:</b> সালমোনেলা টাইফোসা নামক ব্যাকটেরিয়া টাইফয়েড রোগ সৃষ্টি করে এবং এরা খাদ্য এবং জলের সঙ্গে দেহে প্রবেশ করে।" },
+        { q: "১০. মাটিতে উপস্থিত 'ক্লসট্রিডিয়াম টিটেনি' নামক ব্যাকটেরিয়া মানুষের শরীরে আঘাতপ্রাপ্ত স্থান দিয়ে প্রবেশ করলে কোন্ রোগ হয়?", opts: ["ইটাই ইটাই", "মিনামাটা", "ডিসলেক্সিয়া", "টিটেনাস"], ans: 3, exp: "<b>ব্যাখ্যা:</b> মাটিতে উপস্থিত ক্লসট্রিডিয়াম টিটেনি নামক ব্যাকটেরিয়া আঘাতপ্রাপ্ত স্থান দিয়ে মানুষের শরীরে প্রবেশ করলে টিটেনাস রোগ দেখা যায়।" },
+        { q: "১১. অভঙ্গুর দূষক পদার্থ (যেমন D.D.T.) খাদ্য শৃঙ্খলের এক ট্রপিক স্তর থেকে পরবর্তী স্তরে প্রবেশ করলে তার ঘনত্ব ক্রমশ বৃদ্ধি পাওয়ার ঘটনাকে কী বলে?", opts: ["ইউট্রফিকেশন", "জীব বিবর্ধন (Biomagnification)", "নাইট্রোজেন সংবন্ধন", "অ্যামোনিফিকেশন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> অভঙ্গুর দূষক পদার্থ খাদ্য শৃঙ্খলের ট্রপিক স্তরে প্রবেশ করলে এক স্তর হতে পরবর্তী স্তরে সেই রাসায়নিকটির পরিমাণ বৃদ্ধি পায় এবং সর্বোচ্চ স্তরে সর্বোচ্চ পরিমাণে পৌঁছোয়, একে জীব বিবর্ধন বলে।" },
+        { q: "১২. ক্যাডমিয়াম দূষণের ফলে মানুষের দেহে কোন্ রোগ সৃষ্টি হয়?", opts: ["মিনামাটা", "ডিসলেক্সিয়া", "টিটেনাস", "ইটাই ইটাই"], ans: 3, exp: "<b>ব্যাখ্যা:</b> মাটিতে উপস্থিত ক্যাডমিয়াম হতে ইটাই ইটাই রোগ হয়।" },
+        { q: "১৩. জীব বিবর্ধনের ফলে সর্বোচ্চ পুষ্টিস্তরের প্রাণীদের, বিশেষ করে পাখিদের ক্ষেত্রে কী মারাত্মক ক্ষতি দেখা যায়?", opts: ["তাদের দৃষ্টিশক্তি নষ্ট হয়", "ডিমের খোলক ভঙ্গুর হয়ে যায়", "পালক ঝরে যায়", "ডানা ছোট হয়ে যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পাখির ডিমের খোলকের ক্যালশিয়াম কার্বোনেটের সাথে DDT বিক্রিয়া করে যে যুত যৌগ তৈরি করে, তাতে ডিমের খোলক ভঙ্গুর হয়ে যায় এবং শাবকের মৃত্যু হওয়ায় কিছু পক্ষী প্রজাতির বিলুপ্তি ঘটে।" },
+        { q: "১৪. সাধারণ মানুষের জন্য শব্দের গ্রহণযোগ্য মাত্রা কত ডেসিবেল (dB)?", opts: ["৪০ dB", "৬০ dB", "৯০ dB", "১২০ dB"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শব্দের কম্পাঙ্ক নির্দিষ্ট ডেসিবেলের বেশি হলে শব্দদূষণ হয়, শব্দের গ্রহণযোগ্য মাত্রা হল 60dB (ডেসিবেল)।" },
+        { q: "১৫. কত ডেসিবেল (dB) বা তার বেশি কম্পাঙ্কের শব্দের কারণে মানুষের কানের পর্দা ফেটে যেতে পারে?", opts: ["৬০-৭০ dB", "৯০-১২০ dB", "৫০-৬০ dB", "২০-৩০ dB"], ans: 1, exp: "<b>ব্যাখ্যা:</b> 90-120dB বা বেশি কম্পাঙ্কে কানের পর্দা ফেটে যেতে পারে।" }
+    ]
+};
+
+// ============================================================
+// সেট ৩: পরিবেশ ও মানব জনসমষ্টি (ক্রমবর্ধমান জনসংখ্যার সমস্যা)
+// ============================================================
+const SET3 = {
+    name: "সেট ৩",
+    icon: "👥",
+    topic: "পরিবেশ ও মানব জনসমষ্টি (ক্রমবর্ধমান জনসংখ্যার সমস্যা)",
+    questions: [
+        { q: "১. মানব জনসংখ্যা সম্পর্কে বিজ্ঞানসম্মত অধ্যয়নকে কী বলা হয়?", opts: ["ডেমোগ্রাফি", "ইকোলজি", "প্যালিয়ন্টোলজি", "এথোলজি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মানব জনসংখ্যা সম্পর্কে অধ্যয়নকে ডেমোগ্রাফি (Demography) বলে।" },
+        { q: "২. কোনো নির্দিষ্ট অঞ্চলে বসবাসকারী একটি প্রজাতির জীবগোষ্ঠীকে একত্রে কী বলে?", opts: ["পপুলেশন", "বায়োম", "ইকোসিস্টেম", "বায়োস্ফিয়ার"], ans: 0, exp: "<b>ব্যাখ্যা:</b> কোনো নির্দিষ্ট অঞ্চলে বসবাসকারী একটি প্রজাতির জীবগোষ্ঠীকে পপুলেশন বলে।" },
+        { q: "৩. একক সময়ে কোনো পপুলেশনে প্রজাতির সদস্য সংখ্যা যে হারে বৃদ্ধি পায় (জন্মহার), তাকে কী বলে?", opts: ["মর্টালিটি", "ন্যাটালিটি", "ডেনসিটি", "মাইগ্রেশন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পপুলেশান প্রজাতির সদস্য সংখ্যা একক সময়ে যে বৃদ্ধি পায় তাকে ন্যাটালিটি বা জন্মহার বলে।" },
+        { q: "৪. যে সকল প্রাকৃতিক সম্পদের ভাণ্ডার একবার নিঃশেষ হলে আর পূরণ করা সম্ভব নয়, তাদের কী বলে?", opts: ["নবীকারী সম্পদ", "অপরিবর্তনীয় সম্পদ", "অনবীকারী প্রাকৃতিক সম্পদ", "চিরস্থায়ী সম্পদ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> যে সকল প্রাকৃতিক সম্পদ ব্যবহারের মাধ্যমে খরচ করার পর আর পূরণ করা সম্ভব হবে না, তাদের অনবীকারী প্রাকৃতিক সম্পদ (Non-renewable) বলা হয়।" },
+        { q: "৫. নিচের কোনটি একটি নবীকারী (Renewable) প্রাকৃতিক সম্পদের উদাহরণ?", opts: ["কয়লা", "খনিজ তেল", "প্রাকৃতিক গ্যাস", "মৎস্যসম্পদ বা অরণ্যসম্পদ"], ans: 3, exp: "<b>ব্যাখ্যা:</b> যে সকল সম্পদের হ্রাস সুপরিকল্পিত প্রচেষ্টায় পূরণ করা সম্ভব তাদের নবীকারী সম্পদ বলে, যেমন- মৎস্যসম্পদ, অরণ্যসম্পদ ইত্যাদি।" },
+        { q: "৬. পরিবেশে গ্রিন হাউস গ্যাসের পরিমাণ বৃদ্ধির ফলে বায়ুমণ্ডলের কোন্ স্তরের মারাত্মক ক্ষতি হচ্ছে যা অতিবেগুনি রশ্মিকে ভূপৃষ্ঠে আসতে সাহায্য করছে?", opts: ["ট্রপোস্ফিয়ার", "মেসোস্ফিয়ার", "ওজোন স্তর", "আয়নোস্ফিয়ার"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বিশ্বউষ্ণায়নের ফলে ওজোন স্তরের ক্ষয় ও ওজোন ছিদ্রের সৃষ্টি হচ্ছে, যা CFC, নাইট্রাস অক্সাইড এবং হাইড্রোকার্বনের কারণে ঘটে।" },
+        { q: "৭. কৃষিকাজে ভূগর্ভস্থ জলের যথেচ্ছ ব্যবহারের ফলে পরিবেশের কোন্ মারাত্মক সমস্যাটি দেখা দিচ্ছে?", opts: ["বায়ুদূষণ", "মাটির ক্ষয়", "মিষ্টি জলের অভাব ও পানীয় জলের সংকট", "বিশ্বউষ্ণায়ন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কৃষিকাজে ভূগর্ভস্থ জলের যথেচ্ছ ব্যবহারের ফলে ভূগর্ভস্থ জলের স্তর অনেক নীচে নেমে যাচ্ছে, ফলে পানীয় জলের অভাব ঘটছে।" },
+        { q: "৮. পেশাজনিত রোগ 'অ্যাসবেস্টোসিস' প্রধানত কোন্ কারণে হয়?", opts: ["বালি কণার কারণে", "কয়লার গুঁড়োর কারণে", "অ্যাসবেস্টাস তন্তুর কারণে", "আখের তন্তুর কারণে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অ্যাসবেস্টাস তন্তুর কারণে যে রোগ হয় তাকে অ্যাসবেস্টোসিস বলে।" },
+        { q: "৯. কয়লাখনিতে কর্মরত শ্রমিকদের কয়লার গুঁড়োর কারণে ফুসফুসে যে পেশাজনিত রোগটি হয় তার নাম কী?", opts: ["বিসিনোসিস", "সিলিকোসিস", "অ্যানথ্রাকোসিস", "ব্যাগাসোসিস"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কয়লার গুঁড়োর কারণে যে রোগ হয় তাকে অ্যানথ্রাকোসিস বলে।" },
+        { q: "১০. কার্পাস তন্তু বা তুলো নিয়ে কাজ করা শ্রমিকদের কোন্ ফুসফুসের রোগ হওয়ার সম্ভাবনা বেশি থাকে?", opts: ["ব্যাগাসোসিস", "বিসিনোসিস", "সিলিকোসিস", "অ্যাসবেস্টোসিস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কার্পাস তন্তু বা তুলোর কারণে যে রোগ হয় তাকে বিসিনোসিস বলে।" },
+        { q: "১১. বালি কণা বা সিলিকা ধূলিকণা দীর্ঘকাল ধরে প্রশ্বাসের সাথে ফুসফুসে প্রবেশ করলে কোন্ রোগটি হয়?", opts: ["সিলিকোসিস", "ব্রঙ্কাইটিস", "অ্যানথ্রাকোসিস", "বিসিনোসিস"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বালি কণার কারণে ফুসফুসে যে পেশাজনিত রোগ হয় তাকে সিলিকোসিস বলে।" },
+        { q: "১২. আখের তন্তুর কারণে মানুষের যে পেশাজনিত রোগ হয়, তার নাম কী?", opts: ["বিসিনোসিস", "অ্যানথ্রাকোসিস", "ব্যাগাসোসিস", "সিলিকোসিস"], ans: 2, exp: "<b>ব্যাখ্যা:</b> আখের তন্তুর কারণে যে পেশাজনিত রোগ হয় তাকে ব্যাগাসোসিস বলে।" },
+        { q: "১৩. হাঁপানি বা অ্যাজমা রোগের ক্ষেত্রে অ্যালারজেন শরীরে প্রবেশ করলে মাস্ট কোশ থেকে কোন্ রাসায়নিক পদার্থ ক্ষরিত হয়?", opts: ["ইনসুলিন ও গ্লুকাগন", "হিস্টামিন ও সেরোটনিন", "থাইরক্সিন ও অ্যাড্রেনালিন", "অক্সিটোসিন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> অ্যাজমা রোগে অ্যালারজেন প্রবেশ করলে মাস্ট কোশ হতে হিস্টামিন ও সেরোটনিনের ক্ষরণ হয়, যা ক্লোমশাখার ব্যাস হ্রাস করে শ্বাসকষ্ট ঘটায়।" },
+        { q: "১৪. ক্যানসার সৃষ্টিকারী ক্ষতিকারক পদার্থগুলিকে (যেমন- এক্স রে, হাইড্রোকার্বন, নিকোটিন) সাধারণভাবে কী বলা হয়?", opts: ["অ্যালারজেন", "অ্যান্টিজেন", "কারসিনোজেন", "প্যাথোজেন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ক্যানসার সৃষ্টিকারকদের কারসিনোজেন (Carcinogen) বলে।" },
+        { q: "১৫. কারসিনোজেনের প্রভাবে স্বাভাবিক কোশের 'প্রোটো অঙ্কোজিন' কিসে পরিণত হলে ম্যালিগন্যান্ট টিউমার বা ক্যানসার দেখা যায়?", opts: ["হেটেরোক্রোমাটিন", "অঙ্কোজিন", "মিউটাজেন", "প্লাজমিড"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কারসিনোজেনের প্রভাবে প্রোটো অঙ্কোজিন অঙ্কোজিনে পরিণত হলে বিনাইন টিউমার দেখা যায় এবং মেটাস্টাসিস হলে তাকে ম্যালিগন্যান্ট টিউমার বা ক্যানসার বলা হয়।" }
+    ]
+};
+
+// ============================================================
+// সেট ৪: জীববৈচিত্র্য ও তার হটস্পট
+// ============================================================
+const SET4 = {
+    name: "সেট ৪",
+    icon: "🌎",
+    topic: "জীববৈচিত্র্য ও তার হটস্পট",
+    questions: [
+        { q: "১. ১৯৮৫ খ্রিস্টাব্দে 'Biodiversity' বা জীববৈচিত্র্য শব্দটি প্রথম কে প্রবর্তন করেন?", opts: ["নরম্যান মায়ার্স", "ডব্লিউ. জি. রোজেন (W. G. Rosen)", "চার্লস ডারউইন", "ওডাম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিজ্ঞানী W. G. Rasen (Rosen) 1985 খ্রিস্টাব্দে 'Biodiversity' শব্দটি প্রবর্তন করেন।" },
+        { q: "২. কোনো একটি প্রজাতির অন্তর্ভুক্ত জীবদের জিনের রূপভেদের কারণে যে বৈচিত্র্য দেখা যায় তাকে কী বলে?", opts: ["জিনগত বৈচিত্র্য", "প্রজাতিগত বৈচিত্র্য", "বাস্তুতান্ত্রিক বৈচিত্র্য", "পরিবেশগত বৈচিত্র্য"], ans: 0, exp: "<b>ব্যাখ্যা:</b> জিনগত বৈচিত্র্য কোনো প্রজাতির মধ্যে জিনের রূপভেদে ঘটে থাকে।" },
+        { q: "৩. ক্যানসারের চিকিৎসায় ব্যবহৃত ঔষধ বা ড্রাগ 'ট্যাক্সল' কোন্ উদ্ভিদ থেকে সংগ্রহ করা হয়?", opts: ["সর্পগন্ধা", "কুইনাইন গাছ", "ট্যাক্সাস", "ধুতুরা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উদ্ভিদ থেকে ট্যাক্সল সংগ্রহ করা হয় এবং ট্যাক্সল ক্যানসারের চিকিৎসায় ব্যবহার করা হয়।" },
+        { q: "৪. ১৯৮৮ খ্রিস্টাব্দে 'বায়োডাইভারসিটি হটস্পট' (Biodiversity Hotspots) ধারণাটি প্রথম কে প্রবর্তন করেন?", opts: ["নরম্যান মায়ার্স (Norman Myers)", "রোজেন", "হ্যালডেন", "ল্যামার্ক"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বিজ্ঞানী Norman Myers 1988 খ্রিস্টাব্দে প্রথম hotspots ধারণার প্রবর্তন করেন।" },
+        { q: "৫. কোনো অঞ্চলকে হটস্পট হিসেবে চিহ্নিত করার জন্য সেই অঞ্চলের প্রাথমিক উদ্ভিদ সম্প্রদায়ের কমপক্ষে কত শতাংশের অবলুপ্তি ঘটা আবশ্যিক শর্ত?", opts: ["৫০ শতাংশ", "৩০ শতাংশ", "৭০ শতাংশ", "৯০ শতাংশ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> হটস্পট নির্ধারণের শর্ত অনুযায়ী, ওই অঞ্চলের প্রাথমিক উদ্ভিদ সম্প্রদায়ের কমপক্ষে 70 শতাংশের (বা তার বেশি) অবলুপ্তি ঘটা আবশ্যিক।" },
+        { q: "৬. বিশ্বে বর্তমানে মোট কয়টি বায়োডাইভারসিটি হটস্পট রয়েছে?", opts: ["১৮ টি", "২৪ টি", "৩৬ টি", "৪২ টি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বর্তমানে বিশ্বে মোট 36টি বায়োডাইভারসিটি হটস্পট বিভিন্ন স্থানে ছড়িয়ে রয়েছে।" },
+        { q: "৭. ভারতের বায়োডাইভারসিটি হটস্পটের সংখ্যা কয়টি?", opts: ["২ টি", "৩ টি", "৪ টি", "৫ টি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের চারটি হটস্পট অঞ্চল হল পূর্ব হিমালয়, ইন্দো-বার্মা, পশ্চিমঘাট ও শ্রীলঙ্কা এবং সুন্দাল্যান্ড।" },
+        { q: "৮. উত্তর-পূর্ব ভারতের মণিপুর, মিজোরাম, মেঘালয় এবং দক্ষিণ চিনের কিছু অংশ কোন্ হটস্পটের অন্তর্গত?", opts: ["পূর্ব হিমালয়", "ইন্দো-বার্মা", "সুন্দাল্যান্ড", "পশ্চিমঘাট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ইন্দো-বার্মা হটস্পটের ভৌগোলিক বিস্তার হলো উত্তর-পূর্ব ভারতের মণিপুর, মিজোরাম, ত্রিপুরা, মেঘালয় সহ দক্ষিণ চিনের কিছু অংশ।" },
+        { q: "৯. ভারতের কোন্ হটস্পট অঞ্চলে 'লায়ন-টেল্ড ম্যাকাক' (Lion-tailed macaque) নামক বিপন্ন প্রাণী দেখা যায়?", opts: ["পূর্ব হিমালয়", "সুন্দাল্যান্ড", "পশ্চিমঘাট ও শ্রীলঙ্কা", "ইন্দো-বার্মা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পশ্চিমঘাট ও শ্রীলঙ্কা হটস্পট অঞ্চলের প্রাণীদের উদাহরণ হলো লায়ন-টেল্ড ম্যাকাক, সিভেট ইত্যাদি।" },
+        { q: "১০. আন্দামান ও নিকোবর দ্বীপপুঞ্জ ভারতের কোন্ হটস্পটের অন্তর্ভুক্ত?", opts: ["পূর্ব হিমালয়", "পশ্চিমঘাট", "সুন্দাল্যান্ড", "ইন্দো-বার্মা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সুন্দাল্যান্ড হটস্পটের ভৌগোলিক বিস্তার হলো আন্দামান ও নিকোবর দ্বীপপুঞ্জ।" },
+        { q: "১১. 'নিকোবরি হর্নবিল' (Nicobar hornbill) কোন্ হটস্পট অঞ্চলের একটি এন্ডেমিক পাখি?", opts: ["সুন্দাল্যান্ড", "ইন্দো-বার্মা", "পূর্ব হিমালয়", "পশ্চিমঘাট"], ans: 0, exp: "<b>ব্যাখ্যা:</b> সুন্দাল্যান্ড হটস্পট অঞ্চলের প্রাণীর উদাহরণ হলো ডলফিন, কাঁকড়া, নিকোবরি হর্নবিল ইত্যাদি।" },
+        { q: "১২. কলসপত্রী উদ্ভিদ ভারতের কোন্ হটস্পট অঞ্চলে দেখতে পাওয়া যায়?", opts: ["সুন্দাল্যান্ড", "পশ্চিমঘাট", "ইন্দো-বার্মা", "পূর্ব হিমালয়"], ans: 3, exp: "<b>ব্যাখ্যা:</b> পূর্ব হিমালয় হটস্পট অঞ্চলে এন্ডেমিক/বিপন্ন প্রজাতির উদাহরণ হলো কলসপত্রী, ম্যাগনোলিয়া ইত্যাদি।" },
+        { q: "১৩. কোন্ হটস্পট অঞ্চলে সর্বাধিক ২৫,০০০ উদ্ভিদ প্রজাতি বিন্যস্ত রয়েছে?", opts: ["পূর্ব হিমালয়", "ইন্দো-বার্মা", "সুন্দাল্যান্ড", "পশ্চিমঘাট"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সুন্দাল্যান্ড হটস্পট অঞ্চলে 25000 উদ্ভিদ প্রজাতি বিন্যস্ত রয়েছে।" },
+        { q: "১৪. হটস্পট নির্ধারণের প্রথম শর্ত অনুযায়ী, একটি স্থানে পৃথিবীর মোট উদ্ভিদ প্রজাতির অন্তত কত শতাংশ (বা ১৫০০ প্রজাতি) ওই অঞ্চলের নিজস্ব বা এন্ডেমিক হতে হবে?", opts: ["০.৫%", "১.৫%", "২.০%", "৫.০%"], ans: 0, exp: "<b>ব্যাখ্যা:</b> হটস্পট নির্ধারণের শর্ত হলো ওই অঞ্চলে পৃথিবীর সমস্ত উদ্ভিদ প্রজাতির 0.5 শতাংশ তার নিজস্ব হতে হবে অর্থাৎ 1500 এনডেমিক প্রজাতির উদ্ভিদ ওই স্থানে থাকবে।" },
+        { q: "১৫. ভারতের পূর্ব হিমালয় হটস্পটে কতগুলি উদ্ভিদ প্রজাতি বিন্যস্ত রয়েছে?", opts: ["১৩,৫০০", "৫,৭০০", "২৫,০০০", "৫,০০০"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পূর্ব হিমালয় হটস্পটে 5700 উদ্ভিদ প্রজাতি বিন্যস্ত রয়েছে।" }
+    ]
+};
+
+// ============================================================
+// সেট ৫: জীববৈচিত্র্য হ্রাসের কারণ এবং সুন্দরবনের সমস্যা
+// ============================================================
+const SET5 = {
+    name: "সেট ৫",
+    icon: "🌊",
+    topic: "জীববৈচিত্র্য হ্রাসের কারণ এবং সুন্দরবনের সমস্যা",
+    questions: [
+        { q: "১. প্রশান্ত মহাসাগরের গোয়াম দ্বীপপুঞ্জে কোন্ বহিরাগত প্রজাতির অনুপ্রবেশের ফলে ১০টি এন্ডেমিক পাখির বিলুপ্তি ঘটেছিল?", opts: ["ল্যান্টানা ক্যামেরা", "বাদামী গেছো সাপ (বোইগা ইরেগুলারিস)", "ম্যালেরিয়ার মশা", "আফ্রিকান ক্যাটফিশ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> গোয়াম দ্বীপপুঞ্জে বাদামী গেছো সাপ বোইগা ইরেগুলারিস ছেড়ে দেওয়ার পর কয়েক বছরের মধ্যে ওই দ্বীপপুঞ্জের প্রায় 10টি এনডেমিক পক্ষী প্রজাতির বিলুপ্তি ঘটেছে।" },
+        { q: "২. মেক্সিকো থেকে ১৮০৯ সালে ভারতে প্রবেশ করা কোন্ বহিরাগত বাহারি গাছ বর্তমানে আগাছা হিসেবে দেশীয় প্রজাতিদের বিপন্ন করছে?", opts: ["পার্থেনিয়াম", "কচুরিপানা", "ল্যান্টানা ক্যামেরা", "ইউক্যালিপটাস"], ans: 2, exp: "<b>ব্যাখ্যা:</b> এক প্রকারের বাহারী গাছ ল্যান্টানা ক্যামেরা মেক্সিকো থেকে 1809 সালে প্রবেশ করেছিল, যা বর্তমানে নিজস্ব আগাছা প্রজাতিদের বিপন্ন করছে।" },
+        { q: "৩. গোরুর মাংসে থাকা কোন্ রাসায়নিক ওষুধের প্রভাবে শকুনের সংখ্যা ভারতে মারাত্মকভাবে হ্রাস পেয়েছে?", opts: ["প্যারাসিটামল", "ডাইক্লোফেনেক", "পেনিসিলিন", "অ্যাসপিরিন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> গোরুর মাংসের সঙ্গে ডাইক্লোফেনেক ভক্ষণ করে শকুন ক্ষতিগ্রস্ত হয়েছে এবং তাদের সংখ্যা হ্রাস পেয়েছে।" },
+        { q: "৪. হাজার হাজার বছর আগে পৃথিবীর তাপমাত্রা মারাত্মকভাবে কমে যাওয়ার ফলে কোন্ সুবিশাল প্রাণীর অবলুপ্তি ঘটেছিল?", opts: ["ম্যামথ", "ডায়নোসাউর", "ডোডো পাখি", "মেগালোডন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> হাজার হাজার বছর আগে যখন পৃথিবীর তাপমাত্রা কমে গেছিল তখন ডায়নোসাউরদের অবলুপ্তি ঘটেছে।" },
+        { q: "৫. সমুদ্রে কোরাল বা প্রবাল নষ্ট হয়ে যাওয়ার প্রধান কারণ কোনটি?", opts: ["শিকার", "বিশ্ব উষ্ণায়ন বা সমুদ্রের জলের তাপমাত্রা বৃদ্ধি", "বহিরাগত প্রজাতি", "অতিব্যবহার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিশ্ব উষ্ণায়নের ফলে সমুদ্রের জলে কোরাল নষ্ট হতে চলেছে, ফলে কোরাল নির্ভর বহু জীবের অবলুপ্তি আসন্ন।" },
+        { q: "৬. ভেষজ ঔষধ প্রস্তুতকারী সংস্থাগুলির ক্রমবর্ধমান চাহিদা মেটানোর জন্য বনজঙ্গল থেকে ওষধি বৃক্ষলতা নির্বিচারে সংগ্রহ করাকে জীববৈচিত্র্য হ্রাসের কোন্ কারণ হিসেবে চিহ্নিত করা যায়?", opts: ["অতিব্যবহার", "দূষণ", "চোরাশিকার", "বহিরাগত প্রজাতি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ভেষজ ঔষধ প্রস্তুতকারী সংস্থাগুলি ঔষধ শিল্পের ক্রমবর্ধমান চাহিদা পূরণে বন থেকে বহু ওষধি বৃক্ষলতা নির্বিচারে সংগ্রহ করছে, যা অতিব্যবহারের (Overexploitation) উদাহরণ।" },
+        { q: "৭. সুন্দরবনের কোন্ বৃক্ষের আধিপত্য ও চকচকে আভার কারণে সম্ভবত এই বনাঞ্চলের নাম 'সুন্দরবন' হয়েছে?", opts: ["গরাণ", "সুন্দরী গাছ", "গেঁও", "কেওড়া"], ans: 1, exp: "<b>ব্যাখ্যা:</b> চকচকে আভা প্রদর্শনকারী সুন্দরী গাছের আধিপত্য চোখে পড়ার মতো এবং কেউ কেউ ভিন্ন মত পোষণ করলেও 'সুন্দরবন' নামটি যে সুন্দরী গাছ থেকে এসেছে তাতে কোনো সন্দেহ নেই।" },
+        { q: "৮. জীববৈচিত্র্যের গুরুত্ব অনুধাবন করে কত সালে UNESCO সুন্দরবনকে 'World Heritage' হিসেবে বর্ণনা করেছে?", opts: ["১৯৭২ সালে", "১৯৮৫ সালে", "১৯৯৭ সালে", "২০০৫ সালে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সুন্দরবনের জীববৈচিত্র্যের গুরুত্ব অনুধাবন করে 1997 সালে UNESCO একে World heritage হিসেবে বর্ণনা করেছেন।" },
+        { q: "৯. দক্ষিণ ভারতে কোন্ অর্থকরী বৃক্ষ বাণিজ্যিক ভিত্তিতে রোপণ করার জন্য হাতির বিশাল আবাসস্থল ধ্বংস করা হয়েছে?", opts: ["শাল ও সেগুন", "ইউক্যালিপটাস, কাগজমণ্ড বা কাঠের জন্য সেগুন বা সিলভার ওক", "রাবার গাছ", "মেহগনি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দক্ষিণ ভারতে হাতির আবাসস্থল ধ্বংস করে ব্যবসায়িক ভিত্তিতে ইউক্যালিপটাস, কাগজমণ্ড বা কাঠের জন্য সেগুন বা সিলভার ওক চাষের ব্যবস্থা করা হয়েছে।" },
+        { q: "১০. আন্তর্জাতিক বাজারে পশুর কোন্ দেহাংশ চোরা পথে বেশি অর্থের বিনিময়ে বিক্রি হওয়ার কারণে তাদের নির্বিচারে শিকার করা হয়?", opts: ["রক্ত ও মাংস", "দাঁত, চামড়া, সিং এবং অস্থি", "লোম ও নখ", "লেজ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> চোরা পথে চন্দন প্রভৃতি কাঠ এবং নানান পশুর দাঁত, চামড়া, সিং এবং অস্থি সংগ্রহের কারণে জীবদের ধ্বংস করা হচ্ছে।" },
+        { q: "১১. সুন্দরবনের মাটি ও জলে লবণের আধিক্য থাকা সত্ত্বেও সেখানে কোন্ কোন্ ফসলের ফলন তুলনামূলক ভালো হয়?", opts: ["গম ও ভুট্টা", "তরমুজ, লংকা ও উচ্ছে", "আখ ও আলু", "চা ও কফি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সুন্দরবনে মাটি ও জলের আধিক্যের কারণে বিশেষ বিশেষ ফসল যথা তরমুজ, লংকা, উচ্ছে প্রভৃতির ফলন ভালো হয়।" },
+        { q: "১২. বিশ্ব উষ্ণায়নের প্রভাবে সুন্দরবনে কোন্ মারাত্মক প্রাকৃতিক বিপর্যয়ের আশঙ্কা দেখা দিয়েছে?", opts: ["খরা", "ভূমিকম্প", "সমুদ্রের জলের তাপমাত্রা বৃদ্ধি ও দ্বীপভূমির নিমজ্জন", "দাবানল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> তাপমাত্রার বৃদ্ধির ফলে সমুদ্রের জলের স্ফীতি ঘটছে এবং সামান্য ঝড় বাতাসে ওই জল দ্বীপভূমিতে আছড়ে পড়ছে, ফলে বহু বাসভূমির অংশ নিমজ্জিত হচ্ছে।" },
+        { q: "১৩. সুন্দরবনের বাস্তুতন্ত্রে খাদ্য-খাদকের ভারসাম্য নষ্ট হওয়ার একটি প্রধান উদাহরণ কোনটি?", opts: ["হরিণ প্রচুর ঘাস খাচ্ছে", "বাঘ তার প্রয়োজনীয় এবং পছন্দের খাদ্য (হরিণ) পাচ্ছে না", "কুমির মাছ খাচ্ছে না", "পাখিরা অন্যত্র চলে যাচ্ছে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বন ধ্বংস এবং চোরাপথে হরিণ শিকারের কারণে বর্তমানে বাঘ তার প্রয়োজনীয় এবং পছন্দের খাদ্য পেয়ে উঠছে না, যা বাস্তুতন্ত্র নষ্ট করে দিচ্ছে।" },
+        { q: "১৪. সুন্দরবনে মিষ্টি জলের সংকটের একটি প্রধান প্রাকৃতিক কারণ কী?", opts: ["অতিরিক্ত বৃষ্টিপাত", "আবহাওয়ার খামখেয়ালিপনার জন্য নদীতে নোনা জল বেশি পরিমাণে ঢুকে যাওয়া", "বরফ গলা", "ভূগর্ভস্থ জল তুলে নেওয়া"], ans: 1, exp: "<b>ব্যাখ্যা:</b> আবহাওয়ার খামখেয়ালিপনার জন্য নদীতে অনেক সময় নোনা জল বেশি পরিমাণে ঢুকে যায়, যার ফলে মিষ্টি জলের সংকট দেখা দেয়।" },
+        { q: "১৫. ভারতের কোন্ অংশে চা বাগানের সম্প্রসারণ ঘটানোর ফলে হাতির বাসভূমি সংকুচিত হয়েছে এবং মানুষ-হাতি সংঘাত অনিবার্য হয়ে উঠেছে?", opts: ["দক্ষিণ ভারত", "উত্তরবঙ্গ", "মধ্যপ্রদেশ", "আসাম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উত্তরবঙ্গে হাতির বাসভূমি সংকুচিত করে চা বাগানের সম্প্রসারণ ঘটানো হয়েছে, তাই হাতি মানুষের আবাসস্থলে ঢুকে পড়ছে।" }
+    ]
+};
+
+// ============================================================
+// সেট ৬: জীববৈচিত্র্য সংরক্ষণ এবং বিপন্ন প্রজাতি
+// ============================================================
+const SET6 = {
+    name: "সেট ৬",
+    icon: "🛡️",
+    topic: "জীববৈচিত্র্য সংরক্ষণ এবং বিপন্ন প্রজাতি",
+    questions: [
+        { q: "১. জীবকে তার নিজস্ব প্রাকৃতিক পরিবেশে বা বাসস্থানে রেখে সংরক্ষণ করাকে কী বলা হয়?", opts: ["এক্স-সিটু (Ex-situ) সংরক্ষণ", "ইন-সিটু (In-situ) সংরক্ষণ", "ক্রায়ো সংরক্ষণ", "বোটানিক্যাল গার্ডেন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জীবকে তার নিজস্ব পরিবেশে রেখে সংরক্ষণ করাকে ইন-সিটু (In-situ) সংরক্ষণ বলা হয়।" },
+        { q: "২. ১৯৩৬ সালে প্রতিষ্ঠিত ভারতের সর্বপ্রথম জাতীয় উদ্যান (National Park) কোনটি?", opts: ["সুন্দরবন জাতীয় উদ্যান", "জিম করবেট জাতীয় উদ্যান", "জলদাপাড়া", "কাজিরাঙ্গা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতের প্রথম জাতীয় উদ্যানটি হল জিম করবেট জাতীয় উদ্যান (1936) যা উত্তরাখণ্ডে অবস্থিত।" },
+        { q: "৩. বন্য উদ্ভিদ বা প্রাণীকে তাদের নিজস্ব আবাসস্থলের বাইরে অন্য কোনো কৃত্রিম স্থানে রেখে প্রতিপালন ও সংরক্ষণ করাকে কী বলে?", opts: ["ইন-সিটু সংরক্ষণ", "বায়োস্ফিয়ার রিজার্ভ", "এক্স-সিটু (Ex-situ) সংরক্ষণ", "অভয়ারণ্য"], ans: 2, exp: "<b>ব্যাখ্যা:</b> জীবকে (উদ্ভিদ ও প্রাণী) তার আবাসস্থলের বাইরে রেখে প্রতিপালনের মাধ্যমে সংরক্ষণকে এক্স-সিটু সংরক্ষণ বলে, যেমন- চিড়িয়াখানা, বোটানিক্যাল গার্ডেন।" },
+        { q: "৪. মাইনাস ১৯৬°C (-196°C) তাপমাত্রায় তরল নাইট্রোজেনে উদ্ভিদ বা প্রাণীর জননকোশ, পরাগরেণু, বীজ ইত্যাদি সংরক্ষণ করাকে কী বলে?", opts: ["কোল্ড স্টোরেজ", "ক্রায়ো সংরক্ষণ (Cryo Preservation)", "জিন থেরাপি", "কোল্ড ব্যাংক"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ক্রায়ো সংরক্ষণে শুক্রাণু, পরাগরেণু, বীজ, গাছের বিভিন্ন অংশ প্রায় -196°C তাপমাত্রায় তরল নাইট্রোজেনে সংরক্ষণ করা হয়।" },
+        { q: "৫. ১৯৭১ সালে পশ্চিমবঙ্গের পশ্চিম মেদিনীপুর জেলার আরাবাড়ি অরণ্যে শাল গাছ পুনরুদ্ধারের জন্য কোন্ বনসংরক্ষণ প্রকল্প প্রথম শুরু হয়েছিল?", opts: ["PBR", "জয়েন্ট ফরেস্ট ম্যানেজমেন্ট (JFM)", "বায়োস্ফিয়ার রিজার্ভ", "প্রজেক্ট টাইগার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারত সরকারের প্রতিষ্ঠিত সংস্থা JFM এর অধীনে প্রথম প্রকল্পটি শুরু হয় 1971 সালে পশ্চিমবঙ্গের আরাবাড়ি অরণ্যে, যার উদ্দেশ্য ছিল শাল গাছের পুনরুদ্ধার।" },
+        { q: "৬. স্থানীয় মানুষের সাহায্যে গড়ে তোলা যে প্রামাণ্য নথিতে এলাকার জীবসম্পদ এবং তাদের ব্যবহার সম্পর্কিত তথ্য রেকর্ড করা থাকে, তাকে কী বলে?", opts: ["রেড ডাটা বুক", "জয়েন্ট ফরেস্ট ম্যানেজমেন্ট (JFM)", "পিপলস বায়োডাইভারসিটি রেজিস্টার (PBR)", "গ্রিন ডাটা বুক"], ans: 2, exp: "<b>ব্যাখ্যা:</b> PBR হলো স্থানীয় মানুষের সাহায্যে গড়ে তোলা একটি প্রামাণ্য নথি যেখানে স্থানীয় জীব সম্পদ সম্পর্কিত তথ্য রেকর্ড করা হয়ে থাকে।" },
+        { q: "৭. ভারতে বাঘ সংরক্ষণের জন্য 'ব্যাঘ্র প্রকল্প' (Project Tiger) কত সালে শুরু হয়?", opts: ["১৯৭১ সালে", "১৯৭২ বা ১৯৭৩ সালে", "১৯৮০ সালে", "১৯৭৫ সালে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> 1972 সালে ভারতে ব্যাঘ্র প্রকল্পের সূচনা হয় এবং 1973 সালের 1 এপ্রিল ভারতবর্ষে 9টি ব্যাঘ্র প্রকল্প শুরু হয়।" },
+        { q: "৮. গন্ডারের সংখ্যা হ্রাসের একটি অন্যতম গুরুত্বপূর্ণ কারণ কী?", opts: ["অতিরিক্ত শীত", "গন্ডারের গর্ভধারণকাল অত্যন্ত দীর্ঘ (470 দিন) হওয়ায় এদের বংশবৃদ্ধির হার কম", "খাদ্যাভাব", "অজানা রোগ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> গন্ডারের সংখ্যা হ্রাসের কারণ হিসেবে বনাঞ্চল ধ্বংস ও চোরাশিকার ছাড়াও গন্ডারের গর্ভধারণকাল দীর্ঘ (470 দিন) হওয়ায় এদের বংশবৃদ্ধির হার কম হওয়া অন্যতম কারণ।" },
+        { q: "৯. এশীয় সিংহের (Panthera leo persica) সংরক্ষণের জন্য ১৯১০ সালে প্রথম কে সিংহ হত্যা নিষিদ্ধ ঘোষণা করেন?", opts: ["ভারত সরকার", "জুনাগড়ের রাজা", "ব্রিটিশ সরকার", "নেপালের রাজা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জুনাগড়ের রাজা 1910 সালে সিংহ হত্যা নিষিদ্ধ ঘোষণা করেন এবং গুজরাটের গির অরণ্য এদের প্রধান বাসস্থান।" },
+        { q: "১০. আসামের বনদপ্তর এবং WWF এর যৌথ উদ্যোগে 'Indian Rhino Vision (IRV) 2020' প্রকল্পের মূল উদ্দেশ্য কী ছিল?", opts: ["বাঘের সংখ্যা বৃদ্ধি", "2020 সালের মধ্যে গন্ডারের সংখ্যা 3000-এ নিয়ে আসা", "কুমির প্রজনন", "চোরাশিকার বন্ধ করা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> Indian Rhino Vision (IRV) 2020 প্রকল্প গ্রহণ করা হয়, যাদের মূল উদ্দেশ্য 2020 সালের মধ্যে গন্ডারের সংখ্যা 3000-এ নিয়ে আসা।" },
+        { q: "১১. ন্যাশনাল ক্রোকোডাইল কনজারভেশন প্রজেক্ট (National Crocodile Conservation Project) অনুযায়ী ওড়িশার কোন্ স্থানে নোনা জলের কুমির সংরক্ষণের প্রচেষ্টা শুরু হয়?", opts: ["সুন্দরবন", "ভিতরকণিকা ও ডঙ্গমল", "কাজিরাঙ্গা", "জিম করবেট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ওড়িশার ভিতরকণিকা, ডঙ্গমল স্থানে নোনা জলের কুমির সংরক্ষণের প্রচেষ্টা শুরু হয়।" },
+        { q: "১২. রেড পান্ডা (Ailurus fulgens) ভারতের কোন্ রাজ্যের রাজ্য প্রাণী (State Animal)?", opts: ["আসাম", "মেঘালয়", "সিকিম", "অরুণাচল প্রদেশ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> রেড পান্ডা সিকিম, পশ্চিমবঙ্গের নেওড়াভ্যালি, মেঘালয় ও অরুণাচল প্রদেশে পাওয়া যায় এবং এটি সিকিমের রাজ্য প্রাণী।" },
+        { q: "১৩. রেড পান্ডার সংখ্যা হ্রাসের একটি অন্যতম কারণ হলো খাদ্যাভাব। এরা প্রধানত কোন্ গাছের অংশ খাদ্য হিসেবে গ্রহণ করে?", opts: ["শাল পাতা", "বাঁশ গাছের ডগা", "সুন্দরী গাছের ফল", "ওক গাছের ছাল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বাঁশ গাছের ডগাকে এরা খাদ্য হিসেবে গ্রহণ করে, তাই বাঁশগাছের সংখ্যা হ্রাস প্রাণীটির সংখ্যা হ্রাসের অন্যতম কারণ।" },
+        { q: "১৪. IUCN কর্তৃক প্রতিষ্ঠিত Survival Service Commission-এর উদ্যোগে রচিত বিলুপ্ত বা বিপন্ন উদ্ভিদ ও প্রাণীর তথ্য সম্বলিত পুস্তকটিকে কী বলা হয়?", opts: ["বায়োস্ফিয়ার বুক", "ব্লু ডাটা বুক", "রেড ডাটা বুক (Red Data Book)", "PBR"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বিলুপ্ত বা বিপন্ন উদ্ভিদ ও প্রাণীর তথ্য সম্বলিত পুস্তককে রেড ডাটা বুক বলে, যা প্রথম 1963 খ্রিস্টাব্দে প্রকাশিত হয়।" },
+        { q: "১৫. ইউনেস্কো (UNESCO) কর্তৃক পরিচালিত MAB (Man and Biosphere) প্রকল্পের অধীনে জীববৈচিত্র্য সংরক্ষণের কোন্ ইন-সিটু পদ্ধতিটি গড়ে তোলা হয়েছে?", opts: ["জাতীয় উদ্যান", "বায়োস্ফিয়ার রিজার্ভ (Biosphere Reserve)", "অভয়ারণ্য", "চিড়িয়াখানা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> UNESCO কর্তৃক MAB (Man and Biosphere) প্রকল্পের অধীনে পড়ে বায়োস্ফিয়ার রিজার্ভ, যার উদ্দেশ্য হলো সমগ্র বাস্তুতন্ত্র সংরক্ষণ করা।" }
+    ]
+};
+
+// ============================================================
+// সব সেট একত্রে
+// ============================================================
+const QUIZ_SETS = {
+    "1": SET1,
+    "2": SET2,
+    "3": SET3,
+    "4": SET4,
+    "5": SET5,
+    "6": SET6
+};
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+let loggedInUser = null;
+let currentSetId = null;
+let questions = [];
+let score = 0;
+let wrongAnswers = 0;
+let userAnswers = {};
+let isReviewMode = false;
+let timerInterval;
+let timeLeft = TIME_LIMIT;
+
+window.onload = () => {
+    applyBranding();
+    buildHub();
+};
+
+function buildHub() {
+    const grid = document.getElementById('setGrid');
+    grid.innerHTML = '';
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+
+    for(let id in QUIZ_SETS) {
+        const set = QUIZ_SETS[id];
+        let attemptCount = 0;
+        let isLocked = false;
+
+        if(loggedInUser) {
+            attemptCount = userAttempts[loggedInUser + "_" + id] || 0;
+            isLocked = attemptCount >= MAX_ATTEMPTS;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'set-card';
+        let badge = '';
+        if(loggedInUser) {
+            badge = `<div class="attempt-badge ${isLocked ? 'locked' : ''} en-font">${isLocked ? 'সম্পূর্ণ' : attemptCount + '/' + MAX_ATTEMPTS}</div>`;
+        }
+
+        card.innerHTML = `
+            ${badge}
+            <div class="set-icon">${set.icon}</div>
+            <div class="set-name">${set.name}</div>
+            <div class="set-topic">${set.topic}</div>
+            <div class="set-meta-info en-font">
+                <span>${set.questions.length} Qs</span>
+                <span>10 Mins</span>
+            </div>
+        `;
+        card.onclick = () => { selectSet(id); };
+        grid.appendChild(card);
+    }
+}
+
+function selectSet(setId) {
+    if(loggedInUser) {
+        let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+        let attemptCount = userAttempts[loggedInUser + "_" + setId] || 0;
+        if(attemptCount >= MAX_ATTEMPTS) {
+            alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+            return;
+        }
+        startQuiz(setId);
+    } else {
+        currentSetId = setId;
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginError').classList.add('hidden');
+        document.getElementById('loginSetName').innerText = QUIZ_SETS[setId].name + ": " + QUIZ_SETS[setId].topic;
+        document.getElementById('loginModal').classList.remove('hidden');
+    }
+}
+
+function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+
+function doLogin() {
+    const u = document.getElementById('loginUsername').value.trim();
+    const p = document.getElementById('loginPassword').value.trim();
+    const err = document.getElementById('loginError');
+    const GLOBAL_USERS = JSON.parse(localStorage.getItem("testBazarGlobalUsers")) || {};
+
+    if(!u || !p) { err.innerText = "ইউজারনেম এবং পাসওয়ার্ড দিন!"; err.classList.remove('hidden'); return; }
+
+    if(GLOBAL_USERS[u] && GLOBAL_USERS[u] === p) {
+        loggedInUser = u;
+        document.getElementById('userDisplay').innerText = `👤 ${u}`;
+        closeLogin();
+        buildHub();
+        if(currentSetId) {
+            startQuiz(currentSetId);
+        }
+    } else {
+        err.innerText = "ইউজারনেম বা পাসওয়ার্ড ভুল!";
+        err.classList.remove('hidden');
+    }
+}
+
+function incrementAttempt(user, setId) {
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let key = user + "_" + setId;
+    userAttempts[key] = (userAttempts[key] || 0) + 1;
+    localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(userAttempts));
+}
+
+function startQuiz(setId) {
+    currentSetId = setId;
+    incrementAttempt(loggedInUser, setId);
+    questions = QUIZ_SETS[setId].questions;
+    userAnswers = {};
+    isReviewMode = false;
+    score = 0;
+    wrongAnswers = 0;
+    timeLeft = TIME_LIMIT;
+
+    document.getElementById('hubView').classList.add('hidden');
+    document.getElementById('resultModal').classList.add('hidden');
+    document.getElementById('quizView').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('danger');
+    document.getElementById('submitTestBtn').classList.remove('hidden');
+    document.getElementById('quizTitle').innerText = QUIZ_SETS[setId].name + " | " + QUIZ_SETS[setId].topic;
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tick, 1000);
+    renderQuestions();
+}
+
+function tick() {
+    timeLeft--;
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    document.getElementById('timerDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if (timeLeft <= 60) document.getElementById('timerBox').classList.add('danger');
+    if (timeLeft <= 0) { submitQuiz(); }
+}
+
+const LABELS = ['A', 'B', 'C', 'D'];
+
+function renderQuestions() {
+    const quizList = document.getElementById('quizList');
+    let html = '';
+    questions.forEach((q, i) => {
+        html += `<div class="q-block" id="qBlock_${i}">
+            <div class="q-text">${q.q}</div>
+            <div class="options-grid">`;
+        q.opts.forEach((opt, j) => {
+            html += `<div class="opt" id="opt_${i}_${j}" onclick="selectOpt(${i}, ${j})">
+                <div class="opt-circle">${LABELS[j]}</div>
+                <div class="opt-text">${opt}</div>
+            </div>`;
+        });
+        html += `</div>
+            <div class="explanation hidden" id="exp_${i}">${q.exp}</div>
+        </div>`;
+    });
+    quizList.innerHTML = html;
+    window.scrollTo(0, 0);
+}
+
+function selectOpt(qIdx, optIdx) {
+    if (isReviewMode) return;
+    userAnswers[qIdx] = optIdx;
+    const block = document.getElementById(`qBlock_${qIdx}`);
+    const opts = block.querySelectorAll('.opt');
+    opts.forEach(o => o.classList.remove('selected'));
+    document.getElementById(`opt_${qIdx}_${optIdx}`).classList.add('selected');
+}
+
+function submitQuiz() {
+    if (isReviewMode) return;
+    const answeredCount = Object.keys(userAnswers).length;
+    if (timeLeft > 0 && answeredCount < questions.length) {
+        const confirmSubmit = confirm(`আপনি মাত্র ${answeredCount} টি প্রশ্নের উত্তর দিয়েছেন। আপনি কি সত্যিই Test জমা দিতে চান?`);
+        if(!confirmSubmit) return;
+    }
+    isReviewMode = true;
+    clearInterval(timerInterval);
+    document.getElementById('timerBox').classList.add('hidden');
+    document.getElementById('submitTestBtn').classList.add('hidden');
+
+    score = 0;
+    wrongAnswers = 0;
+    questions.forEach((q, i) => {
+        const selected = userAnswers[i];
+        const block = document.getElementById(`qBlock_${i}`);
+        const opts = block.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.remove('selected'));
+        if (selected !== undefined) {
+            if (selected === q.ans) {
+                score++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('correct');
+            } else {
+                wrongAnswers++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('wrong');
+                document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+            }
+        } else {
+            document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+        }
+        document.getElementById(`exp_${i}`).classList.remove('hidden');
+    });
+
+    const skipped = questions.length - (score + wrongAnswers);
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('rbCorrect').textContent = score;
+    document.getElementById('rbWrong').textContent = wrongAnswers + skipped;
+
+    let icon = '💪', grade = 'চেষ্টা চালিয়ে যাও!';
+    if(pct >= 90) { icon = '🌟'; grade = 'অসাধারণ!'; }
+    else if(pct >= 70) { icon = '👍'; grade = 'খুব ভালো!'; }
+    else if(pct >= 50) { icon = '📚'; grade = 'ভালো চেষ্টা!'; }
+
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultGrade').textContent = grade;
+
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    let remaining = MAX_ATTEMPTS - attemptCount;
+    document.getElementById('attemptInfo').innerText = `বাকি আছে ${remaining} বার Test দেওয়ার সুযোগ (সর্বোচ্চ ${MAX_ATTEMPTS} বার)`;
+    document.getElementById('resultModal').classList.remove('hidden');
+}
+
+function closeResultModal() {
+    document.getElementById('resultModal').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+    closeResultModal();
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    if(attemptCount >= MAX_ATTEMPTS) {
+        alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+        document.getElementById('quizView').classList.add('hidden');
+        document.getElementById('hubView').classList.remove('hidden');
+        buildHub();
+        return;
+    }
+    startQuiz(currentSetId);
+}
+</script>
+</body>
+</html>
