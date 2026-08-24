@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 Geography Chapter 6</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #1a7a4a; --primary-hover: #2aad68; --accent: #f9a825;
+--bg-main: #f0faf4; --bg-card: #ffffff; --bg-selected: #e8f4ec;
+--text-main: #1c2e24; --text-meta: #5a7a66; --border-color: #c5dccb;
+--alert-danger: #dc3545; --correct: #28a745;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Tiro Bangla', serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+.en-font { font-family: 'Syne', sans-serif; }
+.hidden { display: none !important; }
+
+.header {
+background: #ffffff;
+box-shadow: 0 4px 20px rgba(10, 92, 54, 0.08);
+position: sticky;
+top: 0;
+z-index: 1000;
+border-bottom: 3px solid #0a5c36;
+}
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 8px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo-link {
+display: flex;
+align-items: center;
+gap: 10px;
+text-decoration: none;
+cursor: pointer;
+}
+.logo-emblem {
+width: 45px;
+height: 45px;
+background: linear-gradient(135deg, #0a5c36 0%, #1e824c 100%);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.4rem;
+font-weight: 800;
+color: white;
+box-shadow: 0 4px 12px rgba(10, 92, 54, 0.2);
+flex-shrink: 0;
+}
+.brand-text-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.coaching-main-title {
+font-size: 1.4rem;
+font-weight: 800;
+color: #0a5c36;
+letter-spacing: -0.5px;
+line-height: 1.1;
+}
+.coaching-subtitle {
+font-size: 0.75rem;
+color: #556c5e;
+font-weight: 700;
+letter-spacing: 0.3px;
+margin-top: 1px;
+text-transform: uppercase;
+}
+.coaching-tagline {
+font-size: 0.65rem;
+color: #f5a623;
+font-weight: 600;
+margin-top: 1px;
+letter-spacing: 0.1px;
+}
+.header-right {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.timer-box {
+background: rgba(10, 92, 54, 0.08);
+padding: 6px 15px;
+border-radius: 8px;
+font-weight: 700;
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+gap: 5px;
+color: #0a5c36;
+}
+.timer-box.danger { background: var(--alert-danger); color: white; animation: pulse 1s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.user-info { background: #0a5c36; color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; }
+
+.main-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.hub-header { text-align: center; margin-bottom: 30px; }
+.hub-header h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 10px; }
+.set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+.set-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+.set-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(26,122,74,0.1); }
+.set-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.set-name { font-size: 1.3rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; font-family: 'Syne', sans-serif;}
+.set-topic { font-size: 0.95rem; color: var(--text-meta); margin-bottom: 15px; height: 40px; }
+.set-meta-info { display: flex; justify-content: center; gap: 10px; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
+.set-meta-info span { background: var(--bg-main); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+.attempt-badge { position: absolute; top: 10px; right: 10px; background: #ffeeba; color: #856404; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+.attempt-badge.locked { background: var(--alert-danger); color: white; border: none; }
+
+.quiz-info { background: var(--bg-card); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+.q-block { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.q-text { font-size: 1.2rem; font-weight: bold; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
+.options-grid { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 1.05rem; }
+.opt:hover:not(.selected):not(.correct):not(.wrong) { background: var(--bg-main); border-color: var(--primary); }
+.opt.selected { background: var(--bg-selected); border-color: var(--primary); }
+.opt-circle { min-width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Syne', sans-serif; color: var(--text-meta); flex-shrink: 0; }
+.opt.selected .opt-circle { background: var(--primary); color: white; border-color: var(--primary); }
+.opt.correct { background: #e8f7ef; border-color: var(--correct); }
+.opt.correct .opt-circle { background: var(--correct); border-color: var(--correct); color: white; }
+.opt.wrong { background: #fdf0f0; border-color: var(--alert-danger); }
+.opt.wrong .opt-circle { background: var(--alert-danger); border-color: var(--alert-danger); color: white; }
+.explanation { margin-top: 15px; padding: 15px; background: #e8f4ec; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #2c4035; line-height: 1.5;}
+.btn-submit { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; font-family: 'Tiro Bangla', serif; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(26,122,74,0.2); transition: 0.2s; }
+.btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+.btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: bold;}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto;}
+.modal-box { background: white; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin: auto;}
+.modal-box input { width: 100%; padding: 12px 15px; margin: 10px 0; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: 'Syne', sans-serif; box-sizing: border-box; outline: none; transition: 0.2s; }
+.modal-box input:focus { border-color: var(--primary); }
+.result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto; padding: 20px; }
+.result-box { background: white; padding: 2.5rem 2rem; border-radius: 16px; width: 100%; max-width: 450px; text-align: center; margin: auto; }
+.result-score { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin: 15px 0; }
+.result-bars { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.result-bar { background: var(--bg-main); padding: 15px; border-radius: 12px; width: 100px; border: 1px solid var(--border-color); }
+
+@media (max-width: 768px) {
+.header-container { flex-direction: column; gap: 10px; text-align: center; padding: 10px 10px; }
+.logo-link { flex-direction: column; gap: 6px; }
+.brand-text-container { text-align: center; }
+.coaching-main-title { font-size: 1.2rem; }
+.coaching-subtitle { font-size: 0.7rem; }
+.coaching-tagline { font-size: 0.6rem; }
+.header-right { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="#" class="logo-link" onclick="location.reload(); return false;">
+            <div class="logo-emblem" id="dynamicEmblem">🛰️</div>
+            <div class="brand-text-container">
+                <span class="coaching-main-title" id="dynamicTitle">Geography - Chapter 6</span>
+                <span class="coaching-subtitle" id="dynamicSubtitle">উপগ্রহ চিত্র ও ভূবৈচিত্র্যসূচক মানচিত্র</span>
+                <span class="coaching-tagline" id="dynamicTagline">দশম শ্রেণি (Class 10)</span>
+            </div>
+        </a>
+        <div class="header-right">
+            <div class="timer-box en-font hidden" id="timerBox">⏱ <span id="timerDisplay">10:00</span></div>
+            <div class="user-info en-font" id="userDisplay" style="font-weight: bold;">👤 Guest</div>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <div id="hubView">
+        <div class="hub-header">
+            <h1 style="color: var(--primary); margin-bottom: 10px;">ভূগোল - Class 10 Chapter 6</h1>
+            <p style="color: var(--text-meta);">উপগ্রহ চিত্র ও ভূবৈচিত্র্যসূচক মানচিত্র (Satellite Image & Topographical Map)</p>
+        </div>
+        <div class="set-grid" id="setGrid"></div>
+        <div style="text-align:center; margin-top:40px;">
+            <button class="btn-primary" style="background:var(--text-meta); width: auto; padding: 12px 25px;" onclick="window.history.back()">← Main Dashboard-এ ফিরুন</button>
+        </div>
+    </div>
+
+    <div id="quizView" class="hidden">
+        <div class="quiz-info">
+            <div id="quizTitle">Set Name</div>
+            <div id="quizMetaInfo" class="en-font">15 Questions | 10 Mins</div>
+        </div>
+        <div id="quizList"></div>
+        <button class="btn-submit" id="submitTestBtn" onclick="submitQuiz()">Test জমা দিন ও ফলাফল দেখুন</button>
+    </div>
+
+</div>
+
+<div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-box">
+        <h2 style="color: var(--primary); margin-top:0;">লগইন করুন</h2>
+        <p style="color: var(--text-meta); margin-bottom: 15px; font-size: 0.9rem;">Test শুরু করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন</p>
+        <div id="loginSetName" style="background: var(--bg-main); padding: 8px; border-radius: 8px; font-weight:bold; color:var(--primary); margin-bottom:15px; font-family: 'Syne', sans-serif; font-size: 0.95rem;">Set Name</div>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()">
+        <div id="loginError" class="hidden" style="color: var(--alert-danger); margin: 10px 0; font-weight:bold; font-size: 0.9rem;"></div>
+        <div style="display: flex; gap: 10px; margin-top:15px; justify-content: center;">
+            <button class="btn-primary" style="width: 100%; padding: 12px;" onclick="doLogin()">লগইন করুন</button>
+            <button class="btn-primary" style="background: var(--alert-danger); width: 100%; padding: 12px;" onclick="closeLogin()">বাতিল</button>
+        </div>
+    </div>
+</div>
+
+<div class="result-overlay hidden" id="resultModal">
+    <div class="result-box">
+        <div style="font-size: 3.5rem; margin-bottom:0; line-height: 1;" id="resultIcon">🌟</div>
+        <h2 style="margin:10px 0; color: var(--text-main);">আপনার ফলাফল</h2>
+        <div class="result-score en-font" id="finalScore">100%</div>
+        <div id="resultGrade" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--accent);">অসাধারণ!</div>
+        <div class="result-bars">
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbCorrect">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">সঠিক</div>
+            </div>
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--alert-danger);" class="en-font" id="rbWrong">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">ভুল / স্কিপ</div>
+            </div>
+        </div>
+        <p style="background: var(--bg-main); padding: 10px; border-radius: 8px; color:var(--text-meta); font-weight:bold; font-size:0.95rem; margin-bottom:25px;" id="attemptInfo" class="en-font">বাকি আছে 9 বার</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="btn-primary" style="background: #28a745; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="closeResultModal()">উত্তর ও ব্যাখ্যা দেখুন</button>
+            <button class="btn-primary" style="background: #17a2b8; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="restartQuiz()">আবার চেষ্টা করো</button>
+            <button class="btn-primary" style="background: var(--text-meta); width: 100%; padding: 14px; font-size: 1.05rem;" onclick="window.location.reload()">Chapter Hub-এ ফিরুন</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// DYNAMIC BRANDING LOGIC
+// ============================================================
+const STORE_CONFIGS = {
+    "guru": {
+        title: "Guru Book Store Jhalda",
+        mainTitle: "Guru Book Store",
+        subtitle: "Jhalda",
+        tagline: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        emblem: "G"
+    },
+    "saraswati": {
+        title: "Saraswati Book Store",
+        mainTitle: "Saraswati Book Store",
+        subtitle: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        tagline: "শিক্ষা ও প্রগতির বিশ্বস্ত সঙ্গী",
+        emblem: "S"
+    }
+};
+
+function applyBranding() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let storeKey = urlParams.get('store') || localStorage.getItem("activeStore") || "";
+    storeKey = storeKey.toLowerCase();
+
+    if (storeKey && STORE_CONFIGS[storeKey]) {
+        const config = STORE_CONFIGS[storeKey];
+        document.title = `${config.title} - Class 10 Geography Chapter 6`;
+        document.getElementById("dynamicEmblem").innerText = config.emblem;
+        document.getElementById("dynamicTitle").innerText = config.mainTitle;
+        document.getElementById("dynamicSubtitle").innerText = config.subtitle;
+        document.getElementById("dynamicTagline").innerText = config.tagline;
+        localStorage.setItem("activeStore", storeKey);
+    } else {
+        document.title = "Class 10 Geography Chapter 6 - উপগ্রহ চিত্র ও ভূবৈচিত্র্যসূচক মানচিত্র";
+        document.getElementById("dynamicEmblem").innerText = "🛰️";
+        document.getElementById("dynamicTitle").innerText = "Geography - Chapter 6";
+        document.getElementById("dynamicSubtitle").innerText = "উপগ্রহ চিত্র ও ভূবৈচিত্র্যসূচক মানচিত্র";
+        document.getElementById("dynamicTagline").innerText = "দশম শ্রেণি (Class 10)";
+    }
+}
+
+// ============================================================
+// QUIZ DATA - 3 SETS (TOTAL 45 QUESTIONS)
+// ============================================================
+const STORAGE_KEY_ATTEMPTS = "testBazarAttempts_Geography_Ch6_Sets";
+const MAX_ATTEMPTS = 10;
+const TIME_LIMIT = 10 * 60;
+
+// ============================================================
+// সেট ১: উপগ্রহ চিত্র ও সেন্সর
+// ============================================================
+const SET1 = {
+    name: "সেট ১",
+    icon: "🛰️",
+    topic: "উপগ্রহ চিত্র ও সেন্সর",
+    questions: [
+        { q: "১. কৃত্রিম উপগ্রহে স্থাপিত যে সংবেদনশীল যন্ত্রের সাহায্যে দূর থেকে ভূপৃষ্ঠের তথ্য সংগ্রহ করা হয়, তাকে কী বলে?", opts: ["রাডার", "সেন্সর (Sensor)", "লেন্স", "প্ল্যাটফর্ম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সেন্সর হলো উপগ্রহে যুক্ত একটি অত্যন্ত উচ্চ ক্ষমতাসম্পন্ন সংবেদনশীল যন্ত্র, যা পৃথিবীর বিভিন্ন উপাদান থেকে প্রতিফলিত তড়িৎচুম্বকীয় রশ্মি গ্রহণ করে তথ্য সংগ্রহ করে।" },
+        { q: "২. উপগ্রহ চিত্রের (Satellite Image) ক্ষুদ্রতম একককে কী বলা হয়?", opts: ["পিক্সেল (Pixel)", "গ্রিড", "বাইট", "ডট"], ans: 0, exp: "<b>ব্যাখ্যা:</b> উপগ্রহ চিত্র হলো অসংখ্য ক্ষুদ্র বিন্দুর সমাহার, যার প্রতিটি বিন্দু ভূপৃষ্ঠের নির্দিষ্ট একটি অংশকে উপস্থাপিত করে। এই ক্ষুদ্রতম বিন্দু বা একককে পিক্সেল বলে।" },
+        { q: "৩. 'রিমোট সেন্সিং' (Remote Sensing) বা দূরসংবেদন কথাটির আক্ষরিক অর্থ কী?", opts: ["কাছে থেকে ছবি তোলা", "বস্তুকে স্পর্শ না করে দূর থেকে তথ্য সংগ্রহ করা", "আবহাওয়ার পূর্বাভাস দেওয়া", "মানচিত্র অঙ্কন করা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কোনো বস্তু বা স্থানের সংস্পর্শে না এসে দূর থেকে কৃত্রিম উপগ্রহ বা বিমানের সাহায্যে বৈজ্ঞানিক উপায়ে তথ্য সংগ্রহ করার পদ্ধতিকেই রিমোট সেন্সিং বা দূরসংবেদন বলে।" },
+        { q: "৪. ভারতের মহাকাশ গবেষণা সংস্থার (ISRO) সদর দপ্তর কোথায় অবস্থিত?", opts: ["নতুন দিল্লি", "হায়দরাবাদ", "চেন্নাই", "বেঙ্গালুরু"], ans: 3, exp: "<b>ব্যাখ্যা:</b> মহাকাশ গবেষণা এবং উপগ্রহ চিত্র প্রস্তুতের সাথে যুক্ত ভারতের প্রধান সংস্থা ISRO (Indian Space Research Organisation)-এর সদর দপ্তর কর্ণাটকের বেঙ্গালুরুতে অবস্থিত।" },
+        { q: "৫. উপগ্রহ চিত্র (FCC) তৈরি করার সময় গভীর অরণ্য বা স্বাভাবিক উদ্ভিদকে সাধারণত কোন্ রঙের সাহায্যে নির্দেশ করা হয়?", opts: ["হালকা সবুজ", "গাঢ় লাল", "নীল", "হলুদ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উপগ্রহ চিত্রে বস্তুর প্রকৃত রঙের পরিবর্তে ছদ্ম রং বা False Colour Composite (FCC) ব্যবহার করা হয়, যেখানে সবুজ অরণ্যকে গাঢ় লাল রঙে দেখানো হয়।" },
+        { q: "৬. একটি সক্রিয় সেন্সরের (Active Sensor) উদাহরণ কোনটি?", opts: ["ফটোগ্রাফিক ক্যামেরা", "ইলেকট্রনিক ক্যামেরা", "র‌্যাডার (Radar)", "স্ক্যানার"], ans: 2, exp: "<b>ব্যাখ্যা:</b> র‌্যাডার হলো একটি সক্রিয় সেন্সর বা অ্যাক্টিভ সেন্সর, যা নিজস্ব শক্তি বা বিকিরণ প্রেরণ করে লক্ষ্যবস্তুর তথ্য সংগ্রহ করতে পারে (সক্রিয় সেন্সরের মাধ্যমে রাতের অন্ধকারেও তথ্য সংগ্রহ করা যায়)।" },
+        { q: "৭. ভারতের একটি সূর্য-সমলয় (Sun-synchronous) কৃত্রিম উপগ্রহের উদাহরণ কোনটি?", opts: ["INSAT", "IRS", "GOES", "METEOSAT"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতের মহাকাশ গবেষণা সংস্থা প্রেরিত Indian Remote Sensing (IRS) হলো একটি সূর্য-সমলয় উপগ্রহ, যা মেরু অক্ষ বরাবর ঘোরে এবং সম্পদ সংক্রান্ত তথ্য সংগ্রহ করে।" },
+        { q: "৮. ভারতের একটি ভূ-সমলয় (Geo-stationary) উপগ্রহের নাম কী?", opts: ["IRS", "SPOT", "LANDSAT", "INSAT"], ans: 3, exp: "<b>ব্যাখ্যা:</b> INSAT (Indian National Satellite) হলো ভারতের একটি ভূ-সমলয় উপগ্রহ, যা নিরক্ষরেখা বরাবর আবর্তিত হয় এবং আবহাওয়া ও যোগাযোগের তথ্য প্রদান করে।" },
+        { q: "৯. ভারতের ন্যাশনাল রিমোট সেন্সিং এজেন্সি (NRSA)-এর সদর দপ্তর কোথায় অবস্থিত?", opts: ["দেরাদুন", "হায়দরাবাদ", "কলকাতা", "নতুন দিল্লি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ISRO-এর অধীনে উপগ্রহ চিত্র প্রস্তুত ও প্রকাশকারী সংস্থা ন্যাশনাল রিমোট সেন্সিং এজেন্সি বা NRSA-এর সদর দপ্তর হায়দরাবাদে অবস্থিত।" },
+        { q: "১০. উপগ্রহ চিত্র প্রধানত কোন্ আকারে বা ফর্ম্যাটে সংগৃহীত ও বিশ্লেষিত হয়?", opts: ["অ্যানালগ ছবি", "ডিজিটাল ডেটা বা সংখ্যামান", "হাতে আঁকা স্কেচ", "বর্ণনামূলক লেখা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উপগ্রহ চিত্রের তথ্য ডিজিটাল ডেটা বা সংখ্যামানের (Digital Number বা Brightness Value) আকারে সংগৃহীত হয়, তাই একে সহজেই কম্পিউটারে বিশ্লেষণ করা যায়।" },
+        { q: "১১. মহাকাশে কৃত্রিম উপগ্রহ যেখান থেকে কাজ করে বা যেখানে উপগ্রহটিকে স্থাপন করা হয়, তাকে কী বলে?", opts: ["প্ল্যাটফর্ম (Platform)", "সেন্সর", "গ্রিড", "স্পট"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মহাকাশে কৃত্রিম উপগ্রহ যেখান থেকে চালু হয় বা নির্দিষ্ট কক্ষপথে যেখান থেকে কাজ করে, তাকে প্ল্যাটফর্ম বলে।" },
+        { q: "১২. একটি নিষ্ক্রিয় সেন্সরের (Passive Sensor) উদাহরণ কোনটি?", opts: ["র‌্যাডার", "ফটোগ্রাফিক ক্যামেরা", "লেজার", "সোনার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ফটোগ্রাফিক ক্যামেরা হলো একটি নিষ্ক্রিয় সেন্সর বা প্যাসিভ সেন্সর, যার নিজস্ব কোনো আলো বা শক্তি থাকে না; এটি সূর্যরশ্মির প্রতিফলনের ওপর নির্ভর করে কাজ করে।" },
+        { q: "১৩. 'রিমোট সেন্সিং' (Remote Sensing) শব্দটি ১৯৫০ সালে প্রথম কে ব্যবহার করেন?", opts: ["গিলবার্ট", "উইলিয়াম ফেরেল", "ইভলিন প্রুইট (Evelyn Pruitt)", "জন মুর"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯৫০ সালে মার্কিন নৌ-গবেষক ইভলিন প্রুইট (Evelyn Pruitt) সর্বপ্রথম 'Remote Sensing' শব্দটি ব্যবহার করেন।" },
+        { q: "১৪. উপগ্রহ চিত্র সংগ্রহের জন্য কৃত্রিম উপগ্রহগুলি প্রধানত কোন্ শক্তির ওপর নির্ভর করে?", opts: ["শব্দ তরঙ্গ", "মহাকর্ষীয় বল", "তড়িৎচুম্বকীয় বিকিরণ (EMR)", "চৌম্বকীয় বিকর্ষণ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সূর্যরশ্মি পৃথিবীর বিভিন্ন বস্তু থেকে প্রতিফলিত হয়ে তড়িৎচুম্বকীয় বিকিরণরূপে (Electro Magnetic Radiation) মহাশূন্যে ফিরে যায়, যা উপগ্রহের সেন্সরে ধরা পড়ে।" },
+        { q: "১৫. ভারতের প্রেরিত প্রথম কৃত্রিম উপগ্রহটির নাম কী?", opts: ["আর্যভট্ট", "ভাস্কর", "অ্যাপেলো", "রোহিনী"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ১৯৭৫ সালের ১৯ এপ্রিল ভারত তার প্রথম কৃত্রিম উপগ্রহ 'আর্যভট্ট' মহাকাশে সফলভাবে উৎক্ষেপণ করে।" }
+    ]
+};
+
+// ============================================================
+// সেট ২: ভূবৈচিত্র্যসূচক মানচিত্র (স্কেল ও সূচক)
+// ============================================================
+const SET2 = {
+    name: "সেট ২",
+    icon: "🗺️",
+    topic: "ভূবৈচিত্র্যসূচক মানচিত্র (স্কেল ও সূচক)",
+    questions: [
+        { q: "১. ভারতের ভূবৈচিত্র্যসূচক মানচিত্র (Topographical Map) কোন্ সরকারি সংস্থা প্রস্তুত করে?", opts: ["ISRO", "NATMO", "Survey of India (SOI)", "GSI"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতীয় সর্বেক্ষণ বিভাগ বা Survey of India (SOI) হলো ভারতে জরিপের মাধ্যমে ভূবৈচিত্র্যসূচক মানচিত্র বা টোপোশিট তৈরি ও প্রকাশ করার প্রধান সরকারি সংস্থা।" },
+        { q: "২. ভারতীয় সর্বেক্ষণ বিভাগের (Survey of India) সদর দপ্তর কোথায় অবস্থিত?", opts: ["কলকাতা", "দেরাদুন", "বেঙ্গালুরু", "মুম্বাই"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৭৬৭ সালে প্রতিষ্ঠিত ভারতীয় সর্বেক্ষণ বিভাগ বা Survey of India-এর সদর দপ্তর উত্তরাখণ্ডের রাজধানী দেরাদুনে অবস্থিত।" },
+        { q: "৩. মিলিয়ন শিট (Million Sheet) ভূবৈচিত্র্যসূচক মানচিত্রের অক্ষাংশ ও দ্রাঘিমাংশগত বিস্তার কত?", opts: ["১০° × ১০°", "১৫' × ১৫'", "৪° × ৪°", "৩০' × ৩০'"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতীয় সর্বেক্ষণ বিভাগ অঙ্কিত বৃহৎ পর্যায়ের মানচিত্র বা মিলিয়ন শিটের অক্ষাংশগত ও দ্রাঘিমাগত বিস্তার হলো ৪° × ৪°।" },
+        { q: "৪. ডিগ্রি শিট (Degree Sheet) ভূবৈচিত্র্যসূচক মানচিত্রের মেট্রিক স্কেল বা R.F. (Representative Fraction) কত হয়?", opts: ["১ : ১০,০০,০০০", "১ : ২,৫০,০০০", "১ : ৫০,০০০", "১ : ২৫,০০০"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১° × ১° বিস্তারের ডিগ্রি শিট মানচিত্রের স্কেল হয় ১ সেমিতে ২.৫ কিমি, অর্থাৎ এর ভগ্নাংশসূচক স্কেল বা R.F. হলো ১ : ২,৫০,০০০।" },
+        { q: "৫. ১৫' × ১৫' (পনেরো মিনিট শিট বা ইঞ্চি শিট) ভূবৈচিত্র্যসূচক মানচিত্রের R.F. স্কেল কত?", opts: ["১ : ২,৫০,০০০", "১ : ১,০০,০০০", "১ : ৫০,০০০", "১ : ২৫,০০০"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ডিগ্রি শিটকে ১৬টি ভাগে ভাগ করে সৃষ্ট ১৫ মিনিট শিটের স্কেল হয় ১ সেমিতে ৫০০ মিটার বা ০.৫ কিমি, অর্থাৎ এর R.F. হলো ১ : ৫০,০০০।" },
+        { q: "৬. মিলিয়ন শিট (Million Sheet) ভূবৈচিত্র্যসূচক মানচিত্রের R.F. স্কেল কত?", opts: ["১ : ১০,০০,০০০", "১ : ২,৫০,০০০", "১ : ৫০,০০০", "১ : ২৫,০০০"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ৪° × ৪° বিস্তারের মিলিয়ন শিট মানচিত্রের স্কেল হয় ১ সেমিতে ১০ কিমি, অর্থাৎ এর R.F. হলো ১ : ১০,০০,০০০।" },
+        { q: "৭. ডিগ্রি শিট (Degree Sheet) ভূবৈচিত্র্যসূচক মানচিত্রের অক্ষাংশ ও দ্রাঘিমাংশগত বিস্তার কত?", opts: ["৪° × ৪°", "১° × ১°", "৩০' × ৩০'", "১৫' × ১৫'"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মিলিয়ন শিটকে ১৬টি ভাগে ভাগ করে সৃষ্ট মাঝারি পর্যায়ের মানচিত্র বা ডিগ্রি শিটের অক্ষাংশ ও দ্রাঘিমাংশগত বিস্তার হলো ১° × ১°।" },
+        { q: "৮. '74 M/7' সূচকবিশিষ্ট ভূবৈচিত্র্যসূচক মানচিত্রটির সংখ্যাসূচক স্কেল বা R.F. কত হবে?", opts: ["১ : ১০,০০,০০০", "১ : ২,৫০,০০০", "১ : ৫০,০০০", "১ : ২৫,০০০"], ans: 2, exp: "<b>ব্যাখ্যা:</b> 74 M/7 হলো একটি ১৫' × ১৫' বিস্তারযুক্ত ইঞ্চি শিট মানচিত্র, তাই এর সংখ্যাসূচক স্কেল (R.F.) হবে সর্বদা ১ : ৫০,০০০।" },
+        { q: "৯. '73 M' সূচকবিশিষ্ট ভূবৈচিত্র্যসূচক মানচিত্রটি কোন্ শ্রেণির মানচিত্র?", opts: ["মিলিয়ন শিট", "ডিগ্রি শিট", "হাফ-ইঞ্চি শিট", "ইঞ্চি শিট বা ১৫' শিট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> যখন মিলিয়ন শিটের সংখ্যার (যেমন 73) পাশে A থেকে P পর্যন্ত কোনো একটি ইংরেজি অক্ষর (যেমন M) থাকে, তখন সেটি ১° × ১° বিস্তারের 'ডিগ্রি শিট' নির্দেশ করে।" },
+        { q: "১০. Topographical Map-এর 'Topography' শব্দটির আক্ষরিক অর্থ কী?", opts: ["স্থান বর্ণনা", "উচ্চতা মাপা", "জলবায়ু নির্দেশ", "গ্রহ-নক্ষত্রের অবস্থান"], ans: 0, exp: "<b>ব্যাখ্যা:</b> প্রাচীন গ্রিক শব্দ 'Topos' (স্থান) এবং 'Graphy' (বর্ণনা) থেকে Topography শব্দটি এসেছে, যার অর্থ হলো কোনো স্থান বর্ণনাকারী মানচিত্র।" },
+        { q: "১১. GIS-এর পুরো কথাটি কী?", opts: ["Geological Information System", "Geographical Information System", "Global Information System", "Geostationary Information System"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উপগ্রহ চিত্রকে ভিত্তি করে ভৌগোলিক তথ্য ব্যবস্থা বা Geographical Information System (GIS) পদ্ধতির সাহায্যে উদ্ভিদ, জলাভূমি প্রভৃতি নানা ধরনের মানচিত্র তৈরি করা হয়।" },
+        { q: "১২. ভূ-সমলয় (Geo-stationary) উপগ্রহগুলি পৃথিবী থেকে সাধারণত কত উচ্চতায় অবস্থান করে?", opts: ["৬০০-৭০০ কিমি", "৭০০-৮০০ কিমি", "৫০০০-৬০০০ কিমি", "৩৫,০০০-৩৬,০০০ কিমি"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ভূ-সমলয় উপগ্রহগুলি নিরক্ষরেখা বরাবর সমুদ্রপৃষ্ঠ থেকে প্রায় ৩৫,০০০ থেকে ৩৬,০০০ কিমি উচ্চতায় পৃথিবীর আবর্তনের সাথে সমান বেগে ঘোরে।" },
+        { q: "১৩. সূর্য-সমলয় (Sun-synchronous) উপগ্রহগুলি পৃথিবী থেকে সাধারণত কত উচ্চতায় অবস্থান করে?", opts: ["৭০০-৮০০ কিমি", "২০০০-৩০০০ কিমি", "১০,০০০ কিমি", "৩৫,০০০ কিমি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> সূর্য-সমলয় উপগ্রহগুলি মেরু অক্ষ অনুসরণ করে উত্তর থেকে দক্ষিণে আবর্তিত হয় এবং এরা সমুদ্রপৃষ্ঠ থেকে সাধারণত ৭০০-৮০০ কিমি উচ্চতায় অবস্থান করে।" },
+        { q: "১৪. সূর্য-সমলয় (Sun-synchronous) উপগ্রহ পৃথিবীর কোন্ পথ অনুসরণ করে ঘোরে?", opts: ["পূর্ব থেকে পশ্চিমে", "নিরক্ষরেখা বরাবর", "মেরু অক্ষ অনুসরণ করে (উত্তর-দক্ষিণে)", "পৃথিবীর কেন্দ্র ভেদ করে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সূর্য-সমলয় উপগ্রহগুলি মেরু অক্ষ অনুসরণ করে উত্তর থেকে দক্ষিণে পৃথিবীকে প্রদক্ষিণ করে।" },
+        { q: "১৫. একটি বৃহৎ স্কেলের মানচিত্রের (Large Scale Map) উদাহরণ কোনটি?", opts: ["দেয়াল মানচিত্র", "ভূবৈচিত্র্যসূচক মানচিত্র বা টোপোশিট", "গ্লোব", "পৃথিবীর মানচিত্র"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভূবৈচিত্র্যসূচক মানচিত্র বা টোপোশিট এবং মৌজা মানচিত্র হলো বৃহৎ স্কেলের মানচিত্র, যেখানে ছোটো অঞ্চলের খুঁটিনাটি বিষয় দেখানো হয়।" }
+    ]
+};
+
+// ============================================================
+// সেট ৩: মানচিত্রের প্রতীক, রং এবং বিবিধ
+// ============================================================
+const SET3 = {
+    name: "সেট ৩",
+    icon: "📍",
+    topic: "মানচিত্রের প্রতীক, রং এবং বিবিধ",
+    questions: [
+        { q: "১. ভূবৈচিত্র্যসূচক মানচিত্রে (টোপোশিট) সমোন্নতি রেখা (Contour lines) কোন্ রঙের সাহায্যে দেখানো হয়?", opts: ["কালো", "লাল", "নীল", "বাদামি"], ans: 3, exp: "<b>ব্যাখ্যা:</b> টোপোশিটে ভূপ্রকৃতি বা ভূমির উচ্চতা ও ঢাল বোঝানোর জন্য সমোন্নতি রেখাগুলিকে সর্বদা বাদামি (Brown) রঙে আঁকা হয়।" },
+        { q: "২. ভূবৈচিত্র্যসূচক মানচিত্রে নিত্যবহ নদী (Perennial river) বা হ্রদ কোন্ রঙের সাহায্যে দেখানো হয়?", opts: ["কালো", "গাঢ় লাল", "নীল", "সবুজ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> টোপোশিট বা ভূবৈচিত্র্যসূচক মানচিত্রে জলের উৎস যেমন নিত্যবহ নদী, খাল, জলাশয়, হ্রদ, সমুদ্র ইত্যাদিকে নীল (Blue) রঙের সাহায্যে উপস্থাপন করা হয়।" },
+        { q: "৩. ভূবৈচিত্র্যসূচক মানচিত্রে অনিত্যবহ নদী (Non-perennial river) বা শুষ্ক নদীখাতকে কোন্ রঙে বোঝানো হয়?", opts: ["কালো", "নীল", "লাল", "বাদামি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> যে সকল নদীতে সারাবছর জল থাকে না (অনিত্যবহ নদী) বা শুষ্ক নদীখাত, সেগুলিকে টোপোশিটে কালো (Black) রঙে দেখানো হয়।" },
+        { q: "৪. ভূবৈচিত্র্যসূচক মানচিত্রে জনবসতি (Settlements) এবং পাকা সড়কপথ কোন্ রঙে দেখানো হয়?", opts: ["খয়েরি", "নীল", "লাল", "হলুদ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মানুষের তৈরি সাংস্কৃতিক উপাদান যেমন- স্থায়ী জনবসতি, পাকা সড়কপথ ইত্যাদি ভূবৈচিত্র্যসূচক মানচিত্রে লাল (Red) রঙের মাধ্যমে দেখানো হয়।" },
+        { q: "৫. টোপোশিটে বনভূমি বা সংরক্ষিত অরণ্যকে (Reserved Forest) সাধারণত কোন্ রঙের সাহায্যে দেখানো হয়?", opts: ["গাঢ় লাল", "সবুজ", "হলুদ", "বাদামি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভূবৈচিত্র্যসূচক মানচিত্রে বা টোপোশিটে প্রাকৃতিক বনভূমি, সংরক্ষিত অরণ্য এবং গাছপালাকে সবুজ (Green) রঙের সাহায্যে চিহ্নিত করা হয়।" },
+        { q: "৬. ভূবৈচিত্র্যসূচক মানচিত্রে কৃষিজমি বা চাষযোগ্য ভূমিকে কোন্ রঙের সাহায্যে উপস্থাপন করা হয়?", opts: ["হলুদ", "সবুজ", "সাদা", "নীল"], ans: 0, exp: "<b>ব্যাখ্যা:</b> টোপোশিটে যেখানে কৃষিকাজ হয় বা চাষযোগ্য আবাদি জমি রয়েছে, সেই অঞ্চলগুলিকে হলুদ (Yellow) রঙ দিয়ে ভরিয়ে দেখানো হয়।" },
+        { q: "৭. উপগ্রহ চিত্রে (FCC) অগভীর জলাভূমি বা কর্দমাক্ত জলকে সাধারণত কোন্ রঙে দেখানো হয়?", opts: ["গাঢ় লাল", "আকাশি নীল বা হালকা নীল", "গাঢ় নীল", "সবুজ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ছদ্ম রঙের উপগ্রহ চিত্রে পরিষ্কার ও গভীর জলভাগকে গাঢ় নীল বা কালো রঙে দেখানো হলেও, অগভীর জলাভূমি বা কর্দমাক্ত জলকে আকাশি নীল বা হালকা নীল রঙে দেখানো হয়।" },
+        { q: "৮. উপগ্রহ চিত্রে (FCC) কৃষিজমি এবং জনবসতিগুলি সাধারণত কীরূপ আকারের হয়?", opts: ["বৃত্তাকার", "জ্যামিতিক আকারের (যেমন- বর্গাকার, আয়তাকার)", "ত্রিভুজাকার", "অনিয়মিত আকারের"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উপগ্রহ চিত্রে মানুষের তৈরি উপাদানগুলি, যেমন কৃষিজমি এবং জনবসতিগুলিকে সাধারণত নির্দিষ্ট জ্যামিতিক আকারের (বর্গাকার বা আয়তাকার) দেখতে লাগে।" },
+        { q: "৯. ভারতের একটি উল্লেখযোগ্য সম্পদ অনুসন্ধানী (Earth Observation) কৃত্রিম উপগ্রহের নাম কী?", opts: ["INSAT", "LANDSAT", "IRS", "SPOT"], ans: 2, exp: "<b>ব্যাখ্যা:</b> IRS (Indian Remote Sensing) হলো ভারতের একটি সম্পদ অনুসন্ধানী সূর্য-সমলয় উপগ্রহ। (উল্লেখ্য LANDSAT আমেরিকার এবং SPOT ফ্রান্সের উপগ্রহ)।" },
+        { q: "১০. আবহাওয়া সংক্রান্ত তথ্য সংগ্রহের জন্য ভারতের প্রেরিত একটি উপগ্রহের নাম কী?", opts: ["IRS", "INSAT", "LANDSAT", "CARTOSAT"], ans: 1, exp: "<b>ব্যাখ্যা:</b> INSAT (Indian National Satellite) হলো ভারতের একটি ভূ-সমলয় উপগ্রহ, যা প্রধানত আবহাওয়ার পূর্বাভাস এবং টেলিযোগাযোগের তথ্য প্রদান করে।" },
+        { q: "১১. ভূ-সমলয় (Geo-stationary) উপগ্রহ পৃথিবীর কোন্ রেখা বরাবর আবর্তিত হয়?", opts: ["মূলমধ্য রেখা", "কর্কটক্রান্তি রেখা", "মকরক্রান্তি রেখা", "নিরক্ষরেখা"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ভূ-সমলয় উপগ্রহগুলি পশ্চিম থেকে পূর্বে নিরক্ষরেখা বা নিরক্ষীয় তল অনুসরণ করে পৃথিবীর সাথে সমান বেগে আবর্তিত হয়।" },
+        { q: "১২. উপগ্রহ চিত্র গ্রহণের পর্যায়গুলির মধ্যে 'Transformation' পর্যায়টির মূল কাজ কী?", opts: ["রকেট উৎক্ষেপণ", "ত্রুটি সংশোধন করে ডিজিটাল তথ্যকে ব্যবহারযোগ্য চিত্রে পরিণত করা", "রাডার চালু করা", "পিক্সেল ধ্বংস করা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সংগৃহীত তথ্যের ভুলত্রুটি সংশোধন করে নতুন উজ্জ্বলতা মান নির্ণয় সহ আনুষঙ্গিক পদ্ধতির মাধ্যমে তথ্যকে ইমেজ বা চিত্রে পরিণত করার পর্যায়টিকে Transformation বলে।" },
+        { q: "১৩. ভূবৈচিত্র্যসূচক মানচিত্রে 'PO' (Post Office) এবং 'PTO' (Post & Telegraph Office) ইত্যাদি অক্ষরগুলি কোন্ রং দিয়ে লেখা হয়?", opts: ["নীল", "লাল", "কালো", "সবুজ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> টোপোশিটে নামের অক্ষর, সীমানারেখা, ডাক ও তার অফিস (PTO), পুলিশ স্টেশন (PS) ইত্যাদি নির্দেশ করার জন্য কালো (Black) রং ব্যবহার করা হয়।" },
+        { q: "১৪. উপগ্রহ চিত্র বা Satellite Image-এর একটি প্রধান অসুবিধা কী?", opts: ["বিশাল এলাকার তথ্য দেয়", "অত্যন্ত ব্যয়বহুল এবং মেঘাচ্ছন্ন অবস্থায় সাধারণ সেন্সরে ছবি ওঠে না", "আবহাওয়ার পূর্বাভাস দেওয়া যায়", "দুর্গম অঞ্চলের তথ্য দেয়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উপগ্রহ তৈরি ও উৎক্ষেপণ অত্যন্ত ব্যয়বহুল একটি পদ্ধতি। এছাড়া মেঘাচ্ছন্ন থাকলে মাইক্রোওয়েভ সেন্সর ছাড়া সাধারণ সেন্সরে ভূপৃষ্ঠের সঠিক তথ্য সংগ্রহ করা কঠিন হয়ে পড়ে।" },
+        { q: "১৫. জরিপ কার্যের মাধ্যমে সংগৃহীত তথ্যের ভিত্তিতে আঁকা মানচিত্রকে কী বলে?", opts: ["উপগ্রহ চিত্র", "ভূবৈচিত্র্যসূচক মানচিত্র", "আবহাওয়া মানচিত্র", "থিমেটিক মানচিত্র"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পায়ে হেঁটে বা যন্ত্রের সাহায্যে জরিপ (Survey) করে সংগৃহীত প্রাথমিক তথ্যের ওপর ভিত্তি করে যে নির্দিষ্ট স্কেলের মানচিত্র তৈরি হয়, তাকে ভূবৈচিত্র্যসূচক মানচিত্র বা টোপোশিট বলে।" }
+    ]
+};
+
+// ============================================================
+// সব সেট একত্রে
+// ============================================================
+const QUIZ_SETS = {
+    "1": SET1,
+    "2": SET2,
+    "3": SET3
+};
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+let loggedInUser = null;
+let currentSetId = null;
+let questions = [];
+let score = 0;
+let wrongAnswers = 0;
+let userAnswers = {};
+let isReviewMode = false;
+let timerInterval;
+let timeLeft = TIME_LIMIT;
+
+window.onload = () => {
+    applyBranding();
+    buildHub();
+};
+
+function buildHub() {
+    const grid = document.getElementById('setGrid');
+    grid.innerHTML = '';
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+
+    for(let id in QUIZ_SETS) {
+        const set = QUIZ_SETS[id];
+        let attemptCount = 0;
+        let isLocked = false;
+
+        if(loggedInUser) {
+            attemptCount = userAttempts[loggedInUser + "_" + id] || 0;
+            isLocked = attemptCount >= MAX_ATTEMPTS;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'set-card';
+        let badge = '';
+        if(loggedInUser) {
+            badge = `<div class="attempt-badge ${isLocked ? 'locked' : ''} en-font">${isLocked ? 'সম্পূর্ণ' : attemptCount + '/' + MAX_ATTEMPTS}</div>`;
+        }
+
+        card.innerHTML = `
+            ${badge}
+            <div class="set-icon">${set.icon}</div>
+            <div class="set-name">${set.name}</div>
+            <div class="set-topic">${set.topic}</div>
+            <div class="set-meta-info en-font">
+                <span>${set.questions.length} Qs</span>
+                <span>10 Mins</span>
+            </div>
+        `;
+        card.onclick = () => { selectSet(id); };
+        grid.appendChild(card);
+    }
+}
+
+function selectSet(setId) {
+    if(loggedInUser) {
+        let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+        let attemptCount = userAttempts[loggedInUser + "_" + setId] || 0;
+        if(attemptCount >= MAX_ATTEMPTS) {
+            alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+            return;
+        }
+        startQuiz(setId);
+    } else {
+        currentSetId = setId;
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginError').classList.add('hidden');
+        document.getElementById('loginSetName').innerText = QUIZ_SETS[setId].name + ": " + QUIZ_SETS[setId].topic;
+        document.getElementById('loginModal').classList.remove('hidden');
+    }
+}
+
+function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+
+function doLogin() {
+    const u = document.getElementById('loginUsername').value.trim();
+    const p = document.getElementById('loginPassword').value.trim();
+    const err = document.getElementById('loginError');
+    const GLOBAL_USERS = JSON.parse(localStorage.getItem("testBazarGlobalUsers")) || {};
+
+    if(!u || !p) { err.innerText = "ইউজারনেম এবং পাসওয়ার্ড দিন!"; err.classList.remove('hidden'); return; }
+
+    if(GLOBAL_USERS[u] && GLOBAL_USERS[u] === p) {
+        loggedInUser = u;
+        document.getElementById('userDisplay').innerText = `👤 ${u}`;
+        closeLogin();
+        buildHub();
+        if(currentSetId) {
+            startQuiz(currentSetId);
+        }
+    } else {
+        err.innerText = "ইউজারনেম বা পাসওয়ার্ড ভুল!";
+        err.classList.remove('hidden');
+    }
+}
+
+function incrementAttempt(user, setId) {
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let key = user + "_" + setId;
+    userAttempts[key] = (userAttempts[key] || 0) + 1;
+    localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(userAttempts));
+}
+
+function startQuiz(setId) {
+    currentSetId = setId;
+    incrementAttempt(loggedInUser, setId);
+    questions = QUIZ_SETS[setId].questions;
+    userAnswers = {};
+    isReviewMode = false;
+    score = 0;
+    wrongAnswers = 0;
+    timeLeft = TIME_LIMIT;
+
+    document.getElementById('hubView').classList.add('hidden');
+    document.getElementById('resultModal').classList.add('hidden');
+    document.getElementById('quizView').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('danger');
+    document.getElementById('submitTestBtn').classList.remove('hidden');
+    document.getElementById('quizTitle').innerText = QUIZ_SETS[setId].name + " | " + QUIZ_SETS[setId].topic;
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tick, 1000);
+    renderQuestions();
+}
+
+function tick() {
+    timeLeft--;
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    document.getElementById('timerDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if (timeLeft <= 60) document.getElementById('timerBox').classList.add('danger');
+    if (timeLeft <= 0) { submitQuiz(); }
+}
+
+const LABELS = ['A', 'B', 'C', 'D'];
+
+function renderQuestions() {
+    const quizList = document.getElementById('quizList');
+    let html = '';
+    questions.forEach((q, i) => {
+        html += `<div class="q-block" id="qBlock_${i}">
+            <div class="q-text">${q.q}</div>
+            <div class="options-grid">`;
+        q.opts.forEach((opt, j) => {
+            html += `<div class="opt" id="opt_${i}_${j}" onclick="selectOpt(${i}, ${j})">
+                <div class="opt-circle">${LABELS[j]}</div>
+                <div class="opt-text">${opt}</div>
+            </div>`;
+        });
+        html += `</div>
+            <div class="explanation hidden" id="exp_${i}">${q.exp}</div>
+        </div>`;
+    });
+    quizList.innerHTML = html;
+    window.scrollTo(0, 0);
+}
+
+function selectOpt(qIdx, optIdx) {
+    if (isReviewMode) return;
+    userAnswers[qIdx] = optIdx;
+    const block = document.getElementById(`qBlock_${qIdx}`);
+    const opts = block.querySelectorAll('.opt');
+    opts.forEach(o => o.classList.remove('selected'));
+    document.getElementById(`opt_${qIdx}_${optIdx}`).classList.add('selected');
+}
+
+function submitQuiz() {
+    if (isReviewMode) return;
+    const answeredCount = Object.keys(userAnswers).length;
+    if (timeLeft > 0 && answeredCount < questions.length) {
+        const confirmSubmit = confirm(`আপনি মাত্র ${answeredCount} টি প্রশ্নের উত্তর দিয়েছেন। আপনি কি সত্যিই Test জমা দিতে চান?`);
+        if(!confirmSubmit) return;
+    }
+    isReviewMode = true;
+    clearInterval(timerInterval);
+    document.getElementById('timerBox').classList.add('hidden');
+    document.getElementById('submitTestBtn').classList.add('hidden');
+
+    score = 0;
+    wrongAnswers = 0;
+    questions.forEach((q, i) => {
+        const selected = userAnswers[i];
+        const block = document.getElementById(`qBlock_${i}`);
+        const opts = block.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.remove('selected'));
+        if (selected !== undefined) {
+            if (selected === q.ans) {
+                score++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('correct');
+            } else {
+                wrongAnswers++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('wrong');
+                document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+            }
+        } else {
+            document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+        }
+        document.getElementById(`exp_${i}`).classList.remove('hidden');
+    });
+
+    const skipped = questions.length - (score + wrongAnswers);
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('rbCorrect').textContent = score;
+    document.getElementById('rbWrong').textContent = wrongAnswers + skipped;
+
+    let icon = '💪', grade = 'চেষ্টা চালিয়ে যাও!';
+    if(pct >= 90) { icon = '🌟'; grade = 'অসাধারণ!'; }
+    else if(pct >= 70) { icon = '👍'; grade = 'খুব ভালো!'; }
+    else if(pct >= 50) { icon = '📚'; grade = 'ভালো চেষ্টা!'; }
+
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultGrade').textContent = grade;
+
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    let remaining = MAX_ATTEMPTS - attemptCount;
+    document.getElementById('attemptInfo').innerText = `বাকি আছে ${remaining} বার Test দেওয়ার সুযোগ (সর্বোচ্চ ${MAX_ATTEMPTS} বার)`;
+    document.getElementById('resultModal').classList.remove('hidden');
+}
+
+function closeResultModal() {
+    document.getElementById('resultModal').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+    closeResultModal();
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    if(attemptCount >= MAX_ATTEMPTS) {
+        alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+        document.getElementById('quizView').classList.add('hidden');
+        document.getElementById('hubView').classList.remove('hidden');
+        buildHub();
+        return;
+    }
+    startQuiz(currentSetId);
+}
+</script>
+</body>
+</html>
