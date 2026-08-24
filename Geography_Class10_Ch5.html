@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 Geography Chapter 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #1a7a4a; --primary-hover: #2aad68; --accent: #f9a825;
+--bg-main: #f0faf4; --bg-card: #ffffff; --bg-selected: #e8f4ec;
+--text-main: #1c2e24; --text-meta: #5a7a66; --border-color: #c5dccb;
+--alert-danger: #dc3545; --correct: #28a745;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Tiro Bangla', serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+.en-font { font-family: 'Syne', sans-serif; }
+.hidden { display: none !important; }
+
+.header {
+background: #ffffff;
+box-shadow: 0 4px 20px rgba(10, 92, 54, 0.08);
+position: sticky;
+top: 0;
+z-index: 1000;
+border-bottom: 3px solid #0a5c36;
+}
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 8px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo-link {
+display: flex;
+align-items: center;
+gap: 10px;
+text-decoration: none;
+cursor: pointer;
+}
+.logo-emblem {
+width: 45px;
+height: 45px;
+background: linear-gradient(135deg, #0a5c36 0%, #1e824c 100%);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.4rem;
+font-weight: 800;
+color: white;
+box-shadow: 0 4px 12px rgba(10, 92, 54, 0.2);
+flex-shrink: 0;
+}
+.brand-text-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.coaching-main-title {
+font-size: 1.4rem;
+font-weight: 800;
+color: #0a5c36;
+letter-spacing: -0.5px;
+line-height: 1.1;
+}
+.coaching-subtitle {
+font-size: 0.75rem;
+color: #556c5e;
+font-weight: 700;
+letter-spacing: 0.3px;
+margin-top: 1px;
+text-transform: uppercase;
+}
+.coaching-tagline {
+font-size: 0.65rem;
+color: #f5a623;
+font-weight: 600;
+margin-top: 1px;
+letter-spacing: 0.1px;
+}
+.header-right {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.timer-box {
+background: rgba(10, 92, 54, 0.08);
+padding: 6px 15px;
+border-radius: 8px;
+font-weight: 700;
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+gap: 5px;
+color: #0a5c36;
+}
+.timer-box.danger { background: var(--alert-danger); color: white; animation: pulse 1s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.user-info { background: #0a5c36; color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; }
+
+.main-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.hub-header { text-align: center; margin-bottom: 30px; }
+.hub-header h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 10px; }
+.set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+.set-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+.set-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(26,122,74,0.1); }
+.set-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.set-name { font-size: 1.3rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; font-family: 'Syne', sans-serif;}
+.set-topic { font-size: 0.95rem; color: var(--text-meta); margin-bottom: 15px; height: 40px; }
+.set-meta-info { display: flex; justify-content: center; gap: 10px; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
+.set-meta-info span { background: var(--bg-main); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+.attempt-badge { position: absolute; top: 10px; right: 10px; background: #ffeeba; color: #856404; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+.attempt-badge.locked { background: var(--alert-danger); color: white; border: none; }
+
+.quiz-info { background: var(--bg-card); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+.q-block { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.q-text { font-size: 1.2rem; font-weight: bold; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
+.options-grid { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 1.05rem; }
+.opt:hover:not(.selected):not(.correct):not(.wrong) { background: var(--bg-main); border-color: var(--primary); }
+.opt.selected { background: var(--bg-selected); border-color: var(--primary); }
+.opt-circle { min-width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Syne', sans-serif; color: var(--text-meta); flex-shrink: 0; }
+.opt.selected .opt-circle { background: var(--primary); color: white; border-color: var(--primary); }
+.opt.correct { background: #e8f7ef; border-color: var(--correct); }
+.opt.correct .opt-circle { background: var(--correct); border-color: var(--correct); color: white; }
+.opt.wrong { background: #fdf0f0; border-color: var(--alert-danger); }
+.opt.wrong .opt-circle { background: var(--alert-danger); border-color: var(--alert-danger); color: white; }
+.explanation { margin-top: 15px; padding: 15px; background: #e8f4ec; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #2c4035; line-height: 1.5;}
+.btn-submit { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; font-family: 'Tiro Bangla', serif; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(26,122,74,0.2); transition: 0.2s; }
+.btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+.btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: bold;}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto;}
+.modal-box { background: white; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin: auto;}
+.modal-box input { width: 100%; padding: 12px 15px; margin: 10px 0; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: 'Syne', sans-serif; box-sizing: border-box; outline: none; transition: 0.2s; }
+.modal-box input:focus { border-color: var(--primary); }
+.result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto; padding: 20px; }
+.result-box { background: white; padding: 2.5rem 2rem; border-radius: 16px; width: 100%; max-width: 450px; text-align: center; margin: auto; }
+.result-score { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin: 15px 0; }
+.result-bars { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.result-bar { background: var(--bg-main); padding: 15px; border-radius: 12px; width: 100px; border: 1px solid var(--border-color); }
+
+@media (max-width: 768px) {
+.header-container { flex-direction: column; gap: 10px; text-align: center; padding: 10px 10px; }
+.logo-link { flex-direction: column; gap: 6px; }
+.brand-text-container { text-align: center; }
+.coaching-main-title { font-size: 1.2rem; }
+.coaching-subtitle { font-size: 0.7rem; }
+.coaching-tagline { font-size: 0.6rem; }
+.header-right { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="#" class="logo-link" onclick="location.reload(); return false;">
+            <div class="logo-emblem" id="dynamicEmblem">🇮🇳</div>
+            <div class="brand-text-container">
+                <span class="coaching-main-title" id="dynamicTitle">Geography - Chapter 5</span>
+                <span class="coaching-subtitle" id="dynamicSubtitle">ভারত (অবস্থান, ভূপ্রকৃতি, নদ-নদী, জলবায়ু, মৃত্তিকা, উদ্ভিদ, কৃষি, খনিজ, শিল্প, জনসংখ্যা, পরিবহণ ও যোগাযোগ)</span>
+                <span class="coaching-tagline" id="dynamicTagline">দশম শ্রেণি (Class 10)</span>
+            </div>
+        </a>
+        <div class="header-right">
+            <div class="timer-box en-font hidden" id="timerBox">⏱ <span id="timerDisplay">10:00</span></div>
+            <div class="user-info en-font" id="userDisplay" style="font-weight: bold;">👤 Guest</div>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <div id="hubView">
+        <div class="hub-header">
+            <h1 style="color: var(--primary); margin-bottom: 10px;">ভূগোল - Class 10 Chapter 5</h1>
+            <p style="color: var(--text-meta);">ভারত (অবস্থান, ভূপ্রকৃতি, নদ-নদী, জলবায়ু, মৃত্তিকা, উদ্ভিদ, কৃষি, খনিজ, শিল্প, জনসংখ্যা, পরিবহণ ও যোগাযোগ)</p>
+        </div>
+        <div class="set-grid" id="setGrid"></div>
+        <div style="text-align:center; margin-top:40px;">
+            <button class="btn-primary" style="background:var(--text-meta); width: auto; padding: 12px 25px;" onclick="window.history.back()">← Main Dashboard-এ ফিরুন</button>
+        </div>
+    </div>
+
+    <div id="quizView" class="hidden">
+        <div class="quiz-info">
+            <div id="quizTitle">Set Name</div>
+            <div id="quizMetaInfo" class="en-font">15 Questions | 10 Mins</div>
+        </div>
+        <div id="quizList"></div>
+        <button class="btn-submit" id="submitTestBtn" onclick="submitQuiz()">Test জমা দিন ও ফলাফল দেখুন</button>
+    </div>
+
+</div>
+
+<div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-box">
+        <h2 style="color: var(--primary); margin-top:0;">লগইন করুন</h2>
+        <p style="color: var(--text-meta); margin-bottom: 15px; font-size: 0.9rem;">Test শুরু করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন</p>
+        <div id="loginSetName" style="background: var(--bg-main); padding: 8px; border-radius: 8px; font-weight:bold; color:var(--primary); margin-bottom:15px; font-family: 'Syne', sans-serif; font-size: 0.95rem;">Set Name</div>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()">
+        <div id="loginError" class="hidden" style="color: var(--alert-danger); margin: 10px 0; font-weight:bold; font-size: 0.9rem;"></div>
+        <div style="display: flex; gap: 10px; margin-top:15px; justify-content: center;">
+            <button class="btn-primary" style="width: 100%; padding: 12px;" onclick="doLogin()">লগইন করুন</button>
+            <button class="btn-primary" style="background: var(--alert-danger); width: 100%; padding: 12px;" onclick="closeLogin()">বাতিল</button>
+        </div>
+    </div>
+</div>
+
+<div class="result-overlay hidden" id="resultModal">
+    <div class="result-box">
+        <div style="font-size: 3.5rem; margin-bottom:0; line-height: 1;" id="resultIcon">🌟</div>
+        <h2 style="margin:10px 0; color: var(--text-main);">আপনার ফলাফল</h2>
+        <div class="result-score en-font" id="finalScore">100%</div>
+        <div id="resultGrade" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--accent);">অসাধারণ!</div>
+        <div class="result-bars">
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbCorrect">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">সঠিক</div>
+            </div>
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--alert-danger);" class="en-font" id="rbWrong">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">ভুল / স্কিপ</div>
+            </div>
+        </div>
+        <p style="background: var(--bg-main); padding: 10px; border-radius: 8px; color:var(--text-meta); font-weight:bold; font-size:0.95rem; margin-bottom:25px;" id="attemptInfo" class="en-font">বাকি আছে 9 বার</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="btn-primary" style="background: #28a745; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="closeResultModal()">উত্তর ও ব্যাখ্যা দেখুন</button>
+            <button class="btn-primary" style="background: #17a2b8; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="restartQuiz()">আবার চেষ্টা করো</button>
+            <button class="btn-primary" style="background: var(--text-meta); width: 100%; padding: 14px; font-size: 1.05rem;" onclick="window.location.reload()">Chapter Hub-এ ফিরুন</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// DYNAMIC BRANDING LOGIC
+// ============================================================
+const STORE_CONFIGS = {
+    "guru": {
+        title: "Guru Book Store Jhalda",
+        mainTitle: "Guru Book Store",
+        subtitle: "Jhalda",
+        tagline: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        emblem: "G"
+    },
+    "saraswati": {
+        title: "Saraswati Book Store",
+        mainTitle: "Saraswati Book Store",
+        subtitle: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        tagline: "শিক্ষা ও প্রগতির বিশ্বস্ত সঙ্গী",
+        emblem: "S"
+    }
+};
+
+function applyBranding() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let storeKey = urlParams.get('store') || localStorage.getItem("activeStore") || "";
+    storeKey = storeKey.toLowerCase();
+
+    if (storeKey && STORE_CONFIGS[storeKey]) {
+        const config = STORE_CONFIGS[storeKey];
+        document.title = `${config.title} - Class 10 Geography Chapter 5`;
+        document.getElementById("dynamicEmblem").innerText = config.emblem;
+        document.getElementById("dynamicTitle").innerText = config.mainTitle;
+        document.getElementById("dynamicSubtitle").innerText = config.subtitle;
+        document.getElementById("dynamicTagline").innerText = config.tagline;
+        localStorage.setItem("activeStore", storeKey);
+    } else {
+        document.title = "Class 10 Geography Chapter 5 - ভারত (অবস্থান, ভূপ্রকৃতি, নদ-নদী, জলবায়ু, মৃত্তিকা, উদ্ভিদ, কৃষি, খনিজ, শিল্প, জনসংখ্যা, পরিবহণ ও যোগাযোগ)";
+        document.getElementById("dynamicEmblem").innerText = "🇮🇳";
+        document.getElementById("dynamicTitle").innerText = "Geography - Chapter 5";
+        document.getElementById("dynamicSubtitle").innerText = "ভারত (অবস্থান, ভূপ্রকৃতি, নদ-নদী, জলবায়ু, মৃত্তিকা, উদ্ভিদ, কৃষি, খনিজ, শিল্প, জনসংখ্যা, পরিবহণ ও যোগাযোগ)";
+        document.getElementById("dynamicTagline").innerText = "দশম শ্রেণি (Class 10)";
+    }
+}
+
+// ============================================================
+// QUIZ DATA - 18 SETS (TOTAL 270 QUESTIONS)
+// ============================================================
+const STORAGE_KEY_ATTEMPTS = "testBazarAttempts_Geography_Ch5_Sets";
+const MAX_ATTEMPTS = 10;
+const TIME_LIMIT = 10 * 60;
+
+// ============================================================
+// সেট ১: ভারতের অবস্থান ও প্রশাসনিক বিভাগ
+// ============================================================
+const SET1 = {
+    name: "সেট ১",
+    icon: "🇮🇳",
+    topic: "ভারতের অবস্থান ও প্রশাসনিক বিভাগ",
+    questions: [
+        { q: "১. ভারতের দক্ষিণতম স্থলবিন্দুর নাম কী?", opts: ["ইন্দিরা কল", "কন্যাকুমারী", "ইন্দিরা পয়েন্ট", "গুহারমোতা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> গ্রেট নিকোবরের দক্ষিণ প্রান্তে ৬°৪৫' উত্তর অক্ষাংশে অবস্থিত পারসন্স পিগম্যালিয়ান পয়েন্টটিই বর্তমানে ইন্দিরা পয়েন্ট নামে পরিচিত, যা ভারতের দক্ষিণতম স্থলবিন্দু।" },
+        { q: "২. আয়তন অনুসারে বিশ্বে ভারতের স্থান কত?", opts: ["দ্বিতীয়", "পঞ্চম", "সপ্তম", "দশম"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের মোট আয়তন ৩২ লক্ষ ৮৭ হাজার ২৬৩ বর্গকিমি এবং আয়তনের দিক থেকে বিশ্বে ভারতের স্থান সপ্তম।" },
+        { q: "৩. ভারতের প্রমাণ দ্রাঘিমারেখা কোন্ শহরের ওপর দিয়ে প্রসারিত হয়েছে?", opts: ["কলকাতা", "এলাহাবাদ", "জয়পুর", "চেন্নাই"], ans: 1, exp: "<b>ব্যাখ্যা:</b> এলাহাবাদ শহরের ওপর দিয়ে প্রসারিত ৮২°৩০' পূর্ব দ্রাঘিমারেখাকে ভারতের প্রমাণ দ্রাঘিমারেখা ধরা হয়।" },
+        { q: "৪. ভারতের প্রায় মাঝখান দিয়ে কোন্ অক্ষরেখা প্রসারিত হয়েছে?", opts: ["নিরক্ষরেখা", "মকরক্রান্তি রেখা", "কর্কটক্রান্তি রেখা", "মূলমধ্য রেখা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ২৩°৩০' উত্তর অক্ষরেখা বা কর্কটক্রান্তি রেখা ভারতের প্রায় মাঝখান দিয়ে প্রসারিত হয়ে ভারতকে উত্তর ও দক্ষিণ—এই দুই অর্ধে ভাগ করেছে।" },
+        { q: "৫. ভারতের মূল ভূখণ্ডের দক্ষিণতম অংশ কোনটি?", opts: ["ইন্দিরা কল", "কন্যাকুমারী বা কুমারিকা অন্তরীপ", "ইন্দিরা পয়েন্ট", "পোর্টব্লেয়ার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতের মূল ভূখণ্ডের সর্বদক্ষিণের বিন্দু হলো তামিলনাড়ু রাজ্যের কন্যাকুমারী বা কুমারিকা অন্তরীপ।" },
+        { q: "৬. ভারতের ক্ষুদ্রতম প্রতিবেশী দেশ কোনটি?", opts: ["নেপাল", "ভুটান", "শ্রীলঙ্কা", "মালদ্বীপ"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ভারতের বৃহত্তম প্রতিবেশী দেশ হলো চীন এবং মালাবার উপকূলের একটু দক্ষিণে অবস্থিত মালদ্বীপ হলো ভারতের ক্ষুদ্রতম প্রতিবেশী দেশ।" },
+        { q: "৭. ভারতের নবীনতম রাজ্য কোনটি?", opts: ["ছত্তিশগড়", "উত্তরাখণ্ড", "ঝাড়খণ্ড", "তেলেঙ্গানা"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ২০১৪ সালের ২ জুন অন্ধ্রপ্রদেশ ভেঙে ভারতের ২৯তম (বর্তমানে ২৮তম) ও নবীনতম রাজ্য হিসেবে তেলেঙ্গানা গঠিত হয়।" },
+        { q: "৮. ভাষার ভিত্তিতে গঠিত ভারতের প্রথম রাজ্য কোনটি?", opts: ["গুজরাত", "অন্ধ্রপ্রদেশ", "মহারাষ্ট্র", "পাঞ্জাব"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯৫৩ সালে ভাষার ভিত্তিতে মাদ্রাজ প্রদেশ ভেঙে তেলুগু ভাষাভাষীদের জন্য ভারতের প্রথম রাজ্য হিসেবে অন্ধ্রপ্রদেশ গঠিত হয়।" },
+        { q: "৯. ভারতের সর্বাধিক সীমানা কোন্ দেশের সাথে যুক্ত?", opts: ["চীন", "পাকিস্তান", "নেপাল", "বাংলাদেশ"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ভারতের সাথে বাংলাদেশের সীমানা সবচেয়ে দীর্ঘ, যা প্রায় ৪০৯৬ কিলোমিটার।" },
+        { q: "১০. ভারত ও চীনের মধ্যে সীমানা নির্ধারণকারী ঐতিহাসিক রেখাটির নাম কী?", opts: ["র্যাডক্লিফ লাইন", "ম্যাকমোহন লাইন", "ডুরান্ড লাইন", "এল. ও. সি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯১৪ খ্রিস্টাব্দের সিমলা চুক্তি অনুসারে ভারত ও চীনের মধ্যে এই ৮৯০ কিমি দীর্ঘ ম্যাকমোহন লাইন অঙ্কন করা হয়।" },
+        { q: "১১. ভারত ও পাকিস্তানের মধ্যে সীমানা নির্ধারণকারী রেখা কোনটি?", opts: ["র্যাডক্লিফ লাইন", "ম্যাকমোহন লাইন", "ডুরান্ড লাইন", "ম্যাগিনট লাইন"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ১৯৪৭ সালে স্যার সিরিল র্যাডক্লিফের নেতৃত্বে ভারত ও পাকিস্তানের মধ্যে সীমানা নির্দেশক র্যাডক্লিফ লাইন টানা হয়।" },
+        { q: "১২. ক্ষেত্রফলের দিক থেকে ভারতের বৃহত্তম রাজ্য কোনটি?", opts: ["মহারাষ্ট্র", "মধ্যপ্রদেশ", "রাজস্থান", "উত্তরপ্রদেশ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> আয়তন বা ক্ষেত্রফলের দিক থেকে ভারতের বৃহত্তম রাজ্য হলো রাজস্থান এবং ক্ষুদ্রতম রাজ্য হলো গোয়া।" },
+        { q: "১৩. সার্ক (SAARC)-এর সদর দপ্তর কোথায় অবস্থিত?", opts: ["নতুন দিল্লি", "ঢাকা", "কাঠমান্ডু", "কলম্বো"], ans: 2, exp: "<b>ব্যাখ্যা:</b> দক্ষিণ এশীয় আঞ্চলিক সহযোগিতা সংস্থা বা সার্ক (SAARC)-এর সদর দপ্তর নেপালের রাজধানী কাঠমান্ডুতে অবস্থিত।" },
+        { q: "১৪. ভারতের কোন্ রাজ্যটি তিন দিক দিয়ে বাংলাদেশ দ্বারা পরিবেষ্টিত?", opts: ["অসম", "মেঘালয়", "ত্রিপুরা", "মিজোরাম"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের উত্তর-পূর্বাঞ্চলীয় রাজ্য ত্রিপুরা তিন দিক থেকে বাংলাদেশ দ্বারা ঘেরা।" },
+        { q: "১৫. ভারতের সর্বাধিক জনবহুল রাজ্য কোনটি?", opts: ["মহারাষ্ট্র", "বিহার", "পশ্চিমবঙ্গ", "উত্তরপ্রদেশ"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ২০১১ সালের জনগণনা অনুসারে ভারতের সবচেয়ে বেশি জনসংখ্যা বিশিষ্ট রাজ্য হলো উত্তরপ্রদেশ।" }
+    ]
+};
+
+// ============================================================
+// সেট ২: ভারতের ভূপ্রকৃতি (পর্বত, মালভূমি ও সমভূমি)
+// ============================================================
+const SET2 = {
+    name: "সেট ২",
+    icon: "⛰️",
+    topic: "ভারতের ভূপ্রকৃতি (পর্বত, মালভূমি ও সমভূমি)",
+    questions: [
+        { q: "১. ভারতের সর্বোচ্চ পর্বতশৃঙ্গ কোনটি?", opts: ["কাঞ্চনজঙ্ঘা", "মাউন্ট এভারেস্ট", "গডউইন অস্টিন (K2)", "নন্দাদেবী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কারাকোরাম পর্বতশ্রেণিতে অবস্থিত গডউইন অস্টিন বা K2 (৮,৬১১ মি.) হলো ভারতের সর্বোচ্চ এবং পৃথিবীর দ্বিতীয় উচ্চতম শৃঙ্গ।" },
+        { q: "২. আরাবল্লী একটি কী ধরনের পর্বত?", opts: ["নবীন ভঙ্গিল পর্বত", "স্তূপ পর্বত", "আগ্নেয় পর্বত", "প্রাচীন ভঙ্গিল পর্বত বা ক্ষয়জাত পর্বত"], ans: 3, exp: "<b>ব্যাখ্যা:</b> রাজস্থানে অবস্থিত আরাবল্লী হলো পৃথিবীর একটি প্রাচীন এবং ভারতের প্রাচীনতম ভঙ্গিল পর্বত, যা বর্তমানে ক্ষয়প্রাপ্ত হয়ে ক্ষয়জাত পর্বতে পরিণত হয়েছে।" },
+        { q: "৩. সাতপুরা কী ধরনের পর্বত?", opts: ["স্তূপ পর্বত", "ভঙ্গিল পর্বত", "আগ্নেয় পর্বত", "সঞ্চয়জাত পর্বত"], ans: 0, exp: "<b>ব্যাখ্যা:</b> দাক্ষিণাত্য মালভূমির উত্তরে অবস্থিত সাতপুরা পর্বতটি একটি হোস্ট জাতীয় স্তূপ পর্বত, যার সর্বোচ্চ শৃঙ্গ ধূপগড়।" },
+        { q: "৪. কাশ্মীর উপত্যকার ধাপযুক্ত উর্বর ভূমি কী নামে পরিচিত?", opts: ["দুন", "কারেওয়া", "ভাবর", "খাদার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পিরপাঞ্জাল ও হিমাদ্রি পর্বতের মাঝে কাশ্মীর উপত্যকায় নদী ও হিমবাহের সঞ্চয়ে ১০০-২০০ মিটার উচ্চভূমিতে যে উর্বর পলিস্তর সৃষ্টি হয়েছে, তা কারেওয়া নামে পরিচিত।" },
+        { q: "৫. কারেওয়া মৃত্তিকা কোন্ চাষের জন্য বিখ্যাত?", opts: ["আপেল", "চা", "কফি", "জাফরান"], ans: 3, exp: "<b>ব্যাখ্যা:</b> কাশ্মীর উপত্যকার ধাপযুক্ত ভূমি বা কারেওয়া মৃত্তিকা উৎকৃষ্ট মানের জাফরান চাষের জন্য বিখ্যাত।" },
+        { q: "৬. ভারতের সর্বোচ্চ মালভূমির নাম কী?", opts: ["ছোটোনাগপুর মালভূমি", "লাদাখ মালভূমি", "পামির মালভূমি", "মেঘালয় মালভূমি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কারাকোরামের দক্ষিণে অবস্থিত লাদাখ পর্বতশ্রেণির উত্তর-পূর্বে থাকা লাদাখ মালভূমি (গড় উচ্চতা ৪০০০ মিটারেরও বেশি) হলো ভারতের সর্বোচ্চ মালভূমি।" },
+        { q: "৭. ভারতের বৃহত্তম ভূ-প্রাকৃতিক বিভাগ কোনটি?", opts: ["উত্তরের পার্বত্য অঞ্চল", "উত্তরের সমভূমি অঞ্চল", "উপদ্বীপীয় মালভূমি", "উপকূলীয় সমভূমি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উত্তরের সমভূমি অঞ্চলের দক্ষিণে অবস্থিত ত্রিভুজাকার উপদ্বীপীয় মালভূমিটি প্রায় ১৬ লক্ষ বর্গকিমি জুড়ে বিস্তৃত, যা ভারতের মোট ক্ষেত্রমানের অর্ধেক এবং এটিই বৃহত্তম ভূ-প্রাকৃতিক বিভাগ।" },
+        { q: "৮. শিবালিক হিমালয়ের পাদদেশীয় অঞ্চলে ক্ষুদ্র ক্ষুদ্র শিলাখণ্ড সঞ্চিত হয়ে যে সমভূমি গঠিত হয়েছে, তাকে কী বলে?", opts: ["ভাবর", "খাদার", "ভাঙ্গর", "তরাই"], ans: 0, exp: "<b>ব্যাখ্যা:</b> গাঙ্গেয় সমভূমির উত্তর প্রান্তে পাথর, নুড়ি, বালিপূর্ণ হিমালয়ের পাদদেশীয় ভূমিকে ভাবর বলা হয়।" },
+        { q: "৯. রাজস্থানের মরুভূমির চলমান বালিয়াড়িগুলি কী নামে পরিচিত?", opts: ["ওয়াদি", "প্লায়া", "ধ্রিয়ান", "বাজাদা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> রাজস্থানের থর মরুভূমিতে বায়ুর সঞ্চয়ের ফলে যেসব স্থায়ী ও সচল বা চলমান বালিয়াড়ি তৈরি হয়, স্থানীয় ভাষায় তাদের ধ্রিয়ান বলা হয়।" },
+        { q: "১০. মেঘালয় মালভূমির সর্বোচ্চ শৃঙ্গের নাম কী?", opts: ["শিলং", "দাফাবুম", "সারাবতী", "দোদাবেতা"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মেঘালয় মালভূমির মধ্যভাগে অবস্থিত শিলং-চেরাপুঞ্জি এলাকা এই মালভূমির সবচেয়ে উঁচু অংশ এবং এর সর্বোচ্চ শৃঙ্গের নাম শিলং (১,৯৬৬ মি.)।" },
+        { q: "১১. নীলগিরি পর্বতের সর্বোচ্চ শৃঙ্গ কোনটি?", opts: ["আনাইমুদি", "দোদাবেতা", "অগস্ত্যকুডম", "মহেন্দ্রগিরি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দক্ষিণ ভারতে পশ্চিমঘাট পর্বতের দক্ষিণে অবস্থিত নীলগিরি পর্বতের সর্বোচ্চ শৃঙ্গ হলো দোদাবেতা (২,৬৩৭ মি.)।" },
+        { q: "১২. ডেকান ট্র্যাপ-এর 'ট্র্যাপ' শব্দের অর্থ কী?", opts: ["ফাঁদ", "ধাপ বা সিঁড়ি", "মালভূমি", "সমতল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দাক্ষিণাত্য মালভূমির উত্তর-পশ্চিমাংশে লাভা মালভূমিটি পশ্চিম থেকে পূর্বদিকে ধাপে ধাপে নেমে গেছে বলে একে ডেকান ট্র্যাপ বলা হয়। সুইডিশ শব্দ 'ট্র্যাপ'-এর অর্থ হলো ধাপ বা সিঁড়ি।" },
+        { q: "১৩. বিন্ধ্য পর্বত একটি কী ধরনের পর্বত?", opts: ["আগ্নেয় পর্বত", "নবীন ভঙ্গিল পর্বত", "স্তূপ পর্বত", "সঞ্চয়জাত পর্বত"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মধ্যভারতের উচ্চভূমির প্রধান পর্বতমালা বিন্ধ্য পর্বত এবং এর দক্ষিণে অবস্থিত সাতপুরা উভয়ই হলো স্তূপ পর্বতের উদাহরণ।" },
+        { q: "১৪. পূর্বঘাট পর্বতের একটি উল্লেখযোগ্য শৃঙ্গ কোনটি?", opts: ["আনাইমুদি", "মহেন্দ্রগিরি", "দোদাবেতা", "গুরুশিখর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দাক্ষিণাত্য মালভূমির পূর্ব সীমানায় অবস্থিত পূর্বঘাট বা মলয়াদ্রি পর্বতের একটি উল্লেখযোগ্য উচ্চতম শৃঙ্গ হলো মহেন্দ্রগিরি (১,৫০১ মি.)।" },
+        { q: "১৫. পশ্চিমঘাট পর্বতের কোন্ গিরিপথটি মুম্বাই ও নাসিকের মধ্যে যোগাযোগ রক্ষা করে?", opts: ["থলঘাট", "ভোরঘাট", "পালঘাট", "নাথুলা"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মহারাষ্ট্রের পশ্চিমঘাট পর্বতের থলঘাট গিরিপথটি মুম্বাই ও নাসিক শহরের মধ্যে যোগাযোগের প্রধান মাধ্যম।" }
+    ]
+};
+
+// ============================================================
+// সেট ৩: ভারতের ভূপ্রকৃতি (উপকূল ও দ্বীপ) এবং জলসম্পদ
+// ============================================================
+const SET3 = {
+    name: "সেট ৩",
+    icon: "🌊",
+    topic: "ভারতের ভূপ্রকৃতি (উপকূল ও দ্বীপ) এবং জলসম্পদ",
+    questions: [
+        { q: "১. পৃথিবীর বৃহত্তম নদী-দ্বীপ কোনটি?", opts: ["সাগর দ্বীপ", "মাজুলি", "ভেনিস", "শ্রীহরিকোটা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> অসমের ব্রহ্মপুত্র উপত্যকার ওপর দিয়ে প্রবাহিত ব্রহ্মপুত্র নদের গতিপথে সৃষ্ট মাজুলি দ্বীপটি পৃথিবীর অন্যতম বৃহৎ নদী-দ্বীপ বা নদীচর।" },
+        { q: "২. ভারতের বৃহত্তম উপহ্রদ বা লেগুন কোনটি?", opts: ["চিল্কা", "পুলিকট", "কোলেরু", "ভেম্বানাদ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পূর্ব উপকূলের সমভূমিতে ওড়িশা উপকূলে অবস্থিত লবণাক্ত জলের হ্রদ চিল্কা হলো ভারতের বৃহত্তম উপহ্রদ বা লেগুন।" },
+        { q: "৩. মালাবার উপকূলের উপহ্রদগুলিকে স্থানীয় ভাষায় কী বলা হয়?", opts: ["লেগুন", "কয়াল", "টেরিস", "তাল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পশ্চিম উপকূলের সর্বদক্ষিণে কেরালা রাজ্যের মালাবার উপকূলে অনেক বালিয়াড়ি, হ্রদ ও উপহ্রদ বা লেগুন দেখা যায়, স্থানীয় অধিবাসীরা এদের কয়াল বলে (যেমন- ভেম্বানাদ, অষ্টমুদি)।" },
+        { q: "৪. ভারতের দীর্ঘতম সেচখাল কোনটি?", opts: ["উচ্চ গঙ্গা খাল", "সারদা খাল", "ইডেন খাল", "ইন্দিরা গান্ধী খাল"], ans: 3, exp: "<b>ব্যাখ্যা:</b> রাজস্থানে অবস্থিত ৫৮২ কিমি দীর্ঘ ইন্দিরা গান্ধী খাল হলো ভারতের দীর্ঘতম খাল বা সেচখাল।" },
+        { q: "৫. ভারতের উচ্চতম জলপ্রপাত কোনটি?", opts: ["যোগ বা গেরসোপ্পা", "শিবসমুদ্রম", "কুঞ্চিকল বা ভাজরাই", "ধোঁয়াধার"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পূর্বে কর্ণাটকের যোগ জলপ্রপাত উচ্চতম হলেও বর্তমানে মহারাষ্ট্রের ভাজরাই (৫৬০ মি.) বা কর্ণাটকের ভারাহি নদীতে অবস্থিত কুঞ্চিকল জলপ্রপাতটিকে ভারতের উচ্চতম হিসেবে ধরা হয়।" },
+        { q: "৬. ভারতের দীর্ঘতম নদী-বাঁধ কোনটি?", opts: ["ভাকরা-নাঙ্গাল", "হিরাকুদ", "নাগার্জুন সাগর", "পাঞ্চেৎ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ওড়িশায় মহানদীর ওপর নির্মিত হিরাকুদ প্রকল্প বা হিরাকুদ বাঁধ হলো ভারতের দীর্ঘতম বাঁধ।" },
+        { q: "৭. ভাকরা-নাঙ্গাল বহুমুখী নদী পরিকল্পনা কোন্ নদীর ওপর গড়ে উঠেছে?", opts: ["বিপাশা", "ইরাবতী", "শতদ্রু", "সিন্ধু"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উত্তর ভারতে পাঞ্জাব-হিমাচল সীমান্তে শতদ্রু নদীর ওপর ভারতের বৃহত্তম বহুমুখী নদী পরিকল্পনা ভাকরা-নাঙ্গাল প্রকল্প রূপায়িত হয়েছে।" },
+        { q: "৮. ধোঁয়াধার বা ধুঁয়াধার জলপ্রপাত কোন্ নদীর গতিপথে সৃষ্টি হয়েছে?", opts: ["তাপ্তী", "নর্মদা", "কাবেরী", "গোদাবরী"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মধ্যপ্রদেশের জব্বলপুরের কাছে পশ্চিমবাহিনী নদী নর্মদার গতিপথে বিখ্যাত ধোনাধর বা ধুঁয়াধার জলপ্রপাত সৃষ্টি হয়েছে।" },
+        { q: "৯. দক্ষিণ ভারতের দীর্ঘতম নদী বা 'দক্ষিণের গঙ্গা' কাকে বলা হয়?", opts: ["কাবেরী", "কৃষ্ণা", "নর্মদা", "গোদাবরী"], ans: 3, exp: "<b>ব্যাখ্যা:</b> দক্ষিণ ভারতের দীর্ঘতম নদী হলো গোদাবরী (১,৪৬৫ কিমি), যা মহারাষ্ট্রের ত্র্যম্বক উচ্চভূমি থেকে উৎপন্ন হয়ে বঙ্গোপসাগরে পড়েছে। একে 'দক্ষিণ গঙ্গা' বা 'দক্ষিণের গঙ্গা' বলা হয়।" },
+        { q: "১০. শিবসমুদ্রম জলপ্রপাত কোন্ নদীতে অবস্থিত?", opts: ["গোদাবরী", "কৃষ্ণা", "কাবেরী", "মহানদী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কর্ণাটকের ব্রহ্মগিরি পর্বত থেকে উৎপন্ন কাবেরী নদীর গতিপথে বিখ্যাত শিবসমুদ্রম জলপ্রপাতটি অবস্থিত।" },
+        { q: "১১. রাজস্থানের একটি উল্লেখযোগ্য লবণাক্ত হ্রদের নাম কী?", opts: ["উলার", "ডাল", "লোকটাক", "সম্বর"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ভারতের লবণাক্ত জলের হ্রদগুলি রাজস্থানে বেশি দেখা যায়, যার মধ্যে সম্বর, দিদওয়ানা, পচপদ্রা ইত্যাদি অত্যন্ত গুরুত্বপূর্ণ।" },
+        { q: "১২. লোকটাক হ্রদ কোন্ রাজ্যে অবস্থিত?", opts: ["অসম", "মণিপুর", "মেঘালয়", "মিজোরাম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উত্তর-পূর্ব ভারতে মণিপুর রাজ্যে অবস্থিত লোকটাক হ্রদ হলো সুপেয় বা মিষ্টি জলের একটি অন্যতম উল্লেখযোগ্য হ্রদ।" },
+        { q: "১৩. ভারতের কোন্ নদীতে বানডাকা দেখা যায়?", opts: ["তাপ্তী", "হুগলি", "গোদাবরী", "মহানদী"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বর্ষাকালে ভরা কোটালের সময় ভারতের হুগলি নদীতে ৪-৫ মিটার উঁচু তীব্র জলোচ্ছ্বাস ঘটে, যা ষাঁড়াষাঁড়ির বান বা বানডাকা নামে পরিচিত।" },
+        { q: "১৪. গঙ্গা ও যমুনা নদীর সঙ্গম কোথায় অবস্থিত?", opts: ["কানপুর", "দেবপ্রয়াগ", "রুদ্রপ্রয়াগ", "এলাহাবাদ বা প্রয়াগরাজ"], ans: 3, exp: "<b>ব্যাখ্যা:</b> গঙ্গার প্রধান ডানতীরের উপনদী যমুনা উত্তরপ্রদেশের এলাহাবাদের (বর্তমান প্রয়াগরাজ) কাছে গঙ্গা নদীর সাথে মিলিত হয়েছে।" },
+        { q: "১৫. গোদাবরী ও কৃষ্ণা নদীর বদ্বীপের মাঝে অবস্থিত হ্রদের নাম কী?", opts: ["চিল্কা", "পুলিকট", "কোলেরু", "ভেম্বানাদ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের পূর্ব উপকূলে অন্ধ্রপ্রদেশ রাজ্যে গোদাবরী ও কৃষ্ণা নদীর বদ্বীপের মাঝখানে কোলেরু নামক হ্রদটি অবস্থিত।" }
+    ]
+};
+
+// ============================================================
+// সেট ৪: ভারতের জলবায়ু এবং মৃত্তিকা
+// ============================================================
+const SET4 = {
+    name: "সেট ৪",
+    icon: "🌡️",
+    topic: "ভারতের জলবায়ু এবং মৃত্তিকা",
+    questions: [
+        { q: "১. গ্রীষ্মকালে উত্তর-পশ্চিম ভারতে যে প্রবল ধূলিঝড় হয়, তাকে কী বলে?", opts: ["লু", "আঁধি", "কালবৈশাখী", "বোরো"], ans: 1, exp: "<b>ব্যাখ্যা:</b> গ্রীষ্মকালে বিহার, উত্তরপ্রদেশ, রাজস্থান ও পাঞ্জাবে বিকেলের দিকে ঝোড়ো বাতাস ও বজ্রবিদ্যুৎসহ যে প্রবল ধূলিঝড় হয়, তাকে আঁধি বলে।" },
+        { q: "২. গ্রীষ্মকালে উত্তর-পশ্চিম ভারতের স্থলভাগের ওপর দিয়ে যে প্রচণ্ড উত্তপ্ত ও শুষ্ক বায়ু প্রবাহিত হয়, তার নাম কী?", opts: ["আঁধি", "কালবৈশাখী", "লু", "চিনুক"], ans: 2, exp: "<b>ব্যাখ্যা:</b> গ্রীষ্মকালে দিনের বেলা উত্তর ভারতে প্রচণ্ড উষ্ণতার জন্য যে অত্যন্ত গরম বাতাস প্রবল বেগে ভূপৃষ্ঠের সমান্তরালে প্রবাহিত হয়, তাকে 'লু' বাতাস বলে।" },
+        { q: "৩. 'আম্রবৃষ্টি' বা Mango Shower ভারতের কোন্‌ অঞ্চলে দেখা যায়?", opts: ["উত্তর-পূর্ব ভারত", "উত্তর-পশ্চিম ভারত", "দক্ষিণ ভারত", "গাঙ্গেয় সমভূমি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> গ্রীষ্মকালে স্থানীয় নিম্নচাপের কারণে দক্ষিণ ভারতে (বিশেষত কর্ণাটক ও কেরালায়) যে বজ্রবিদ্যুৎসহ বৃষ্টিপাত হয়, যা আম পাকার সহায়ক, তাকে আম্রবৃষ্টি বলে।" },
+        { q: "৪. ভারতের কোন্ উপকূলে বছরে দু-বার বৃষ্টিপাত হয়?", opts: ["মালাবার উপকূল", "কোঙ্কন উপকূল", "করমণ্ডল উপকূল", "গুজরাট উপকূল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> তামিলনাড়ুর করমণ্ডল উপকূলে গ্রীষ্মকালে দক্ষিণ-পশ্চিম মৌসুমি বায়ু এবং শীতকালে বঙ্গোপসাগরের ওপর দিয়ে আসা আর্দ্র উত্তর-পূর্ব মৌসুমি বায়ুর প্রভাবে বছরে দু-বার বৃষ্টিপাত হয়।" },
+        { q: "৫. ভারতের একটি উল্লেখযোগ্য বৃষ্টিচ্ছায় অঞ্চল কোনটি?", opts: ["মেঘালয় মালভূমির দক্ষিণ ঢাল", "পশ্চিমঘাট পর্বতের পশ্চিম ঢাল", "শিলং মালভূমি", "হিমালয়ের পাদদেশ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মেঘালয়ের খাসি পাহাড়ের দক্ষিণ ঢালে চেরাপুঞ্জিতে প্রচুর বৃষ্টিপাত হলেও, এই পাহাড় অতিক্রম করে বায়ু বিপরীত ঢালে অবস্থিত শিলং-এ পৌঁছালে সেখানে জলীয় বাষ্প কমে গিয়ে বৃষ্টিপাত বিশেষ হয় না, তাই শিলং হলো একটি বৃষ্টিচ্ছায় অঞ্চল।" },
+        { q: "৬. পৃথিবীর সর্বাধিক বৃষ্টিবহুল স্থান কোনটি?", opts: ["চেরাপুঞ্জি", "মৌসিনরাম", "শিলং", "দার্জিলিং"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মেঘালয়ের খাসি পাহাড়ের দক্ষিণ ঢালে (চেরাপুঞ্জির কাছে) অবস্থিত মৌসিনরামে বঙ্গোপসাগরীয় শাখা বাধা পেয়ে পৃথিবীর সর্বাধিক বৃষ্টিপাত ঘটায় (বার্ষিক প্রায় ১২৫০ সেমি)।" },
+        { q: "৭. কোন্ সামুদ্রিক ঘটনার প্রভাবে ভারতে খরা পরিস্থিতির সৃষ্টি হতে পারে?", opts: ["লা-নিনা", "এল-নিনো", "সমুদ্রস্রোত", "সুনামি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ক্রান্তীয় প্রশান্ত মহাসাগরে এল-নিনো আবির্ভাবের বছরগুলিতে ভারতে দক্ষিণ-পশ্চিম মৌসুমি বায়ুর আগমন বাধাপ্রাপ্ত হয় এবং বৃষ্টিপাত কমে খরা পরিস্থিতির সৃষ্টি হয়।" },
+        { q: "৮. শীতকালে উত্তর-পশ্চিম ভারতে বৃষ্টিপাত ও হিমালয়ে তুষারপাতের প্রধান কারণ কী?", opts: ["কালবৈশাখী", "উত্তর-পূর্ব মৌসুমি বায়ু", "পশ্চিমি ঝঞ্ঝা", "দক্ষিণ-পশ্চিম মৌসুমি বায়ু"], ans: 2, exp: "<b>ব্যাখ্যা:</b> শীতকালে পশ্চিমের ভূমধ্যসাগর অঞ্চল থেকে আসা নিম্নচাপ বা পশ্চিমি ঝঞ্ঝার জন্য উত্তর-পশ্চিম ভারতে বৃষ্টি হয় এবং হিমালয় পার্বত্য অঞ্চলে তুষারপাত হয়।" },
+        { q: "৯. দাক্ষিণাত্য মালভূমির ব্যাসল্ট শিলা ক্ষয়প্রাপ্ত হয়ে কোন্ মৃত্তিকা সৃষ্টি হয়েছে?", opts: ["পলি মৃত্তিকা", "কৃষ্ণ মৃত্তিকা বা কালো মাটি", "লোহিত মৃত্তিকা", "ল্যাটেরাইট মৃত্তিকা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দাক্ষিণাত্য মালভূমির উত্তর-পশ্চিমাংশে ডেকান ট্র্যাপ অঞ্চলের ব্যাসল্ট শিলা স্বল্প বৃষ্টি ও উচ্চ উষ্ণতায় আবহবিকারগ্রস্ত হয়ে কৃষ্ণ মৃত্তিকার সৃষ্টি করেছে।" },
+        { q: "১০. কার্পাস বা তুলো চাষের জন্য কোন্ মৃত্তিকা সবচেয়ে উপযুক্ত?", opts: ["পলিমৃত্তিকা", "মরু মৃত্তিকা", "রেগুর বা কৃষ্ণ মৃত্তিকা", "ল্যাটেরাইট মৃত্তিকা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ব্যাসল্ট শিলা থেকে সৃষ্ট অত্যন্ত জলধারণ ক্ষমতাসম্পন্ন কালো বা রেগুর মৃত্তিকা কার্পাস চাষের জন্য বিশেষ উপযোগী, তাই একে 'কৃষ্ণ-কার্পাস মৃত্তিকা'ও বলা হয়।" },
+        { q: "১১. লোহিত মৃত্তিকার রং লাল হওয়ার প্রধান কারণ কী?", opts: ["সিলিকার আধিক্য", "লৌহকণার আধিক্য", "চুনের আধিক্য", "জৈব পদার্থের আধিক্য"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রাচীন গ্রানাইট ও নিস্ শিলা থেকে উৎপন্ন এই মাটিতে বালি এবং লোহা ও অ্যালুমিনিয়াম অক্সাইডরূপে লৌহকণার ভাগ বেশি থাকে বলে এর রং লাল হয়।" },
+        { q: "১২. গাঙ্গেয় সমভূমির নবীন পলিমাটি কী নামে পরিচিত?", opts: ["খাদার", "ভাঙ্গর", "ভাবর", "রেগুর"], ans: 0, exp: "<b>ব্যাখ্যা:</b> নদী উপত্যকায় নদীর কাছাকাছি প্লাবনভূমিতে প্রতিবছর বন্যায় যে নতুন পলিমাটি সঞ্চিত হয়, গঙ্গা সমভূমিতে তার নাম খাদার।" },
+        { q: "১৩. গাঙ্গেয় সমভূমির প্রাচীন পলিমাটিকে কী বলা হয়?", opts: ["খাদার", "তরাই", "ভাঙ্গর", "ভাবর"], ans: 2, exp: "<b>ব্যাখ্যা:</b> নদী থেকে কিছু দূরে পুরোনো প্লাবনভূমিতে থাকা প্রাচীন পলিমাটি গঙ্গা সমভূমিতে ভাঙ্গর নামে পরিচিত, যাতে চুন ও কাঁকরের পরিমাণ বেশি থাকে।" },
+        { q: "১৪. বৃষ্টিবহুল আর্দ্র পার্বত্য অঞ্চলে ধৌত প্রক্রিয়ায় কোন্ মৃত্তিকা সৃষ্টি হয়?", opts: ["পলি মৃত্তিকা", "লোহিত মৃত্তিকা", "মরু মৃত্তিকা", "ল্যাটেরাইট মৃত্তিকা"], ans: 3, exp: "<b>ব্যাখ্যা:</b> উষ্ণ ও আর্দ্র জলবায়ুতে প্রচুর বৃষ্টিপাতের ফলে ধৌত প্রক্রিয়ায় ক্ষারীয় পদার্থ অপসারিত হয়ে লোহা ও অ্যালুমিনিয়াম অক্সাইড সমৃদ্ধ ল্যাটেরাইট মৃত্তিকা তৈরি হয়।" },
+        { q: "১৫. বৃষ্টির জল সংরক্ষণে ভারতের কোন্ রাজ্য সর্বাধিক অগ্রণী?", opts: ["কেরল", "রাজস্থান", "তামিলনাড়ু", "মহারাষ্ট্র"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভৌমজলের পরিমাণ কম হওয়ায় তামিলনাড়ু সরকার ২০০১ সালে 'রেন ওয়াটার হারভেস্টিং মডেল' গ্রহণ করে, যা বৃষ্টির জল সংরক্ষণে রাজ্যটিকে সর্বাধিক অগ্রণী করে তুলেছে।" }
+    ]
+};
+
+// ============================================================
+// সেট ৫: ভারতের স্বাভাবিক উদ্ভিদ এবং কৃষি
+// ============================================================
+const SET5 = {
+    name: "সেট ৫",
+    icon: "🌲",
+    topic: "ভারতের স্বাভাবিক উদ্ভিদ এবং কৃষি",
+    questions: [
+        { q: "১. কোন্ অরণ্যের গাছে শ্বাসমূল ও ঠেসমূল দেখা যায়?", opts: ["ক্রান্তীয় চিরহরিৎ", "ক্রান্তীয় পর্ণমোচী", "সরলবর্গীয়", "ম্যানগ্রোভ"], ans: 3, exp: "<b>ব্যাখ্যা:</b> সমুদ্র তীরবর্তী লবণাক্ত জমাট মাটি ও নিয়মিত জোয়ারভাটা যুক্ত পরিবেশে জন্ম নেওয়া ম্যানগ্রোভ অরণ্যের (যেমন- সুন্দরবন) গাছে শ্বাসমূল ও ঠেসমূল থাকে।" },
+        { q: "২. 'সবুজ সোনা' (Green Gold) কাকে বলা হয়?", opts: ["হিমালয়ের অরণ্যকে", "সুন্দরবনের অরণ্যকে", "কৃষিজ ফসলকে", "চা বাগানকে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> হিমালয় পার্বত্য অঞ্চলের অরণ্য থেকে ভেষজ উদ্ভিদ, কাঠ, পাতা ইত্যাদি সংগৃহীত হয় বলে একে 'সবুজ সোনা' বলা হয়।" },
+        { q: "৩. ভারতের কেন্দ্রীয় অরণ্য গবেষণাগার কোথায় অবস্থিত?", opts: ["কলকাতা", "দেরাদুন", "যোধপুর", "চেন্নাই"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উত্তরাখণ্ডের রাজধানী দেরাদুনে ভারতের কেন্দ্রীয় অরণ্য গবেষণাগারটি অবস্থিত।" },
+        { q: "৪. যে অরণ্যে শীতকালে গাছের পাতা ঝরে যায়, তাকে কী বলে?", opts: ["চিরহরিৎ উদ্ভিদ", "পর্ণমোচী উদ্ভিদ বা পাতাঝরা উদ্ভিদ", "মরু উদ্ভিদ", "আল্পীয় উদ্ভিদ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বৃষ্টিপাত মাঝারি হওয়ায় এবং শীতকাল শুষ্ক থাকার কারণে যে অরণ্যের অধিকাংশ গাছের পাতা শীতকালে ঝরে যায়, তাকে ক্রান্তীয় পর্ণমোচী বা পাতাঝরা উদ্ভিদ (যেমন- শাল, সেগুন) বলে।" },
+        { q: "৫. জরায়ুজ অঙ্কুরোদ্গম কোন্ জাতীয় উদ্ভিদের বৈশিষ্ট্য?", opts: ["চিরহরিৎ", "পর্ণমোচী", "ম্যানগ্রোভ", "জেরোফাইট"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ম্যানগ্রোভ অরণ্যের লবণাক্ত জলময় পরিবেশে বীজ মাটিতে পড়লে পচে যাওয়ার সম্ভাবনা থাকে বলে গাছে থাকাকালীনই ফলের অঙ্কুর বের হয়, একে জরায়ুজ অঙ্কুরোদ্রম বলে।" },
+        { q: "৬. ভারতের কোন্ অরণ্যে সুগন্ধি চন্দন গাছ জন্মায়?", opts: ["ক্রান্তীয় চিরহরিৎ অরণ্য", "ক্রান্তীয় পর্ণমোচী অরণ্য", "সরলবর্গীয় অরণ্য", "ম্যানগ্রোভ অরণ্য"], ans: 1, exp: "<b>ব্যাখ্যা:</b> চন্দন, শাল, সেগুন, মহুয়া, শিরীষ প্রভৃতি গাছগুলি মাঝারি বৃষ্টিপাতযুক্ত ক্রান্তীয় পর্ণমোচী বা পাতাঝরা অরণ্যে জন্মায়।" },
+        { q: "৭. ভারতের কোন্ রাজ্যে মোট বনভূমির পরিমাণ সর্বাধিক?", opts: ["অসম", "মধ্যপ্রদেশ", "কর্ণাটক", "মহারাষ্ট্র"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতের রাজ্যগুলির মধ্যে মধ্যপ্রদেশ রাজ্যে বনভূমির পরিমাণ সবচেয়ে বেশি।" },
+        { q: "৮. সুন্দরী, গরান, গেওয়া প্রভৃতি গাছ কোন্ ধরনের অরণ্যের উদ্ভিদ?", opts: ["ক্রান্তীয় চিরহরিৎ", "ক্রান্তীয় পর্ণমোচী", "ম্যানগ্রোভ বা লবণাম্বু", "সরলবর্গীয়"], ans: 2, exp: "<b>ব্যাখ্যা:</b> গঙ্গা-ব্রহ্মপুত্রের বদ্বীপের দক্ষিণাংশে লবণাক্ত জলময় পরিবেশে সুন্দরী, গরান, গেওয়া প্রভৃতি শ্বাসমূল ও ঠেসমূলযুক্ত ম্যানগ্রোভ উদ্ভিদ জন্মায়।" },
+        { q: "৯. রডোডেনড্রন, জুনিপার, লার্চ প্রভৃতি কোন্ অঞ্চলের স্বাভাবিক উদ্ভিদ?", opts: ["মরু অঞ্চল", "উপকূলীয় অঞ্চল", "আল্পীয় বা উচ্চ পার্বত্য অঞ্চল", "মালভূমি অঞ্চল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> হিমালয়ের অতি উচ্চ পার্বত্য অঞ্চলে (২৫০০-৪০০০ মিটারের ওপরে) রডোডেনড্রন, জুনিপার প্রভৃতি আল্পীয় উদ্ভিদ জন্মায়।" },
+        { q: "১০. যে উদ্ভিদের কাণ্ড পুরু ছালে ঢাকা এবং শিকড় মাটির অনেক গভীরে প্রবেশ করে, তাদের কী বলে?", opts: ["মেসোফাইট", "জেরোফাইট বা মরু উদ্ভিদ", "হ্যালোফাইট", "হাইড্রোফাইট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মরুভূমির চরম শুষ্ক ও উষ্ণ পরিবেশে টিকে থাকার জন্য ফণীমনসা বা ক্যাকটাস জাতীয় উদ্ভিদের কাণ্ড পুরু হয় এবং শিকড় অত্যন্ত দীর্ঘ হয়, এদের জেরোফাইট বলে।" },
+        { q: "১১. প্রধানত অর্থনৈতিকভাবে দুর্বল শ্রেণির মানুষদের জন্য অব্যবহৃত বা পতিত জমিতে অরণ্য সৃষ্টি করাকে কী বলে?", opts: ["কৃষি বনসৃজন", "সামাজিক বনসৃজন (Social Forestry)", "বাণিজ্যিক অরণ্য", "স্থানান্তর কৃষি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নির্ধারিত অরণ্যসীমার বাইরে রাস্তা, রেললাইন, খালপাড় বা পতিত জমিতে সমাজের কল্যাণে বৃক্ষরোপণ করে অরণ্য সৃষ্টি করাকে সামাজিক বনসৃজন বলা হয়।" },
+        { q: "১২. পরিবেশের ভারসাম্য রক্ষার জন্য একটি দেশের মোট আয়তনের কত শতাংশ বনভূমি থাকা প্রয়োজন?", opts: ["১৫%", "২১%", "২৫%", "৩৩%"], ans: 3, exp: "<b>ব্যাখ্যা:</b> পরিবেশ বিজ্ঞানীদের মতে, পরিবেশের ভারসাম্য বজায় রাখা এবং প্রাকৃতিক বিপর্যয় এড়ানোর জন্য কোনো দেশের মোট ভৌগোলিক আয়তনের অন্তত ৩৩% বনভূমি থাকা প্রয়োজন।" },
+        { q: "১৩. হেক্টর প্রতি গম উৎপাদনে ভারতের কোন্ রাজ্য প্রথম?", opts: ["উত্তরপ্রদেশ", "পাঞ্জাব", "মধ্যপ্রদেশ", "হরিয়ানা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মোট উৎপাদনে উত্তরপ্রদেশ প্রথম হলেও, উন্নত জলসেচ ও সবুজ বিপ্লবের কারণে হেক্টর প্রতি গম উৎপাদনে পাঞ্জাব ভারতের মধ্যে প্রথম স্থান অধিকার করে।" },
+        { q: "১৪. ভারতের প্রধান ধান গবেষণাগারটি কোথায় অবস্থিত?", opts: ["কলকাতা", "পুসা", "কটক", "চেন্নাই"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারত সরকারের প্রধান ধান গবেষণা কেন্দ্রটি (সেন্ট্রাল রাইস রিসার্চ ইনস্টিটিউট) ওড়িশা রাজ্যের কটকে অবস্থিত।" },
+        { q: "১৫. ছায়াপ্রদানকারী বৃক্ষ কোন্ ফসল চাষের জন্য অপরিহার্য?", opts: ["ইক্ষু", "গম", "কার্পাস", "চা"], ans: 3, exp: "<b>ব্যাখ্যা:</b> সরাসরি প্রখর সূর্যালোক চা গাছের পক্ষে ক্ষতিকর, তাই চা বাগিচাগুলিতে ছায়াপ্রদানকারী হিসেবে বড়ো গাছ লাগানো একান্ত প্রয়োজন।" }
+    ]
+};
+
+// ============================================================
+// সেট ৬: ভারতের জলসম্পদ ও জলসেচ
+// ============================================================
+const SET6 = {
+    name: "সেট ৬",
+    icon: "💧",
+    topic: "ভারতের জলসম্পদ ও জলসেচ",
+    questions: [
+        { q: "১. ভারতের দীর্ঘতম সেচখাল কোনটি?", opts: ["উচ্চ গঙ্গা খাল", "সারদা খাল", "ইডেন খাল", "ইন্দিরা গান্ধী খাল"], ans: 3, exp: "<b>ব্যাখ্যা:</b> রাজস্থানে অবস্থিত ৫৮২ কিমি দীর্ঘ ইন্দিরা গান্ধী খাল হলো ভারতের দীর্ঘতম খাল বা সেচখাল।" },
+        { q: "২. দক্ষিণ ভারতে কোন্ ধরনের খালের মাধ্যমে জলসেচ বেশি দেখা যায়?", opts: ["নিত্যবহ খাল", "প্লাবন খাল", "ভূগর্ভস্থ খাল", "সেচ নালা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দক্ষিণ ভারতের নদীগুলি মূলত বর্ষার জলে পুষ্ট হওয়ায় সেখানে প্লাবন খালের মাধ্যমেই বেশি জলসেচ করা হয়।" },
+        { q: "৩. ভারতের ব্যবহৃত জলের প্রায় কত শতাংশ ভৌমজল থেকে আসে?", opts: ["২০%", "৩০%", "৫০%", "৭০%"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতে ব্যবহৃত মোট জলের প্রায় ৫০ শতাংশ ভূগর্ভস্থ বা ভৌমজল থেকে আসে। বিশ্বের মধ্যে ভারতের কৃষিসেচই সবচেয়ে বেশি ভৌমজল নির্ভর।" },
+        { q: "৪. বৃষ্টির জল সংরক্ষণে ভারতের কোন্ রাজ্য সর্বাধিক অগ্রণী?", opts: ["কেরল", "রাজস্থান", "তামিলনাড়ু", "মহারাষ্ট্র"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভৌমজলের পরিমাণ কম হওয়ায় তামিলনাড়ু সরকার ২০০১ সালে 'রেন ওয়াটার হারভেস্টিং মডেল' গ্রহণ করে, যা বৃষ্টির জল সংরক্ষণে রাজ্যটিকে সর্বাধিক অগ্রণী করে তুলেছে।" },
+        { q: "৫. রাজস্থানের মরু অঞ্চলে গম্বুজের মতো ছাদযুক্ত জলাধারকে কী বলে?", opts: ["কুণ্ডি", "সুরঙ্গম", "ফড", "ঝালরা"], ans: 0, exp: "<b>ব্যাখ্যা:</b> রাজস্থানের মরু অঞ্চলে ভূপৃষ্ঠের তলদেশ বাঁধিয়ে এবং উপরে গম্বুজের মতো ছাদ দিয়ে কুণ্ডি নির্মাণ করা হয় যাতে জল নষ্ট না হয়।" },
+        { q: "৬. তুলো, আখ ও আলু চাষের জন্য সারিসারি ছোটো নালা তৈরি করে কোন্ পদ্ধতিতে জলসেচ করা হয়?", opts: ["অববাহিকা পদ্ধতি", "বর্ডার-স্ট্রিপ", "ফারো পদ্ধতি", "প্লাবন পদ্ধতি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ফারো পদ্ধতিতে সমান্তরালভাবে ছোটো নালা কৃষিজমিতে কেটে জলসেচ করা হয়, যা তুলো, আখ ইত্যাদি চাষে খুবই কার্যকর।" },
+        { q: "৭. কোন্ আধুনিক জলসেচ পদ্ধতিতে গাছের গোড়ায় বিন্দু বিন্দু করে জল দেওয়া হয়?", opts: ["স্প্রিঙ্কলার", "ফারো পদ্ধতি", "ড্রিপ পদ্ধতি (Drip Irrigation)", "সলতে পদ্ধতি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ড্রিপ বা বিন্দুসেচ পদ্ধতিতে প্লাস্টিকের পাইপের সাহায্যে সরাসরি গাছের শিকড়ে ফোঁটায় ফোঁটায় জল দেওয়া হয়, এতে জলের অপচয় রোধ হয়।" },
+        { q: "৮. প্লাবন খাল বলতে কী বোঝায়?", opts: ["সারাবছর জল থাকে", "কেবল বর্ষা বা বন্যার জল পরিবহণ করে", "ভূগর্ভস্থ খাল", "পাহাড়ি খাল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্লাবন খালগুলোতে বর্ষাকাল বাদে অন্য সময়ে জল থাকে না, এরা কেবল বন্যার অতিরিক্ত জল বহন করে।" },
+        { q: "৯. ভারতের কোন্ রাজ্যে সেচসেবিত জমির পরিমাণ (শতকরা হিসাবে) সর্বোচ্চ?", opts: ["পশ্চিমবঙ্গ", "পাঞ্জাব", "উত্তরপ্রদেশ", "গুজরাট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পাঞ্জাব রাজ্যে সেচসেবিত ভূমির পরিমাণ রাজ্যটির মোট ভূমির প্রায় ৭২%, যা দেশের মধ্যে সর্বোচ্চ।" },
+        { q: "১০. ভারতের কোন্ রাজ্যে কূপের মাধ্যমে জলসেচ এলাকার পরিমাণ সবচেয়ে বেশি?", opts: ["পাঞ্জাব", "উত্তরপ্রদেশ", "মহারাষ্ট্র", "বিহার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সারা ভারতের মধ্যে কূপের (Wells) জল দিয়ে সেচ এলাকার পরিমাণ সবচেয়ে বেশি উত্তরপ্রদেশে।" },
+        { q: "১১. জলাশয় বা পুকুরের মাধ্যমে ভারতের কোন্ রাজ্যে সবচেয়ে বেশি জলসেচ করা হয়?", opts: ["পশ্চিমবঙ্গ", "অন্ধ্রপ্রদেশ", "আসাম", "রাজস্থান"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দক্ষিণ ভারতের ভূপ্রকৃতি জলাশয় নির্মাণের অনুকূল হওয়ায় অন্ধ্রপ্রদেশ রাজ্যে জলাশয় বা পুকুরের মাধ্যমে সবচেয়ে বেশি সেচকাজ হয়।" },
+        { q: "১২. ভৌমজলস্তর বৃদ্ধির সবচেয়ে কার্যকর পদ্ধতি কোনটি?", opts: ["চেক ড্যাম নির্মাণ", "পুকুর খনন", "নলকূপ খনন (Recharge Tubewell)", "খাল খনন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> নলকূপ খনন করে সরাসরি ভৌমজলস্তর পর্যন্ত বৃষ্টির জল পৌঁছে দেওয়া ভৌমজলস্তর বৃদ্ধির সবচেয়ে গ্রহণযোগ্য পদক্ষেপ।" },
+        { q: "১৩. ভারতের কোন্ রাজ্যে ভৌমজলস্তর হ্রাস পাওয়ার কারণে 'জল ধরো জল ভরো' প্রকল্প চালু করা হয়?", opts: ["রাজস্থান", "পশ্চিমবঙ্গ", "তামিলনাড়ু", "মহারাষ্ট্র"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভৌমজলস্তরের পতন রোধ করতে পশ্চিমবঙ্গ সরকার ২০১১ সালে 'জল ধরো জল ভরো' কর্মসূচি গ্রহণ করে।" },
+        { q: "১৪. স্বাধীন ভারতের প্রথম বহুমুখী নদী উপত্যকা পরিকল্পনা কোনটি?", opts: ["ভাকরা-নাঙ্গাল", "হিরাকুদ", "দামোদর উপত্যকা (DVC)", "নাগার্জুন সাগর"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বন্যারোধ ও সার্বিক উন্নয়নের উদ্দেশ্যে ১৯৪৮ সালে দামোদর নদের ওপর রূপায়িত DVC হলো স্বাধীন ভারতের প্রথম বহুমুখী নদী উপত্যকা পরিকল্পনা।" },
+        { q: "১৫. ভারতের দীর্ঘতম নদী-বাঁধ হিরাকুদ কোন্ নদীর ওপর নির্মিত?", opts: ["গঙ্গা", "গোদাবরী", "মহানদী", "কৃষ্ণা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ওড়িশায় মহানদীর ওপর নির্মিত হিরাকুদ প্রকল্প বা হিরাকুদ বাঁধ হলো ভারতের দীর্ঘতম নদী-বাঁধ।" }
+    ]
+};
+
+// ============================================================
+// সেট ৭: ভারতের জলবায়ু এবং মৃত্তিকা (Advanced)
+// ============================================================
+const SET7 = {
+    name: "সেট ৭",
+    icon: "⛰️",
+    topic: "ভারতের ভূপ্রকৃতি ও নদ-নদী",
+    questions: [
+        { q: "১. ভারত ও শ্রীলঙ্কা কোন্ প্রণালী দ্বারা পরস্পর থেকে বিচ্ছিন্ন?", opts: ["পক প্রণালী", "বেরিং প্রণালী", "জিব্রাল্টার প্রণালী", "মালাক্কা প্রণালী"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ভারতের দক্ষিণ-পূর্বে তামিলনাড়ু উপকূলের অদূরে ভারত ও শ্রীলঙ্কার মাঝে পক প্রণালী ও মান্নার উপসাগর অবস্থিত।" },
+        { q: "২. ভারতের বৃহত্তম উপহ্রদ বা কয়াল 'ভেম্বানাদ' কোন্ উপকূলে অবস্থিত?", opts: ["করমণ্ডল উপকূল", "কোঙ্কন উপকূল", "মালাবার উপকূল", "উত্তর সরকার উপকূল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কেরালা রাজ্যের মালাবার উপকূলে অনেক বালিয়াড়ি ও উপহ্রদ দেখা যায়, যাদের স্থানীয় ভাষায় কয়াল বলে। এর মধ্যে ভেম্বানাদ হলো বৃহত্তম।" },
+        { q: "৩. আন্দামান ও নিকোবর দ্বীপপুঞ্জের সর্বোচ্চ শৃঙ্গ কোনটি?", opts: ["আনাইমুদি", "স্যাডল পিক", "দোদাবেতা", "নামচাবারোয়া"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বঙ্গোপসাগরে অবস্থিত আন্দামান দ্বীপপুঞ্জের সর্বোচ্চ পর্বতশৃঙ্গ হলো স্যাডল পিক (৭৭৫ মিটার)।" },
+        { q: "৪. নর্মদা ও তান্তী নদী কোন্ ভূপ্রাকৃতিক গঠনের মধ্য দিয়ে প্রবাহিত হয়েছে?", opts: ["ক্যানিয়ন", "গ্রস্ত উপত্যকা", "ঝুলন্ত উপত্যকা", "পলল পাখা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পশ্চিমবাহিনী নদী নর্মদা ও তাপ্পী উভয়েই দুটি পর্বতের মধ্যবর্তী চ্যুতি বা ফাটল বরাবর অর্থাৎ গ্রস্ত উপত্যকার (Rift Valley) মধ্য দিয়ে প্রবাহিত হওয়ায় এদের গতিপথ প্রায় সোজা-সরল।" },
+        { q: "৫. পশ্চিমঘাট পর্বতের কোন্ গিরিপথটি মুম্বাই ও পুনের মধ্যে যোগাযোগ রক্ষা করে?", opts: ["থলঘাট", "ভোরঘাট", "পালঘাট", "বানিহাল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পশ্চিমঘাট বা সহ্যাদ্রি পর্বতের একটি উল্লেখযোগ্য গিরিপথ হলো ভোরঘাট, যা পুনে ও মুম্বাইয়ের মাঝে অবস্থিত।" },
+        { q: "৬. ভাগীরথী ও অলকানন্দা নদীর মিলিত প্রবাহ গঙ্গা নামে কোথা থেকে পরিচিত হয়েছে?", opts: ["রুদ্রপ্রয়াগ", "কর্ণপ্রয়াগ", "দেবপ্রয়াগ", "হরিদ্বার"], ans: 2, exp: "<b>ব্যাখ্যা:</b> দেবপ্রয়াগের কাছে ভাগীরথী ও অলকানন্দা নদী মিলিত হয়ে তাদের মিলিত প্রবাহ 'গঙ্গা' নামে পরিচিত হয়েছে এবং হরিদ্বারের কাছে সমভূমিতে পড়েছে।" },
+        { q: "৭. সিন্ধু নদের উৎপত্তিস্থল কোনটি?", opts: ["গঙ্গোত্রী হিমবাহ", "চেমায়ুং-দুং হিমবাহ", "সিন-কা-বাব হিমবাহ", "জেমু হিমবাহ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উত্তর-পশ্চিম ভারতের প্রধান নদ সিন্ধু তিব্বতের সিন-কা-বাব হিমবাহ (বা মানস সরোবর হ্রদ) থেকে উৎপন্ন হয়েছে।" },
+        { q: "৮. ব্রহ্মপুত্র নদ তিব্বতে কী নামে পরিচিত?", opts: ["ডিহং", "সাংপো", "লোহিত", "যমুনা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> তিব্বতের চেমায়ুং-দুং হিমবাহ থেকে উৎপন্ন হয়ে ব্রহ্মপুত্র নদ তিব্বতে 'সাংপো' নামে পূর্বদিকে প্রবাহিত হয়েছে।" },
+        { q: "৯. পাঞ্জাব সমভূমির নবীন পলিগঠিত অঞ্চল কী নামে পরিচিত?", opts: ["ভাঙ্গর", "ভাবর", "বেট", "ধায়া"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পাঞ্জাব সমভূমি অঞ্চলে নদীর কাছাকাছি নতুন পলিগঠিত উর্বর অঞ্চলকে 'বেট' বলা হয়।" },
+        { q: "১০. শিবালিক ও হিমাচল হিমালয়ের মধ্যবর্তী অনুদৈর্ঘ্য উপত্যকাগুলিকে কী বলে?", opts: ["দুন", "কারেওয়া", "মার্গ", "বুগিয়াল"], ans: 0, exp: "<b>ব্যাখ্যা:</b> শিবালিক পর্বতের উত্থানের ফলে নদীগুলি গতিরুদ্ধ হয়ে হ্রদ সৃষ্টি করে, যা পরে পলিতে ভরাট হয়ে উপত্যকা গঠন করে, একে দুন (যেমন দেরাদুন) বলে।" },
+        { q: "১১. রাজস্থানের মরুভূমি অঞ্চলে প্লায়া হ্রদগুলিকে কী বলা হয়?", opts: ["প্লায়া বা ধান্দ", "কয়াল", "লেগুন", "ধিয়ান"], ans: 0, exp: "<b>ব্যাখ্যা:</b> রাজস্থানের থর মরুভূমি অঞ্চলে সৃষ্ট প্লায়া বা শুষ্ক অগভীর লবণাক্ত হ্রদগুলিকে স্থানীয় ভাষায় 'ধান্দ' বলা হয়।" },
+        { q: "১২. হিমালয়ের পাদদেশীয় অঞ্চলে পাথর, নুড়ি ও বালিপূর্ণ ভূমিভাগকে কী বলা হয়?", opts: ["তরাই", "ভাবর", "খাদার", "ভাঙ্গর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> গাঙ্গেয় সমভূমির উত্তর প্রান্তে হিমালয়ের পাদদেশে ক্ষুদ্র ক্ষুদ্র শিলাখণ্ড, নুড়ি ও বালিপূর্ণ সঞ্চিত ভূমিকে ভাবর বলে।" },
+        { q: "১৩. ভারতের দীর্ঘতম নদী-বাঁধ হিরাকুদ কোন্ নদীর ওপর নির্মিত?", opts: ["গঙ্গা", "গোদাবরী", "মহানদী", "কৃষ্ণা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ওড়িশায় মহানদীর ওপর নির্মিত হিরাকুদ প্রকল্প বা হিরাকুদ বাঁধ হলো ভারতের দীর্ঘতম নদী-বাঁধ।" },
+        { q: "১৪. কাশ্মীর উপত্যকায় ধাপযুক্ত উর্বর পলিগঠিত ভূমি কী নামে পরিচিত?", opts: ["কারেওয়া", "দুন", "ভাবর", "মার্গ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পিরপাঞ্জাল ও হিমাদ্রি পর্বতের মাঝে কাশ্মীর উপত্যকায় নদী ও হিমবাহের মিলিত সঞ্চয়কার্যে সৃষ্ট ধাপযুক্ত ভূমিকে কারেওয়া বলে, যা জাফরান চাষের জন্য বিখ্যাত।" },
+        { q: "১৫. দামোদর নদের উৎপত্তিস্থল কোথায়?", opts: ["অমরকন্টক শৃঙ্গ", "মহাবালেশ্বর", "খামারপৎ পাহাড়", "এ্যম্বক উচ্চভূমি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ঝাড়খণ্ডের পালামৌ জেলার খামারপৎ পাহাড় (উচ্চতা ১০৬৯ মি) থেকে দামোদর নদ উৎপন্ন হয়েছে।" }
+    ]
+};
+
+// ============================================================
+// সেট ৮: ভারতের জলবায়ু এবং মৃত্তিকা (Advanced)
+// ============================================================
+const SET8 = {
+    name: "সেট ৮",
+    icon: "🏜️",
+    topic: "ভারতের জলবায়ু এবং মৃত্তিকা",
+    questions: [
+        { q: "১. গ্রীষ্মকালে অসমে বজ্রবিদ্যুৎসহ যে ঝড়বৃষ্টি হয়, তাকে স্থানীয় ভাষায় কী বলে?", opts: ["কালবৈশাখী", "বরদইছিলা", "আম্রবৃষ্টি", "আঁধি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> গ্রীষ্মকালে অসমে সৃষ্ট বজ্রবিদ্যুৎসহ ঝড়বৃষ্টিকে স্থানীয় ভাষায় 'বরদইছিলা' বলা হয়।" },
+        { q: "২. দক্ষিণ-পশ্চিম মৌসুমি বায়ু সর্বপ্রথম ভারতের কোন্ রাজ্যে প্রবেশ করে?", opts: ["তামিলনাড়ু", "মহারাষ্ট্র", "কেরল", "পশ্চিমবঙ্গ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> জুন মাসের প্রথম সপ্তাহেই দক্ষিণ-পশ্চিম মৌসুমি বায়ু আরবসাগরীয় শাখা হিসেবে কেরল উপকূলে প্রথম প্রবেশ করে।" },
+        { q: "৩. শীতকালে ভারতের করমণ্ডল উপকূলে বৃষ্টিপাত ঘটায় কোন্ বায়ু?", opts: ["দক্ষিণ-পশ্চিম মৌসুমি বায়ু", "উত্তর-পূর্ব মৌসুমি বায়ু", "পশ্চিমী ঝঞ্ঝা", "লু"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বঙ্গোপসাগরের ওপর দিয়ে আসা আর্দ্র উত্তর-পূর্ব মৌসুমি বায়ুর প্রভাবে শীতকালেও তামিলনাড়ুর করমণ্ডল উপকূলে বৃষ্টিপাত হয়।" },
+        { q: "৪. দাক্ষিণাত্য মালভূমির ব্যাসল্ট শিলা ক্ষয়প্রাপ্ত হয়ে কোন্ মৃত্তিকা সৃষ্টি হয়েছে?", opts: ["পলি মৃত্তিকা", "কৃষ্ণ মৃত্তিকা বা কালো মাটি", "লোহিত মৃত্তিকা", "ল্যাটেরাইট মৃত্তিকা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দাক্ষিণাত্য মালভূমির উত্তর-পশ্চিমাংশে ডেকান ট্র্যাপ অঞ্চলের ব্যাসল্ট শিলা স্বল্প বৃষ্টি ও উচ্চ উষ্ণতায় আবহবিকারগ্রস্ত হয়ে কৃষ্ণ মৃত্তিকার সৃষ্টি করেছে।" },
+        { q: "৫. কার্পাস বা তুলো চাষের জন্য কোন্ মৃত্তিকা সবচেয়ে উপযুক্ত?", opts: ["পলিমৃত্তিকা", "মরু মৃত্তিকা", "রেগুর বা কৃষ্ণ মৃত্তিকা", "ল্যাটেরাইট মৃত্তিকা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ব্যাসল্ট শিলা থেকে সৃষ্ট অত্যন্ত জলধারণ ক্ষমতাসম্পন্ন কালো বা রেগুর মৃত্তিকা কার্পাস চাষের জন্য বিশেষ উপযোগী, তাই একে 'কৃষ্ণ-কার্পাস মৃত্তিকা'ও বলা হয়।" },
+        { q: "৬. লোহিত মৃত্তিকার রং লাল হওয়ার প্রধান কারণ কী?", opts: ["সিলিকার আধিক্য", "লৌহকণার আধিক্য", "চুনের আধিক্য", "জৈব পদার্থের আধিক্য"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রাচীন গ্রানাইট ও নিস্ শিলা থেকে উৎপন্ন এই মাটিতে বালি এবং লোহা ও অ্যালুমিনিয়াম অক্সাইডরূপে লৌহকণার ভাগ বেশি থাকে বলে এর রং লাল হয়।" },
+        { q: "৭. গাঙ্গেয় সমভূমির নবীন পলিমাটি কী নামে পরিচিত?", opts: ["খাদার", "ভাঙ্গর", "ভাবর", "রেগুর"], ans: 0, exp: "<b>ব্যাখ্যা:</b> নদী উপত্যকায় নদীর কাছাকাছি প্লাবনভূমিতে প্রতিবছর বন্যায় যে নতুন পলিমাটি সঞ্চিত হয়, গঙ্গা সমভূমিতে তার নাম খাদার।" },
+        { q: "৮. গাঙ্গেয় সমভূমির প্রাচীন পলিমাটিকে কী বলা হয়?", opts: ["খাদার", "তরাই", "ভাঙ্গর", "ভাবর"], ans: 2, exp: "<b>ব্যাখ্যা:</b> নদী থেকে কিছু দূরে পুরোনো প্লাবনভূমিতে থাকা প্রাচীন পলিমাটি গঙ্গা সমভূমিতে ভাঙ্গর নামে পরিচিত, যাতে চুন ও কাঁকরের পরিমাণ বেশি থাকে।" },
+        { q: "৯. বৃষ্টিবহুল আর্দ্র পার্বত্য অঞ্চলে ধৌত প্রক্রিয়ায় কোন্ মৃত্তিকা সৃষ্টি হয়?", opts: ["পলি মৃত্তিকা", "লোহিত মৃত্তিকা", "মরু মৃত্তিকা", "ল্যাটেরাইট মৃত্তিকা"], ans: 3, exp: "<b>ব্যাখ্যা:</b> উষ্ণ ও আর্দ্র জলবায়ুতে প্রচুর বৃষ্টিপাতের ফলে ধৌত প্রক্রিয়ায় ক্ষারীয় পদার্থ অপসারিত হয়ে লোহা ও অ্যালুমিনিয়াম অক্সাইড সমৃদ্ধ ল্যাটেরাইট মৃত্তিকা তৈরি হয়।" },
+        { q: "১০. ভারতের কোন্ মৃত্তিকার পরিমাণ সবচেয়ে বেশি?", opts: ["কৃষ্ণ মৃত্তিকা", "লোহিত মৃত্তিকা", "পলি মৃত্তিকা", "ল্যাটেরাইট মৃত্তিকা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> গঙ্গা, সিন্ধু, ব্রহ্মপুত্র এবং উপদ্বীপীয় নদীগুলির বিস্তীর্ণ উপত্যকা জুড়ে ভারতের প্রায় ৪৬% অঞ্চলে পলি মৃত্তিকা দেখা যায়, যা সর্বাধিক।" },
+        { q: "১১. উত্তরপ্রদেশ ও হরিয়ানার শুষ্ক অঞ্চলের লবণাক্ত মৃত্তিকাকে স্থানীয় ভাষায় কী বলা হয়?", opts: ["খাদার", "রেহ বা কাল্লার", "ভাবর", "কারেওয়া"], ans: 1, exp: "<b>ব্যাখ্যা:</b> অতিরিক্ত বাষ্পীভবন ও শুষ্কতার কারণে উত্তরপ্রদেশ, হরিয়ানা ও পাঞ্জাবের কিছু অংশে মাটিতে লবণের স্তর সঞ্চিত হয়ে যে লবণাক্ত ও ক্ষারীয় মাটির সৃষ্টি হয়, তাকে রেহ বা কাল্লার বলে।" },
+        { q: "১২. রাজস্থানের চরম শুষ্ক মরু অঞ্চলে কোন্ ধরনের মৃত্তিকা দেখা যায়?", opts: ["সিরোজেম", "পডজল", "রেগুর", "খাদার"], ans: 0, exp: "<b>ব্যাখ্যা:</b> চরম শুষ্কতা ও উদ্ভিদহীনতার কারণে রাজস্থানের মরু অঞ্চলে বালিপ্রধান মরু মৃত্তিকা বা সিরোজেম মৃত্তিকা সৃষ্টি হয়েছে।" },
+        { q: "১৩. কোন্ মৃত্তিকা শুকিয়ে গেলে ইটের মতো শক্ত হয়ে যায়?", opts: ["পলি মৃত্তিকা", "কৃষ্ণ মৃত্তিকা", "ল্যাটেরাইট মৃত্তিকা", "লোহিত মৃত্তিকা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ল্যাটেরাইট মৃত্তিকা লোহা ও অ্যালুমিনিয়াম অক্সাইড সমৃদ্ধ এবং এটি শুকিয়ে গেলে ইটের মতো শক্ত হয়ে যায় (ল্যাটিন শব্দ Later মানে ইট)।" },
+        { q: "১৪. পাহাড়ি ঢালে ভূমিক্ষয় রোধ করার জন্য সমোচ্চ রেখা বরাবর আল দিয়ে চাষ করার পদ্ধতিকে কী বলে?", opts: ["সমোন্নতি রেখা চাষ (Contour farming)", "ফালি চাষ", "ঝুম চাষ", "ধাপ চাষ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পাহাড়ি ঢালে একই উচ্চতাযুক্ত বিন্দুগুলিকে যোগ করে সেই সমোন্নতি রেখা বরাবর আল বা বাঁধ দিয়ে চাষ করলে জলের গতি বাধাপ্রাপ্ত হয়ে মৃত্তিকা ক্ষয় নিয়ন্ত্রিত হয়।" },
+        { q: "১৫. উত্তর-পূর্ব ভারতে স্থানান্তর কৃষিকে কী বলা হয়?", opts: ["ঝুম চাষ", "ফালি চাষ", "ধাপ চাষ", "সমোন্নতি রেখা চাষ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> উত্তর-পূর্ব ভারতের পাহাড়ি উপজাতিরা বনভূমি পুড়িয়ে ৩-৪ বছর অন্তর স্থান পরিবর্তন করে যে চাষ করে, তার স্থানীয় নাম ঝুম চাষ, যা মৃত্তিকা ক্ষয়ের অন্যতম কারণ।" }
+    ]
+};
+
+// ============================================================
+// সেট ৯: ভারতের কৃষি - ১ (কৃষিজ ফসল)
+// ============================================================
+const SET9 = {
+    name: "সেট ৯",
+    icon: "🌾",
+    topic: "ভারতের কৃষি - ১ (কৃষিজ ফসল)",
+    questions: [
+        { q: "১. খারিফ শস্য সাধারণত কোন্ সময়ে বপন করা হয়?", opts: ["বর্ষার প্রারম্ভে", "শীতের শুরুতে", "বসন্তকালে", "শরৎকালে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> গ্রীষ্মকালে বিশেষত বর্ষার প্রারম্ভে (জুন-জুলাই মাসে) খারিফ শস্যের বীজ বপন করা হয় এবং শরতের শেষে কাটা হয় (যেমন আমন ধান, পাট)।" },
+        { q: "২. রবি শস্য প্রধানত কোন্ ঋতুতে চাষ করা হয়?", opts: ["বর্ষাকালে", "শীতকালে", "গ্রীষ্মকালে", "বসন্তকালে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শীতের শুরুতে (অক্টোবর-নভেম্বর) রবি শস্যের চাষ শুরু হয় এবং গ্রীষ্মের প্রারম্ভে কাটা হয় (যেমন গম, সরষে)।" },
+        { q: "৩. জায়িদ ফসল (Zaid crop) কোন্ সময়ে চাষ করা হয়?", opts: ["বর্ষাকালে", "শীতকালে", "বসন্ত ও গ্রীষ্মকালে", "শরৎকালে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বসন্তকালে (মার্চ মাসে) চাষ করে বর্ষার প্রারম্ভে (জুন মাসে) সংগ্রহ করা হয় এমন ফসলকে (যেমন শশা, তরমুজ) জায়িদ ফসল বলে।" },
+        { q: "৪. পৃথিবীতে ধান উৎপাদনে ভারতের স্থান কত?", opts: ["প্রথম", "দ্বিতীয়", "তৃতীয়", "পঞ্চম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পৃথিবীতে ধান এবং গম—এই উভয় ফসল উৎপাদনেই চীনের পরে ভারতের স্থান দ্বিতীয়।" },
+        { q: "৫. জলের অত্যাধিক প্রয়োজনীয়তার কারণে ভারতের কোন্ ফসলকে 'তৃষ্ণার্ত ফসল' বলা হয়?", opts: ["গম", "পাট", "ইক্ষু বা আখ", "ধান"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ধান চাষের জন্য জমিতে দীর্ঘসময় জল দাঁড়িয়ে থাকা এবং প্রচুর বৃষ্টিপাতের (১৫০-২০০ সেমি) প্রয়োজন হয় বলে ধানকে 'তৃষ্ণার্ত ফসল' বলা হয়।" },
+        { q: "৬. কোন্ প্রকার ধান শীতকালে রোপণ করে গ্রীষ্মকালে কাটা হয়?", opts: ["আমন ধান", "আউস ধান", "বোরো ধান", "বাসমতি ধান"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বোরো ধান হলো একটি রবি শস্য, যা শীতকালে (১৫° সে. উষ্ণতায়) জলসেচের ওপর নির্ভর করে রোপণ করা হয় এবং গ্রীষ্মকালে কাটা হয়।" },
+        { q: "৭. হেক্টর প্রতি গম উৎপাদনে ভারতের কোন্ রাজ্য প্রথম?", opts: ["উত্তরপ্রদেশ", "পাঞ্জাব", "মধ্যপ্রদেশ", "হরিয়ানা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মোট উৎপাদনে উত্তরপ্রদেশ প্রথম হলেও, উন্নত জলসেচ ও সবুজ বিপ্লবের কারণে হেক্টর প্রতি গম উৎপাদনে পাঞ্জাব ভারতের মধ্যে প্রথম স্থান অধিকার করে।" },
+        { q: "৮. ভারতের প্রধান রবিশস্য (Rabi crop) কোনটি?", opts: ["ধান", "গম", "পাট", "জোয়ার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শীতকালে জলসেচের ওপর নির্ভর করে যে ফসলের চাষ হয় তাকে রবিশস্য বলে এবং ভারতের প্রধান রবিশস্য হলো গম।" },
+        { q: "৯. জোয়ার, বাজরা ও রাগি—এই তিনটি ক্ষুদ্র দানাশস্যকে একত্রে কী বলা হয়?", opts: ["রবি শস্য", "মিলেট", "বাগিচা ফসল", "তন্তু ফসল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শুষ্ক ও অনুর্বর অঞ্চলে উৎপাদিত জোয়ার, বাজরা, রাগি প্রভৃতি ক্ষুদ্র দানাশস্যগুলিকে একসঙ্গে মিলেট বলা হয়।" },
+        { q: "১০. মিলেট গবেষণাকেন্দ্র ভারতের কোথায় অবস্থিত?", opts: ["কটক", "হায়দরাবাদ", "লখনউ", "নাগপুর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শুষ্ক অঞ্চলের ফসল মিলেট বা ক্ষুদ্র দানাশস্যের প্রধান গবেষণাকেন্দ্রটি তেলেঙ্গানার রাজধানী হায়দরাবাদে অবস্থিত।" },
+        { q: "১১. ভারতের প্রধান ধান গবেষণাগারটি কোথায় অবস্থিত?", opts: ["কলকাতা", "পুসা", "কটক", "চেন্নাই"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারত সরকারের প্রধান ধান গবেষণা কেন্দ্রটি (সেন্ট্রাল রাইস রিসার্চ ইনস্টিটিউট) ওড়িশা রাজ্যের কটকে অবস্থিত।" },
+        { q: "১২. গম উৎপাদনে ভারতের কোন রাজ্য প্রথম স্থান অধিকার করে?", opts: ["পাঞ্জাব", "হরিয়ানা", "উত্তরপ্রদেশ", "মধ্যপ্রদেশ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের রাজ্যগুলির মধ্যে গম উৎপাদনে উত্তরপ্রদেশ প্রথম স্থান অধিকার করে।" },
+        { q: "১৩. সবুজ বিপ্লব সবচেয়ে বেশি প্রভাব ফেলেছিল কোন্ ফসল উৎপাদনে?", opts: ["ধান", "গম", "ভুট্টা", "পাট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ষাটের দশকে সবুজ বিপ্লবের ফলে উচ্চ ফলনশীল বীজের ব্যবহারে গম উৎপাদনে সর্বাধিক বৃদ্ধি ঘটেছিল, তাই একে গম বিপ্লবও বলা হয়।" },
+        { q: "১৪. বাগিচা ফসল (Plantation crop)-এর একটি উদাহরণ দাও।", opts: ["পাট", "তুলো", "চা", "গম"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্রধানত রপ্তানির উদ্দেশ্যে বৃহৎ খামারে আধুনিক পদ্ধতিতে যে ফসলের চাষ হয় তাকে বাগিচা ফসল বলে, যেমন- চা, কফি, রবার।" },
+        { q: "১৫. উত্তর-পূর্ব ভারতে স্থানান্তর কৃষিকে কী বলা হয়?", opts: ["ঝুম চাষ", "ফালি চাষ", "ধাপ চাষ", "সমোন্নতি রেখা চাষ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> উত্তর-পূর্ব ভারতের পাহাড়ি উপজাতিরা বনভূমি পুড়িয়ে ৩-৪ বছর অন্তর স্থান পরিবর্তন করে যে চাষ করে, তার স্থানীয় নাম ঝুম চাষ, যা মৃত্তিকা ক্ষয়ের অন্যতম কারণ।" }
+    ]
+};
+
+// ============================================================
+// সেট ১০: ভারতের কৃষি - ২ (অর্থকরী ফসল)
+// ============================================================
+const SET10 = {
+    name: "সেট ১০",
+    icon: "🌱",
+    topic: "ভারতের কৃষি - ২ (অর্থকরী ফসল)",
+    questions: [
+        { q: "১. ভারতের কোন তন্তু অর্থকরী ফসলকে 'সোনালি তন্তু' (Golden fibre) আখ্যা দেওয়া হয়?", opts: ["তুলো", "পাট", "রেশম", "শণ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পাট ভারতের গুরুত্বপূর্ণ তন্তু-জাতীয় অর্থকরী ফসল, যাকে 'সোনালি তন্তু' নামে আখ্যা দেওয়া হয়।" },
+        { q: "২. ভারতের পাট চাষ প্রধানত কোন অঞ্চলে কেন্দ্রীভূত?", opts: ["পশ্চিম ভারতে", "পূর্ব ভারতে", "দক্ষিণ ভারতে", "উত্তর-পশ্চিম ভারতে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতে পাট চাষ মূলত পূর্ব ভারতে (গঙ্গা-ব্রহ্মপুত্র সমভূমি ও হুগলি নদী অববাহিকায়) কেন্দ্রীভূত।" },
+        { q: "৩. পাট উৎপাদনে ভারতের কোন্ রাজ্য প্রথম স্থান অধিকার করে?", opts: ["অসম", "পশ্চিমবঙ্গ", "বিহার", "ওড়িশা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> একটি অত্যন্ত গুরুত্বপূর্ণ তন্তু ও বাণিজ্যিক ফসল পাট উৎপাদনে পশ্চিমবঙ্গ ভারতের মধ্যে প্রথম স্থান অধিকার করে।" },
+        { q: "৪. তুলো চাষের জন্য কোন মৃত্তিকা সবচেয়ে বেশি আদর্শ ও উপযোগী?", opts: ["পলি মৃত্তিকা", "ল্যাটেরাইট মৃত্তিকা", "কৃষ্ণমৃত্তিকা বা চারনোজেম (Chernozem)", "লাল দোআঁশ মৃত্তিকা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কৃষ্ণমৃত্তিকা বা চারনোজেম (Chernozem) জাতীয় মাটি তুলো চাষের পক্ষে আদর্শ।" },
+        { q: "৫. বিগত কয়েক বছরের উৎপাদন অনুযায়ী ভারতে তুলো উৎপাদনে কোন রাজ্য প্রথম স্থান অধিকার করেছে?", opts: ["মহারাষ্ট্র", "তেলেঙ্গানা", "গুজরাত", "রাজস্থান"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বিগত কয়েক বছরের তুলো উৎপাদন অনুসারে গুজরাত প্রথম স্থান অধিকার করে।" },
+        { q: "৬. 'বল উইভিল' (Boll weevil) পোকার আক্রমণ কোন্ ফসলের ব্যাপক ক্ষতি করে?", opts: ["চা", "কফি", "কার্পাস বা তুলো", "পাট"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কার্পাস বা তুলো চাষে 'বল উইভিল' নামক এক ধরনের ক্ষতিকারক পোকার আক্রমণ ঘটে, তাই কীটনাশক প্রয়োগ জরুরি।" },
+        { q: "৭. কোন্ ফসল চাষের জন্য অন্তত ২০০টি তুহিনমুক্ত দিন (Frost-free days) অপরিহার্য?", opts: ["কার্পাস বা তুলো", "চা", "কফি", "ইক্ষু"], ans: 0, exp: "<b>ব্যাখ্যা:</b> কার্পাস বা তুলো গাছের স্বাভাবিক বৃদ্ধি এবং গুটি পাকার জন্য দীর্ঘ রৌদ্রোজ্জ্বল আবহাওয়া এবং অন্তত ২০০টি তুহিনমুক্ত দিন প্রয়োজন।" },
+        { q: "৮. আখ উৎপাদনে শ্রেষ্ঠ হওয়ার কারণে ভারতের কোন রাজ্যকে 'চিনির পাত্র' (Sugar bowl of India) বলা হয়?", opts: ["মহারাষ্ট্র", "কর্ণাটক", "উত্তরপ্রদেশ", "তামিলনাড়ু"], ans: 2, exp: "<b>ব্যাখ্যা:</b> আখ উৎপাদনে উত্তরপ্রদেশ ভারতে প্রথম স্থান অধিকার করে, একে ভারতের চিনির পাত্র (Sugar bowl) বলা হয়।" },
+        { q: "৯. চা উৎপাদনে ভারতের কোন রাজ্য প্রথম স্থান অধিকার করে?", opts: ["পশ্চিমবঙ্গ", "তামিলনাড়ু", "কেরল", "অসম"], ans: 3, exp: "<b>ব্যাখ্যা:</b> চা উৎপাদক রাজ্যগুলির মধ্যে অসম ভারতে প্রথম এবং পশ্চিমবঙ্গ দ্বিতীয় স্থান অধিকার করে।" },
+        { q: "১০. দক্ষিণ ভারতের কোন পাহাড়ের চা তার অনন্য স্বাদের জন্য 'Blue Mountain' চা নামে বিখ্যাত?", opts: ["আন্নামালাই পর্বত", "নীলগিরি পর্বত", "পশ্চিমঘাট পর্বত", "পালনি পর্বত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> তামিলনাড়ুর বৃহত্তম চা চাষের এলাকা নীলগিরি পার্বত্য অঞ্চলের চা 'Blue Mountain' চা নামে পরিচিত।" },
+        { q: "১১. ভারতে উৎপাদিত চায়ের মধ্যে কোন শ্রেণির চায়ের উৎপাদন সর্বাধিক (৯০ শতাংশের অধিক)?", opts: ["গ্রিন টি", "হোয়াইট টি", "CTC চা", "ওলং টি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতে CTC (Crush, Tear, Curl) চা-এর উৎপাদন মোট উৎপাদনের ৯০ শতাংশের অধিক।" },
+        { q: "১২. কফি উৎপাদনে ভারতের কোন্ রাজ্য প্রথম স্থান অধিকার করে?", opts: ["তামিলনাড়ু", "কেরল", "কর্ণাটক", "মহারাষ্ট্র"], ans: 2, exp: "<b>ব্যাখ্যা:</b> দক্ষিণ ভারতের কর্ণাটক রাজ্যটি কফি উৎপাদনে ভারতে প্রথম স্থান অধিকার করে, এখানেই বাবাবুদান পাহাড়ে প্রথম কফি চাষ শুরু হয়।" },
+        { q: "১৩. কর্ণাটক ও কেরলে কফি চাষের জন্য অত্যন্ত উপকারী প্রাক-মৌসুমি বৃষ্টিপাত কী নামে পরিচিত?", opts: ["কালবৈশাখী", "ম্যাঙ্গো সাওয়ার", "চেরি ব্লসম বা কফি বৃষ্টি", "আঁধি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> গ্রীষ্মকালে দক্ষিণ ভারতে প্রাক-মৌসুমি বৃষ্টিপাতের ফলে কফি গাছে ফুল ফোটে বলে কর্ণাটকে একে চেরি ব্লসম (Cherry Blossom) বা কফি বৃষ্টি বলা হয়।" },
+        { q: "১৪. ভারতের প্রধান কফি গবেষণাগারটি কোথায় অবস্থিত?", opts: ["চিকমাগালুরে", "যোধপুরে", "কটকে", "দেরাদুনে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> কর্ণাটক রাজ্যের চিকমাগালুরে ভারতের প্রধান কফি গবেষণাগারটি অবস্থিত।" },
+        { q: "১৫. ছায়াপ্রদানকারী বৃক্ষ কোন্ ফসল চাষের জন্য অপরিহার্য?", opts: ["ইক্ষু", "গম", "কার্পাস", "চা"], ans: 3, exp: "<b>ব্যাখ্যা:</b> সরাসরি প্রখর সূর্যালোক চা গাছের পক্ষে ক্ষতিকর, তাই চা বাগিচাগুলিতে ছায়াপ্রদানকারী হিসেবে বড়ো গাছ লাগানো একান্ত প্রয়োজন।" }
+    ]
+};
+
+// ============================================================
+// সেট ১১: ভারতের খনিজ ও শক্তি সম্পদ
+// ============================================================
+const SET11 = {
+    name: "সেট ১১",
+    icon: "⚡",
+    topic: "ভারতের খনিজ ও শক্তি সম্পদ",
+    questions: [
+        { q: "১. খনিজ সম্পদ একবার আহরণ করা হলে তা আর পৃথিবীতে ফিরিয়ে দেওয়া যায় না। তাই খনিজ আহরণ শিল্পকে কী বলা হয়?", opts: ["সংরক্ষণ শিল্প", "লুণ্ঠন শিল্প (Robber Industry)", "প্রাথমিক শিল্প", "নিষ্কাশন শিল্প"], ans: 1, exp: "<b>ব্যাখ্যা:</b> খনিজ সম্পদ পৃথিবীতে সীমিত এবং একবার ব্যবহার করলে তা আর ফিরে পাওয়া যায় না, তাই খনিজ আহরণকে লুণ্ঠন শিল্প বলে।" },
+        { q: "২. কোন জ্বালানিকে 'কালো হিরে' (Black Diamond) বলা হয়?", opts: ["খনিজ তেল", "প্রাকৃতিক গ্যাস", "ম্যাঙ্গানিজ", "কয়লা"], ans: 3, exp: "<b>ব্যাখ্যা:</b> কয়লাকে বলা হয় কালো বা বাদামি শিলা, এবং এর অপরিসীম অর্থনৈতিক গুরুত্বের জন্য একে কালো হিরেও (Black Diamond) বলা হয়।" },
+        { q: "৩. ভারতের সর্বশ্রেষ্ঠ কয়লাখনি অঞ্চল কোনটি?", opts: ["রানিগঞ্জ", "ঝরিয়া", "বোকারো", "তালচের"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ঝাড়খণ্ডের ঝরিয়া হলো ভারতের সর্বশ্রেষ্ঠ এবং বৃহত্তম কয়লাখনি অঞ্চল।" },
+        { q: "৪. কোন খনিজকে 'তরল সোনা' (Liquid Gold) বলা হয়?", opts: ["খনিজ তেল (Petroleum)", "জল", "পারদ", "ব্রোমিন"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বর্তমান বিশ্বে খনিজ তেল বা পেট্রোলিয়ামের অপরিসীম অর্থনৈতিক গুরুত্বের কারণে একে 'তরল সোনা' বলা হয়।" },
+        { q: "৫. ভারতের বৃহত্তম খনিজ তৈলক্ষেত্র কোনটি?", opts: ["ডিগবয়", "নাহারকাটিয়া", "আঙ্কলেশ্বর", "মুম্বাই হাই (বম্বে হাই)"], ans: 3, exp: "<b>ব্যাখ্যা:</b> আরব সাগরে অবস্থিত মুম্বাই হাই বা বম্বে হাই হলো ভারতের বৃহত্তম খনিজ তৈলক্ষেত্র।" },
+        { q: "৬. ভারতের প্রাচীনতম তৈলখনি কোনটি?", opts: ["আসামের ডিগবয়", "মুম্বাই হাই", "আঙ্কলেশ্বর", "হলদিয়া"], ans: 0, exp: "<b>ব্যাখ্যা:</b> আসামের ডিগবয় হলো ভারতের অন্যতম প্রাচীন ও গুরুত্বপূর্ণ খনিজ তেল উৎপাদক কেন্দ্র।" },
+        { q: "৭. প্রাকৃতিক গ্যাসের পরিবহণ ও বিপণনের জন্য ভারতের কোন সংস্থা কাজ করে?", opts: ["ONGC", "OIL", "GAIL (Gas Authority of India)", "NTPC"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্রাকৃতিক গ্যাসের পরিবহণ, প্রসেসিং ও সুষ্ঠু বিপণনের জন্য GAIL স্থাপন করা হয়েছে।" },
+        { q: "৮. পারমাণবিক শক্তির আকর 'মোনাজাইট' বালি ভারতের কোন উপকূল থেকে বেশি সংগ্রহ করা হয়?", opts: ["করমণ্ডল", "কোঙ্কন", "কেরলের মালাবার উপকূল", "উত্তর সরকার"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের কেরল রাজ্যের মালাবার উপকূলের বালিতে প্রচুর মোনাজাইট ও ইলমেনাইট পাওয়া যায়, যা থেকে পারমাণবিক শক্তির কাঁচামাল থোরিয়াম নিষ্কাশিত হয়।" },
+        { q: "৯. পৃথিবীর সমস্ত পারমাণবিক বিদ্যুৎকেন্দ্রে কোন পদ্ধতিতে বিদ্যুৎ উৎপাদন করা হয়?", opts: ["ফিউসন", "ফিসন বা বিভাজন (Fission) পদ্ধতি", "দহন পদ্ধতি", "রাসায়নিক বিক্রিয়া"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ফিসন পদ্ধতিতে একটি ভারী নিউক্লিয়াস বিভাজিত হয়ে তাপ নির্গত করে, যা থেকে পৃথিবীর সব পারমাণবিক বিদ্যুৎকেন্দ্রে বিদ্যুৎ উৎপন্ন হয়।" },
+        { q: "১০. শ্বেত অভ্র বা রুবি অভ্র কাকে বলা হয়?", opts: ["বায়োটাইট", "লেপিডোলাইট", "মাসকোভাইট (Muscovite)", "ফ্লগোপাইট"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পটাশিয়াম অভ্র বা মাসকোভাইটকে শ্বেত বা অল্প নীল স্বচ্ছ রুবি অভ্র বলে।" },
+        { q: "১১. অপরিশোধিত অভ্র উত্তোলনে ভারতে কোন রাজ্য প্রথম স্থান অধিকার করে?", opts: ["রাজস্থান", "ওড়িশা", "তেলেঙ্গানা (অন্ধ্রপ্রদেশ)", "ঝাড়খণ্ড"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অপরিশোধিত অভ্র উত্তোলনে তেলেঙ্গানা ভারতে প্রথম স্থান অধিকার করে।" },
+        { q: "১২. গোয়ার মার্মাগাঁও বন্দরটি প্রধানত কোন্ খনিজ পদার্থ রপ্তানির জন্য বিখ্যাত?", opts: ["কয়লা", "বক্সাইট", "লৌহ আকরিক", "অভ্র"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পশ্চিম উপকূলে গোয়া রাজ্যে অবস্থিত মার্মাগাঁও বন্দরটি মূলত লৌহ আকরিক রপ্তানিকারী বন্দর হিসেবে বিশেষ গুরুত্বপূর্ণ।" },
+        { q: "১৩. 'সাগর সম্রাট' কী?", opts: ["যুদ্ধজাহাজ", "খনিজ তেল উত্তোলক ভাসমান প্ল্যাটফর্ম", "মাছ ধরার ট্রলার", "প্রমোদতরী"], ans: 1, exp: "<b>ব্যাখ্যা:</b> আরব সাগরের বোম্বে হাই তৈলক্ষেত্রে 'সাগর সম্রাট' নামক একটি বিশাল ভাসমান প্ল্যাটফর্মের সাহায্যে সমুদ্রের তলদেশ থেকে তেল উত্তোলন করা হয়।" },
+        { q: "১৪. 'বাদামি কয়লা' (Brown coal) কাকে বলে?", opts: ["অ্যানথ্রাসাইট", "লিগনাইট", "কোক", "বিটুমিনাস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> লিগনাইট হলো এক প্রকার নিম্নমানের কয়লা, যার কার্বনের পরিমাণ কম এবং রং বাদামি হওয়ার কারণে একে 'বাদামি কয়লা' বলা হয়।" },
+        { q: "১৫. শক্তির স্থায়িত্ব অনুযায়ী কয়লা কোন শ্রেণির শক্তি?", opts: ["পুনর্ভব শক্তি", "প্রবহমান শক্তি", "অপুনর্ভব বা গচ্ছিত শক্তি", "অচিরাচরিত শক্তি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কয়লা ব্যবহারের ফলে ক্রমশ শেষ হয়ে যায়, তাই এটি অপুনর্ভব বা গচ্ছিত শক্তি।" }
+    ]
+};
+
+// ============================================================
+// সেট ১২: ভারতের শিল্প - ১ (লৌহ-ইস্পাত, কার্পাস, পেট্রোরসায়ন)
+// ============================================================
+const SET12 = {
+    name: "সেট ১২",
+    icon: "🏭",
+    topic: "ভারতের শিল্প - ১ (লৌহ-ইস্পাত, কার্পাস, পেট্রোরসায়ন)",
+    questions: [
+        { q: "১. ভারতের প্রাচীনতম আধুনিক লৌহ-ইস্পাত কারখানাটি কোথায় স্থাপিত হয়েছিল?", opts: ["জামশেদপুর", "ভিলাই", "কুলটি", "রৌরকেল্লা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৮৭০ সালে পশ্চিমবঙ্গের কুলটিতে ভারতের প্রথম আধুনিক লৌহ-ইস্পাত কারখানা স্থাপিত হয়।" },
+        { q: "২. ভারতের একটি মিশ্র বা সংকর ইস্পাত (Alloy Steel) কারখানাটি কোথায় অবস্থিত?", opts: ["রৌরকেল্লা", "ভিলাই", "জামশেদপুর", "সালেম"], ans: 3, exp: "<b>ব্যাখ্যা:</b> তামিলনাড়ুর সালেম-এ একটি বৃহদায়তন সংকর ইস্পাত বা অ্যালয় স্টিল কারখানা গড়ে উঠেছে।" },
+        { q: "৩. তামিলনাড়ুর কোন শহরকে 'ভারতের ডেট্রয়েট' বলা হয়?", opts: ["চেন্নাই", "পুনে", "গুরগাঁও", "জামশেদপুর"], ans: 0, exp: "<b>ব্যাখ্যা:</b> তামিলনাড়ুর চেন্নাই শহরে মোটরগাড়ি নির্মাণ শিল্পের অত্যাধিক উন্নতির জন্য একে 'ভারতের ডেট্রয়েট' বলা হয়।" },
+        { q: "৪. বস্ত্রবয়ন শিল্পের উন্নতির জন্য কাকে 'দক্ষিণ ভারতের ম্যাঞ্চেস্টার' বলা হয়?", opts: ["চেন্নাই", "মাদুরাই", "বেঙ্গালুরু", "কোয়েম্বাটুর"], ans: 3, exp: "<b>ব্যাখ্যা:</b> দক্ষিণ ভারতের তামিলনাড়ুতে সুতোকল ও বস্ত্রবয়ন শিল্পের অপরিসীম উন্নতির জন্য কোয়েম্বাটুরকে দক্ষিণ ভারতের ম্যাঞ্চেস্টার বলা হয়।" },
+        { q: "৫. কোন্ শহরকে 'উত্তর ভারতের ম্যাঞ্চেস্টার' বলা হয়?", opts: ["দিল্লি", "কানপুর", "লখনউ", "অমৃতসর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উত্তরপ্রদেশের কানপুর শহরে সুতোকল ও বস্ত্রবয়ন শিল্পের অপরিসীম উন্নতির জন্য একে উত্তর ভারতের ম্যাঞ্চেস্টার বলা হয়।" },
+        { q: "৬. কোন্ শহরকে 'ভারতের ম্যাঞ্চেস্টার' বলা হয়?", opts: ["আমেদাবাদ", "মুম্বাই", "সুরাট", "কলকাতা"], ans: 0, exp: "<b>ব্যাখ্যা:</b> গুজরাতের আমেদাবাদে সুতিবস্ত্র শিল্পের বিপুল উন্নতির কারণে একে ভারতের ম্যাঞ্চেস্টার বলা হয়।" },
+        { q: "৭. কোন্ শিল্পকে 'শিকড় আলগা শিল্প' (Footloose industry) বলা হয়?", opts: ["লৌহ-ইস্পাত", "পেট্রোরসায়ন", "কার্পাস বয়ন শিল্প", "অ্যালুমিনিয়াম"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কার্পাস বয়ন শিল্পে ব্যবহৃত কাঁচামাল (তুলো) একটি বিশুদ্ধ কাঁচামাল, তাই এই শিল্প বাজারের কাছে বা যেকোনো স্থানে গড়ে উঠতে পারে বলে একে শিকড় আলগা শিল্প বলে।" },
+        { q: "৮. বৃহদায়তন মূল শিল্পের ওপর ভিত্তি করে তার আশেপাশে গড়ে ওঠা ছোটো ছোটো শিল্পগুলিকে কী বলে?", opts: ["শিকড় আলগা শিল্প", "অনুসারী শিল্প (Ancillary industry)", "গ্লোবাল শিল্প", "কৃষিভিত্তিক শিল্প"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বৃহৎ মূল শিল্পের উৎপাদিত দ্রব্য ব্যবহার করে অথবা তাকে যন্ত্রাংশ জোগান দেওয়ার জন্য পাশে যে অসংখ্য ছোট শিল্প গড়ে ওঠে তাকে অনুসারী শিল্প বলে।" },
+        { q: "৯. ভারতের কোন শহরকে 'ভারতের রূঢ়' বলা হয়?", opts: ["দুর্গাপুর", "আসানসোল", "রাঁচি", "বোকারো"], ans: 0, exp: "<b>ব্যাখ্যা:</b> জার্মানির রূঢ় উপত্যকার মতো পশ্চিমবঙ্গের দুর্গাপুরেও কয়লা ও লোহার ওপর ভিত্তি করে শিল্পাঞ্চল গড়ে ওঠায় একে ভারতের রূঢ় বলা হয়।" },
+        { q: "১০. ভারতের বৃহত্তম বেসরকারি লৌহ-ইস্পাত কারখানা 'TISCO' কোথায় অবস্থিত?", opts: ["ভিলাই", "জামশেদপুর", "দুর্গাপুর", "বার্নপুর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> টাটা আয়রন অ্যান্ড স্টিল কোম্পানি (TISCO) ঝাড়খণ্ডের জামশেদপুরে সুবর্ণরেখা ও খরকাই নদীর সঙ্গমস্থলে অবস্থিত।" },
+        { q: "১১. ভিলাই লৌহ-ইস্পাত কেন্দ্রটি ভারতের কোন রাজ্যে অবস্থিত?", opts: ["ঝাড়খণ্ড", "ওড়িশা", "ছত্তিশগড়", "মধ্যপ্রদেশ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ছত্তিশগড় রাজ্যের ভিলাইয়ে রাশিয়ার সহায়তায় ভারতের অন্যতম বৃহৎ লৌহ-ইস্পাত কারখানাটি গড়ে উঠেছে।" },
+        { q: "১২. রাউরকেল্লা লৌহ-ইস্পাত কেন্দ্রটি কোন নদীর তীরে অবস্থিত?", opts: ["সুবর্ণরেখা", "ব্রাহ্মণী", "দামোদর", "মহানদী"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ওড়িশার রাউরকেল্লা লৌহ-ইস্পাত কেন্দ্রটি ব্রাহ্মণী নদীর তীরে গড়ে উঠেছে।" },
+        { q: "১৩. পেট্রোকেমিক্যাল শিল্পের প্রধান কাঁচামাল হিসেবে কোনটি ব্যবহৃত হয়?", opts: ["কোল গ্যাস", "ন্যাপথা", "অ্যাসফাল্ট", "লুব্রিকেটিং অয়েল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পেট্রোকেমিক্যাল শিল্প প্রধানত খনিজ তেলের উপজাত দ্রব্য 'ন্যাপথা'-এর ওপর ভিত্তি করে গড়ে ওঠে।" },
+        { q: "১৪. ভারতের বৃহত্তম পেট্রোরসায়ন শিল্পকেন্দ্র কোনটি?", opts: ["হলদিয়া", "ট্রম্বে", "জামনগর", "ভাদোদরা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> গুজরাতের জামনগরে রিলায়েন্সের উদ্যোগে ভারতের বৃহত্তম পেট্রোরসায়ন শিল্পকেন্দ্র গড়ে উঠেছে।" },
+        { q: "১৫. ভারতের একটি ভারী বৈদ্যুতিক যন্ত্রপাতি নির্মাণ কেন্দ্র (BHEL) কোথায় অবস্থিত?", opts: ["ভূপাল", "চেন্নাই", "কলকাতা", "সুরাট"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মধ্যপ্রদেশের ভূপালে এবং উত্তরাখণ্ডের হরিদ্বারে ভারত হেভি ইলেকট্রিক্যালস লিমিটেড (BHEL)-এর ভারী বৈদ্যুতিক যন্ত্রপাতি নির্মাণের বৃহৎ কারখানা অবস্থিত।" }
+    ]
+};
+
+// ============================================================
+// সেট ১৩: ভারতের অবস্থান, ভূপ্রকৃতি ও নদ-নদী (Advanced)
+// ============================================================
+const SET13 = {
+    name: "সেট ১৩",
+    icon: "🗺️",
+    topic: "ভারতের অবস্থান, ভূপ্রকৃতি ও নদ-নদী (Advanced)",
+    questions: [
+        { q: "১. ভারতের একটি উল্লেখযোগ্য অন্তর্বাহিনী নদীর নাম কী?", opts: ["নর্মদা", "তাপ্তী", "লুনি", "সবরমতী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> রাজস্থানের থর মরুভূমি অঞ্চলে প্রবাহিত লুনি হলো ভারতের একটি অন্যতম প্রধান অন্তর্বাহিনী নদী, যা কোনো সাগরে না পড়ে কচ্ছের রণে পতিত হয়েছে।" },
+        { q: "২. মধ্যভারতের খামারপৎ পাহাড় থেকে উৎপন্ন কোন্‌ নদীটি গ্রস্ত উপত্যকা (Rift Valley) বা চ্যুতির মধ্য দিয়ে প্রবাহিত হয়েছে?", opts: ["দামোদর", "কাবেরী", "মহানদী", "গোদাবরী"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ঝাড়খণ্ডের পালামৌ জেলার খামারপৎ পাহাড় থেকে উৎপন্ন দামোদর নদ দুটি চুতির মধ্যবর্তী অবনমিত অংশ বা গ্রস্ত উপত্যকার মধ্য দিয়ে প্রবাহিত হয়েছে।" },
+        { q: "৩. বিন্ধ্য পর্বত একটি কী ধরনের পর্বত?", opts: ["আগ্নেয় পর্বত", "নবীন ভঙ্গিল পর্বত", "স্তূপ পর্বত", "সঞ্চয়জাত পর্বত"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মধ্যভারতের উচ্চভূমির প্রধান পর্বতমালা বিন্ধ্য পর্বত এবং এর দক্ষিণে অবস্থিত সাতপুরা উভয়ই হলো স্তূপ পর্বতের উদাহরণ।" },
+        { q: "৪. সাতপুরা পর্বতের সর্বোচ্চ শৃঙ্গের নাম কী?", opts: ["অমরকন্টক", "ধূপগড়", "গুরুশিখর", "পাঁচমারি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নর্মদা ও তান্তী নদীর মাঝে অবস্থিত হোস্ট জাতীয় স্তূপ পর্বত সাতপুরার সর্বোচ্চ শৃঙ্গ হলো ধূপগড় (১,৩৫০ মি.)।" },
+        { q: "৫. নীলগিরি ও আন্নামালাই পর্বতের মাঝে অবস্থিত গিরিপথ বা ফাঁকটির নাম কী?", opts: ["থলঘাট", "ভোরঘাট", "পালঘাট", "বানিহাল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পশ্চিমঘাট পর্বতের দক্ষিণে অবস্থিত নীলগিরি ও আন্নামালাই পর্বতের মাঝের প্রাকৃতিক গিরিপথটি পালঘাট গ্যাপ নামে পরিচিত, যা কেরল ও তামিলনাড়ুর মধ্যে যোগাযোগ রক্ষা করে।" },
+        { q: "৬. পশ্চিমঘাট পর্বতের কোন্ গিরিপথটি মুম্বাই ও নাসিকের মধ্যে যোগাযোগ রক্ষা করে?", opts: ["থলঘাট", "ভোরঘাট", "পালঘাট", "নাথুলা"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মহারাষ্ট্রের পশ্চিমঘাট পর্বতের থলঘাট গিরিপথটি মুম্বাই ও নাসিক শহরের মধ্যে যোগাযোগের প্রধান মাধ্যম।" },
+        { q: "৭. পূর্বঘাট পর্বতের একটি উল্লেখযোগ্য শৃঙ্গ কোনটি?", opts: ["আনাইমুদি", "মহেন্দ্রগিরি", "দোদাবেতা", "গুরুশিখর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দাক্ষিণাত্য মালভূমির পূর্ব সীমানায় অবস্থিত পূর্বঘাট বা মলয়াদ্রি পর্বতের একটি উল্লেখযোগ্য উচ্চতম শৃঙ্গ হলো মহেন্দ্রগিরি (১,৫০১ মি.)।" },
+        { q: "৮. হিমালয় পর্বতমালার পূর্বপ্রান্তে অরুণাচল প্রদেশের কাছে চুলের কাঁটার মতো তীক্ষ্ণ বাঁক (Syntaxial bend) কোন্ শৃঙ্গের কাছে দেখা যায়?", opts: ["কাঞ্চনজঙ্ঘা", "মাউন্ট এভারেস্ট", "নামচাবারোয়া", "নাঙ্গা পর্বত"], ans: 2, exp: "<b>ব্যাখ্যা:</b> হিমালয় পর্বতমালা অরুণাচল প্রদেশের উত্তর-পূর্বে অবস্থিত নামচাবারোয়া শৃঙ্গের (৭,৭৫৫ মি.) কাছ থেকে চুলের কাঁটার মতো বাঁক নিয়ে দক্ষিণে প্রসারিত হয়েছে।" },
+        { q: "৯. কর্ণাটক মালভূমির পশ্চিমের উঁচু পাহাড়ি বা অসমতল অঞ্চলকে কী বলা হয়?", opts: ["ময়দান", "মালনাদ", "তরাই", "ভাবর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কর্ণাটক মালভূমির পশ্চিমের উঁচু, ঢেউখেলানো ও পাহাড়ি অঞ্চলকে স্থানীয় ভাষায় 'মালনাদ' (অর্থ: পাহাড়ি দেশ) বলা হয় এবং পূর্বের নিচু তরঙ্গায়িত অংশকে 'ময়দান' বলা হয়।" },
+        { q: "১০. গাঙ্গেয় সমভূমির উত্তর প্রান্তে, শিবালিক পর্বতের পাদদেশে পাথর, নুড়ি ও বালি দ্বারা গঠিত স্যাঁতসেঁতে জলাভূমি অঞ্চলকে কী বলে?", opts: ["ভাবর", "তরাই", "ভাঙ্গর", "খাদার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নুড়িপূর্ণ ভাবর অঞ্চলের ঠিক দক্ষিণে মাটি ও বালিপূর্ণ জঙ্গলে ঢাকা স্যাঁতসেঁতে সমভূমিকে তরাই (Terai) অঞ্চল বলা হয়।" },
+        { q: "১১. ভারতের উচ্চতম বা বৃহত্তম সুপেয় (মিষ্টি) জলের হ্রদ কোনটি?", opts: ["চিল্কা", "উলার", "পুলিকট", "প্যাংগং"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জম্মু ও কাশ্মীর উপত্যকায় অবস্থিত উলার হ্রদ হলো ভারতের বৃহত্তম সুপেয় বা মিষ্টি জলের হ্রদ।" },
+        { q: "১২. ভারতের দীর্ঘতম হিমবাহ কোনটি?", opts: ["জেমু", "হিসপার", "সিয়াচেন", "গঙ্গোত্রী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কারাকোরাম পর্বতশ্রেণিতে অবস্থিত সিয়াচেন (প্রায় ৭৬ কিমি দীর্ঘ) হলো ভারতের দীর্ঘতম এবং বৃহত্তম পার্বত্য হিমবাহ।" },
+        { q: "১৩. লাক্ষাদ্বীপের রাজধানীর নাম কী?", opts: ["পোর্টব্লেয়ার", "কাভারাত্তি", "সিলভাসা", "দমন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> আরব সাগরে অবস্থিত ভারতের ক্ষুদ্রতম কেন্দ্রশাসিত প্রবাল দ্বীপপুঞ্জ লাক্ষাদ্বীপের রাজধানী হলো কাভারাত্তি।" },
+        { q: "১৪. স্বাধীন ভারতের প্রথম বহুমুখী নদী উপত্যকা পরিকল্পনা (Multipurpose River Valley Project) কোনটি?", opts: ["ভাকরা-নাঙ্গাল প্রকল্প", "হিরাকুদ প্রকল্প", "দামোদর উপত্যকা পরিকল্পনা (DVC)", "নাগার্জুন সাগর"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বন্যারোধ ও সার্বিক উন্নয়নের উদ্দেশ্যে ১৯৪৮ সালে দামোদর নদের ওপর রূপায়িত DVC হলো স্বাধীন ভারতের প্রথম বহুমুখী নদী উপত্যকা পরিকল্পনা।" },
+        { q: "১৫. ১০° চ্যানেল (Ten Degree Channel) কোন্ দুটি ভূভাগকে পরস্পর থেকে বিচ্ছিন্ন করেছে?", opts: ["ভারত ও শ্রীলঙ্কা", "লাক্ষাদ্বীপ ও মিনিকয়", "আন্দামান ও নিকোবর দ্বীপপুঞ্জ", "মালদ্বীপ ও মিনিকয়"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বঙ্গোপসাগরে অবস্থিত আন্দামান দ্বীপপুঞ্জ এবং নিকোবর দ্বীপপুঞ্জকে পরস্পর থেকে পৃথক করেছে ১০ ডিগ্রি চ্যানেল।" }
+    ]
+};
+
+// ============================================================
+// সেট ১৪: ভারতের জলবায়ু, মৃত্তিকা ও উদ্ভিদ (Advanced)
+// ============================================================
+const SET14 = {
+    name: "সেট ১৪",
+    icon: "🌲",
+    topic: "ভারতের জলবায়ু, মৃত্তিকা ও উদ্ভিদ (Advanced)",
+    questions: [
+        { q: "১. কর্ণাটক ও কেরলে কফি চাষের জন্য অত্যন্ত উপকারী প্রাক-মৌসুমি বৃষ্টিপাত কী নামে পরিচিত?", opts: ["কালবৈশাখী", "ম্যাঙ্গো সাওয়ার", "চেরি ব্লসম বা কফি বৃষ্টি", "আঁধি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> গ্রীষ্মকালে দক্ষিণ ভারতে প্রাক-মৌসুমি বৃষ্টিপাতের ফলে কফি গাছে ফুল ফোটে বলে কর্ণাটকে একে চেরি ব্লসম (Cherry Blossom) বা কফি বৃষ্টি বলা হয়।" },
+        { q: "২. ভারতের কোন্ অরণ্যে সুগন্ধি চন্দন গাছ জন্মায়?", opts: ["ক্রান্তীয় চিরহরিৎ অরণ্য", "ক্রান্তীয় পর্ণমোচী অরণ্য", "সরলবর্গীয় অরণ্য", "ম্যানগ্রোভ অরণ্য"], ans: 1, exp: "<b>ব্যাখ্যা:</b> চন্দন, শাল, সেগুন, মহুয়া, শিরীষ প্রভৃতি গাছগুলি মাঝারি বৃষ্টিপাতযুক্ত ক্রান্তীয় পর্ণমোচী বা পাতাঝরা অরণ্যে জন্মায়।" },
+        { q: "৩. পাহাড়ি ঢালে ভূমিক্ষয় রোধ করার জন্য সমোচ্চ রেখা বরাবর আল দিয়ে চাষ করার পদ্ধতিকে কী বলে?", opts: ["সমোন্নতি রেখা চাষ (Contour farming)", "ফালি চাষ", "ঝুম চাষ", "ধাপ চাষ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পাহাড়ি ঢালে একই উচ্চতাযুক্ত বিন্দুগুলিকে যোগ করে সেই সমোন্নতি রেখা বরাবর আল বা বাঁধ দিয়ে চাষ করলে জলের গতি বাধাপ্রাপ্ত হয়ে মৃত্তিকা ক্ষয় নিয়ন্ত্রিত হয়।" },
+        { q: "৪. উদ্ভিদবিহীন ঢালু জমিতে মৃত্তিকা ক্ষয় রোধ করার জন্য আড়াআড়িভাবে ফিতে বা পটির মতো জমি তৈরি করে চাষ করাকে কী বলে?", opts: ["ঝুম চাষ", "ফালি চাষ (Strip cropping)", "ধাপ চাষ", "সমোন্নতি রেখা চাষ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> খাড়া ঢালে আড়াআড়িভাবে ফালি বা পটির মতো জমি তৈরি করে ডাল বা সিম জাতীয় শস্য চাষ করলে জলের গতি কমে মৃত্তিকা ক্ষয় রোধ হয়, একে ফালি চাষ বলে।" },
+        { q: "৫. উত্তরপ্রদেশ ও হরিয়ানার শুষ্ক অঞ্চলের লবণাক্ত মৃত্তিকাকে স্থানীয় ভাষায় কী বলা হয়?", opts: ["খাদার", "রেহ বা কাল্লার", "ভাবর", "কারেওয়া"], ans: 1, exp: "<b>ব্যাখ্যা:</b> অতিরিক্ত বাষ্পীভবন ও শুষ্কতার কারণে উত্তরপ্রদেশ, হরিয়ানা ও পাঞ্জাবের কিছু অংশে মাটিতে লবণের স্তর সঞ্চিত হয়ে যে লবণাক্ত ও ক্ষারীয় মাটির সৃষ্টি হয়, তাকে রেহ বা কাল্লার বলে।" },
+        { q: "৬. যে উদ্ভিদের কাণ্ড পুরু ছালে ঢাকা এবং শিকড় জলের সন্ধানে মাটির অনেক গভীরে প্রবেশ করে, তাদের কী বলে?", opts: ["মেসোফাইট", "জেরোফাইট বা মরু উদ্ভিদ", "হ্যালোফাইট", "হাইড্রোফাইট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মরুভূমির চরম শুষ্ক ও উষ্ণ পরিবেশে টিকে থাকার জন্য ফণীমনসা, বাবলা বা ক্যাকটাস জাতীয় উদ্ভিদের কাণ্ড পুরু হয় এবং শিকড় অত্যন্ত দীর্ঘ হয়, এদের জেরোফাইট বলে।" },
+        { q: "৭. ভারতের কোন্ অঞ্চলকে 'শীতল মরুভূমি' (Cold Desert) বলা হয়?", opts: ["থর মরুভূমি", "লাদাখ", "স্পিতি ভ্যালি", "কার্গিল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতের জম্মু-কাশ্মীরের উত্তরে অবস্থিত লাদাখ মালভূমি অত্যন্ত উচ্চতায় থাকায় সেখানে তীব্র শীত ও অতি স্বল্প বৃষ্টিপাতের কারণে এক শীতল মরুভূমির সৃষ্টি হয়েছে।" },
+        { q: "৮. নিরক্ষীয় জলবায়ুর মতো সারাবছর উষ্ণ ও আর্দ্র আবহাওয়া ভারতের কোন্ অঞ্চলে দেখা যায়?", opts: ["লাক্ষাদ্বীপ", "আন্দামান ও নিকোবর দ্বীপপুঞ্জ", "করমণ্ডল উপকূল", "থর মরুভূমি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> আন্দামান-নিকোবর দ্বীপপুঞ্জ নিরক্ষরেখার কাছাকাছি অবস্থিত হওয়ায় সেখানে সারাবছরই উষ্ণ-আর্দ্র নিরক্ষীয় জলবায়ুর মতো আবহাওয়া বিরাজ করে।" },
+        { q: "৯. পরিবেশের ভারসাম্য রক্ষার জন্য একটি দেশের মোট আয়তনের কত শতাংশ বনভূমি থাকা একান্ত প্রয়োজন?", opts: ["১৫%", "২১%", "২৫%", "৩৩%"], ans: 3, exp: "<b>ব্যাখ্যা:</b> পরিবেশ বিজ্ঞানীদের মতে, পরিবেশের ভারসাম্য বজায় রাখা এবং প্রাকৃতিক বিপর্যয় এড়ানোর জন্য কোনো দেশের মোট ভৌগোলিক আয়তনের অন্তত এক-তৃতীয়াংশ বা ৩৩% বনভূমি থাকা প্রয়োজন।" },
+        { q: "১০. প্রধানত অর্থনৈতিকভাবে দুর্বল শ্রেণির মানুষদের জন্য অব্যবহৃত বা পতিত জমিতে অরণ্য সৃষ্টি করাকে কী বলে?", opts: ["কৃষি বনসৃজন", "সামাজিক বনসৃজন (Social Forestry)", "বাণিজ্যিক অরণ্য", "স্থানান্তর কৃষি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নির্ধারিত অরণ্যসীমার বাইরে রাস্তা, রেললাইন, খালপাড় বা পতিত জমিতে সমাজের কল্যাণে বৃক্ষরোপণ করে অরণ্য সৃষ্টি করাকে সামাজিক বনসৃজন বলা হয়।" },
+        { q: "১১. আইটিসিজেড (ITCZ)-এর পুরো কথা কী?", opts: ["Inter-Tropical Convergence Zone", "Intra-Tropical Climate Zone", "Inter-Temperate Convergence Zone", "Indian Tropical Convergence Zone"], ans: 0, exp: "<b>ব্যাখ্যা:</b> নিরক্ষরেখার উভয়দিকে উত্তর-পূর্ব ও দক্ষিণ-পূর্ব আয়ন বায়ুর মিলনস্থলটিকে ইন্টার-ট্রপিকাল কনভারজেন্স জোন বা আন্তঃক্রান্তীয় মিলন অঞ্চল (ITCZ) বলা হয়।" },
+        { q: "১২. ভারতের কৃষি গবেষণাগার (ICAR) মাটি ও তার বৈশিষ্ট্যের ওপর ভিত্তি করে ভারতের মৃত্তিকাকে প্রধান কটি ভাগে ভাগ করেছে?", opts: ["৪টি", "৬টি", "৮টি", "১০টি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯৫৩ সালে ইন্ডিয়ান কাউন্সিল অব এগ্রিকালচারাল রিসার্চ (ICAR) ভারতের মাটিকে প্রধান ৮টি ভাগে এবং ২৩টি উপবিভাগে ভাগ করেছে।" },
+        { q: "১৩. লোহিত মৃত্তিকা বা লাল মাটির জলধারণ ক্ষমতা কেমন হয়?", opts: ["অত্যন্ত বেশি", "মাঝারি", "কম", "অত্যধিক বেশি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> লোহিত মৃত্তিকায় বালির পরিমাণ বেশি থাকে এবং মাটির দানাগুলি বড়ো (স্থূল গ্রথন) হয় বলে এর জল ধরে রাখার ক্ষমতা খুব কম হয়।" },
+        { q: "১৪. দক্ষিণ ভারতের জলবায়ুতে সর্বাধিক প্রভাব বিস্তারকারী পর্বতমালা কোনটি?", opts: ["পূর্বঘাট পর্বত", "পশ্চিমঘাট পর্বত", "নীলগিরি", "বিন্ধ্য পর্বত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দক্ষিণ ভারতের জলবায়ু বিশেষত দক্ষিণ-পশ্চিম মৌসুমি বায়ুর বৃষ্টিপাত পশ্চিমঘাট পর্বত দ্বারা প্রবলভাবে নিয়ন্ত্রিত হয়, যার পশ্চিম ঢালে প্রচুর বৃষ্টি এবং পূর্ব ঢালে বৃষ্টিচ্ছায় অঞ্চল সৃষ্টি হয়েছে।" },
+        { q: "১৫. ভারতের জলবায়ুকে প্রধানত কোন্ বায়ু নিয়ন্ত্রণ করে?", opts: ["আয়ন বায়ু", "পশ্চিমা বায়ু", "মৌসুমি বায়ু", "পম্পেরো"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের জলবায়ুর প্রতিটি ক্ষেত্রে মৌসুমি বায়ুর (দক্ষিণ-পশ্চিম এবং উত্তর-পূর্ব) প্রভাব এতই প্রবল যে ভারতকে মৌসুমি জলবায়ুর দেশ বলা হয়।" }
+    ]
+};
+
+// ============================================================
+// সেট ১৫: ভারতের জনসংখ্যা
+// ============================================================
+const SET15 = {
+    name: "সেট ১৫",
+    icon: "👥",
+    topic: "ভারতের জনসংখ্যা",
+    questions: [
+        { q: "১. ২০০১ সাল থেকে ২০১১ সাল পর্যন্ত ভারতে দশকীয় জনবৃদ্ধির হার (Decadal growth rate) কত?", opts: ["১৬.৬৪%", "১৭.৬৪%", "১৯.৬৪%", "২১.০৭%"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ২০০১ সাল থেকে ২০১১ সালের মধ্যে ১০ বছরে ভারতে জনসংখ্যা বৃদ্ধির শতকরা হার বা দশকীয় জনবৃদ্ধির হার ছিল ১৭.৬৪ শতাংশ।" },
+        { q: "২. ভারতের সর্বাধিক জনবহুল রাজ্য কোনটি?", opts: ["মহারাষ্ট্র", "বিহার", "পশ্চিমবঙ্গ", "উত্তরপ্রদেশ"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ২০১১ সালের জনগণনা অনুসারে ভারতের সবচেয়ে বেশি জনসংখ্যা বিশিষ্ট রাজ্য হলো উত্তরপ্রদেশ।" },
+        { q: "৩. ভারতের সর্বনিম্ন জনবহুল রাজ্য কোনটি?", opts: ["গোয়া", "সিকিম", "মিজোরাম", "অরুণাচল প্রদেশ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ২০১১ সালের আদমশুমারি অনুযায়ী সিকিম হলো ভারতের সবচেয়ে কম জনসংখ্যা বিশিষ্ট রাজ্য।" },
+        { q: "৪. ভারতের সর্বাধিক জনঘনত্বপূর্ণ রাজ্য কোনটি?", opts: ["পশ্চিমবঙ্গ", "কেরল", "বিহার", "উত্তরপ্রদেশ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বিহার রাজ্যের জনঘনত্ব প্রতি বর্গকিলোমিটারে প্রায় ১১০২ জন, যা ভারতের মধ্যে সর্বাধিক।" },
+        { q: "৫. ভারতের সর্বনিম্ন জনঘনত্বপূর্ণ রাজ্য কোনটি?", opts: ["সিকিম", "মিজোরাম", "জম্মু ও কাশ্মীর", "অরুণাচল প্রদেশ"], ans: 3, exp: "<b>ব্যাখ্যা:</b> অরুণাচল প্রদেশে দুর্গম পার্বত্য ভূমির কারণে জনঘনত্ব ভারতের মধ্যে সর্বনিম্ন (প্রতি বর্গকিমিতে মাত্র ১৭ জন)।" },
+        { q: "৬. ২০১১ সালের জনগণনা অনুযায়ী ভারতের গড় জনঘনত্ব কত?", opts: ["৩২৪ জন/বর্গকিমি", "৩৮২ জন/বর্গকিমি", "৪২০ জন/বর্গকিমি", "৩৫০ জন/বর্গকিমি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ২০১১ সালের আদমশুমারি অনুসারে ভারতের গড় জনঘনত্ব হলো ৩৮২ জন প্রতি বর্গকিলোমিটার।" },
+        { q: "৭. ভারতের কোন্ রাজ্যে সাক্ষরতার হার সর্বাধিক?", opts: ["গোয়া", "মিজোরাম", "কেরল", "মহারাষ্ট্র"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ২০১১ সালের আদমশুমারি অনুসারে ভারতের রাজ্যগুলির মধ্যে কেরল রাজ্যে সাক্ষরতার হার সবচেয়ে বেশি (প্রায় ৯৪%)।" },
+        { q: "৮. ভারতের কোন্ রাজ্যে সাক্ষরতার হার সর্বনিম্ন?", opts: ["ঝাড়খণ্ড", "বিহার", "রাজস্থান", "ওড়িশা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ২০১১ সালের জনগণনা অনুযায়ী ভারতের রাজ্যগুলির মধ্যে বিহারে সাক্ষরতার হার সবচেয়ে কম।" },
+        { q: "৯. ভারতে লিঙ্গ অনুপাত (Sex Ratio) নির্ণয়ের সূত্রটি কী?", opts: ["(নারী/পুরুষ) × 100", "(নারী/পুরুষ) × 1000", "(পুরুষ/নারী) × 100", "(পুরুষ/নারী) × 1000"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতবর্ষে লিঙ্গ অনুপাত বলতে প্রতি হাজার পুরুষের সাপেক্ষে নারীর সংখ্যা হিসাব করা হয়। তাই এর সূত্র হলো: (মোট নারীর সংখ্যা / মোট পুরুষের সংখ্যা) × 1000।" },
+        { q: "১০. ভারতের কোন্ রাজ্যে নারী-পুরুষ অনুপাত বা লিঙ্গ অনুপাত সর্বাধিক?", opts: ["তামিলনাড়ু", "কেরল", "অন্ধ্রপ্রদেশ", "ছত্তিশগড়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কেরল রাজ্যে প্রতি ১০০০ জন পুরুষে নারীর সংখ্যা ১০৮৪ জন, যা ভারতের মধ্যে সর্বাধিক।" },
+        { q: "১১. ৫০ লক্ষের বেশি জনসংখ্যাবিশিষ্ট শহরকে ভূগোলের ভাষায় কী বলা হয়?", opts: ["নগর", "মহানগর", "মেগাসিটি (Megacity)", "পৌরপুঞ্জ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ৫০ লক্ষের বেশি জনসংখ্যাবিশিষ্ট শহরকে মেগাসিটি বলা হয়।" },
+        { q: "১২. ভারতের বৃহত্তম মেগাসিটি বা মহানগর কোনটি?", opts: ["দিল্লি", "কলকাতা", "চেন্নাই", "মুম্বাই"], ans: 3, exp: "<b>ব্যাখ্যা:</b> জনসংখ্যার বিচারে মহারাষ্ট্রের মুম্বাই হলো ভারতের বৃহত্তম মেগাসিটি।" },
+        { q: "১৩. ভারতের জনগণনা আয়োগের সংজ্ঞা অনুযায়ী, কোনো এলাকার ন্যূনতম জনসংখ্যা কত হলে তা শহর হিসেবে গণ্য হবে?", opts: ["১,০০০ জন", "৫,০০০ জন", "১০,০০০ জন", "১,০০,০০০ জন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতের জনগণনা দফতরের সংজ্ঞা অনুযায়ী কোনো অঞ্চলকে শহর হিসেবে স্বীকৃতি পেতে গেলে সেখানকার ন্যূনতম জনসংখ্যা হতে হবে ৫,০০০ জন।" },
+        { q: "১৪. স্থিতিশীল জনসংখ্যার (Stationary Population) অন্তর্গত একটি দেশের উদাহরণ দাও।", opts: ["ভারত", "উগান্ডা", "চিলি", "সুইডেন"], ans: 3, exp: "<b>ব্যাখ্যা:</b> সুইডেনের মতো উন্নত দেশে জন্মহার ও মৃত্যুহার দুই-ই অত্যন্ত কম এবং প্রায় সমান, যার ফলে জনসংখ্যা স্থিতিশীল বা স্থির থাকে।" },
+        { q: "১৫. 'ব্রেন ড্রেন' (Brain Drain) বলতে কী বোঝায়?", opts: ["গ্রাম থেকে শহরে অশিক্ষিত মানুষের গমন", "উন্নয়নশীল দেশ থেকে বুদ্ধিজীবী ও দক্ষ মানুষের উন্নত দেশে পরিব্রাজন", "শহর থেকে গ্রামে মানুষের গমন", "শুধু কৃষকদের পরিব্রাজন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> যখন কোনো অনুন্নত বা উন্নয়নশীল দেশ থেকে চিকিৎসক, ইঞ্জিনিয়ার বা বুদ্ধিজীবী মানুষ উন্নত দেশে চলে যায়, তখন সেই মেধাপাচারকে ব্রেন ড্রেন বলে।" }
+    ]
+};
+
+// ============================================================
+// সেট ১৬: ভারতের পরিবহণ ব্যবস্থা
+// ============================================================
+const SET16 = {
+    name: "সেট ১৬",
+    icon: "🚆",
+    topic: "ভারতের পরিবহণ ব্যবস্থা",
+    questions: [
+        { q: "১. কোন্ পরিবহণ ব্যবস্থাকে 'উন্নয়নের জীবনরেখা' বলা হয়?", opts: ["সড়কপথকে", "জলপথকে", "আকাশপথকে", "রেলপথকে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জলপথ নির্মাণ ও রক্ষণাবেক্ষণে কোনো খরচ নেই বলে এটি সস্তা এবং ভারী পণ্য পরিবহণে আদর্শ। তাই জলপথকে উন্নয়নের জীবনরেখা বলা হয়।" },
+        { q: "২. সোনালি চতুর্ভুজ (Golden Quadrilateral) কোন্ চারটি মেট্রো শহরকে যুক্ত করেছে?", opts: ["দিল্লি-মুম্বাই-চেন্নাই-কলকাতা", "দিল্লি-পুণে-বেঙ্গালুরু-কলকাতা", "দিল্লি-গুরগাঁও-ফরিদাবাদ-মুম্বাই", "কলকাতা-পাটনা-লখনউ-দিল্লি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ভারতের চারটি প্রধান মেট্রোপলিটন শহর দিল্লি, মুম্বাই, চেন্নাই এবং কলকাতাকে যুক্তকারী চার বা ছয় লেনের দ্রুতগামী মহাসড়ককে সোনালি চতুর্ভুজ বলা হয়।" },
+        { q: "৩. সোনালি চতুর্ভুজের চারটি বাহুর মধ্যে সবচেয়ে দীর্ঘ বাহু কোনটি?", opts: ["দিল্লি থেকে মুম্বাই", "মুম্বাই থেকে চেন্নাই", "চেন্নাই থেকে কলকাতা", "কলকাতা থেকে দিল্লি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সোনালি চতুর্ভুজের চারটি বাহুর দৈর্ঘ্য সমান নয়। এর মধ্যে চেন্নাই থেকে কলকাতার দূরত্ব সর্বাধিক, ১৬৮৪ কিমি।" },
+        { q: "৪. ভারতে প্রথম রেলপথ (মুম্বাই থেকে থানে) কত সালে স্থাপিত হয়?", opts: ["১৮৫৩ সালে", "১৮৭০ সালে", "১৯০৫ সালে", "১৯৪৭ সালে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ১৮৫৩ সালে লর্ড ডালহৌসির আমলে ভারতে প্রথম রেলপথ স্থাপিত হয় মুম্বাই থেকে থানে পর্যন্ত ৩৪ কিমি পথে।" },
+        { q: "৫. ভারতের দীর্ঘতম জাতীয় সড়ক কোনটি?", opts: ["NH 2", "NH 6", "NH 44", "NH 34"], ans: 2, exp: "<b>ব্যাখ্যা:</b> শ্রীনগর থেকে কন্যাকুমারী পর্যন্ত বিস্তৃত NH 44 (পূর্বের NH 7) হলো ভারতের দীর্ঘতম জাতীয় সড়ক।" },
+        { q: "৬. পাহাড়ি অঞ্চলে স্বল্প দূরত্বে খনিজ দ্রব্য পরিবহণের জন্য বা গভীর উপত্যকা পারাপারের জন্য কোন্ পথ নির্মাণ করা হয়?", opts: ["নলপথ", "রজ্জুপথ (Ropeway)", "দ্রুত পরিবহণ সড়ক", "রেলপথ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দুর্গম পার্বত্য অঞ্চলে গভীর উপত্যকা পারাপার এবং বন্ধুর মালভূমি অঞ্চলে স্বল্প দূরত্বে খনিজ দ্রব্য পরিবহণের জন্য রজ্জুপথ বা রোপওয়ে নির্মাণ করা হয়।" },
+        { q: "৭. তরল খনিজ পদার্থ (খনিজ তেল) ও গ্যাস পরিবহণের জন্য সবচেয়ে উপযোগী ও সস্তা মাধ্যম কোনটি?", opts: ["রেলপথ", "সড়কপথ", "জলপথ", "পাইপলাইন বা নলপথ"], ans: 3, exp: "<b>ব্যাখ্যা:</b> খনিজ তেল উত্তোলন কেন্দ্র থেকে তেল শোধনাগারে অপরিশোধিত তেল ও গ্যাস নিরবচ্ছিন্নভাবে পরিবহণের জন্য পাইপলাইন বা নলপথ সবচেয়ে উপযোগী।" },
+        { q: "৮. ভারতের গভীরতম ও সর্বোত্তম স্বাভাবিক বন্দর কোনটি?", opts: ["চেন্নাই", "পারাদ্বীপ", "বিশাখাপত্তনম", "হলদিয়া"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অন্ধ্রপ্রদেশের বিশাখাপত্তনম বন্দরটি ডলফিন নোজ নামক পাহাড় দ্বারা সুরক্ষিত ভারতের গভীরতম ও সর্বোত্তম স্বাভাবিক বন্দর।" },
+        { q: "৯. 'আরব সাগরের রানি' (Queen of the Arabian Sea) কাকে বলা হয়?", opts: ["মুম্বাই বন্দরকে", "কোচি বন্দরকে", "কান্ডালা বন্দরকে", "মার্মাগাঁও বন্দরকে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কেরালা রাজ্যে অবস্থিত কোচি বা কোচিন বন্দরকে তার মনোরম অবস্থান ও বাণিজ্যের কারণে 'আরব সাগরের রানি' বলা হয়।" },
+        { q: "১০. ভারতের একটি উল্লেখযোগ্য শুল্কমুক্ত (Tax-free) বন্দর কোনটি?", opts: ["মুম্বাই", "হলদিয়া", "চেন্নাই", "কান্ডালা (গুজরাত)"], ans: 3, exp: "<b>ব্যাখ্যা:</b> গুজরাতের কান্ডালা একটি উল্লেখযোগ্য শুল্কমুক্ত বা Tax-free বন্দর।" },
+        { q: "১১. ভারতের কোন শহরকে 'পশ্চিম ভারতের প্রবেশদ্বার' (Gateway of West India) বলা হয়?", opts: ["আমেদাবাদ", "সুরাট", "মুম্বাই", "কান্ডালা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মহারাষ্ট্রের রাজধানী তথা ভারতের বৃহত্তম প্রাকৃতিক বন্দর মুম্বাইকে তার ভৌগোলিক ও বাণিজ্যিক গুরুত্বের জন্য পশ্চিম ভারতের প্রবেশদ্বার বলা হয়।" },
+        { q: "১২. দক্ষিণ ভারতের কোন্ খালটি কৃষ্ণা ও কাবেরী নদীকে যুক্ত করে জলপথ হিসেবে ব্যবহৃত হয়?", opts: ["ইডেন খাল", "হিজলি খাল", "বাকিংহাম খাল", "গঙ্গাখাল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কৃষ্ণা ও কাবেরী নদীর সংযোগকারী বাকিংহাম খাল ভারতের একটি উল্লেখযোগ্য অভ্যন্তরীণ খালপথ।" },
+        { q: "১৩. গঙ্গা নদীর ওপর এলাহাবাদ থেকে হলদিয়া পর্যন্ত বিস্তৃত জলপথটি কী নামে পরিচিত?", opts: ["১নং জাতীয় জলপথ (NW 1)", "২নং জাতীয় জলপথ", "৩নং জাতীয় জলপথ", "৪নং জাতীয় জলপথ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> গঙ্গা-ভাগীরথী-হুগলি নদীর ওপর দিয়ে বিস্তৃত ১৬২০ কিমি দীর্ঘ এই জলপথটি ভারতের ১নং জাতীয় জলপথ এবং এটি দীর্ঘতম।" },
+        { q: "১৪. যে নির্দিষ্ট সমুদ্রপথ বরাবর জাহাজগুলি চলাচল করে, সেই পথকে কী বলে?", opts: ["শিপিং লাইন", "ট্রাম্প", "শিপিং লেন (Shipping Lane)", "ওশান নেটওয়ার্ক"], ans: 2, exp: "<b>ব্যাখ্যা:</b> যে নির্দিষ্ট সমুদ্রপথ বরাবর জাহাজগুলি চলাচল করে, সেই পথকে শিপিং লেন বলে। একে ওশান লেন-ও বলা হয়।" },
+        { q: "১৫. কলকাতা মেট্রোয় প্রস্তাবিত পূর্ব-পশ্চিম মেট্রো রেলপথটি কোন্ দুটি স্থানকে যুক্ত করছে/করবে?", opts: ["নিউ গড়িয়া থেকে দক্ষিণেশ্বর", "সেক্টর-V থেকে হাওড়া ময়দান", "ঠাকুরপুকুর থেকে এসপ্ল্যানেড", "জোকা থেকে বিবাদী বাগ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রস্তাবিত পূর্ব-পশ্চিম মেট্রোরেলপথটি সেক্টর-V থেকে হাওড়া ময়দান পর্যন্ত বিস্তৃত, যার অন্তর্গত সেক্টর-V থেকে শিয়ালদহ পর্যন্ত মেট্রো পথ ইতিমধ্যেই চালু হয়েছে।" }
+    ]
+};
+
+// ============================================================
+// সেট ১৭: ভারতের যোগাযোগ ব্যবস্থা ও বাণিজ্য
+// ============================================================
+const SET17 = {
+    name: "সেট ১৭",
+    icon: "🌐",
+    topic: "ভারতের যোগাযোগ ব্যবস্থা ও বাণিজ্য",
+    questions: [
+        { q: "১. বিশ্বের বৃহত্তম ইলেকট্রনিক নেটওয়ার্ক সিস্টেম কোনটি?", opts: ["টেলিভিশন", "রেডিও", "ইন্টারনেট (Internet)", "স্যাটেলাইট"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ইন্টারনেট হলো বর্তমানে যোগাযোগ ব্যবস্থার সবচেয়ে উন্নত পরিসেবা এবং এটি বিশ্বের বৃহত্তম ইলেকট্রনিক নেটওয়ার্ক সিস্টেম।" },
+        { q: "২. বাড়িতে বসে কম্পিউটার ও ইন্টারনেট ব্যবস্থার মাধ্যমে অনলাইনে পণ্য বা সেবার আদানপ্রদান বা কেনাবেচাকে কী বলে?", opts: ["টেলিমেডিসিন", "ই-কমার্স (e-commerce)", "টেলিশিক্ষা", "ই-মেইল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বাড়িতে বসে কম্পিউটার ও ইন্টারনেট ব্যবস্থার মাধ্যমে অনলাইনে পণ্য বা সেবার আদানপ্রদান বা কেনাবেচাকে ই-কমার্স বলে।" },
+        { q: "৩. ইন্টারনেট ব্যবস্থার মাধ্যমে খুব দ্রুত, সহজে ও অল্প খরচে লিখিত বার্তা পাঠানোর উপায়কে কী বলে?", opts: ["ফ্যাক্স", "ই-মেল (E-mail)", "স্পিড পোস্ট", "টেলিগ্রাম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ইলেকট্রনিক মেল বা ই-মেলের মাধ্যমে ইন্টারনেটের সাহায্যে অতি অল্প খরচে দ্রুত পৃথিবীর যে-কোনো জায়গায় সংবাদ বা ডেটা পাঠানো যায়।" },
+        { q: "৪. ভারতের মহাকাশ গবেষণা সংস্থার (ISRO) সদর দপ্তর কোথায় অবস্থিত?", opts: ["দিল্লি", "মুম্বাই", "বেঙ্গালুরু", "শ্রীহরিকোটা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উপগ্রহ চিত্র প্রস্তুত ও মহাকাশ গবেষণার জন্য ভারতের প্রধান সংস্থা ISRO (Indian Space Research Organisation)-এর সদর দপ্তর কর্ণাটকের বেঙ্গালুরুতে অবস্থিত।" },
+        { q: "৫. আবহাওয়া সংক্রান্ত তথ্য সংগ্রহের জন্য ভারতের প্রেরিত একটি উপগ্রহের নাম কী?", opts: ["IRS", "INSAT", "LANDSAT", "CARTOSAT"], ans: 1, exp: "<b>ব্যাখ্যা:</b> INSAT (Indian National Satellite) হলো ভারতের একটি ভূ-সমলয় উপগ্রহ, যা প্রধানত আবহাওয়ার পূর্বাভাস এবং টেলিযোগাযোগের তথ্য প্রদান করে।" },
+        { q: "৬. ভারতের তথ্যপ্রযুক্তি শিল্পের রাজধানী বা 'সিলিকন ভ্যালি' কাকে বলা হয়?", opts: ["হায়দ্রাবাদ", "বেঙ্গালুরু", "চেন্নাই", "পুনে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> তথ্যপ্রযুক্তি শিল্পে অভূতপূর্ব উন্নতির কারণে কর্ণাটকের বেঙ্গালুরু শহরকে ভারতের সিলিকন ভ্যালি বলা হয়।" },
+        { q: "৭. ভারতের কোন রাজ্যে সফটওয়্যার টেকনোলজি পার্ক সবচেয়ে বেশি আছে?", opts: ["মহারাষ্ট্র", "তামিলনাড়ু", "কর্ণাটক", "পশ্চিমবঙ্গ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বেঙ্গালুরুকে কেন্দ্র করে কর্ণাটক রাজ্যে ভারতের সবচেয়ে বেশি সফটওয়্যার টেকনোলজি পার্ক গড়ে উঠেছে।" },
+        { q: "৮. একটি দেশের আমদানি ও রপ্তানির মূল্যের পার্থক্যকে কী বলে?", opts: ["বাণিজ্যিক লেনদেন", "বাণিজ্যিক ভারসাম্য (Balance of Trade)", "অর্থনৈতিক সূচক", "বিদেশি মুদ্রা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কোনো একটি নির্দিষ্ট সময়ে একটি দেশের আমদানি করা পণ্যের মোট মূল্য এবং রপ্তানি করা পণ্যের মোট মূল্যের পার্থক্যকে বাণিজ্যিক ভারসাম্য বলে।" },
+        { q: "৯. ভারতের প্রধান আমদানিকৃত দ্রব্য কোনটি?", opts: ["স্বর্ণ", "খনিজ তেল বা পেট্রোলিয়াম", "যন্ত্রপাতি", "রাসায়নিক সার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারত তার প্রয়োজনীয় খনিজ তেলের একটি বড়ো অংশ বিদেশ থেকে আমদানি করে, তাই খনিজ তেল বা পেট্রোলিয়াম ভারতের প্রধান আমদানিকৃত দ্রব্য।" },
+        { q: "১০. বর্তমানে ভারতের প্রধান রপ্তানিকৃত দ্রব্য কোনটি?", opts: ["তৈরি পোশাক ও রত্ন", "চা ও কফি", "লৌহ আকরিক", "পাটজাত দ্রব্য"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বর্তমানে ভারত থেকে সবচেয়ে বেশি মূল্যের যে দ্রব্যগুলি রপ্তানি হয় তার মধ্যে তৈরি পোশাক, ইঞ্জিনিয়ারিং দ্রব্য এবং রত্ন বা অলংকার অন্যতম।" },
+        { q: "১১. দক্ষিণ এশীয় আঞ্চলিক সহযোগিতা সংস্থা (SAARC)-এর সদর দপ্তর কোথায় অবস্থিত?", opts: ["দিল্লি", "ঢাকা", "কাঠমান্ডু", "কলম্বো"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সার্কের সদর দপ্তর নেপালের রাজধানী কাঠমান্ডুতে অবস্থিত, যা দক্ষিণ এশিয়ার দেশগুলোর বাণিজ্যিক ও অর্থনৈতিক উন্নয়নে সাহায্য করে।" },
+        { q: "১২. ভারতের কোন শহরকে 'পশ্চিম ভারতের প্রবেশদ্বার' বলা হয়?", opts: ["আমেদাবাদ", "সুরাট", "মুম্বাই", "কান্ডালা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মহারাষ্ট্রের রাজধানী তথা ভারতের বৃহত্তম প্রাকৃতিক বন্দর মুম্বাইকে তার ভৌগোলিক ও বাণিজ্যিক গুরুত্বের জন্য পশ্চিম ভারতের প্রবেশদ্বার বলা হয়।" },
+        { q: "১৩. ভারতের কোন অঞ্চলে আকাশপথই পরিবহণের অন্যতম প্রধান উপায়?", opts: ["দাক্ষিণাত্যের মালভূমি অঞ্চলে", "উত্তর ও উত্তর-পূর্বের পার্বত্য অঞ্চলে", "গঙ্গা-ব্রহ্মপুত্র সমভূমি অঞ্চলে", "পশ্চিমের মরুভূমি অঞ্চলে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতের উত্তর ও উত্তর-পূর্বের পার্বত্য অঞ্চলে সড়কপথ ও রেলপথের অভাব আছে। ওইসব অঞ্চলে আকাশপথই পরিবহণের অন্যতম প্রধান উপায়।" },
+        { q: "১৪. আন্তর্জাতিক বাণিজ্যের ক্ষেত্রে সবচেয়ে সস্তা ও প্রধান মাধ্যম কোনটি?", opts: ["আকাশপথ", "সড়কপথ", "জলপথ বা সমুদ্রপথ", "রেলপথ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বিশাল পরিমাণ ভারী পণ্য দূরদেশে পরিবহণের জন্য সমুদ্রপথ বা জলপথ হলো সবচেয়ে সস্তা, তাই এটি আন্তর্জাতিক বাণিজ্যের প্রধান মাধ্যম।" },
+        { q: "১৫. ভারতের হাই-টেক সিটি (Hi-Tech City) কাকে বলা হয়?", opts: ["বেঙ্গালুরু", "পুনে", "হায়দ্রাবাদ", "দিল্লি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> তেলেঙ্গানার রাজধানী হায়দ্রাবাদ তথ্যপ্রযুক্তি শিল্পে অত্যন্ত উন্নত হওয়ায় একে হাই-টেক সিটি বলা হয়।" }
+    ]
+};
+
+// ============================================================
+// সেট ১৮: ভারত (অবশিষ্ট পূর্ণাঙ্গ সেট)
+// ============================================================
+const SET18 = {
+    name: "সেট ১৮",
+    icon: "🇮🇳",
+    topic: "ভারত (অবশিষ্ট পূর্ণাঙ্গ সেট)",
+    questions: [
+        { q: "১. হিমালয়ের একটি সরলবর্গীয় উদ্ভিদের উদাহরণ হলো—", opts: ["মেহগনি", "অর্জুন", "শাল", "পাইন"], ans: 3, exp: "<b>ব্যাখ্যা:</b> হিমালয় পার্বত্য অঞ্চলের ২৫০০-৪০০০ মিটার উচ্চতায় পাইন, ফার, লার্চ, দেবদারু প্রভৃতি সরলবর্গীয় উদ্ভিদ জন্মায়।" },
+        { q: "২. দিহং, দিবং ও লোহিত নদীর মিলিত প্রবাহের নাম কী?", opts: ["গোদাবরী", "ব্রহ্মপুত্র", "তিস্তা", "সিন্ধু"], ans: 1, exp: "<b>ব্যাখ্যা:</b> তিব্বতের সাংপো নদী অরুণাচল প্রদেশে ডিহং নামে প্রবেশ করে এবং সদিয়ার কাছে ডিবং ও লোহিত নদীর সাথে মিলিত হয়ে 'ব্রহ্মপুত্র' নাম ধারণ করে অসমের ওপর দিয়ে প্রবাহিত হয়েছে।" },
+        { q: "৩. ১৯৫৬ সালে ভারতের রাজ্য পুনর্গঠনের মূল ভিত্তি কী ছিল?", opts: ["ধর্ম", "ভূপ্রকৃতি", "ভাষা", "জাতি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বহু ভাষার দেশ ভারতে আঞ্চলিক ভাষার ভিত্তিতেই রাজ্যগুলিকে প্রধানত ভাগ করা হয়েছিল (যেমন—বাংলা ভাষার জন্য পশ্চিমবঙ্গ, তামিল ভাষার জন্য মাদ্রাজ/তামিলনাড়ু)।" },
+        { q: "৪. ভারতের প্রধান রবিশস্য (Rabi crop) কোনটি?", opts: ["ধান", "গম", "পাট", "জোয়ার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শীতকালে জলসেচের ওপর নির্ভর করে যে ফসলের চাষ হয় তাকে রবিশস্য বলে এবং ভারতের প্রধান রবিশস্য হলো গম।" },
+        { q: "৫. কাশ্মীরে প্রবাহিত বিতস্তা (ঝিলাম) নদী, কোন্ নদীর উপনদী?", opts: ["গঙ্গা", "যমুনা", "সিন্ধু", "ব্রহ্মপুত্র"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সিন্ধু নদের প্রধান পাঁচটি উপনদী হলো—শতদ্রু, বিপাশা, ইরাবতী, চন্দ্রভাগা এবং বিতস্তা বা ঝিলাম, যেগুলি পাকিস্তানে সিন্ধুর সাথে মিলিত হয়েছে।" },
+        { q: "৬. বনজভিত্তিক (Forest-based) শিল্পের একটি উদাহরণ হলো—", opts: ["কাগজ শিল্প", "লৌহ-ইস্পাত শিল্প", "দোহন শিল্প", "পেট্রোরসায়ন শিল্প"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বনজ কাঁচামাল (যেমন বাঁশ, কাঠ, ঘাস) ব্যবহার করে যে শিল্প গড়ে ওঠে তাকে বনজভিত্তিক শিল্প বলে, কাগজ শিল্প যার অন্যতম উদাহরণ।" },
+        { q: "৭. ভারতের একটি মিশ্র বা সংকর ইস্পাত (Alloy Steel) কারখানাটি কোথায় অবস্থিত?", opts: ["রৌরকেল্লা", "ভিলাই", "জামশেদপুর", "সালেম"], ans: 3, exp: "<b>ব্যাখ্যা:</b> তামিলনাড়ুর সালেম-এ একটি বৃহদায়তন সংকর ইস্পাত বা অ্যালয় স্টিল কারখানা গড়ে উঠেছে।" },
+        { q: "৮. ২০০১ সাল থেকে ২০১১ সাল পর্যন্ত ভারতে দশকীয় জনবৃদ্ধির হার (Decadal growth rate) কত?", opts: ["১৬.৬৪%", "১৭.৬৪%", "১৯.৬৪%", "২১.০৭%"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ২০০১ সাল থেকে ২০১১ সালের মধ্যে ১০ বছরে ভারতে জনসংখ্যা বৃদ্ধির শতকরা হার বা দশকীয় জনবৃদ্ধির হার ছিল ১৭.৬৪ শতাংশ।" },
+        { q: "৯. ভারতের পূর্ব উপকূলীয় সমভূমির দক্ষিণাংশের নাম কী?", opts: ["করমণ্ডল উপকূল", "উত্তর সরকার উপকূল", "কোঙ্কন উপকূল", "মালাবার উপকূল"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পূর্ব উপকূলের সমভূমির কৃষ্ণা নদীর মোহানার দক্ষিণাংশের নাম করমণ্ডল উপকূল এবং উত্তরাংশের নাম উত্তর সরকার উপকূল।" },
+        { q: "১০. ছোটোনাগপুর মালভূমিতে প্রধানত কোন্ ধরনের উদ্ভিদ জন্মায়?", opts: ["চিরসবুজ", "পর্ণমোচী", "সরলবর্গীয়", "জেরোফাইট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ঝাড়খণ্ডের ছোটোনাগপুর মালভূমি অঞ্চলে মাঝারি বৃষ্টিপাতের কারণে শীতকালে গাছের পাতা ঝরে যায়, তাই এখানে ক্রান্তীয় পর্ণমোচী বা পাতাঝরা উদ্ভিদ বেশি জন্মায়।" },
+        { q: "১১. ধান চাষের জন্য বার্ষিক গড়ে কতটা বৃষ্টিপাতের প্রয়োজন হয়?", opts: ["৫০-১০০ সেমি", "১০০-২০০ সেমি", "৩০০-৪০০ সেমি", "৪০০-৫০০ সেমি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ধান একটি 'তৃষ্ণার্ত ফসল', এর স্বাভাবিক বৃদ্ধি ও ফলনের জন্য বার্ষিক গড়ে ১৫০ থেকে ২০০ সেমি বৃষ্টিপাত প্রয়োজন হয়।" },
+        { q: "১২. কর্ণাটকের পাহাড়ি অঞ্চল কোন্ ফসল উৎপাদনের জন্য বিখ্যাত?", opts: ["চা", "কফি", "গম", "ধান"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কর্ণাটক ভারতের মধ্যে কফি উৎপাদনে প্রথম স্থান অধিকার করে। কর্ণাটকের বাবাবুদান পাহাড়ে ভারতের প্রথম কফি চাষ শুরু হয়।" },
+        { q: "১৩. স্থলপথে স্বল্পদূরত্বের জন্য সবচেয়ে উপযোগী পরিবহণ মাধ্যম কোনটি?", opts: ["রেলপথ", "সড়কপথ", "জলপথ", "আকাশপথ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কম দূরত্বের মধ্যে দ্রুত এবং সুবিধাজনকভাবে যাত্রী ও পণ্য পরিবহণের জন্য সড়কপথ সবচেয়ে উপযোগী মাধ্যম।" },
+        { q: "১৪. গোদাবরী নদীর একটি উল্লেখযোগ্য উপনদীর নাম কী?", opts: ["ভীমা", "তুঙ্গভদ্রা", "ইন্দ্রাবতী", "অমরাবতী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> দক্ষিণ ভারতের দীর্ঘতম নদী গোদাবরীর কয়েকটি প্রধান উপনদী হলো- ইন্দ্রাবতী, মঞ্জিরা এবং প্রাণহিতা।" },
+        { q: "১৫. কোন্ দ্রাঘিমারেখা ভারতকে পূর্ব ও পশ্চিম—এই দুই অংশে ভাগ করেছে?", opts: ["৮০° পূর্ব", "৮২°৩০' পূর্ব", "৮৫° পূর্ব", "৯০° পূর্ব"], ans: 0, exp: "<b>ব্যাখ্যা:</b> অক্ষাংশের বিচারে যেমন কর্কটক্রান্তি রেখা ভারতকে উত্তর ও দক্ষিণে ভাগ করেছে, তেমনি দ্রাঘিমার ক্ষেত্রে ৮০° পূর্ব দ্রাঘিমারেখা ভারতকে প্রায় সমানভাবে পূর্ব ও পশ্চিম—এই দুই অংশে ভাগ করেছে।" }
+    ]
+};
+
+// ============================================================
+// সব সেট একত্রে
+// ============================================================
+const QUIZ_SETS = {
+    "1": SET1,
+    "2": SET2,
+    "3": SET3,
+    "4": SET4,
+    "5": SET5,
+    "6": SET6,
+    "7": SET7,
+    "8": SET8,
+    "9": SET9,
+    "10": SET10,
+    "11": SET11,
+    "12": SET12,
+    "13": SET13,
+    "14": SET14,
+    "15": SET15,
+    "16": SET16,
+    "17": SET17,
+    "18": SET18
+};
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+let loggedInUser = null;
+let currentSetId = null;
+let questions = [];
+let score = 0;
+let wrongAnswers = 0;
+let userAnswers = {};
+let isReviewMode = false;
+let timerInterval;
+let timeLeft = TIME_LIMIT;
+
+window.onload = () => {
+    applyBranding();
+    buildHub();
+};
+
+function buildHub() {
+    const grid = document.getElementById('setGrid');
+    grid.innerHTML = '';
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+
+    for(let id in QUIZ_SETS) {
+        const set = QUIZ_SETS[id];
+        let attemptCount = 0;
+        let isLocked = false;
+
+        if(loggedInUser) {
+            attemptCount = userAttempts[loggedInUser + "_" + id] || 0;
+            isLocked = attemptCount >= MAX_ATTEMPTS;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'set-card';
+        let badge = '';
+        if(loggedInUser) {
+            badge = `<div class="attempt-badge ${isLocked ? 'locked' : ''} en-font">${isLocked ? 'সম্পূর্ণ' : attemptCount + '/' + MAX_ATTEMPTS}</div>`;
+        }
+
+        card.innerHTML = `
+            ${badge}
+            <div class="set-icon">${set.icon}</div>
+            <div class="set-name">${set.name}</div>
+            <div class="set-topic">${set.topic}</div>
+            <div class="set-meta-info en-font">
+                <span>${set.questions.length} Qs</span>
+                <span>10 Mins</span>
+            </div>
+        `;
+        card.onclick = () => { selectSet(id); };
+        grid.appendChild(card);
+    }
+}
+
+function selectSet(setId) {
+    if(loggedInUser) {
+        let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+        let attemptCount = userAttempts[loggedInUser + "_" + setId] || 0;
+        if(attemptCount >= MAX_ATTEMPTS) {
+            alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+            return;
+        }
+        startQuiz(setId);
+    } else {
+        currentSetId = setId;
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginError').classList.add('hidden');
+        document.getElementById('loginSetName').innerText = QUIZ_SETS[setId].name + ": " + QUIZ_SETS[setId].topic;
+        document.getElementById('loginModal').classList.remove('hidden');
+    }
+}
+
+function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+
+function doLogin() {
+    const u = document.getElementById('loginUsername').value.trim();
+    const p = document.getElementById('loginPassword').value.trim();
+    const err = document.getElementById('loginError');
+    const GLOBAL_USERS = JSON.parse(localStorage.getItem("testBazarGlobalUsers")) || {};
+
+    if(!u || !p) { err.innerText = "ইউজারনেম এবং পাসওয়ার্ড দিন!"; err.classList.remove('hidden'); return; }
+
+    if(GLOBAL_USERS[u] && GLOBAL_USERS[u] === p) {
+        loggedInUser = u;
+        document.getElementById('userDisplay').innerText = `👤 ${u}`;
+        closeLogin();
+        buildHub();
+        if(currentSetId) {
+            startQuiz(currentSetId);
+        }
+    } else {
+        err.innerText = "ইউজারনেম বা পাসওয়ার্ড ভুল!";
+        err.classList.remove('hidden');
+    }
+}
+
+function incrementAttempt(user, setId) {
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let key = user + "_" + setId;
+    userAttempts[key] = (userAttempts[key] || 0) + 1;
+    localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(userAttempts));
+}
+
+function startQuiz(setId) {
+    currentSetId = setId;
+    incrementAttempt(loggedInUser, setId);
+    questions = QUIZ_SETS[setId].questions;
+    userAnswers = {};
+    isReviewMode = false;
+    score = 0;
+    wrongAnswers = 0;
+    timeLeft = TIME_LIMIT;
+
+    document.getElementById('hubView').classList.add('hidden');
+    document.getElementById('resultModal').classList.add('hidden');
+    document.getElementById('quizView').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('danger');
+    document.getElementById('submitTestBtn').classList.remove('hidden');
+    document.getElementById('quizTitle').innerText = QUIZ_SETS[setId].name + " | " + QUIZ_SETS[setId].topic;
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tick, 1000);
+    renderQuestions();
+}
+
+function tick() {
+    timeLeft--;
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    document.getElementById('timerDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if (timeLeft <= 60) document.getElementById('timerBox').classList.add('danger');
+    if (timeLeft <= 0) { submitQuiz(); }
+}
+
+const LABELS = ['A', 'B', 'C', 'D'];
+
+function renderQuestions() {
+    const quizList = document.getElementById('quizList');
+    let html = '';
+    questions.forEach((q, i) => {
+        html += `<div class="q-block" id="qBlock_${i}">
+            <div class="q-text">${q.q}</div>
+            <div class="options-grid">`;
+        q.opts.forEach((opt, j) => {
+            html += `<div class="opt" id="opt_${i}_${j}" onclick="selectOpt(${i}, ${j})">
+                <div class="opt-circle">${LABELS[j]}</div>
+                <div class="opt-text">${opt}</div>
+            </div>`;
+        });
+        html += `</div>
+            <div class="explanation hidden" id="exp_${i}">${q.exp}</div>
+        </div>`;
+    });
+    quizList.innerHTML = html;
+    window.scrollTo(0, 0);
+}
+
+function selectOpt(qIdx, optIdx) {
+    if (isReviewMode) return;
+    userAnswers[qIdx] = optIdx;
+    const block = document.getElementById(`qBlock_${qIdx}`);
+    const opts = block.querySelectorAll('.opt');
+    opts.forEach(o => o.classList.remove('selected'));
+    document.getElementById(`opt_${qIdx}_${optIdx}`).classList.add('selected');
+}
+
+function submitQuiz() {
+    if (isReviewMode) return;
+    const answeredCount = Object.keys(userAnswers).length;
+    if (timeLeft > 0 && answeredCount < questions.length) {
+        const confirmSubmit = confirm(`আপনি মাত্র ${answeredCount} টি প্রশ্নের উত্তর দিয়েছেন। আপনি কি সত্যিই Test জমা দিতে চান?`);
+        if(!confirmSubmit) return;
+    }
+    isReviewMode = true;
+    clearInterval(timerInterval);
+    document.getElementById('timerBox').classList.add('hidden');
+    document.getElementById('submitTestBtn').classList.add('hidden');
+
+    score = 0;
+    wrongAnswers = 0;
+    questions.forEach((q, i) => {
+        const selected = userAnswers[i];
+        const block = document.getElementById(`qBlock_${i}`);
+        const opts = block.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.remove('selected'));
+        if (selected !== undefined) {
+            if (selected === q.ans) {
+                score++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('correct');
+            } else {
+                wrongAnswers++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('wrong');
+                document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+            }
+        } else {
+            document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+        }
+        document.getElementById(`exp_${i}`).classList.remove('hidden');
+    });
+
+    const skipped = questions.length - (score + wrongAnswers);
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('rbCorrect').textContent = score;
+    document.getElementById('rbWrong').textContent = wrongAnswers + skipped;
+
+    let icon = '💪', grade = 'চেষ্টা চালিয়ে যাও!';
+    if(pct >= 90) { icon = '🌟'; grade = 'অসাধারণ!'; }
+    else if(pct >= 70) { icon = '👍'; grade = 'খুব ভালো!'; }
+    else if(pct >= 50) { icon = '📚'; grade = 'ভালো চেষ্টা!'; }
+
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultGrade').textContent = grade;
+
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    let remaining = MAX_ATTEMPTS - attemptCount;
+    document.getElementById('attemptInfo').innerText = `বাকি আছে ${remaining} বার Test দেওয়ার সুযোগ (সর্বোচ্চ ${MAX_ATTEMPTS} বার)`;
+    document.getElementById('resultModal').classList.remove('hidden');
+}
+
+function closeResultModal() {
+    document.getElementById('resultModal').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+    closeResultModal();
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    if(attemptCount >= MAX_ATTEMPTS) {
+        alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+        document.getElementById('quizView').classList.add('hidden');
+        document.getElementById('hubView').classList.remove('hidden');
+        buildHub();
+        return;
+    }
+    startQuiz(currentSetId);
+}
+</script>
+</body>
+</html>
