@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 History Chapter 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #1a7a4a; --primary-hover: #2aad68; --accent: #f9a825;
+--bg-main: #f0faf4; --bg-card: #ffffff; --bg-selected: #e8f4ec;
+--text-main: #1c2e24; --text-meta: #5a7a66; --border-color: #c5dccb;
+--alert-danger: #dc3545; --correct: #28a745;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Tiro Bangla', serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+.en-font { font-family: 'Syne', sans-serif; }
+.hidden { display: none !important; }
+
+.header {
+background: #ffffff;
+box-shadow: 0 4px 20px rgba(10, 92, 54, 0.08);
+position: sticky;
+top: 0;
+z-index: 1000;
+border-bottom: 3px solid #0a5c36;
+}
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 8px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo-link {
+display: flex;
+align-items: center;
+gap: 10px;
+text-decoration: none;
+cursor: pointer;
+}
+.logo-emblem {
+width: 45px;
+height: 45px;
+background: linear-gradient(135deg, #0a5c36 0%, #1e824c 100%);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.4rem;
+font-weight: 800;
+color: white;
+box-shadow: 0 4px 12px rgba(10, 92, 54, 0.2);
+flex-shrink: 0;
+}
+.brand-text-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.coaching-main-title {
+font-size: 1.4rem;
+font-weight: 800;
+color: #0a5c36;
+letter-spacing: -0.5px;
+line-height: 1.1;
+}
+.coaching-subtitle {
+font-size: 0.75rem;
+color: #556c5e;
+font-weight: 700;
+letter-spacing: 0.3px;
+margin-top: 1px;
+text-transform: uppercase;
+}
+.coaching-tagline {
+font-size: 0.65rem;
+color: #f5a623;
+font-weight: 600;
+margin-top: 1px;
+letter-spacing: 0.1px;
+}
+.header-right {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.timer-box {
+background: rgba(10, 92, 54, 0.08);
+padding: 6px 15px;
+border-radius: 8px;
+font-weight: 700;
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+gap: 5px;
+color: #0a5c36;
+}
+.timer-box.danger { background: var(--alert-danger); color: white; animation: pulse 1s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.user-info { background: #0a5c36; color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; }
+
+.main-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.hub-header { text-align: center; margin-bottom: 30px; }
+.hub-header h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 10px; }
+.set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+.set-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+.set-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(26,122,74,0.1); }
+.set-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.set-name { font-size: 1.3rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; font-family: 'Syne', sans-serif;}
+.set-topic { font-size: 0.95rem; color: var(--text-meta); margin-bottom: 15px; height: 40px; }
+.set-meta-info { display: flex; justify-content: center; gap: 10px; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
+.set-meta-info span { background: var(--bg-main); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+.attempt-badge { position: absolute; top: 10px; right: 10px; background: #ffeeba; color: #856404; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+.attempt-badge.locked { background: var(--alert-danger); color: white; border: none; }
+
+.quiz-info { background: var(--bg-card); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+.q-block { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.q-text { font-size: 1.2rem; font-weight: bold; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
+.options-grid { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 1.05rem; }
+.opt:hover:not(.selected):not(.correct):not(.wrong) { background: var(--bg-main); border-color: var(--primary); }
+.opt.selected { background: var(--bg-selected); border-color: var(--primary); }
+.opt-circle { min-width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Syne', sans-serif; color: var(--text-meta); flex-shrink: 0; }
+.opt.selected .opt-circle { background: var(--primary); color: white; border-color: var(--primary); }
+.opt.correct { background: #e8f7ef; border-color: var(--correct); }
+.opt.correct .opt-circle { background: var(--correct); border-color: var(--correct); color: white; }
+.opt.wrong { background: #fdf0f0; border-color: var(--alert-danger); }
+.opt.wrong .opt-circle { background: var(--alert-danger); border-color: var(--alert-danger); color: white; }
+.explanation { margin-top: 15px; padding: 15px; background: #e8f4ec; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #2c4035; line-height: 1.5;}
+.btn-submit { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; font-family: 'Tiro Bangla', serif; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(26,122,74,0.2); transition: 0.2s; }
+.btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+.btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: bold;}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto;}
+.modal-box { background: white; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin: auto;}
+.modal-box input { width: 100%; padding: 12px 15px; margin: 10px 0; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: 'Syne', sans-serif; box-sizing: border-box; outline: none; transition: 0.2s; }
+.modal-box input:focus { border-color: var(--primary); }
+.result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto; padding: 20px; }
+.result-box { background: white; padding: 2.5rem 2rem; border-radius: 16px; width: 100%; max-width: 450px; text-align: center; margin: auto; }
+.result-score { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin: 15px 0; }
+.result-bars { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.result-bar { background: var(--bg-main); padding: 15px; border-radius: 12px; width: 100px; border: 1px solid var(--border-color); }
+
+@media (max-width: 768px) {
+.header-container { flex-direction: column; gap: 10px; text-align: center; padding: 10px 10px; }
+.logo-link { flex-direction: column; gap: 6px; }
+.brand-text-container { text-align: center; }
+.coaching-main-title { font-size: 1.2rem; }
+.coaching-subtitle { font-size: 0.7rem; }
+.coaching-tagline { font-size: 0.6rem; }
+.header-right { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="#" class="logo-link" onclick="location.reload(); return false;">
+            <div class="logo-emblem" id="dynamicEmblem">📜</div>
+            <div class="brand-text-container">
+                <span class="coaching-main-title" id="dynamicTitle">History - Chapter 1</span>
+                <span class="coaching-subtitle" id="dynamicSubtitle">ইতিহাসের ধারণা: আধুনিক ইতিহাসচর্চার বৈচিত্র্য ও উপাদান</span>
+                <span class="coaching-tagline" id="dynamicTagline">দশম শ্রেণি (Class 10)</span>
+            </div>
+        </a>
+        <div class="header-right">
+            <div class="timer-box en-font hidden" id="timerBox">⏱ <span id="timerDisplay">10:00</span></div>
+            <div class="user-info en-font" id="userDisplay" style="font-weight: bold;">👤 Guest</div>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <div id="hubView">
+        <div class="hub-header">
+            <h1 style="color: var(--primary); margin-bottom: 10px;">ইতিহাস - Class 10 Chapter 1</h1>
+            <p style="color: var(--text-meta);">ইতিহাসের ধারণা: আধুনিক ইতিহাসচর্চার বৈচিত্র্য ও উপাদান</p>
+        </div>
+        <div class="set-grid" id="setGrid"></div>
+        <div style="text-align:center; margin-top:40px;">
+            <button class="btn-primary" style="background:var(--text-meta); width: auto; padding: 12px 25px;" onclick="window.history.back()">← Main Dashboard-এ ফিরুন</button>
+        </div>
+    </div>
+
+    <div id="quizView" class="hidden">
+        <div class="quiz-info">
+            <div id="quizTitle">Set Name</div>
+            <div id="quizMetaInfo" class="en-font">15 Questions | 10 Mins</div>
+        </div>
+        <div id="quizList"></div>
+        <button class="btn-submit" id="submitTestBtn" onclick="submitQuiz()">Test জমা দিন ও ফলাফল দেখুন</button>
+    </div>
+
+</div>
+
+<div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-box">
+        <h2 style="color: var(--primary); margin-top:0;">লগইন করুন</h2>
+        <p style="color: var(--text-meta); margin-bottom: 15px; font-size: 0.9rem;">Test শুরু করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন</p>
+        <div id="loginSetName" style="background: var(--bg-main); padding: 8px; border-radius: 8px; font-weight:bold; color:var(--primary); margin-bottom:15px; font-family: 'Syne', sans-serif; font-size: 0.95rem;">Set Name</div>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()">
+        <div id="loginError" class="hidden" style="color: var(--alert-danger); margin: 10px 0; font-weight:bold; font-size: 0.9rem;"></div>
+        <div style="display: flex; gap: 10px; margin-top:15px; justify-content: center;">
+            <button class="btn-primary" style="width: 100%; padding: 12px;" onclick="doLogin()">লগইন করুন</button>
+            <button class="btn-primary" style="background: var(--alert-danger); width: 100%; padding: 12px;" onclick="closeLogin()">বাতিল</button>
+        </div>
+    </div>
+</div>
+
+<div class="result-overlay hidden" id="resultModal">
+    <div class="result-box">
+        <div style="font-size: 3.5rem; margin-bottom:0; line-height: 1;" id="resultIcon">🌟</div>
+        <h2 style="margin:10px 0; color: var(--text-main);">আপনার ফলাফল</h2>
+        <div class="result-score en-font" id="finalScore">100%</div>
+        <div id="resultGrade" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--accent);">অসাধারণ!</div>
+        <div class="result-bars">
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbCorrect">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">সঠিক</div>
+            </div>
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--alert-danger);" class="en-font" id="rbWrong">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">ভুল / স্কিপ</div>
+            </div>
+        </div>
+        <p style="background: var(--bg-main); padding: 10px; border-radius: 8px; color:var(--text-meta); font-weight:bold; font-size:0.95rem; margin-bottom:25px;" id="attemptInfo" class="en-font">বাকি আছে 9 বার</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="btn-primary" style="background: #28a745; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="closeResultModal()">উত্তর ও ব্যাখ্যা দেখুন</button>
+            <button class="btn-primary" style="background: #17a2b8; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="restartQuiz()">আবার চেষ্টা করো</button>
+            <button class="btn-primary" style="background: var(--text-meta); width: 100%; padding: 14px; font-size: 1.05rem;" onclick="window.location.reload()">Chapter Hub-এ ফিরুন</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// DYNAMIC BRANDING LOGIC
+// ============================================================
+const STORE_CONFIGS = {
+    "guru": {
+        title: "Guru Book Store Jhalda",
+        mainTitle: "Guru Book Store",
+        subtitle: "Jhalda",
+        tagline: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        emblem: "G"
+    },
+    "saraswati": {
+        title: "Saraswati Book Store",
+        mainTitle: "Saraswati Book Store",
+        subtitle: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        tagline: "শিক্ষা ও প্রগতির বিশ্বস্ত সঙ্গী",
+        emblem: "S"
+    }
+};
+
+function applyBranding() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let storeKey = urlParams.get('store') || localStorage.getItem("activeStore") || "";
+    storeKey = storeKey.toLowerCase();
+
+    if (storeKey && STORE_CONFIGS[storeKey]) {
+        const config = STORE_CONFIGS[storeKey];
+        document.title = `${config.title} - Class 10 History Chapter 1`;
+        document.getElementById("dynamicEmblem").innerText = config.emblem;
+        document.getElementById("dynamicTitle").innerText = config.mainTitle;
+        document.getElementById("dynamicSubtitle").innerText = config.subtitle;
+        document.getElementById("dynamicTagline").innerText = config.tagline;
+        localStorage.setItem("activeStore", storeKey);
+    } else {
+        document.title = "Class 10 History Chapter 1 - ইতিহাসের ধারণা: আধুনিক ইতিহাসচর্চার বৈচিত্র্য ও উপাদান";
+        document.getElementById("dynamicEmblem").innerText = "📜";
+        document.getElementById("dynamicTitle").innerText = "History - Chapter 1";
+        document.getElementById("dynamicSubtitle").innerText = "ইতিহাসের ধারণা: আধুনিক ইতিহাসচর্চার বৈচিত্র্য ও উপাদান";
+        document.getElementById("dynamicTagline").innerText = "দশম শ্রেণি (Class 10)";
+    }
+}
+
+// ============================================================
+// QUIZ DATA - 7 SETS (TOTAL 105 QUESTIONS)
+// ============================================================
+const STORAGE_KEY_ATTEMPTS = "testBazarAttempts_History_Ch1_Sets";
+const MAX_ATTEMPTS = 10;
+const TIME_LIMIT = 10 * 60;
+
+// ============================================================
+// সেট ১: নতুন সামাজিক ইতিহাস ও খেলা
+// ============================================================
+const SET1 = {
+    name: "Set 1",
+    icon: "⚽",
+    topic: "নতুন সামাজিক ইতিহাস ও খেলা",
+    questions: [
+        { q: "আধুনিক ইতিহাসচর্চায় 'অ্যানাল' (Annales) পত্রিকা কবে প্রকাশিত হয়?", opts: ["১৯২০ খ্রিস্টাব্দে", "১৯২৯ খ্রিস্টাব্দে", "১৯৬০ খ্রিস্টাব্দে", "১৯৭০ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ফরাসি ঐতিহাসিক মার্ক ব্লখ, ফার্নান্দ ব্রদেল প্রমুখ ১৯২৯ খ্রিস্টাব্দে 'অ্যানাল' পত্রিকা প্রকাশের মধ্য দিয়ে সামাজিক ইতিহাসচর্চার সূত্রপাত ঘটিয়েছিলেন।" },
+        { q: "ভারতে নিম্নবর্গের ইতিহাসচর্চা (Subaltern Studies) কবে শুরু হয়?", opts: ["১৯৬০ খ্রিস্টাব্দে", "১৯৭০ খ্রিস্টাব্দে", "১৯৮২ খ্রিস্টাব্দে", "১৯৮৮ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অধ্যাপক রণজিৎ গুহ রচিত 'সাবল্টার্ন স্টাডিজ'-এর প্রথম খণ্ড ১৯৮২ খ্রিস্টাব্দে প্রকাশের দ্বারা ভারতে নিম্নবর্গের ইতিহাসচর্চা শুরু হয়।" },
+        { q: "নিম্নবর্গের মানুষ নিজেদের কথা নিজেদের মতো করে বলতে পারে না— উক্তিটি কার?", opts: ["রণজিৎ গুহ", "গায়ত্রী স্পিভাক", "পার্থ চট্টোপাধ্যায়", "গৌতম ভদ্র"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নিম্নবর্গের ইতিহাসচর্চার কাঠিন্য বোঝাতে গিয়ে প্রখ্যাত ঐতিহাসিক গায়ত্রী স্পিভাক এই মন্তব্যটি করেছিলেন।" },
+        { q: "ব্রিটিশ সোসাইটি অফ স্পোর্টস হিস্ট্রি কবে প্রতিষ্ঠিত হয়?", opts: ["১৯৭০ খ্রিস্টাব্দে", "১৯৭৪ খ্রিস্টাব্দে", "১৯৭৬ খ্রিস্টাব্দে", "১৯৮২ খ্রিস্টাব্দে"], ans: 3, exp: "<b>ব্যাখ্যা:</b> খেলাধুলার ইতিহাস নিয়ে চর্চা করার উদ্দেশ্যে ইউরোপে ১৯৮২ খ্রিস্টাব্দে এই সংস্থাটি প্রতিষ্ঠিত হয়েছিল।" },
+        { q: "ভারতে খেলার ইতিহাস নিয়ে প্রথম কে গবেষণা করেন?", opts: ["রামচন্দ্র গুহ", "বোরিয়া মজুমদার", "সৌমেন মিত্র", "কৌশিক বন্দ্যোপাধ্যায়"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯৮৮ খ্রিস্টাব্দে সৌমেন মিত্র 'ঔপনিবেশিক বাংলায় ফুটবল' নামক গবেষণার মাধ্যমে ভারতে প্রথম খেলার ইতিহাস নিয়ে কাজ শুরু করেন।" },
+        { q: "মোহনবাগান ক্লাব কবে আই.এফ.এ (IFA) শিল্ড জয় করেছিল?", opts: ["১৮৮৯ খ্রিস্টাব্দে", "১৮৯৬ খ্রিস্টাব্দে", "১৯১১ খ্রিস্টাব্দে", "১৯২০ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯১১ খ্রিস্টাব্দে মোহনবাগান ইংরেজদের ইস্ট ইয়র্ক ক্লাবকে হারিয়ে আই.এফ.এ শিল্ড জিতেছিল।" },
+        { q: "খেলা যখন ইতিহাস গ্রন্থটি কার লেখা?", opts: ["রামচন্দ্র গুহ", "বোরিয়া মজুমদার", "রিচার্ড হোল্ট", "কৌশিক বন্দ্যোপাধ্যায়"], ans: 3, exp: "<b>ব্যাখ্যা:</b> তরুণ ঐতিহাসিক কৌশিক বন্দ্যোপাধ্যায় এই গ্রন্থটি রচনা করেছেন।" },
+        { q: "প্রাচীন গ্রিসের অলিম্পিয়াতে প্রথম অলিম্পিক গেমস কবে চালু হয়েছিল?", opts: ["৭৭৬ খ্রিস্টপূর্বাব্দে", "৪৮০ খ্রিস্টপূর্বাব্দে", "১৮৯৬ খ্রিস্টাব্দে", "১৯১১ খ্রিস্টাব্দে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> প্রাচীন গ্রিসের অলিম্পিয়াতে প্রথম অলিম্পিক গেমস চালু হয়েছিল ৭৭৬ খ্রিস্টপূর্বাব্দে।" },
+        { q: "আধুনিক ইতিহাসচর্চায় 'তলা থেকে ইতিহাস' পদ্ধতি কোন্ ইতিহাস রচনায় ব্যবহৃত হয়?", opts: ["সামরিক ইতিহাস", "নতুন সামাজিক ইতিহাস", "খেলার ইতিহাস", "শহরের ইতিহাস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নতুন সামাজিক ইতিহাসে 'History from below' পদ্ধতি ব্যবহার করা হয়।" },
+        { q: "ভারতে কাঁচা লঙ্কা ও আলুর ব্যবহার কাদের প্রভাবে শুরু হয়েছিল?", opts: ["ইংরেজ", "ফরাসি", "পোর্তুগিজ", "ওলন্দাজ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পোর্তুগিজ উপনিবেশ স্থাপনের পর তাদের প্রভাবে কাঁচা লঙ্কা ও আলুর ব্যবহার শুরু হয়।" },
+        { q: "স্কটল্যান্ডের প্রভাবে ভারতীয়দের খাদ্য তালিকায় কোন্ খাবারটি যুক্ত হয়েছে?", opts: ["আলু", "কাঁচা লঙ্কা", "ওটস্", "কেক"], ans: 2, exp: "<b>ব্যাখ্যা:</b> 'কেকের দেশ' স্কটল্যান্ডের প্রভাবে ওটস্ যুক্ত হয়েছিল।" },
+        { q: "স্বদেশি যুগে ব্রিটিশ সাম্রাজ্যবাদের বিরুদ্ধে হাতিয়ার হিসেবে কোন্ খাদ্যদ্রব্যটি বর্জন করা হয়েছিল?", opts: ["চা", "সাদা চিনি", "লবণ", "কফি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> স্বদেশি যুগে ব্রিটিশ কলে প্রস্তুত সাদা চিনি বর্জন করা হয়েছিল।" },
+        { q: "হাউ টু মেক এ ন্যাশনাল কুইজিন প্রবন্ধটি কে রচনা করেছেন?", opts: ["জে. গ্র্যামিলিয়ন", "তপন রায়চৌধুরী", "অর্জুন আপ্পাদুরাই", "রামচন্দ্র গুহ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> খাদ্যাভ্যাসের বিবর্তনের ইতিহাস সম্পর্কে জানার জন্য অর্জুন আপ্পাদুরাই এই প্রবন্ধটি রচনা করেছেন।" },
+        { q: "অ্যাপেটাইটস: ফুডস ইন প্রি-হিস্ট্রি গ্রন্থটি কার লেখা?", opts: ["জে. গ্র্যামিলিয়ন", "তপন রায়চৌধুরী", "ইরফান হাবিব", "আলফ্রেড ক্রসবি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> প্রাগৈতিহাসিক যুগের মানুষের খাদ্যাভ্যাসের বিবর্তন নিয়ে জে. গ্র্যামিলিয়ন এই গ্রন্থটি রচনা করেছেন।" },
+        { q: "দ্য পিকাডর বুক অফ ক্রিকেট গ্রন্থের রচয়িতা কে?", opts: ["বোরিয়া মজুমদার", "রামচন্দ্র গুহ", "রিচার্ড হোল্ট", "কৌশিক বন্দ্যোপাধ্যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিখ্যাত ঐতিহাসিক রামচন্দ্র গুহ এই গ্রন্থটি রচনা করেছেন।" }
+    ]
+};
+
+// ============================================================
+// সেট ২: শিল্পচর্চা, পোশাক ও যোগাযোগ
+// ============================================================
+const SET2 = {
+    name: "Set 2",
+    icon: "🎭",
+    topic: "শিল্পচর্চা, পোশাক ও যোগাযোগ",
+    questions: [
+        { q: "ভারতীয় সংগীতের প্রধান উৎস কোন্ বেদ?", opts: ["ঋগ্বেদ", "সামবেদ", "যজুর্বেদ", "অথর্ববেদ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রাচীন ভারতীয় সংগীতের প্রধান উৎস হলো 'সামবেদ'।" },
+        { q: "নমো হিন্দুস্থান স্বদেশি গানটি কে রচনা করেছিলেন?", opts: ["রবীন্দ্রনাথ ঠাকুর", "দ্বিজেন্দ্রলাল রায়", "রজনীকান্ত সেন", "সরলা দেবী চৌধুরানী"], ans: 3, exp: "<b>ব্যাখ্যা:</b> মানুষকে জাতীয়তাবোধে উদ্বুদ্ধ করার জন্য সরলা দেবী চৌধুরানী এটি রচনা করেছিলেন।" },
+        { q: "কথাকলি ভারতের কোন্ রাজ্যের একটি প্রখ্যাত নৃত্যশৈলী?", opts: ["তামিলনাড়ু", "অন্ধ্রপ্রদেশ", "কর্ণাটক", "কেরল"], ans: 3, exp: "<b>ব্যাখ্যা:</b> কথাকলি হলো কেরল রাজ্যের একটি ঐতিহ্যবাহী নৃত্যশৈলী।" },
+        { q: "প্রাচ্যকেন্দ্রিক পাশ্চাত্য নৃত্যরীতির প্রবর্তন কে করেন?", opts: ["উদয়শঙ্কর", "পণ্ডিত বিরজু মহারাজ", "শম্ভু মহারাজ", "কেলুচরণ মহাপাত্র"], ans: 0, exp: "<b>ব্যাখ্যা:</b> নৃত্যশিল্পী উদয়শঙ্কর প্রাচ্য ও পাশ্চাত্য নৃত্যরীতির সংমিশ্রণ ঘটিয়ে নতুন ধারার প্রবর্তন করেছিলেন।" },
+        { q: "ভরত মুনির রচনায় 'নাট্যশাস্ত্র'-কে কী বলে অভিহিত করা হয়েছে?", opts: ["তৃতীয় বেদ", "চতুর্থ বেদ", "পঞ্চম বেদ", "ষষ্ঠ বেদ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> নাটকের গুরুত্ব বেশি থাকায় ভরত মুনির রচনায় নাট্যশাস্ত্র 'পঞ্চম বেদ' নামে অভিহিত হয়েছে।" },
+        { q: "অঙ্গার ও টিনের তলোয়ার নাটক দুটির রচয়িতা কে?", opts: ["দীনবন্ধু মিত্র", "জ্যোতিরিন্দ্রনাথ ঠাকুর", "বিজন ভট্টাচার্য", "উৎপল দত্ত"], ans: 3, exp: "<b>ব্যাখ্যা:</b> প্রতিবাদের হাতিয়ার হিসেবে নাট্যকার উৎপল দত্ত এই বিখ্যাত নাটকগুলি রচনা করেছিলেন।" },
+        { q: "ভারতের প্রথম নির্বাক চলচ্চিত্র কোনটি?", opts: ["আলম আরা", "বিল্বমঙ্গল", "রাজা হরিশ্চন্দ্র", "জামাইষষ্ঠী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯১৩ খ্রিস্টাব্দে দাদাসাহেব ফালকে নির্মিত 'রাজা হরিশ্চন্দ্র' প্রথম নির্বাক চলচ্চিত্র।" },
+        { q: "বাংলা ভাষার প্রথম সবাক চলচ্চিত্র কোনটি?", opts: ["বিল্বমঙ্গল", "জামাইষষ্ঠী", "মেঘে ঢাকা তারা", "পথের পাঁচালি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯৩১ খ্রিস্টাব্দে মুক্তিপ্রাপ্ত 'জামাইষষ্ঠী' হলো বাংলা ভাষার সর্বপ্রথম সবাক চলচ্চিত্র।" },
+        { q: "একেই বলে শুটিং গ্রন্থটি কে রচনা করেছেন?", opts: ["ঋত্বিক কুমার ঘটক", "সত্যজিৎ রায়", "তপন সিংহ", "দাদাসাহেব ফালকে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> চলচ্চিত্র পরিচালক সত্যজিৎ রায় এই গ্রন্থটি রচনা করেছেন।" },
+        { q: "পারসি মহিলাদের অনুকরণে 'বোম্বাই দস্তুর' শাড়ি পরার কৌশল কে উদ্ভাবন করেন?", opts: ["স্বর্ণকুমারী দেবী", "বেগম রোকেয়া", "জ্ঞানদানন্দিনী দেবী", "সরলা দেবী চৌধুরানী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ঠাকুরবাড়ির জ্ঞানদানন্দিনী দেবী এই আধুনিক শাড়ি পরার কৌশল উদ্ভাবন করেছিলেন।" },
+        { q: "ঘোমটার বদলে টুপি ব্যবহার করতেন কোন্ বাঙালি লেখিকা?", opts: ["স্বর্ণকুমারী দেবী", "জ্ঞানদানন্দিনী দেবী", "বেগম রোকেয়া", "অবলা বসু"], ans: 0, exp: "<b>ব্যাখ্যা:</b> আধুনিকতার উন্মেষের নিদর্শনস্বরূপ স্বর্ণকুমারী দেবী ঘোমটার বদলে টুপি ব্যবহার করতেন।" },
+        { q: "বাঙালির বেশবাস: বিবর্তনের রূপরেখা গ্রন্থটি কে রচনা করেছেন?", opts: ["কার্ল কোহলার", "মলয় রায়", "তপন রায়চৌধুরী", "বিনোদবিহারী মুখোপাধ্যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পোশাক-পরিচ্ছদের সামাজিক বিবর্তন নিয়ে মলয় রায় এই গ্রন্থটি রচনা করেছেন।" },
+        { q: "ভারতে কবে প্রথম রেলপথ স্থাপিত হয়?", opts: ["১৮৫৩ খ্রিস্টাব্দে", "১৮৫৪ খ্রিস্টাব্দে", "১৮৫৮ খ্রিস্টাব্দে", "১৮৬২ খ্রিস্টাব্দে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> যোগাযোগের ইতিহাসে যুগান্তকারী ঘটনা হিসেবে ১৮৫৩ খ্রিস্টাব্দে ভারতে প্রথম রেলপথ স্থাপিত হয়।" },
+        { q: "কোন্ গভর্নর জেনারেলের আমলে বোম্বে থেকে থানে পর্যন্ত প্রথম রেলপথ স্থাপিত হয়?", opts: ["লর্ড বেন্টিঙ্ক", "লর্ড ক্যানিং", "লর্ড ডালহৌসি", "লর্ড হার্ডিঞ্জ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> লর্ড ডালহৌসির উদ্যোগে ১৮৫৩ খ্রিস্টাব্দে এই রেলপথটি স্থাপিত হয়েছিল।" },
+        { q: "দি অ্যাসোসিয়েশন অফ ড্রেস হিস্টোরিয়ানস সংস্থাটি কবে ইংল্যান্ডে প্রতিষ্ঠিত হয়?", opts: ["১৯৭০ খ্রিস্টাব্দে", "১৯৮২ খ্রিস্টাব্দে", "১৯৯১ খ্রিস্টাব্দে", "১৯৯৬ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পোশাকের ইতিহাসচর্চাকে প্রাতিষ্ঠানিক রূপ দেওয়ার জন্য ১৯৯১ খ্রিস্টাব্দে এটি প্রতিষ্ঠিত হয়।" }
+    ]
+};
+
+// ============================================================
+// সেট ৩: দৃশ্যশিল্প, স্থাপত্য ও সামরিক ইতিহাস
+// ============================================================
+const SET3 = {
+    name: "Set 3",
+    icon: "🏛️",
+    topic: "দৃশ্যশিল্প, স্থাপত্য ও সামরিক ইতিহাস",
+    questions: [
+        { q: "রাধা-কৃষ্ণ (১৮৯৫ খ্রি.) চিত্রমালাটি কে সৃষ্টি করেন?", opts: ["গগনেন্দ্রনাথ ঠাকুর", "অবনীন্দ্রনাথ ঠাকুর", "নন্দলাল বসু", "বিনোদবিহারী মুখোপাধ্যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮৯৫ খ্রিস্টাব্দে অবনীন্দ্রনাথ ঠাকুর এটি সৃষ্টি করেন, যেখানে আধুনিক চিত্রকলায় স্বদেশ চেতনা রূপ পেয়েছিল।" },
+        { q: "নব্যবঙ্গীয় চিত্রকলার উন্মেষে অবনীন্দ্রনাথের পাশাপাশি আর কে নেতৃত্ব দিয়েছিলেন?", opts: ["ই. বি. হ্যাভেল", "জেমস ফার্গুসন", "পার্সি ব্রাউন", "হার্বার্ট বেকার"], ans: 0, exp: "<b>ব্যাখ্যা:</b> প্রখ্যাত শিল্প বিশেষজ্ঞ ই. বি. হ্যাভেল এবং অবনীন্দ্রনাথ ঠাকুরের নেতৃত্বেই এর উন্মেষ ঘটেছিল।" },
+        { q: "ভারতে গথিক স্থাপত্যের প্রথম নিদর্শন কোনটি?", opts: ["এশিয়াটিক সোসাইটি", "টাউন হল", "কলকাতা হাইকোর্ট", "ভিক্টোরিয়া মেমোরিয়াল হল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৮৭২ খ্রিস্টাব্দে নির্মিত কলকাতা হাইকোর্টকে ভারতে গথিক স্থাপত্যের প্রথম নিদর্শন হিসেবে ধরা হয়।" },
+        { q: "এডুইন লুটিয়েন্স এবং হার্বার্ট বেকারের পরিচালনায় কোন্ বিখ্যাত ভবনটি নির্মিত হয়?", opts: ["ভিক্টোরিয়া মেমোরিয়াল", "কলকাতা হাইকোর্ট", "ভাইসরয়েস হাউস (রাষ্ট্রপতি ভবন)", "এশিয়াটিক সোসাইটি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ব্রিটিশ স্থপতিদের পরিচালনায় ভাইসরয়েস হাউস তৈরি হয়েছিল, যা বর্তমানে রাষ্ট্রপতি ভবন।" },
+        { q: "হিস্ট্রি অফ ইন্ডিয়া অ্যান্ড ইস্টার্ন আর্কিটেকচার গ্রন্থটি কার লেখা?", opts: ["পার্সি ব্রাউন", "জেমস ফার্গুসন", "শোভা সিং", "এডুইন লুটিয়েন্স"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতের প্রাচীন স্থাপত্যকলার ইতিহাস নিয়ে জেমস ফার্গুসন এই বিখ্যাত গ্রন্থটি রচনা করেছেন।" },
+        { q: "ভারতের প্রথম স্থানীয় ইতিহাসমূলক গ্রন্থ কোনটি?", opts: ["নদীয়া কাহিনী", "রাজতরঙ্গিণী", "মল্লভূম বিষ্ণুপুরের ইতিহাস", "কোচবিহারের ইতিহাস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দ্বাদশ শতকে কলহনের লেখা 'রাজতরঙ্গিণী' হলো ভারতের প্রথম স্থানীয় ইতিহাসমূলক গ্রন্থ।" },
+        { q: "কুমুদনাথ মল্লিক রচিত স্থানীয় ইতিহাসমূলক গ্রন্থটির নাম কী?", opts: ["নদীয়া কাহিনী", "মল্লভূম বিষ্ণুপুরের ইতিহাস", "কোচবিহারের ইতিহাস", "রাজতরঙ্গিণী"], ans: 0, exp: "<b>ব্যাখ্যা:</b> স্থানীয় ইতিহাসের উপাদান হিসেবে কুমুদনাথ মল্লিকের লেখা 'নদীয়া কাহিনী' একটি গুরুত্বপূর্ণ গ্রন্থ।" },
+        { q: "শহরের ইতিহাসচর্চা কবে বিকাশ লাভ করে?", opts: ["১৯৫০-এর দশকে", "১৯৬০-এর দশকে", "১৯৭০-এর দশকে", "১৯৮০-এর দশকে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯৭০-এর দশকে শহরের ইতিহাসচর্চা বিকাশ লাভ করে।" },
+        { q: "সমুদ্র বাণিজ্যের সঙ্গে শহরের ইতিহাসের যোগ হিসেবে 'পোর্টস, টাউনস, সিটিস' গ্রন্থটি কে রচনা করেছেন?", opts: ["লক্ষ্মী সুব্রামানিয়ান", "যদুনাথ সরকার", "সুরেন্দ্রনাথ সেন", "বিপান চন্দ্র"], ans: 0, exp: "<b>ব্যাখ্যা:</b> সমুদ্র বাণিজ্যের সঙ্গে শহরের উত্থান-পতনের ইতিহাস বিশ্লেষণ করে লক্ষ্মী সুব্রামানিয়ান এই গ্রন্থটি রচনা করেছেন।" },
+        { q: "প্রথম সামরিক ইতিহাসচর্চা কোথায় শুরু হয়?", opts: ["আমেরিকায়", "ফ্রান্সে", "ইংল্যান্ডে", "জার্মানিতে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯৭০-এর দশকে ইংল্যান্ডেই প্রথম এই সামরিক ইতিহাসচর্চা শুরু হয়েছিল।" },
+        { q: "মিলিটারি হিস্ট্রি অফ ইন্ডিয়া গ্রন্থটি কে রচনা করেছেন?", opts: ["সুরেন্দ্রনাথ সেন", "যদুনাথ সরকার", "রামচন্দ্র গুহ", "কৌশিক বন্দ্যোপাধ্যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> স্যার যদুনাথ সরকার তাঁর এই গ্রন্থে ভারতের সামরিক ইতিহাস নিয়ে বিস্তারিত আলোচনা করেছেন।" },
+        { q: "মিলিটারি সিস্টেম অফ দ্য মারাঠাস গ্রন্থটি কার লেখা?", opts: ["যদুনাথ সরকার", "সুরেন্দ্রনাথ সেন", "অশোক মিত্র", "বিনোদবিহারী মুখোপাধ্যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ড. সুরেন্দ্রনাথ সেন তাঁর এই গ্রন্থে মারাঠাদের সামরিক ব্যবস্থা নিয়ে আলোচনা করেছেন।" },
+        { q: "প্রাচীন ভারতীয় গ্রিক-রোমান সংস্কৃতির সংমিশ্রণের পরিচয় কোন্ শিল্পে পাওয়া যায়?", opts: ["গান্ধার শিল্প", "মথুরা শিল্প", "অমরাবতী শিল্প", "গথিক শিল্প"], ans: 0, exp: "<b>ব্যাখ্যা:</b> স্থাপত্যের ইতিহাসে গান্ধার শিল্পে প্রাচীন ভারতীয় ও গ্রিক-রোমান সংস্কৃতির সংমিশ্রণ লক্ষ্য করা যায়।" },
+        { q: "কলকাতা শহরের পত্তন কবে হয় বলে ধরা হয়?", opts: ["১৬৯০", "১৭০০", "১৭৫৭", "১৮০০"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ১৬৯০ খ্রিস্টাব্দে জব চার্নক কলকাতা শহরের পত্তন করেছিলেন বলে ঐতিহাসিকভাবে ধরা হয়।" },
+        { q: "ফোর্ট উইলিয়াম দুর্গ কবে প্রতিষ্ঠিত হয়?", opts: ["১৭০০", "১৭৫৭", "১৮০০", "১৮৫৭"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ব্রিটিশ কোম্পানির নিরাপত্তার জন্য ১৭০০ খ্রিস্টাব্দে ফোর্ট উইলিয়াম দুর্গ প্রতিষ্ঠা করা হয়।" }
+    ]
+};
+
+// ============================================================
+// সেট ৪: পরিবেশ, বিজ্ঞান ও নারী ইতিহাস
+// ============================================================
+const SET4 = {
+    name: "Set 4",
+    icon: "🌱",
+    topic: "পরিবেশ, বিজ্ঞান ও নারী ইতিহাস",
+    questions: [
+        { q: "পরিবেশ ইতিহাসচর্চা ১৯৭০-এর দশকে প্রথম কোথায় শুরু হয়?", opts: ["ইংল্যান্ড", "ফ্রান্স", "ভারত", "আমেরিকা যুক্তরাষ্ট্র"], ans: 3, exp: "<b>ব্যাখ্যা:</b> আমেরিকা যুক্তরাষ্ট্রে প্রথম ১৯৭০-এর দশকে পরিবেশ ইতিহাসচর্চা শুরু হয়।" },
+        { q: "প্রথম 'বিশ্ব পরিবেশ দিবস' (ইকো ডে) কবে পালিত হয়?", opts: ["৫ জুন ১৯৭০", "৫ জুন ১৯৭৩", "৫ জুন ১৯৭৪", "৫ জুন ১৯৮৫"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পরিবেশ রক্ষায় সচেতনতার উদ্দেশ্যে ১৯৭৪ খ্রিস্টাব্দের ৫ জুন প্রথম 'বিশ্ব পরিবেশ দিবস' পালিত হয়েছিল।" },
+        { q: "দ্য সাইলেন্ট স্প্রিং (The Silent Spring) গ্রন্থের রচয়িতা কে?", opts: ["র‍্যাচেল কারসন", "আলফ্রেড ক্রসবি", "রামচন্দ্র গুহ", "ইরফান হাবিব"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পরিবেশের ইতিহাসের অত্যন্ত গুরুত্বপূর্ণ একটি গ্রন্থ হলো র‍্যাচেল কারসনের লেখা 'দ্য সাইলেন্ট স্প্রিং'।" },
+        { q: "১৯৭৩-৭৪ খ্রিস্টাব্দে উত্তরাখণ্ডে চিপকো আন্দোলন কার নেতৃত্বে সংঘটিত হয়েছিল?", opts: ["মেধা পাটকর", "সুন্দরলাল বহুগুণা", "রামচন্দ্র গুহ", "অরুন্ধতী রায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সুন্দরলাল বহুগুণার নেতৃত্বে উত্তরাখণ্ডে গাছ কাটার বিরুদ্ধে চিপকো আন্দোলন হয়।" },
+        { q: "ম্যান অ্যান্ড এনভাইরনমেন্ট গ্রন্থটি কার লেখা?", opts: ["র‍্যাচেল কারসন", "আলফ্রেড ক্রসবি", "ইরফান হাবিব", "রামচন্দ্র গুহ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মানুষ ও পরিবেশের মধ্যকার সম্পর্ক নিয়ে ইরফান হাবিব এই গ্রন্থটি রচনা করেছেন।" },
+        { q: "চিকিৎসাবিদ্যার ইতিহাসে ভারতের সর্বপ্রথম মহিলা চিকিৎসক কে ছিলেন?", opts: ["আনন্দীবাই জোশী", "কাদম্বিনী গঙ্গোপাধ্যায়", "চন্দ্রমুখী বসু", "অবলা বসু"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ঔপনিবেশিক বাংলায় সর্বপ্রথম মহিলা চিকিৎসক হিসেবে খ্যাতি লাভ করেছিলেন কাদম্বিনী গঙ্গোপাধ্যায়।" },
+        { q: "আ হিস্ট্রি অফ হিন্দু কেমিস্ট্রি গ্রন্থটি কে রচনা করেন?", opts: ["ডা. মহেন্দ্রলাল সরকার", "জগদীশচন্দ্র বসু", "প্রফুল্লচন্দ্র রায়", "মেঘনাদ সাহা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বিজ্ঞান ও প্রযুক্তি চর্চার ইতিহাস প্রসঙ্গে আচার্য প্রফুল্লচন্দ্র রায় এই গ্রন্থটি রচনা করেছিলেন।" },
+        { q: "সায়েন্স, টেকনোলজি অ্যান্ড মেডিসিন ইন কলোনিয়াল ইন্ডিয়া গ্রন্থটি কার লেখা?", opts: ["জে. ডি. বার্নাল", "ডেভিড আর্নল্ড", "আলফ্রেড ক্রসবি", "রিচার্ড হোল্ট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ঔপনিবেশিক ভারতের বিজ্ঞান ও চিকিৎসাবিদ্যার বিবর্তন নিয়ে ডেভিড আর্নল্ড এই গ্রন্থটি রচনা করেছেন।" },
+        { q: "সম্মিলিত জাতিপুঞ্জ কোন্ বছরটিকে 'আন্তর্জাতিক নারী বর্ষ' হিসেবে পালন করার সিদ্ধান্ত নেয়?", opts: ["১৯৭০ খ্রিস্টাব্দ", "১৯৭৫ খ্রিস্টাব্দ", "১৯৮০ খ্রিস্টাব্দ", "১৯৮৮ খ্রিস্টাব্দ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নারী জাগরণের উদ্দেশ্যে সম্মিলিত জাতিপুঞ্জ ১৯৭৫ খ্রিস্টাব্দকে আন্তর্জাতিক নারী বর্ষ হিসেবে পালন করে।" },
+        { q: "দি ইন্ডিয়ান উইমেন: ফ্রম পর্দা টু মডার্নিটি গ্রন্থটির রচয়িতা কে?", opts: ["বি. আর. নন্দা", "নীরা দেশাই", "জেরাল্ডিন ফোর্বস", "গায়ত্রী স্পিভাক"], ans: 0, exp: "<b>ব্যাখ্যা:</b> নারী ইতিহাস সম্পর্কিত গবেষণাগ্রন্থগুলির মধ্যে বি. আর. নন্দার লেখা এই গ্রন্থটি উল্লেখযোগ্য।" },
+        { q: "দেবেন্দ্রনাথ ঠাকুরের কন্যা সৌদামিনী দেবী রচিত গ্রন্থটির নাম কী?", opts: ["বাবার কথা", "পিতৃস্মৃতি", "জীবনের ঝরাপাতা", "সেদিনের কথা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সৌদামিনী দেবী নারী ইতিহাসের অন্যতম উপাদান হিসেবে তাঁর আত্মকথন 'পিতৃস্মৃতি' রচনা করেন।" },
+        { q: "১৯৭০-এর দশকে নারী ও পরিবেশ ইতিহাসচর্চাকে কেন্দ্র করে কোন্ নতুন ধারণার উদ্ভব হয়েছে?", opts: ["ইকো-ফেমিনিজম", "সাইলেন্ট স্প্রিং", "টোটাল হিস্ট্রি", "সাবল্টার্ন স্টাডিজ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> নারী এবং পরিবেশ উভয়ের ইতিহাসচর্চাকে কেন্দ্র করে 'ইকো-ফেমিনিজম' বা পরিবেশ প্রধান নারীবাদের উদ্ভব ঘটে।" },
+        { q: "অবনীন্দ্রনাথের কন্যা উমা দেবী রচিত নারী ইতিহাস সম্পর্কিত গ্রন্থ কোনটি?", opts: ["বাবার কথা", "পিতৃস্মৃতি", "উইমেন ইন মডার্ন ইন্ডিয়া", "বাগেশ্বরী প্রবন্ধমালা"], ans: 0, exp: "<b>ব্যাখ্যা:</b> উমা দেবী রচিত নারী ইতিহাসের উপাদানমূলক গ্রন্থটির নাম হলো 'বাবার কথা'।" },
+        { q: "প্রথম ভারতীয় মহিলা স্নাতক কারা ছিলেন?", opts: ["কাদম্বিনী ও চন্দ্রমুখী বসু", "স্বর্ণকুমারী ও সরলা দেবী", "অবলা বসু ও রোকেয়া", "প্রীতিলতা ও বীণা দাস"], ans: 0, exp: "<b>ব্যাখ্যা:</b> কাদম্বিনী গঙ্গোপাধ্যায় ও চন্দ্রমুখী বসু ছিলেন ব্রিটিশ ভারতের প্রথম মহিলা স্নাতক।" },
+        { q: "ভারতের প্রথম মহিলা বিশ্ববিদ্যালয় কে প্রতিষ্ঠা করেন?", opts: ["বিদ্যাসাগর", "ধন্দো কেশব কার্ভে", "জ্যোতিবা ফুলে", "অ্যানি বেসান্ত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নারীশিক্ষার প্রসারে ডি. কে. কার্ভে ১৯১৬ সালে ভারতের প্রথম মহিলা বিশ্ববিদ্যালয় (SNDT) প্রতিষ্ঠা করেন।" }
+    ]
+};
+
+// ============================================================
+// সেট ৫: আধুনিক উপাদান: সরকারি নথিপত্র
+// ============================================================
+const SET5 = {
+    name: "Set 5",
+    icon: "📄",
+    topic: "আধুনিক উপাদান: সরকারি নথিপত্র",
+    questions: [
+        { q: "ভারতের 'জাতীয় মহাফেজখানা' বা ন্যাশনাল আর্কাইভস কোথায় অবস্থিত?", opts: ["কলকাতায়", "মুম্বাইতে", "চেন্নাইয়ে", "দিল্লিতে"], ans: 3, exp: "<b>ব্যাখ্যা:</b> সরকারি নথিপত্র সংরক্ষণের জন্য ভারতের জাতীয় মহাফেজখানা বা ন্যাশনাল আর্কাইভস দিল্লিতে অবস্থিত।" },
+        { q: "কলকাতায় প্রথম 'রেকর্ড রুম' কবে তৈরি হয়েছিল?", opts: ["১৮৫৮ খ্রিস্টাব্দে", "১৮৭২ খ্রিস্টাব্দে", "১৮৯১ খ্রিস্টাব্দে", "১৯১১ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সরকারি চিঠিপত্র সংরক্ষণের জন্য ১৮৯১ খ্রিস্টাব্দে কলকাতায় প্রথম রেকর্ড রুম তৈরি করা হয়।" },
+        { q: "ব্রিটিশ গোয়েন্দা রিপোর্টে কোন্ প্রতিষ্ঠানকে 'সন্ত্রাসবাদী কার্যকলাপের কেন্দ্র' হিসেবে উল্লেখ করা হয়েছিল?", opts: ["ব্রাহ্মসমাজ", "রামকৃষ্ণ মঠ ও মিশন", "তত্ত্ববোধিনী সভা", "এশিয়াটিক সোসাইটি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ব্রিটিশ সরকার রামকৃষ্ণ মঠ ও মিশনকে সে যুগে সন্ত্রাসবাদী কার্যকলাপের কেন্দ্র হিসেবে সন্দেহ করত।" },
+        { q: "হিস্ট্রি অফ ইন্ডিয়ান মিউটিনি গ্রন্থটি কে রচনা করেন?", opts: ["ফরেস্ট", "ম্যালেসন", "হোমস", "জেমস মিল"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ১৮৫৭ খ্রিস্টাব্দের প্রত্যক্ষদর্শী হিসেবে সরকারি কর্মচারি ফরেস্ট এই গ্রন্থটি রচনা করেন।" },
+        { q: "কোন্ ভাইসরয়ের গোপন চিঠিপত্র থেকে বঙ্গভঙ্গের প্রকৃত উদ্দেশ্যের কথা স্পষ্টভাবে জানা যায়?", opts: ["লর্ড ক্যানিং", "লর্ড ডালহৌসি", "লর্ড কার্জন", "লর্ড মিন্টো"], ans: 2, exp: "<b>ব্যাখ্যা:</b> লর্ড কার্জনের ব্যক্তিগত চিঠিপত্র থেকে জানা যায় যে বাঙালি শক্তিকে খর্ব করাই ছিল বঙ্গভঙ্গের উদ্দেশ্য।" },
+        { q: "হিউম-ডাফরিন পত্রালাপ মূলত কোন্ রাজনৈতিক দল প্রতিষ্ঠার সঙ্গে যুক্ত বলে মনে করা হয়?", opts: ["মুসলিম লিগ", "জাতীয় কংগ্রেস", "কমিউনিস্ট পার্টি", "স্বরাজ্য দল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> হিউম এবং ডাফরিনের মধ্যে আদানপ্রদান হওয়া গোপন নথিপত্র থেকেই জাতীয় কংগ্রেসের জন্ম হয়েছিল বলে ধরা হয়।" },
+        { q: "টেররিজম ইন বেঙ্গল গ্রন্থটির রচয়িতা কে?", opts: ["সুরঞ্জন দাস", "অমিয় কুমার সামন্ত", "রণজিৎ গুহ", "পার্থ চট্টোপাধ্যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পুলিশি প্রতিবেদনের ব্যাপক ব্যবহার করে অমিয় কুমার সামন্ত এই গবেষণা গ্রন্থটি রচনা করেছেন।" },
+        { q: "দ্য গুন্ডাস: টুওয়ার্ডস এ রিকনস্ট্রাকশন অফ দ্য ক্যালকাটা আন্ডারওয়ার্ল্ড গ্রন্থটি কে রচনা করেছেন?", opts: ["সুরঞ্জন দাস", "অমিয় কুমার সামন্ত", "সুমিত সরকার", "গৌতম ভদ্র"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ঐতিহাসিক সুরঞ্জন দাস পুলিশি প্রতিবেদনের সাহায্যে কলকাতার অপরাধজগতের ইতিহাস তুলে ধরেছেন।" },
+        { q: "সরকারি নথিপত্রের একটি প্রধান সীমাবদ্ধতা বা ত্রুটি কী?", opts: ["এগুলি খুব সহজে পাওয়া যায়", "এগুলি সবসময় দেশীয় ভাষায় লেখা", "এগুলি ব্রিটিশদের আমলাতান্ত্রিক দৃষ্টিভঙ্গিতে রচিত", "এগুলিতে সাধারণ মানুষের কথা বেশি থাকে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সরকারি নথিপত্রের ত্রুটি হলো এগুলি ব্রিটিশ সরকারের নিজেদের শাসন ও স্বার্থরক্ষার দৃষ্টিভঙ্গি থেকে লেখা হতো।" },
+        { q: "১৯১৬ খ্রিস্টাব্দের কোন্ আন্দোলন নিয়ে ব্রিটিশ সরকার রীতিমতো শঙ্কাবোধ করেছিল তা নথিপত্র থেকে জানা যায়?", opts: ["বঙ্গভঙ্গ আন্দোলন", "হোমরুল আন্দোলন", "অহিংস অসহযোগ আন্দোলন", "ভারত ছাড়ো আন্দোলন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> অ্যানি বেসান্ত ও তিলক সূচিত ১৯১৬ খ্রিস্টাব্দের হোমরুল আন্দোলনের ব্যাপকতা দেখে ব্রিটিশ সরকার আতঙ্কিত হয়েছিল।" },
+        { q: "ব্রিটিশদের শিক্ষানীতির পরিচয় পাওয়ার জন্য নিচের কোন্ সরকারি নথিটি সবচেয়ে গুরুত্বপূর্ণ?", opts: ["মেকলে মিনিট", "নীল কমিশনের রিপোর্ট", "ফরেস্টের প্রতিবেদন", "কার্জনের চিঠি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মেকলে মিনিট এবং হান্টার কমিশনের রিপোর্ট থেকে ব্রিটিশ সরকারের শিক্ষাবিস্তারের নীতির পরিচয় পাওয়া যায়।" },
+        { q: "নীল বিদ্রোহের কারণ ও স্বরূপ জানার জন্য কোন্ সরকারি নথিটি অত্যন্ত প্রাসঙ্গিক?", opts: ["মেকলে মিনিট", "নীল কমিশনের রিপোর্ট", "হান্টার কমিশন", "সাইমন কমিশন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নীলচাষিদের দুর্দশা তদন্ত করার জন্য ১৮৬০ সালে গঠিত নীল কমিশনের রিপোর্ট থেকে বহু প্রামাণ্য তথ্য পাওয়া যায়।" },
+        { q: "আধুনিক ইতিহাসচর্চার ক্ষেত্রে সরকারি নথিপত্র সাধারণত কটি ভাগে বিভক্ত থাকে?", opts: ["দুটি", "তিনটি", "চারটি", "পাঁচটি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সরকারি নথিপত্রকে প্রধানত তিনটি ভাগে ভাগ করা হয়— সরকারি প্রতিবেদন, গোয়েন্দা রিপোর্ট এবং সরকারি চিঠিপত্র।" },
+        { q: "নিচের কোনটি সরকারি নথিপত্রের অন্তর্ভুক্ত নয়?", opts: ["পুলিশের রিপোর্ট", "গোয়েন্দা বিভাগের গোপন নথি", "ভাইসরয়ের চিঠি", "আত্মজীবনী"], ans: 3, exp: "<b>ব্যাখ্যা:</b> আত্মজীবনী হলো সম্পূর্ণরূপে একটি বেসরকারি ও ব্যক্তিগত উপাদান, এটি সরকারি নথি নয়।" },
+        { q: "সরকারি নথিপত্র সংরক্ষণের নির্দিষ্ট দফতরকে কী বলা হয়?", opts: ["মিউজিয়াম", "মহাফেজখানা বা লেখ্যাগার", "গ্রন্থাগার", "গবেষণাগার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সরকারি মূল্যবান নথিপত্র ও দলিল যে বিশেষ স্থানে সংরক্ষণ করা হয়, তাকে মহাফেজখানা বা লেখ্যাগার (Archive) বলা হয়।" }
+    ]
+};
+
+// ============================================================
+// সেট ৬: আধুনিক উপাদান: আত্মজীবনী ও স্মৃতিকথা
+// ============================================================
+const SET6 = {
+    name: "Set 6",
+    icon: "📔",
+    topic: "আধুনিক উপাদান: আত্মজীবনী ও স্মৃতিকথা",
+    questions: [
+        { q: "আত্মজীবনী ইতিহাসকারকে ভুল পথে নিয়ে যায়— এই মন্তব্যটি কোন্ বিখ্যাত ঐতিহাসিকের?", opts: ["এ. জে. পি. টেলর", "ডেভিড আর্নল্ড", "রিচার্ড হোল্ট", "আলফ্রেড ক্রসবি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> আত্মজীবনীতে লেখকের ব্যক্তিগত ভালোলাগা ও স্মৃতির ওপর নির্ভরতা থাকে বলে এ. জে. পি. টেলর এই সতর্কবাণী দিয়েছেন।" },
+        { q: "কেশবচন্দ্র সেনের আত্মজীবনীমূলক গ্রন্থটির নাম কী?", opts: ["সত্তর বৎসর", "জীবনবেদ", "সেদিনের কথা", "একাত্তরের ডায়েরী"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শ্রেষ্ঠ ব্রাহ্মনেতা কেশবচন্দ্র সেন তাঁর নিজের জীবন ও আধ্যাত্মিক উপলব্ধির কথা 'জীবনবেদ' নামক আত্মজীবনীতে লিপিবদ্ধ করেছেন।" },
+        { q: "আমি সূর্য সেনের কন্যা— এই স্মৃতিকথামূলক গ্রন্থটি কার লেখা?", opts: ["মণিকুন্তলা সেন", "আশালতা সরকার", "সুফিয়া কামাল", "বাসন্তী দেবী"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মাস্টারদা সূর্য সেনের আদর্শে অনুপ্রাণিত হয়ে আশালতা সরকার এই গ্রন্থটি রচনা করেন।" },
+        { q: "সত্তর বৎসর নামক অসম্পূর্ণ আত্মজীবনীটি কার লেখা?", opts: ["সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়", "বিপিনচন্দ্র পাল", "শিবনাথ শাস্ত্রী", "রবীন্দ্রনাথ ঠাকুর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রখ্যাত চরমপন্থী রাজনৈতিক নেতা বিপিনচন্দ্র পাল তাঁর জীবনের প্রথম দিকের ঘটনাবলি নিয়ে এটি রচনা করেছেন।" },
+        { q: "বিপিনচন্দ্র পালের 'সত্তর বৎসর' আত্মজীবনীতে তাঁর জীবনের কোন্ সময়কালের কথা বর্ণিত আছে?", opts: ["প্রথম ১০ বছরের কথা", "প্রথম ২২ বছরের কথা", "প্রথম ৪০ বছরের কথা", "সম্পূর্ণ জীবনের কথা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> এই আত্মজীবনীটিতে তাঁর জন্ম থেকে শুরু করে জীবনের প্রথম ২২ বছরের (১৮৫৮-১৮৮০ খ্রি.) ইতিহাস তুলে ধরা হয়েছে।" },
+        { q: "সত্তর বৎসর গ্রন্থটি প্রথম কোন্ পত্রিকায় ধারাবাহিকভাবে প্রকাশিত হয়েছিল?", opts: ["বঙ্গদর্শন", "তত্ত্ববোধিনী", "প্রবাসী", "সোমপ্রকাশ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বিপিনচন্দ্র পালের লেখা এই আত্মজীবনীটি প্রথম 'প্রবাসী' পত্রিকায় ধারাবাহিকভাবে প্রকাশিত হয়েছিল।" },
+        { q: "বিপিনচন্দ্র পাল তাঁর আত্মজীবনীটি রচনার প্রধান উদ্দেশ্য কী বলে উল্লেখ করেছেন?", opts: ["নিজের শ্রেষ্ঠত্ব প্রমাণ করা", "আত্মপ্রচার করা", "সমকালীন ভারতের রাষ্ট্রিক দলিল রচনা করা", "সাহিত্য সৃষ্টি করা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সমকালীন সমাজ ও রাষ্ট্রের যুগ পরিবর্তনের সাক্ষি হিসেবে একটি রাষ্ট্রিক দলিল রচনা করাই তাঁর উদ্দেশ্য ছিল।" },
+        { q: "স্মৃতি আর ইতিহাস এক নয়— ইতিহাস রচনায় আত্মজীবনী ব্যবহারের বিপদ সম্পর্কে এই সতর্কবার্তাটি কে দিয়েছেন?", opts: ["বিপিনচন্দ্র পাল", "সরলা দেবী চৌধুরানী", "রবীন্দ্রনাথ ঠাকুর", "মহাত্মা গান্ধি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> রবীন্দ্রনাথ ঠাকুর তাঁর আত্মজীবনী 'জীবনস্মৃতি'-র শুরুতেই পাঠকদের সতর্ক করে এই কথা বলেছেন।" },
+        { q: "রবীন্দ্রনাথ ঠাকুরের 'জীবনস্মৃতি' গ্রন্থটি কবে গ্রন্থাকারে প্রকাশিত হয়?", opts: ["১৯০৫ খ্রিস্টাব্দে", "১৯১২ খ্রিস্টাব্দে", "১৯২০ খ্রিস্টাব্দে", "১৯৪১ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> 'জীবনস্মৃতি' প্রথমে 'প্রবাসী' পত্রিকায় প্রকাশিত হয়ে পরে ১৯১২ খ্রিস্টাব্দে গ্রন্থাকারে প্রকাশ পায়।" },
+        { q: "জীবনস্মৃতি থেকে সমকালীন কোন্ রাজনৈতিক ঘটনার ইঙ্গিত পাওয়া যায়?", opts: ["হিন্দুমেলা ও স্বাদেশিকতা", "নীল বিদ্রোহ", "ভারত ছাড়ো আন্দোলন", "নৌবিদ্রোহ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> 'জীবনস্মৃতি'-তে জোড়াসাঁকোর ঠাকুরবাড়ির পরিবেশে হিন্দুমেলা ও স্বাদেশিকতার উন্মেষের কথা রয়েছে।" },
+        { q: "জীবনের ঝরাপাতা নামক স্মৃতিকথামূলক গ্রন্থটি কার লেখা?", opts: ["সরলা দেবী চৌধুরানী", "স্বর্ণকুমারী দেবী", "মণিকুন্তলা সেন", "ভগিনী নিবেদিতা"], ans: 0, exp: "<b>ব্যাখ্যা:</b> রবীন্দ্রনাথের ভাগনি সরলা দেবী চৌধুরানী তাঁর জীবনের নানা ঘটনাবলি নিয়ে 'জীবনের ঝরাপাতা' রচনা করেছেন।" },
+        { q: "লক্ষ্মীর ভাণ্ডার ও ভারত স্ত্রী মহামণ্ডল গঠনের কথা কোন্ আত্মজীবনী থেকে জানা যায়?", opts: ["সত্তর বৎসর", "জীবনস্মৃতি", "জীবনের ঝরাপাতা", "সেদিনের কথা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> স্বদেশি দ্রব্য বিপণনের জন্য 'লক্ষ্মীর ভাণ্ডার' স্থাপনের ইতিহাস সরলা দেবী চৌধুরানীর 'জীবনের ঝরাপাতা' গ্রন্থে রয়েছে।" },
+        { q: "শিবনাথ শাস্ত্রীর আত্মজীবনীর নাম কী?", opts: ["আত্মচরিত", "আমার কথা", "জীবন কথা", "আত্মকথা"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ব্রাহ্মনেতা শিবনাথ শাস্ত্রী রচিত আত্মজীবনীর নাম হলো 'আত্মচরিত'।" },
+        { q: "সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়ের আত্মজীবনীর নাম কী?", opts: ["A Nation in Making", "My Truth", "Discovery of India", "My Experiments with Truth"], ans: 0, exp: "<b>ব্যাখ্যা:</b> সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়ের বিখ্যাত আত্মজীবনীমূলক গ্রন্থ হলো A Nation in Making।" },
+        { q: "মহাত্মা গান্ধির আত্মজীবনীর নাম কী?", opts: ["My Experiments with Truth", "Discovery of India", "Glimpses of World History", "A Nation in Making"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মহাত্মা গান্ধি তাঁর আত্মজীবনী My Experiments with Truth-এ জীবনের নানা পরীক্ষার কথা লিখেছেন।" }
+    ]
+};
+
+// ============================================================
+// সেট ৭: আধুনিক উপাদান: চিঠিপত্র ও সংবাদপত্র
+// ============================================================
+const SET7 = {
+    name: "Set 7",
+    icon: "🗞️",
+    topic: "আধুনিক উপাদান: চিঠিপত্র ও সংবাদপত্র",
+    questions: [
+        { q: "জওহরলাল নেহরু 'Letters from a Father to His Daughter' চিঠিগুলি কবে লিখেছিলেন?", opts: ["১৯২০ খ্রিস্টাব্দ নাগাদ", "১৯২৮ খ্রিস্টাব্দ নাগাদ", "১৯৩০ খ্রিস্টাব্দ নাগাদ", "১৯৪২ খ্রিস্টাব্দ নাগাদ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯২৮ খ্রিস্টাব্দ নাগাদ কারাগারে বন্দি থাকার সময় নেহরু তাঁর কন্যা ইন্দিরাকে এই চিঠিগুলি লিখেছিলেন।" },
+        { q: "লেটারস ফ্রম এ ফাদার টু হিজ ডটার গ্রন্থে মোট চিঠির সংখ্যা কটি?", opts: ["১০টি", "২০টি", "৩০টি", "৪০টি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> নেহরু পৃথিবীর উৎপত্তি ও ইতিহাস নিয়ে মোট ৩০টি চিঠি লিখেছিলেন, যা একত্রিত করে এই গ্রন্থটি প্রকাশিত হয়।" },
+        { q: "জওহরলাল নেহরুর চিঠিগুলির হিন্দি অনুবাদ 'পিতাকে পত্র পুত্রীকে নাম' কে করেছিলেন?", opts: ["ড. রাজেন্দ্র প্রসাদ", "মহাত্মা গান্ধি", "মুনশি প্রেমচাঁদ", "রামমনোহর লোহিয়া"], ans: 2, exp: "<b>ব্যাখ্যা:</b> চিঠিগুলি এতটাই জ্ঞানগর্ভ ছিল যে প্রখ্যাত সাহিত্যিক মুনশি প্রেমচাঁদ এটিকে হিন্দিতে অনুবাদ করেছিলেন।" },
+        { q: "নেহরুর এই চিঠিগুলির বাংলা অনুবাদের নাম কী?", opts: ["পিতার চিঠি", "কল্যাণীয়াসু ইন্দু", "ইন্দিরার প্রতি পিতা", "চিঠিপত্র"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জওহরলাল নেহরুর এই বিখ্যাত চিঠিগুলির বাংলা অনুবাদের নাম হলো 'কল্যাণীয়াসু ইন্দু'।" },
+        { q: "বাংলা ভাষায় সংবাদপত্রের প্রচলন কবে শুরু হয়েছিল?", opts: ["১৭৮০ খ্রিস্টাব্দে", "১৮১৮ খ্রিস্টাব্দে", "১৮৩৫ খ্রিস্টাব্দে", "১৮৫৮ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৭৮০ সালে প্রথম ইংরেজি সংবাদপত্র প্রকাশিত হলেও, বাংলা ভাষায় সংবাদপত্রের প্রচলন শুরু হয়েছিল মূলত ১৮১৮ খ্রিস্টাব্দ থেকে।" },
+        { q: "ব্রিটিশ সরকারের কোন্ ভাইসরয় সংবাদপত্রের কণ্ঠরোধের জন্য 'দেশীয় ভাষায় সংবাদপত্র আইন' (Vernacular Press Act) জারি করেছিলেন?", opts: ["লর্ড ক্যানিং", "লর্ড লিটন", "লর্ড রিপন", "লর্ড কার্জন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> লর্ড লিটন ১৮৭৮ খ্রিস্টাব্দে দেশীয় ভাষায় সংবাদপত্র আইন জারি করে তাদের কণ্ঠরোধ করার চেষ্টা করেন।" },
+        { q: "বঙ্কিমচন্দ্র চট্টোপাধ্যায়ের সম্পাদনায় 'বঙ্গদর্শন' পত্রিকার আবির্ভাব কবে ঘটে?", opts: ["১৮৫৩", "১৮৬৯", "১৮৭২", "১৮৮০"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সাময়িকপত্রের জগতে ১৮৭২ খ্রিস্টাব্দে বঙ্কিমচন্দ্র চট্টোপাধ্যায়ের 'বঙ্গদর্শন'-এর আবির্ভাব একটি সাড়া জাগানো ঘটনা ছিল।" },
+        { q: "১৮৭৮ সালে কোন পত্রিকার প্রকাশনা সাময়িকভাবে বন্ধ হয়ে গিয়েছিল?", opts: ["সোমপ্রকাশ", "অমৃতবাজার পত্রিকা", "হিন্দু প্যাট্রিয়ট", "বঙ্গদর্শন"], ans: 0, exp: "<b>ব্যাখ্যা:</b> লর্ড লিটনের দেশীয় ভাষায় সংবাদপত্র আইনের কোপে পড়ে 'সোমপ্রকাশ' এর প্রকাশনা সাময়িকভাবে বন্ধ হয়ে যায়।" },
+        { q: "১৮৮৬ খ্রিস্টাব্দে দ্বারকানাথ বিদ্যাভূষণের মৃত্যুর পর 'সোমপ্রকাশ' এর সম্পাদক কে হন?", opts: ["উপেন্দ্রকুমার", "সঞ্জীবচন্দ্র", "হরিশচন্দ্র মুখোপাধ্যায়", "উমেশচন্দ্র দত্ত"], ans: 0, exp: "<b>ব্যাখ্যা:</b> তাঁর প্রয়াণের পর তাঁর পুত্র উপেন্দ্রকুমার এই পত্রিকাটির সম্পাদনার দায়িত্ব নিজেদের কাঁধে তুলে নিয়েছিলেন।" },
+        { q: "অমৃতবাজার পত্রিকার প্রথম সম্পাদক কে ছিলেন?", opts: ["শিশিরকুমার ঘোষ", "হরিশচন্দ্র মুখোপাধ্যায়", "সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়", "কৃষ্ণদাস পাল"], ans: 0, exp: "<b>ব্যাখ্যা:</b> শিশিরকুমার ঘোষ ও মতিলাল ঘোষের সম্পাদনায় অমৃতবাজার পত্রিকা প্রকাশিত হয়।" },
+        { q: "সোমপ্রকাশ পত্রিকা প্রথম কবে প্রকাশিত হয়?", opts: ["১৮১৮", "১৮৩৯", "১৮৫৮", "১৮৭২"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বিদ্যাসাগরের প্রেরণায় দ্বারকানাথ বিদ্যাভূষণের সম্পাদনায় ১৮৫৮ খ্রিস্টাব্দে সোমপ্রকাশ প্রকাশিত হয়।" },
+        { q: "সংবাদ প্রভাকর পত্রিকার সম্পাদক কে ছিলেন?", opts: ["ঈশ্বরচন্দ্র গুপ্ত", "বঙ্কিমচন্দ্র চট্টোপাধ্যায়", "হরিশচন্দ্র মুখোপাধ্যায়", "দীনবন্ধু মিত্র"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ঈশ্বরচন্দ্র গুপ্তের সম্পাদনায় ১৮৩১ সালে সংবাদ প্রভাকর প্রথম প্রকাশিত হয়।" },
+        { q: "তত্ত্ববোধিনী পত্রিকার প্রথম সম্পাদক কে ছিলেন?", opts: ["দেবেন্দ্রনাথ ঠাকুর", "অক্ষয়কুমার দত্ত", "রামমোহন রায়", "কেশবচন্দ্র সেন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> তত্ত্ববোধিনী সভার মুখপত্র তত্ত্ববোধিনী পত্রিকার প্রথম সম্পাদক ছিলেন অক্ষয়কুমার দত্ত।" },
+        { q: "মারাঠা ও কেশরী পত্রিকার সম্পাদক কে ছিলেন?", opts: ["বাল গঙ্গাধর তিলক", "লালা লাজপত রায়", "বিপিনচন্দ্র পাল", "অরবিন্দ ঘোষ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মহারাষ্ট্রে জাতীয়তাবাদের প্রসারে বাল গঙ্গাধর তিলক এই পত্রিকা দুটি প্রকাশ করেন।" },
+        { q: "বন্দেমাতরম ইংরেজি পত্রিকার সম্পাদক কে ছিলেন?", opts: ["বঙ্কিমচন্দ্র চট্টোপাধ্যায়", "অরবিন্দ ঘোষ", "স্বামী বিবেকানন্দ", "সুবোধচন্দ্র মল্লিক"], ans: 1, exp: "<b>ব্যাখ্যা:</b> অরবিন্দ ঘোষ বন্দেমাতরম পত্রিকার সম্পাদনার দায়িত্ব গ্রহণ করে স্বাদেশিকতার প্রচার করেন।" }
+    ]
+};
+
+// ============================================================
+// সব সেট একত্রে
+// ============================================================
+const QUIZ_SETS = {
+    "1": SET1,
+    "2": SET2,
+    "3": SET3,
+    "4": SET4,
+    "5": SET5,
+    "6": SET6,
+    "7": SET7
+};
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+let loggedInUser = null;
+let currentSetId = null;
+let questions = [];
+let score = 0;
+let wrongAnswers = 0;
+let userAnswers = {};
+let isReviewMode = false;
+let timerInterval;
+let timeLeft = TIME_LIMIT;
+
+window.onload = () => {
+    applyBranding();
+    buildHub();
+};
+
+function buildHub() {
+    const grid = document.getElementById('setGrid');
+    grid.innerHTML = '';
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+
+    for(let id in QUIZ_SETS) {
+        const set = QUIZ_SETS[id];
+        let attemptCount = 0;
+        let isLocked = false;
+
+        if(loggedInUser) {
+            attemptCount = userAttempts[loggedInUser + "_" + id] || 0;
+            isLocked = attemptCount >= MAX_ATTEMPTS;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'set-card';
+        let badge = '';
+        if(loggedInUser) {
+            badge = `<div class="attempt-badge ${isLocked ? 'locked' : ''} en-font">${isLocked ? 'সম্পূর্ণ' : attemptCount + '/' + MAX_ATTEMPTS}</div>`;
+        }
+
+        card.innerHTML = `
+            ${badge}
+            <div class="set-icon">${set.icon}</div>
+            <div class="set-name">${set.name}</div>
+            <div class="set-topic">${set.topic}</div>
+            <div class="set-meta-info en-font">
+                <span>${set.questions.length} Qs</span>
+                <span>10 Mins</span>
+            </div>
+        `;
+        card.onclick = () => { selectSet(id); };
+        grid.appendChild(card);
+    }
+}
+
+function selectSet(setId) {
+    if(loggedInUser) {
+        let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+        let attemptCount = userAttempts[loggedInUser + "_" + setId] || 0;
+        if(attemptCount >= MAX_ATTEMPTS) {
+            alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+            return;
+        }
+        startQuiz(setId);
+    } else {
+        currentSetId = setId;
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginError').classList.add('hidden');
+        document.getElementById('loginSetName').innerText = QUIZ_SETS[setId].name + ": " + QUIZ_SETS[setId].topic;
+        document.getElementById('loginModal').classList.remove('hidden');
+    }
+}
+
+function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+
+function doLogin() {
+    const u = document.getElementById('loginUsername').value.trim();
+    const p = document.getElementById('loginPassword').value.trim();
+    const err = document.getElementById('loginError');
+    const GLOBAL_USERS = JSON.parse(localStorage.getItem("testBazarGlobalUsers")) || {};
+
+    if(!u || !p) { err.innerText = "ইউজারনেম এবং পাসওয়ার্ড দিন!"; err.classList.remove('hidden'); return; }
+
+    if(GLOBAL_USERS[u] && GLOBAL_USERS[u] === p) {
+        loggedInUser = u;
+        document.getElementById('userDisplay').innerText = `👤 ${u}`;
+        closeLogin();
+        buildHub();
+        if(currentSetId) {
+            startQuiz(currentSetId);
+        }
+    } else {
+        err.innerText = "ইউজারনেম বা পাসওয়ার্ড ভুল!";
+        err.classList.remove('hidden');
+    }
+}
+
+function incrementAttempt(user, setId) {
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let key = user + "_" + setId;
+    userAttempts[key] = (userAttempts[key] || 0) + 1;
+    localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(userAttempts));
+}
+
+function startQuiz(setId) {
+    currentSetId = setId;
+    incrementAttempt(loggedInUser, setId);
+    questions = QUIZ_SETS[setId].questions;
+    userAnswers = {};
+    isReviewMode = false;
+    score = 0;
+    wrongAnswers = 0;
+    timeLeft = TIME_LIMIT;
+
+    document.getElementById('hubView').classList.add('hidden');
+    document.getElementById('resultModal').classList.add('hidden');
+    document.getElementById('quizView').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('danger');
+    document.getElementById('submitTestBtn').classList.remove('hidden');
+    document.getElementById('quizTitle').innerText = QUIZ_SETS[setId].name + " | " + QUIZ_SETS[setId].topic;
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tick, 1000);
+    renderQuestions();
+}
+
+function tick() {
+    timeLeft--;
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    document.getElementById('timerDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if (timeLeft <= 60) document.getElementById('timerBox').classList.add('danger');
+    if (timeLeft <= 0) { submitQuiz(); }
+}
+
+const LABELS = ['A', 'B', 'C', 'D'];
+
+function renderQuestions() {
+    const quizList = document.getElementById('quizList');
+    let html = '';
+    questions.forEach((q, i) => {
+        html += `<div class="q-block" id="qBlock_${i}">
+            <div class="q-text">${q.q}</div>
+            <div class="options-grid">`;
+        q.opts.forEach((opt, j) => {
+            html += `<div class="opt" id="opt_${i}_${j}" onclick="selectOpt(${i}, ${j})">
+                <div class="opt-circle">${LABELS[j]}</div>
+                <div class="opt-text">${opt}</div>
+            </div>`;
+        });
+        html += `</div>
+            <div class="explanation hidden" id="exp_${i}">${q.exp}</div>
+        </div>`;
+    });
+    quizList.innerHTML = html;
+    window.scrollTo(0, 0);
+}
+
+function selectOpt(qIdx, optIdx) {
+    if (isReviewMode) return;
+    userAnswers[qIdx] = optIdx;
+    const block = document.getElementById(`qBlock_${qIdx}`);
+    const opts = block.querySelectorAll('.opt');
+    opts.forEach(o => o.classList.remove('selected'));
+    document.getElementById(`opt_${qIdx}_${optIdx}`).classList.add('selected');
+}
+
+function submitQuiz() {
+    if (isReviewMode) return;
+    const answeredCount = Object.keys(userAnswers).length;
+    if (timeLeft > 0 && answeredCount < questions.length) {
+        const confirmSubmit = confirm(`আপনি মাত্র ${answeredCount} টি প্রশ্নের উত্তর দিয়েছেন। আপনি কি সত্যিই Test জমা দিতে চান?`);
+        if(!confirmSubmit) return;
+    }
+    isReviewMode = true;
+    clearInterval(timerInterval);
+    document.getElementById('timerBox').classList.add('hidden');
+    document.getElementById('submitTestBtn').classList.add('hidden');
+
+    score = 0;
+    wrongAnswers = 0;
+    questions.forEach((q, i) => {
+        const selected = userAnswers[i];
+        const block = document.getElementById(`qBlock_${i}`);
+        const opts = block.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.remove('selected'));
+        if (selected !== undefined) {
+            if (selected === q.ans) {
+                score++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('correct');
+            } else {
+                wrongAnswers++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('wrong');
+                document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+            }
+        } else {
+            document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+        }
+        document.getElementById(`exp_${i}`).classList.remove('hidden');
+    });
+
+    const skipped = questions.length - (score + wrongAnswers);
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('rbCorrect').textContent = score;
+    document.getElementById('rbWrong').textContent = wrongAnswers + skipped;
+
+    let icon = '💪', grade = 'চেষ্টা চালিয়ে যাও!';
+    if(pct >= 90) { icon = '🌟'; grade = 'অসাধারণ!'; }
+    else if(pct >= 70) { icon = '👍'; grade = 'খুব ভালো!'; }
+    else if(pct >= 50) { icon = '📚'; grade = 'ভালো চেষ্টা!'; }
+
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultGrade').textContent = grade;
+
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    let remaining = MAX_ATTEMPTS - attemptCount;
+    document.getElementById('attemptInfo').innerText = `বাকি আছে ${remaining} বার Test দেওয়ার সুযোগ (সর্বোচ্চ ${MAX_ATTEMPTS} বার)`;
+    document.getElementById('resultModal').classList.remove('hidden');
+}
+
+function closeResultModal() {
+    document.getElementById('resultModal').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+    closeResultModal();
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    if(attemptCount >= MAX_ATTEMPTS) {
+        alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+        document.getElementById('quizView').classList.add('hidden');
+        document.getElementById('hubView').classList.remove('hidden');
+        buildHub();
+        return;
+    }
+    startQuiz(currentSetId);
+}
+</script>
+</body>
+</html>
