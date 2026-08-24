@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 Geography Chapter 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #1a7a4a; --primary-hover: #2aad68; --accent: #f9a825;
+--bg-main: #f0faf4; --bg-card: #ffffff; --bg-selected: #e8f4ec;
+--text-main: #1c2e24; --text-meta: #5a7a66; --border-color: #c5dccb;
+--alert-danger: #dc3545; --correct: #28a745;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Tiro Bangla', serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+.en-font { font-family: 'Syne', sans-serif; }
+.hidden { display: none !important; }
+
+.header {
+background: #ffffff;
+box-shadow: 0 4px 20px rgba(10, 92, 54, 0.08);
+position: sticky;
+top: 0;
+z-index: 1000;
+border-bottom: 3px solid #0a5c36;
+}
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 8px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo-link {
+display: flex;
+align-items: center;
+gap: 10px;
+text-decoration: none;
+cursor: pointer;
+}
+.logo-emblem {
+width: 45px;
+height: 45px;
+background: linear-gradient(135deg, #0a5c36 0%, #1e824c 100%);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.4rem;
+font-weight: 800;
+color: white;
+box-shadow: 0 4px 12px rgba(10, 92, 54, 0.2);
+flex-shrink: 0;
+}
+.brand-text-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.coaching-main-title {
+font-size: 1.4rem;
+font-weight: 800;
+color: #0a5c36;
+letter-spacing: -0.5px;
+line-height: 1.1;
+}
+.coaching-subtitle {
+font-size: 0.75rem;
+color: #556c5e;
+font-weight: 700;
+letter-spacing: 0.3px;
+margin-top: 1px;
+text-transform: uppercase;
+}
+.coaching-tagline {
+font-size: 0.65rem;
+color: #f5a623;
+font-weight: 600;
+margin-top: 1px;
+letter-spacing: 0.1px;
+}
+.header-right {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.timer-box {
+background: rgba(10, 92, 54, 0.08);
+padding: 6px 15px;
+border-radius: 8px;
+font-weight: 700;
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+gap: 5px;
+color: #0a5c36;
+}
+.timer-box.danger { background: var(--alert-danger); color: white; animation: pulse 1s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.user-info { background: #0a5c36; color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; }
+
+.main-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.hub-header { text-align: center; margin-bottom: 30px; }
+.hub-header h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 10px; }
+.set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+.set-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+.set-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(26,122,74,0.1); }
+.set-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.set-name { font-size: 1.3rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; font-family: 'Syne', sans-serif;}
+.set-topic { font-size: 0.95rem; color: var(--text-meta); margin-bottom: 15px; height: 40px; }
+.set-meta-info { display: flex; justify-content: center; gap: 10px; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
+.set-meta-info span { background: var(--bg-main); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+.attempt-badge { position: absolute; top: 10px; right: 10px; background: #ffeeba; color: #856404; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+.attempt-badge.locked { background: var(--alert-danger); color: white; border: none; }
+
+.quiz-info { background: var(--bg-card); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+.q-block { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.q-text { font-size: 1.2rem; font-weight: bold; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
+.options-grid { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 1.05rem; }
+.opt:hover:not(.selected):not(.correct):not(.wrong) { background: var(--bg-main); border-color: var(--primary); }
+.opt.selected { background: var(--bg-selected); border-color: var(--primary); }
+.opt-circle { min-width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Syne', sans-serif; color: var(--text-meta); flex-shrink: 0; }
+.opt.selected .opt-circle { background: var(--primary); color: white; border-color: var(--primary); }
+.opt.correct { background: #e8f7ef; border-color: var(--correct); }
+.opt.correct .opt-circle { background: var(--correct); border-color: var(--correct); color: white; }
+.opt.wrong { background: #fdf0f0; border-color: var(--alert-danger); }
+.opt.wrong .opt-circle { background: var(--alert-danger); border-color: var(--alert-danger); color: white; }
+.explanation { margin-top: 15px; padding: 15px; background: #e8f4ec; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #2c4035; line-height: 1.5;}
+.btn-submit { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; font-family: 'Tiro Bangla', serif; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(26,122,74,0.2); transition: 0.2s; }
+.btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+.btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: bold;}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto;}
+.modal-box { background: white; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin: auto;}
+.modal-box input { width: 100%; padding: 12px 15px; margin: 10px 0; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: 'Syne', sans-serif; box-sizing: border-box; outline: none; transition: 0.2s; }
+.modal-box input:focus { border-color: var(--primary); }
+.result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto; padding: 20px; }
+.result-box { background: white; padding: 2.5rem 2rem; border-radius: 16px; width: 100%; max-width: 450px; text-align: center; margin: auto; }
+.result-score { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin: 15px 0; }
+.result-bars { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.result-bar { background: var(--bg-main); padding: 15px; border-radius: 12px; width: 100px; border: 1px solid var(--border-color); }
+
+@media (max-width: 768px) {
+.header-container { flex-direction: column; gap: 10px; text-align: center; padding: 10px 10px; }
+.logo-link { flex-direction: column; gap: 6px; }
+.brand-text-container { text-align: center; }
+.coaching-main-title { font-size: 1.2rem; }
+.coaching-subtitle { font-size: 0.7rem; }
+.coaching-tagline { font-size: 0.6rem; }
+.header-right { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="#" class="logo-link" onclick="location.reload(); return false;">
+            <div class="logo-emblem" id="dynamicEmblem">🗑️</div>
+            <div class="brand-text-container">
+                <span class="coaching-main-title" id="dynamicTitle">Geography - Chapter 4</span>
+                <span class="coaching-subtitle" id="dynamicSubtitle">বর্জ্য ব্যবস্থাপনা: পরিবেশ সুরক্ষার পথ</span>
+                <span class="coaching-tagline" id="dynamicTagline">দশম শ্রেণি (Class 10)</span>
+            </div>
+        </a>
+        <div class="header-right">
+            <div class="timer-box en-font hidden" id="timerBox">⏱ <span id="timerDisplay">10:00</span></div>
+            <div class="user-info en-font" id="userDisplay" style="font-weight: bold;">👤 Guest</div>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <div id="hubView">
+        <div class="hub-header">
+            <h1 style="color: var(--primary); margin-bottom: 10px;">ভূগোল - Class 10 Chapter 4</h1>
+            <p style="color: var(--text-meta);">বর্জ্য ব্যবস্থাপনা: পরিবেশ সুরক্ষার পথ</p>
+        </div>
+        <div class="set-grid" id="setGrid"></div>
+        <div style="text-align:center; margin-top:40px;">
+            <button class="btn-primary" style="background:var(--text-meta); width: auto; padding: 12px 25px;" onclick="window.history.back()">← Main Dashboard-এ ফিরুন</button>
+        </div>
+    </div>
+
+    <div id="quizView" class="hidden">
+        <div class="quiz-info">
+            <div id="quizTitle">Set Name</div>
+            <div id="quizMetaInfo" class="en-font">15 Questions | 10 Mins</div>
+        </div>
+        <div id="quizList"></div>
+        <button class="btn-submit" id="submitTestBtn" onclick="submitQuiz()">Test জমা দিন ও ফলাফল দেখুন</button>
+    </div>
+
+</div>
+
+<div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-box">
+        <h2 style="color: var(--primary); margin-top:0;">লগইন করুন</h2>
+        <p style="color: var(--text-meta); margin-bottom: 15px; font-size: 0.9rem;">Test শুরু করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন</p>
+        <div id="loginSetName" style="background: var(--bg-main); padding: 8px; border-radius: 8px; font-weight:bold; color:var(--primary); margin-bottom:15px; font-family: 'Syne', sans-serif; font-size: 0.95rem;">Set Name</div>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()">
+        <div id="loginError" class="hidden" style="color: var(--alert-danger); margin: 10px 0; font-weight:bold; font-size: 0.9rem;"></div>
+        <div style="display: flex; gap: 10px; margin-top:15px; justify-content: center;">
+            <button class="btn-primary" style="width: 100%; padding: 12px;" onclick="doLogin()">লগইন করুন</button>
+            <button class="btn-primary" style="background: var(--alert-danger); width: 100%; padding: 12px;" onclick="closeLogin()">বাতিল</button>
+        </div>
+    </div>
+</div>
+
+<div class="result-overlay hidden" id="resultModal">
+    <div class="result-box">
+        <div style="font-size: 3.5rem; margin-bottom:0; line-height: 1;" id="resultIcon">🌟</div>
+        <h2 style="margin:10px 0; color: var(--text-main);">আপনার ফলাফল</h2>
+        <div class="result-score en-font" id="finalScore">100%</div>
+        <div id="resultGrade" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--accent);">অসাধারণ!</div>
+        <div class="result-bars">
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbCorrect">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">সঠিক</div>
+            </div>
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--alert-danger);" class="en-font" id="rbWrong">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">ভুল / স্কিপ</div>
+            </div>
+        </div>
+        <p style="background: var(--bg-main); padding: 10px; border-radius: 8px; color:var(--text-meta); font-weight:bold; font-size:0.95rem; margin-bottom:25px;" id="attemptInfo" class="en-font">বাকি আছে 9 বার</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="btn-primary" style="background: #28a745; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="closeResultModal()">উত্তর ও ব্যাখ্যা দেখুন</button>
+            <button class="btn-primary" style="background: #17a2b8; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="restartQuiz()">আবার চেষ্টা করো</button>
+            <button class="btn-primary" style="background: var(--text-meta); width: 100%; padding: 14px; font-size: 1.05rem;" onclick="window.location.reload()">Chapter Hub-এ ফিরুন</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// DYNAMIC BRANDING LOGIC
+// ============================================================
+const STORE_CONFIGS = {
+    "guru": {
+        title: "Guru Book Store Jhalda",
+        mainTitle: "Guru Book Store",
+        subtitle: "Jhalda",
+        tagline: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        emblem: "G"
+    },
+    "saraswati": {
+        title: "Saraswati Book Store",
+        mainTitle: "Saraswati Book Store",
+        subtitle: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        tagline: "শিক্ষা ও প্রগতির বিশ্বস্ত সঙ্গী",
+        emblem: "S"
+    }
+};
+
+function applyBranding() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let storeKey = urlParams.get('store') || localStorage.getItem("activeStore") || "";
+    storeKey = storeKey.toLowerCase();
+
+    if (storeKey && STORE_CONFIGS[storeKey]) {
+        const config = STORE_CONFIGS[storeKey];
+        document.title = `${config.title} - Class 10 Geography Chapter 4`;
+        document.getElementById("dynamicEmblem").innerText = config.emblem;
+        document.getElementById("dynamicTitle").innerText = config.mainTitle;
+        document.getElementById("dynamicSubtitle").innerText = config.subtitle;
+        document.getElementById("dynamicTagline").innerText = config.tagline;
+        localStorage.setItem("activeStore", storeKey);
+    } else {
+        document.title = "Class 10 Geography Chapter 4 - বর্জ্য ব্যবস্থাপনা: পরিবেশ সুরক্ষার পথ";
+        document.getElementById("dynamicEmblem").innerText = "🗑️";
+        document.getElementById("dynamicTitle").innerText = "Geography - Chapter 4";
+        document.getElementById("dynamicSubtitle").innerText = "বর্জ্য ব্যবস্থাপনা: পরিবেশ সুরক্ষার পথ";
+        document.getElementById("dynamicTagline").innerText = "দশম শ্রেণি (Class 10)";
+    }
+}
+
+// ============================================================
+// QUIZ DATA - 3 SETS (TOTAL 45 QUESTIONS)
+// ============================================================
+const STORAGE_KEY_ATTEMPTS = "testBazarAttempts_Geography_Ch4_Sets";
+const MAX_ATTEMPTS = 10;
+const TIME_LIMIT = 10 * 60;
+
+// ============================================================
+// সেট ১: বর্জ্যের ধারণা ও প্রকারভেদ
+// ============================================================
+const SET1 = {
+    name: "সেট ১",
+    icon: "🗑️",
+    topic: "বর্জ্যের ধারণা ও প্রকারভেদ",
+    questions: [
+        { q: "১. বিষাক্ত নয় এমন একটি বর্জ্য পদার্থের উদাহরণ হলো—", opts: ["পলিথিন", "ক্যাডমিয়াম", "ধানের খোসা", "ফ্লাই অ্যাশ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্রকৃতিতে সহজে মিশে যায় এমন খাদ্যজাত বর্জ্য বা কৃষিজ বর্জ্য, যেমন- ধানের খোসা, সবজির খোসা ইত্যাদি হলো বিষহীন বা বিষাক্ত নয় এমন বর্জ্য পদার্থের উদাহরণ।" },
+        { q: "২. যে সমস্ত বর্জ্য পদার্থ ব্যাকটেরিয়া বা জীবাণু দ্বারা বিয়োজিত হয়ে মাটি ও জলের সঙ্গে মিশে যায়, তাদের কী বলে?", opts: ["জৈব ভঙ্গুর বর্জ্য", "জৈব অভঙ্গুর বর্জ্য", "বিষাক্ত বর্জ্য", "তেজস্ক্রিয় বর্জ্য"], ans: 0, exp: "<b>ব্যাখ্যা:</b> যেসব বর্জ্য পদার্থ ব্যাকটেরিয়া, ছত্রাক প্রভৃতি বিয়োজক জীব দ্বারা বিশ্লেষিত হয়ে সরল যৌগে পরিণত হয়ে মাটি ও জলে মিশে যায়, তাদের জৈব ভঙ্গুর বা জীব বিশ্লেষ্য বর্জ্য বলে।" },
+        { q: "৩. নিম্নলিখিত বর্জ্যগুলির মধ্যে কোনটি পরিবেশে সর্বাধিক ক্ষতিকারক দূষক?", opts: ["ফেলে দেওয়া খাবার", "খবরের কাগজ", "প্রাণীজ বর্জ্য", "পলিথিন"], ans: 3, exp: "<b>ব্যাখ্যা:</b> পলিথিন বা প্লাস্টিক হলো জৈব অভঙ্গুর বর্জ্য, যা ব্যাকটেরিয়া দ্বারা বিশ্লেষিত হয় না এবং যুগের পর যুগ অবিকৃত অবস্থায় থেকে পরিবেশের চরম ক্ষতিসাধন করে।" },
+        { q: "৪. গৃহস্থালি বা শিল্পকেন্দ্র থেকে নির্গত কঠিন নয় এমন বর্জ্য পদার্থগুলিকে কী বলে?", opts: ["কঠিন বর্জ্য", "তরল বর্জ্য", "গ্যাসীয় বর্জ্য", "তেজস্ক্রিয় বর্জ্য"], ans: 1, exp: "<b>ব্যাখ্যা:</b> গৃহস্থালি বা কারখানা থেকে নির্গত মলমূত্র মিশ্রিত নোংরা জল, সাবান ও ডিটারজেন্ট মিশ্রিত জল ইত্যাদি কঠিন নয় এমন পদার্থগুলি তরল বর্জ্যের অন্তর্গত।" },
+        { q: "৫. বাতিল কম্পিউটার, মোবাইল ফোন বা অন্যান্য ইলেকট্রনিক সামগ্রীকে সংক্ষেপে কী বলা হয়?", opts: ["ই-বর্জ্য (e-waste)", "কৃষিজ বর্জ্য", "চিকিৎসা সংক্রান্ত বর্জ্য", "গ্যাসীয় বর্জ্য"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ভাঙা কম্পিউটার সামগ্রী, বাতিল ইলেকট্রনিক্সের দ্রব্যাদি বা বৈদ্যুতিন বর্জ্যকে সংক্ষেপে ই-বর্জ্য (e-waste) বলা হয়।" },
+        { q: "৬. পারমাণবিক বিদ্যুৎ কেন্দ্র থেকে মূলত কোন প্রকার বর্জ্য পরিবেশে মেশে?", opts: ["জৈব বর্জ্য", "তরল বর্জ্য", "তেজস্ক্রিয় বর্জ্য", "পৌর বর্জ্য"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পারমাণবিক বিদ্যুৎ কেন্দ্রের ছাই, ভারী জল ইত্যাদি মারাত্মক ক্ষতিকর পদার্থগুলি তেজস্ক্রিয় বর্জ্যের অন্তর্গত।" },
+        { q: "৭. নিম্নলিখিত কোন বর্জ্যটি জৈব অভঙ্গুর বা জীব অবিশ্লেষ্য প্রকৃতির?", opts: ["প্লাস্টিক ও অ্যালুমিনিয়াম পাত", "সবজির খোসা", "ধানের তুষ", "সুতির ন্যাকড়া"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মানুষের তৈরি পলিমার যেমন প্লাস্টিক, পলিথিন, কাচ বা অ্যালুমিনিয়ামের মতো ধাতু প্রাকৃতিক উপায়ে বিয়োজক দ্বারা বিশ্লেষিত হয় না, তাই এরা জৈব অভঙ্গুর বর্জ্য।" },
+        { q: "৮. কৃষিজমিতে ব্যবহৃত অতিরিক্ত রাসায়নিক সার জলাশয়ে ধুয়ে পড়লে জলের পুষ্টিমাত্রা বৃদ্ধি পেয়ে শৈবালের বৃদ্ধি ঘটে। একে কী বলে?", opts: ["ল্যান্ডফিল", "কম্পোস্টিং", "ইউট্রোফিকেশন", "স্ক্র্যাবিং"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কৃষিজমির রাসায়নিক সার জলাশয়ে যুক্ত হলে শৈবালের পোষক খাদ্যের জোগান বৃদ্ধি পায়, যার ফলে জলে শৈবালের সাম্রাজ্য তৈরি হয়ে জল ব্যবহারের অযোগ্য হয়, একে ইউট্রোফিকেশন বলে।" },
+        { q: "৯. তাপবিদ্যুৎ কেন্দ্র থেকে নির্গত অন্যতম প্রধান বর্জ্য পদার্থ কোনটি?", opts: ["মিথেন গ্যাস", "ফ্লাই অ্যাশ", "সিসা", "পারদ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> তাপবিদ্যুৎ কেন্দ্র থেকে প্রচুর পরিমাণে ছাই বা ফ্লাই অ্যাশ উৎপন্ন হয়, যা পরিবেশ দূষণ ঘটায়।" },
+        { q: "১০. হাসপাতাল বা নার্সিংহোম থেকে নির্গত ব্যবহৃত সিরিঞ্জ, রক্তমাখা তুলো বা ব্যান্ডেজকে কী ধরনের বর্জ্য বলা হয়?", opts: ["কৃষিজ বর্জ্য", "গ্যাসীয় বর্জ্য", "চিকিৎসা-সংক্রান্ত বা সংক্রামক বর্জ্য", "ই-বর্জ্য"], ans: 2, exp: "<b>ব্যাখ্যা:</b> হাসপাতাল ও নার্সিংহোম থেকে নির্গত সিরিঞ্জ, রক্ত, ব্যান্ডেজ প্রভৃতি হলো সংক্রামক প্রকৃতির চিকিৎসা-সংক্রান্ত বর্জ্য।" },
+        { q: "১১. নিম্নলিখিত গ্যাসগুলির মধ্যে কোনটি একটি গ্যাসীয় বর্জ্য পদার্থ?", opts: ["অক্সিজেন", "নাইট্রোজেন", "সালফার ডাইঅক্সাইড", "আর্গন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কলকারখানা ও গাড়ি থেকে নির্গত সালফার ডাইঅক্সাইড, নাইট্রোজেন অক্সাইড প্রভৃতি বিষাক্ত গ্যাসগুলি গ্যাসীয় বর্জ্য পদার্থের উদাহরণ।" },
+        { q: "১২. কাগজ শিল্প বা কারখানা থেকে মূলত কোন প্রকার বর্জ্য নির্গত হয়?", opts: ["ফ্লাই অ্যাশ", "তেজস্ক্রিয় বর্জ্য", "সেলুলোজ বর্জ্য", "ই-বর্জ্য"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কাগজ বা বনজ ভিত্তিক শিল্প থেকে প্রধানত সেলুলোজ বর্জ্য নির্গত হয়।" },
+        { q: "১৩. পরিবেশ-বান্ধব বর্জ্য বা Environment friendly waste-এর একটি উদাহরণ হলো—", opts: ["প্লাস্টিকের বোতল", "পরিত্যক্ত টায়ার", "ফোমের চপ্পল", "সুতির ন্যাকড়া বা ছেঁড়া কাপড়"], ans: 3, exp: "<b>ব্যাখ্যা:</b> সুতির ন্যাকড়া বা ছেঁড়া কাপড় প্রকৃতিতে সহজেই জীবাণু দ্বারা বিয়োজিত হয়ে মিশে যায়, তাই এটি পরিবেশ-বান্ধব বর্জ্য।" },
+        { q: "১৪. যেসব বর্জ্য পদার্থ মানুষ বা পশুপাখির শরীরে প্রবেশ করে মারাত্মক রোগের সৃষ্টি করে, তাদের কী বলে?", opts: ["বিষহীন বর্জ্য", "বিষাক্ত বর্জ্য", "গ্যাসীয় বর্জ্য", "পৌর বর্জ্য"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পারদ, ক্যাডমিয়াম, অব্যবহৃত কীটনাশক প্রভৃতি বর্জ্য পরিবেশের চরম ক্ষতি করে এবং মানবদেহে মারাত্মক রোগ সৃষ্টি করে বলে এদের বিষাক্ত বর্জ্য বলে।" },
+        { q: "১৫. চামড়া কারখানা বা ট্যানারি থেকে কোন বিষাক্ত ধাতব বর্জ্য নির্গত হয়?", opts: ["ইউরেনিয়াম", "ক্রোমিয়াম", "ফ্লাই অ্যাশ", "সিসা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> চামড়া কারখানা থেকে নির্গত ক্রোমিয়াম যৌগ বা অন্যান্য রাসায়নিক পদার্থ হলো একপ্রকার ক্ষতিকারক শিল্পবর্জ্য।" }
+    ]
+};
+
+// ============================================================
+// সেট ২: বর্জ্য ব্যবস্থাপনা ও পদ্ধতি
+// ============================================================
+const SET2 = {
+    name: "সেট ২",
+    icon: "♻️",
+    topic: "বর্জ্য ব্যবস্থাপনা ও পদ্ধতি",
+    questions: [
+        { q: "১. বর্জ্য ব্যবস্থাপনার (Waste Management) 4R পদ্ধতির অন্তর্গত 'Reduce' কথাটির অর্থ কী?", opts: ["বর্জ্যের পুনর্ব্যবহার", "বর্জ্যের পুনর্নবীকরণ", "বর্জ্যের পরিমাণ হ্রাস", "বর্জ্য প্রত্যাখ্যান"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বর্জ্য ব্যবস্থাপনার 4R পদ্ধতির প্রথম পর্যায় হলো 'Reduce' যার অর্থ হলো জিনিসের ব্যবহার কমিয়ে বা জীবনযাত্রার মান পালটে বর্জ্যের পরিমাণ হ্রাস করা।" },
+        { q: "২. কোনো পরিবর্তন না করে বাতিল বা বর্জ্য পদার্থকে পুনরায় আগের মতো ব্যবহার করাকে কী বলে?", opts: ["পুনর্নবীকরণ (Recycle)", "পুনর্ব্যবহার (Reuse)", "পরিমাণ হ্রাস (Reduce)", "প্রত্যাখ্যান (Refuse)"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কোনো ভৌত বা রাসায়নিক পরিবর্তন না করে বর্জ্য পদার্থকে পুনরায় আগের মতো ব্যবহার করলে তাকে পুনর্ব্যবহার বা Reuse বলা হয়।" },
+        { q: "৩. কলকারখানা থেকে নির্গত ধোঁয়া বা গ্যাসীয় বর্জ্য পদার্থকে পরিশোধন করার জন্য কোন যন্ত্র ব্যবহার করা হয়?", opts: ["স্ক্র্যাবার (Scrubber)", "ইনসিনেটর", "কম্পোস্টার", "ব্যারোমিটার"], ans: 0, exp: "<b>ব্যাখ্যা:</b> কলকারখানা থেকে নির্গত দূষিত গ্যাসীয় বায়ুকে পরিশ্রুত করার জন্য স্ক্র্যাবার নামক যন্ত্র ব্যবহার করা হয়, যা ধোঁয়া ও ক্ষতিকর উপাদান দূর করে।" },
+        { q: "৪. কঠিন বর্জ্য ব্যবস্থাপনার প্রথম পর্যায় বা প্রাথমিক ধাপ কোনটি?", opts: ["ভরাটকরণ", "বর্জ্য পৃথকীকরণ", "কম্পোস্টিং", "গ্যাস নিষ্কাশন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কঠিন বর্জ্য পদার্থ ব্যবস্থাপনার প্রথম পর্যায়টি হলো বর্জ্যের পৃথকীকরণ, যেখানে বর্জ্যকে জৈব ভঙ্গুর এবং জৈব অভঙ্গুর এই দুই ভাগে আলাদা করা হয়।" },
+        { q: "৫. একটি নির্দিষ্ট নিচু জমিতে একস্তর কঠিন জৈব বর্জ্য এবং তার ওপর একস্তর মাটি দিয়ে ক্রমান্বয়ে স্তর তৈরি করে জমি ভরাট করার পদ্ধতিকে কী বলে?", opts: ["স্ক্র্যাবিং", "কম্পোস্টিং", "ল্যান্ডফিল বা ভরাটকরণ", "পুনর্নবীকরণ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> নির্দিষ্ট স্থানে স্তরে স্তরে জৈব বর্জ্য এবং মাটি দিয়ে নিচু জমি ভরাট করে বর্জ্য ব্যবস্থাপনার এই পদ্ধতিটিকে ভরাটকরণ বা ল্যান্ডফিল (Landfill) বলে।" },
+        { q: "৬. ল্যান্ডফিল বা ভরাটকরণ পদ্ধতির ফলে মাটির নিচে ব্যাকটেরিয়ার মাধ্যমে বর্জ্যের বিয়োজন ঘটে প্রধানত কোন গ্যাস উৎপন্ন হয়?", opts: ["অক্সিজেন", "ওজোন", "মিথেন", "নাইট্রোজেন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মাটির নীচে থাকা জৈব ভঙ্গুর বর্জ্যগুলি পচে যাওয়ার সময় ভৌত ও রাসায়নিক পরিবর্তনের ফলে মিথেন, অ্যামোনিয়া প্রভৃতি ল্যান্ডফিল গ্যাস উৎপন্ন হয়।" },
+        { q: "৭. শহরাঞ্চলের কঠিন জৈব বর্জ্যগুলিকে ব্যাকটেরিয়া বা অনুজীবের সাহায্যে বিয়োজিত করে জৈব সারে পরিণত করার পদ্ধতিকে কী বলে?", opts: ["ভরাটকরণ", "কম্পোস্টিং", "স্ক্র্যাবিং", "পৃথকীকরণ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ব্যাকটেরিয়া, কেঁচো বা অন্যান্য অনুজীব দ্বারা জৈব বর্জ্যের বিয়োজন ঘটিয়ে জৈব সার বা হিউমাস উৎপাদনের পদ্ধতিটিকে কম্পোস্টিং বলে।" },
+        { q: "৮. ল্যান্ডফিল বা ভরাটকরণ অঞ্চলে বর্জ্য পদার্থের মধ্য দিয়ে চুইয়ে পড়া নোংরা বা দূষিত জলকে কী বলে?", opts: ["লিচেট (Leachate)", "ইউট্রোফিকেশন", "স্মগ", "কম্পোস্ট"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ল্যান্ডফিলের জমিয়ে রাখা বর্জ্য পদার্থ ধোয়া দূষিত জল বা চুইয়ে পড়া নোংরা জলকে লিচেট বলা হয়।" },
+        { q: "৯. ভার্মি কম্পোস্টিং (Vermi-composting) প্রক্রিয়ায় জৈব সার তৈরির ক্ষেত্রে প্রধান ভূমিকা পালন করে কে?", opts: ["ব্যাকটেরিয়া", "কেঁচো", "ছত্রাক", "প্রোটোজোয়া"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পরিখার মতো গর্তে জৈব বর্জ্য ফেলে কেঁচো ও ব্যাকটেরিয়া দ্বারা বিয়োজিত করে যে উৎকৃষ্ট জৈব সার বা ভার্মি কম্পোস্ট তৈরি হয়, তাতে কেঁচোর প্রধান ভূমিকা থাকে।" },
+        { q: "১০. নিকাশি বা Drainage পদ্ধতির মাধ্যমে মূলত কোন ধরনের বর্জ্যের ব্যবস্থাপনা করা হয়?", opts: ["কঠিন বর্জ্য", "গ্যাসীয় বর্জ্য", "তেজস্ক্রিয় বর্জ্য", "তরল বর্জ্য"], ans: 3, exp: "<b>ব্যাখ্যা:</b> গৃহস্থালির মলমূত্র মিশ্রিত নোংরা জল বা তরল বর্জ্যকে নিকাশি (Drainage) বা পয়ঃপ্রণালীর মাধ্যমে শহরের বাইরে নিয়ে গিয়ে বিভিন্ন পর্যায়ে পরিশোধন করা হয়।" },
+        { q: "১১. দূষক বা বর্জ্য পদার্থগুলিকে কারখানায় পুনরায় গলিয়ে বা প্রক্রিয়াকরণ করে নতুন সম্পদ সৃষ্টি করাকে কী বলে?", opts: ["পরিমাণ হ্রাস", "পুনর্নবীকরণ (Recycle)", "পুনর্ব্যবহার", "বর্জন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> অকেজো লোহা, অ্যালুমিনিয়াম, প্লাস্টিক বা কাচ পুনরায় গলিয়ে বা প্রক্রিয়াকরণ করে নতুন ব্যবহারযোগ্য সামগ্রী তৈরি করাকে পুনর্নবীকরণ বা Recycle বলে।" },
+        { q: "১২. পরিবেশকে দূষণমুক্ত ও সুস্থ রাখতে প্লাস্টিক বা থার্মোকলের ব্যবহার সম্পূর্ণ বন্ধ করে দেওয়া বর্জ্য ব্যবস্থাপনার কোন পদ্ধতির অন্তর্গত?", opts: ["Reduce", "Reuse", "Recycle", "Refuse বা প্রত্যাখ্যান"], ans: 3, exp: "<b>ব্যাখ্যা:</b> পরিবেশের সুরক্ষার্থে ক্ষতিকর প্লাস্টিক, কাচ, থার্মোকল ইত্যাদির ব্যবহার সম্পূর্ণরূপে বর্জন করাকে 4R পদ্ধতির Refuse বা প্রত্যাখ্যান বলা হয়।" },
+        { q: "১৩. কঠিন বর্জ্য ফেলার জন্য মাটিতে গর্ত তৈরি করা হয় মূলত কোন বর্জ্য ব্যবস্থাপনা পদ্ধতিতে?", opts: ["স্ক্র্যাবিং", "ভরাটকরণ", "পুনর্ব্যবহার", "নিকাশি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভরাটকরণ বা ল্যান্ডফিল পদ্ধতিতে একটি নির্দিষ্ট স্থানে গর্ত করে স্তরে স্তরে কঠিন জৈব বর্জ্য ও মাটি চাপা দেওয়া হয়।" },
+        { q: "১৪. গ্যাসীয় বর্জ্য ব্যবস্থাপনার জন্য সাধারণত কারখানার চিমনিতে কোন যন্ত্র লাগানো হয়?", opts: ["ফিল্টার বা স্ক্র্যাবার", "টারবাইন", "থার্মোমিটার", "কম্পোস্টার"], ans: 0, exp: "<b>ব্যাখ্যা:</b> কারখানার চিমনি থেকে নির্গত গ্যাসীয় বর্জ্য এবং বায়ুর ক্ষতিকর কঠিন বা তরল উপাদান নিয়ন্ত্রণ করার জন্য স্ক্র্যাবার ব্যবহৃত হয়।" },
+        { q: "১৫. পূর্ব কলকাতার ধাপায় নিচু জমি ভরাট করে উর্বর কৃষিজমি তৈরি করা হয়েছে বর্জ্য ব্যবস্থাপনার কোন পদ্ধতিতে?", opts: ["স্ক্র্যাবিং", "ল্যান্ডফিল বা ভরাটকরণ", "গ্যাসীয় নির্গমন", "তেজস্ক্রিয় নিষ্কাশন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পূর্ব কলকাতার ধাপায় মূলত ল্যান্ডফিল বা ভরাটকরণ পদ্ধতিতে কঠিন বর্জ্য ও মাটি দিয়ে নিচু জমি ভরাট করে উর্বর কৃষিজমি তৈরি করা হয়েছে।" }
+    ]
+};
+
+// ============================================================
+// সেট ৩: বর্জ্যের প্রভাব ও অন্যান্য
+// ============================================================
+const SET3 = {
+    name: "সেট ৩",
+    icon: "🌍",
+    topic: "বর্জ্যের প্রভাব ও অন্যান্য",
+    questions: [
+        { q: "১. ভাগীরথী-হুগলি নদীর জল দূষণের অন্যতম প্রধান কারণ কী?", opts: ["অতিরিক্ত মাছ ধরা", "কলকারখানা ও পৌর এলাকার বর্জ্য নদীতে ফেলা", "বন্যা", "জোয়ারভাটা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নদীর দুই তীরে গড়ে ওঠা অসংখ্য কলকারখানা এবং পৌর এলাকার মলমূত্র, কঠিন ও তরল বর্জ্য সরাসরি নদীতে এসে মেশার কারণে ভাগীরথী-হুগলি নদীর জল ব্যাপকভাবে দূষিত হচ্ছে।" },
+        { q: "২. গঙ্গা ও ভাগীরথী-হুগলি নদীর দূষণ রোধে 'গঙ্গা অ্যাকশন প্ল্যান' (Ganga Action Plan) কবে গৃহীত হয়?", opts: ["১৯৭৫ সালে", "১৯৮৫ সালে", "১৯৯৫ সালে", "২০০৫ সালে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> গঙ্গা ও ভাগীরথী-হুগলি নদীর দূষণ রোধের উদ্দেশ্যে ১৯৮৫ সালে গঙ্গা অ্যাকশন প্ল্যান কর্মসূচিটি গৃহীত হয় এবং ১৯৮৬ সালে এর রূপায়ণের কাজ শুরু হয়।" },
+        { q: "৩. পানীয় জলে পারদ (Mercury) দূষণের ফলে মানবদেহে কোন মারাত্মক রোগের সৃষ্টি হয়?", opts: ["মিনামাটা", "ইটাই-ইটাই", "ব্ল্যাকফুট", "ডিসলেক্সিয়া"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পারদ বা Mercury নামক একটি অত্যন্ত বিষাক্ত বর্জ্য জলের মাধ্যমে প্রাণী বা মানুষের শরীরে প্রবেশ করলে মিনামাটা রোগের প্রাদুর্ভাব ঘটে।" },
+        { q: "৪. বিষাক্ত ধাতু ক্যাডমিয়াম (Cadmium) দূষণের ফলে মানবদেহে কোন রোগ হয়?", opts: ["মিনামাটা", "ইটাই-ইটাই", "ব্ল্যাকফুট", "ম্যালেরিয়া"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ক্যাডমিয়াম নামক বিষাক্ত ধাতব বর্জ্যের দূষণে মানবদেহে ইটাই-ইটাই নামক অত্যন্ত যন্ত্রণাদায়ক হাড়ের রোগের সৃষ্টি হয়।" },
+        { q: "৫. জলে আর্সেনিক (Arsenic) দূষণের ফলে মানুষের হাত ও পায়ের তলায় কালো দাগ হয়ে যায়, এই রোগটিকে কী বলে?", opts: ["মিনামাটা", "ব্ল্যাকফুট", "ইটাই-ইটাই", "কলেরা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিষাক্ত ধাতব বর্জ্য আর্সেনিক মানুষের শরীরে প্রবেশ করলে ব্ল্যাকফুট (Blackfoot) নামক রোগের সৃষ্টি হয়।" },
+        { q: "৬. শীতকালে শিল্পাঞ্চলে বা বড়ো শহরে কলকারখানার ধোঁয়া ও গ্যাসীয় বর্জ্যের সাথে কুয়াশা মিশে যে বিষাক্ত আবরণ তৈরি হয়, তাকে কী বলে?", opts: ["ধোঁয়াশা (Smog)", "শিশির", "মেঘ", "বৃষ্টি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> শীতকালে যানবাহন ও কলকারখানা নির্গত ধোঁয়া এবং কুয়াশা মিশে গিয়ে ধোঁয়াশা (Smog) তৈরি করে যা বায়ুমণ্ডলের স্বাভাবিক স্বচ্ছতা নষ্ট করে ও দূষণ ঘটায়।" },
+        { q: "৭. কঠিন বর্জ্য দ্বারা নদীগর্ভ ভরাট হলে নদীর কোন বৈশিষ্ট্যের অবনতি ঘটে?", opts: ["স্রোতের বেগ বাড়ে", "নাব্যতা হ্রাস পায়", "নদীর বিস্তার কমে", "নদীর জল মিষ্টি হয়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কঠিন বর্জ্য পদার্থ দ্বারা নদীগর্ভ ভরাট হয়ে যাওয়ার ফলে নদীর গভীরতা ও নাব্যতা কমে যায়, যার ফলে নৌকা বা জাহাজ চলাচলে প্রবল অসুবিধা হয়।" },
+        { q: "৮. বর্জ্য পদার্থের প্রভাবে জলজ পরিবেশে বসবাসকারী প্রাণী ও উদ্ভিদ এবং শৈবালের ওপর ক্ষতিকর প্রভাব পড়লে মূলত কিসের ভারসাম্য নষ্ট হয়?", opts: ["আবহাওয়ার", "জলজ বাস্তুতন্ত্রের", "মৃত্তিকার", "বায়ুমণ্ডলের"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জলে দূষিত বর্জ্য মিশলে জলজ উদ্ভিদ ও প্রাণীদের বংশবিস্তার বাধাপ্রাপ্ত হয় এবং জলের অক্সিজেন কমে গিয়ে সমগ্র জলজ বাস্তুতন্ত্র বিপর্যস্ত হয়ে পড়ে।" },
+        { q: "৯. গৃহস্থালি ও কারখানার ডিটারজেন্ট, কীটনাশক বা পলিথিন মাটিতে মিশলে মাটির কী ক্ষতি হয়?", opts: ["মাটির উর্বরতা বাড়ে", "মাটির স্বাভাবিক চরিত্র নষ্ট হয়ে উর্বরতা হ্রাস পায়", "মাটিতে অক্সিজেন বাড়ে", "মাটিতে গাছের শিকড় মজবুত হয়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বর্জ্য পদার্থ যেমন কীটনাশক, ডিটারজেন্ট, প্লাস্টিক ইত্যাদি মাটিতে মিশলে মাটির গুণমান ও স্বাভাবিক চরিত্র নষ্ট হয়ে যায় এবং মাটি তার উর্বরতা হারায়।" },
+        { q: "১০. চিকিৎসা কেন্দ্র থেকে নির্গত সংক্রামক বর্জ্য সঠিক উপায়ে নিষ্কাশন না করলে মূলত কোন রোগের বিস্তার ঘটতে পারে?", opts: ["টিটেনাস, হেপাটাইটিস", "মিনামাটা", "ইটাই-ইটাই", "সিলিকোসিস"], ans: 0, exp: "<b>ব্যাখ্যা:</b> হাসপাতাল থেকে নির্গত সংক্রামক বর্জ্য সঠিক ব্যবস্থাপনার অভাবে আশেপাশে ছড়িয়ে পড়লে টিটেনাস, হেপাটাইটিস, আন্ত্রিক বা চর্মরোগের মতো সংক্রামক ব্যাধিগুলি দ্রুত ছড়িয়ে পড়ে।" },
+        { q: "১১. বর্জ্য ব্যবস্থাপনায় শিক্ষার্থীদের একটি উল্লেখযোগ্য ভূমিকা হলো—", opts: ["বেশি করে প্লাস্টিক ব্যবহার করা", "যত্রতত্র আবর্জনা ফেলা", "বর্জ্য নির্দিষ্ট ডাস্টবিনে ফেলা এবং সচেতনতা বৃদ্ধি করা", "কৃষিকাজে প্রচুর সার প্রয়োগ করা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বর্জ্য ব্যবস্থাপনায় শিক্ষার্থীরা যত্রতত্র আবর্জনা না ফেলে নির্দিষ্ট পাত্রে ফেলতে পারে এবং প্লাস্টিক ব্যবহারের অপকারিতা সম্পর্কে সমাজের অন্যান্যদের সচেতন করার ভূমিকা পালন করতে পারে।" },
+        { q: "১২. বর্জ্য পদার্থগুলি যখন পচে যায়, তখন তা থেকে দুর্গন্ধ ছড়ায় এবং কোন পরিবেশ উপাদানের সরাসরি দূষণ ঘটায়?", opts: ["শব", "বায়ু", "সূর্যালোক", "সমুদ্রস্রোত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বর্জ্য পদার্থ স্তূপাকারে পচনের ফলে দুর্গন্ধযুক্ত গ্যাস সৃষ্টি হয় বা জমা বর্জ্যে আগুন লাগলে তা বায়ুকে দূষিত করে এবং জনস্বাস্থ্যের মারাত্মক ক্ষতি করে।" },
+        { q: "১৩. জৈব বর্জ্য পদার্থ ব্যাকটেরিয়ার সাহায্যে বিয়োজিত হয়ে শেষ পর্যন্ত কীসে পরিণত হয় যা উদ্ভিদের পুষ্টি জোগায়?", opts: ["লিচেট", "হিউমাস বা কম্পোস্ট সার", "বিষাক্ত গ্যাস", "ই-বর্জ্য"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মাটিতে গর্ত করে জৈব ভঙ্গুর বর্জ্য চাপা দিলে তা অনুজীব বা ব্যাকটেরিয়া দ্বারা বিশ্লিষ্ট হয়ে উদ্ভিদের জন্য পুষ্টিকর হিউমাস বা কম্পোস্ট সারে পরিণত হয়।" },
+        { q: "১৪. 'নমামি গঙ্গে' প্রকল্পটি মূলত কোন নদীর দূষণ রোধ ও পরিচ্ছন্নতার জন্য ভারত সরকার চালু করেছে?", opts: ["ব্রহ্মপুত্র", "গোদাবরী", "নর্মদা", "গঙ্গা (ভাগীরথী-হুগলি)"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ভাগীরথী-হুগলি সহ সমগ্র গঙ্গা নদীর দূষণ রোধ ও পরিচ্ছন্নতা বজায় রাখার জন্য ২০১৪ সালে 'নমামি গঙ্গে' নামক একটি বিশেষ কর্মসূচি রূপায়ণের কাজ শুরু হয়েছে।" },
+        { q: "১৫. পরিবেশ দূষণ রুখতে আধুনিক সমাজে কোন প্লাস্টিক বা ব্যাগের বিকল্প হিসেবে কী ব্যবহার করতে উৎসাহিত করা হয়?", opts: ["পলিথিন ব্যাগ", "নাইলনের ব্যাগ", "থার্মোকল", "চট, কাগজ বা কাপড়ের ব্যাগ"], ans: 3, exp: "<b>ব্যাখ্যা:</b> প্লাস্টিক ও পলিথিন চরম দূষণ ছড়ায় বলে বর্জ্য ব্যবস্থাপনায় এদের ব্যবহার সম্পূর্ণ বর্জন (Refuse) করে চট, কাগজ বা কাপড়ের তৈরি পরিবেশ-বান্ধব ব্যাগের পুনর্ব্যবহারের ওপর জোর দেওয়া হয়।" }
+    ]
+};
+
+// ============================================================
+// সব সেট একত্রে
+// ============================================================
+const QUIZ_SETS = {
+    "1": SET1,
+    "2": SET2,
+    "3": SET3
+};
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+let loggedInUser = null;
+let currentSetId = null;
+let questions = [];
+let score = 0;
+let wrongAnswers = 0;
+let userAnswers = {};
+let isReviewMode = false;
+let timerInterval;
+let timeLeft = TIME_LIMIT;
+
+window.onload = () => {
+    applyBranding();
+    buildHub();
+};
+
+function buildHub() {
+    const grid = document.getElementById('setGrid');
+    grid.innerHTML = '';
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+
+    for(let id in QUIZ_SETS) {
+        const set = QUIZ_SETS[id];
+        let attemptCount = 0;
+        let isLocked = false;
+
+        if(loggedInUser) {
+            attemptCount = userAttempts[loggedInUser + "_" + id] || 0;
+            isLocked = attemptCount >= MAX_ATTEMPTS;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'set-card';
+        let badge = '';
+        if(loggedInUser) {
+            badge = `<div class="attempt-badge ${isLocked ? 'locked' : ''} en-font">${isLocked ? 'সম্পূর্ণ' : attemptCount + '/' + MAX_ATTEMPTS}</div>`;
+        }
+
+        card.innerHTML = `
+            ${badge}
+            <div class="set-icon">${set.icon}</div>
+            <div class="set-name">${set.name}</div>
+            <div class="set-topic">${set.topic}</div>
+            <div class="set-meta-info en-font">
+                <span>${set.questions.length} Qs</span>
+                <span>10 Mins</span>
+            </div>
+        `;
+        card.onclick = () => { selectSet(id); };
+        grid.appendChild(card);
+    }
+}
+
+function selectSet(setId) {
+    if(loggedInUser) {
+        let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+        let attemptCount = userAttempts[loggedInUser + "_" + setId] || 0;
+        if(attemptCount >= MAX_ATTEMPTS) {
+            alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+            return;
+        }
+        startQuiz(setId);
+    } else {
+        currentSetId = setId;
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginError').classList.add('hidden');
+        document.getElementById('loginSetName').innerText = QUIZ_SETS[setId].name + ": " + QUIZ_SETS[setId].topic;
+        document.getElementById('loginModal').classList.remove('hidden');
+    }
+}
+
+function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+
+function doLogin() {
+    const u = document.getElementById('loginUsername').value.trim();
+    const p = document.getElementById('loginPassword').value.trim();
+    const err = document.getElementById('loginError');
+    const GLOBAL_USERS = JSON.parse(localStorage.getItem("testBazarGlobalUsers")) || {};
+
+    if(!u || !p) { err.innerText = "ইউজারনেম এবং পাসওয়ার্ড দিন!"; err.classList.remove('hidden'); return; }
+
+    if(GLOBAL_USERS[u] && GLOBAL_USERS[u] === p) {
+        loggedInUser = u;
+        document.getElementById('userDisplay').innerText = `👤 ${u}`;
+        closeLogin();
+        buildHub();
+        if(currentSetId) {
+            startQuiz(currentSetId);
+        }
+    } else {
+        err.innerText = "ইউজারনেম বা পাসওয়ার্ড ভুল!";
+        err.classList.remove('hidden');
+    }
+}
+
+function incrementAttempt(user, setId) {
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let key = user + "_" + setId;
+    userAttempts[key] = (userAttempts[key] || 0) + 1;
+    localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(userAttempts));
+}
+
+function startQuiz(setId) {
+    currentSetId = setId;
+    incrementAttempt(loggedInUser, setId);
+    questions = QUIZ_SETS[setId].questions;
+    userAnswers = {};
+    isReviewMode = false;
+    score = 0;
+    wrongAnswers = 0;
+    timeLeft = TIME_LIMIT;
+
+    document.getElementById('hubView').classList.add('hidden');
+    document.getElementById('resultModal').classList.add('hidden');
+    document.getElementById('quizView').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('danger');
+    document.getElementById('submitTestBtn').classList.remove('hidden');
+    document.getElementById('quizTitle').innerText = QUIZ_SETS[setId].name + " | " + QUIZ_SETS[setId].topic;
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tick, 1000);
+    renderQuestions();
+}
+
+function tick() {
+    timeLeft--;
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    document.getElementById('timerDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if (timeLeft <= 60) document.getElementById('timerBox').classList.add('danger');
+    if (timeLeft <= 0) { submitQuiz(); }
+}
+
+const LABELS = ['A', 'B', 'C', 'D'];
+
+function renderQuestions() {
+    const quizList = document.getElementById('quizList');
+    let html = '';
+    questions.forEach((q, i) => {
+        html += `<div class="q-block" id="qBlock_${i}">
+            <div class="q-text">${q.q}</div>
+            <div class="options-grid">`;
+        q.opts.forEach((opt, j) => {
+            html += `<div class="opt" id="opt_${i}_${j}" onclick="selectOpt(${i}, ${j})">
+                <div class="opt-circle">${LABELS[j]}</div>
+                <div class="opt-text">${opt}</div>
+            </div>`;
+        });
+        html += `</div>
+            <div class="explanation hidden" id="exp_${i}">${q.exp}</div>
+        </div>`;
+    });
+    quizList.innerHTML = html;
+    window.scrollTo(0, 0);
+}
+
+function selectOpt(qIdx, optIdx) {
+    if (isReviewMode) return;
+    userAnswers[qIdx] = optIdx;
+    const block = document.getElementById(`qBlock_${qIdx}`);
+    const opts = block.querySelectorAll('.opt');
+    opts.forEach(o => o.classList.remove('selected'));
+    document.getElementById(`opt_${qIdx}_${optIdx}`).classList.add('selected');
+}
+
+function submitQuiz() {
+    if (isReviewMode) return;
+    const answeredCount = Object.keys(userAnswers).length;
+    if (timeLeft > 0 && answeredCount < questions.length) {
+        const confirmSubmit = confirm(`আপনি মাত্র ${answeredCount} টি প্রশ্নের উত্তর দিয়েছেন। আপনি কি সত্যিই Test জমা দিতে চান?`);
+        if(!confirmSubmit) return;
+    }
+    isReviewMode = true;
+    clearInterval(timerInterval);
+    document.getElementById('timerBox').classList.add('hidden');
+    document.getElementById('submitTestBtn').classList.add('hidden');
+
+    score = 0;
+    wrongAnswers = 0;
+    questions.forEach((q, i) => {
+        const selected = userAnswers[i];
+        const block = document.getElementById(`qBlock_${i}`);
+        const opts = block.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.remove('selected'));
+        if (selected !== undefined) {
+            if (selected === q.ans) {
+                score++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('correct');
+            } else {
+                wrongAnswers++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('wrong');
+                document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+            }
+        } else {
+            document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+        }
+        document.getElementById(`exp_${i}`).classList.remove('hidden');
+    });
+
+    const skipped = questions.length - (score + wrongAnswers);
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('rbCorrect').textContent = score;
+    document.getElementById('rbWrong').textContent = wrongAnswers + skipped;
+
+    let icon = '💪', grade = 'চেষ্টা চালিয়ে যাও!';
+    if(pct >= 90) { icon = '🌟'; grade = 'অসাধারণ!'; }
+    else if(pct >= 70) { icon = '👍'; grade = 'খুব ভালো!'; }
+    else if(pct >= 50) { icon = '📚'; grade = 'ভালো চেষ্টা!'; }
+
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultGrade').textContent = grade;
+
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    let remaining = MAX_ATTEMPTS - attemptCount;
+    document.getElementById('attemptInfo').innerText = `বাকি আছে ${remaining} বার Test দেওয়ার সুযোগ (সর্বোচ্চ ${MAX_ATTEMPTS} বার)`;
+    document.getElementById('resultModal').classList.remove('hidden');
+}
+
+function closeResultModal() {
+    document.getElementById('resultModal').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+    closeResultModal();
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    if(attemptCount >= MAX_ATTEMPTS) {
+        alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+        document.getElementById('quizView').classList.add('hidden');
+        document.getElementById('hubView').classList.remove('hidden');
+        buildHub();
+        return;
+    }
+    startQuiz(currentSetId);
+}
+</script>
+</body>
+</html>
