@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 History Chapter 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #1a7a4a; --primary-hover: #2aad68; --accent: #f9a825;
+--bg-main: #f0faf4; --bg-card: #ffffff; --bg-selected: #e8f4ec;
+--text-main: #1c2e24; --text-meta: #5a7a66; --border-color: #c5dccb;
+--alert-danger: #dc3545; --correct: #28a745;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Tiro Bangla', serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+.en-font { font-family: 'Syne', sans-serif; }
+.hidden { display: none !important; }
+
+.header {
+background: #ffffff;
+box-shadow: 0 4px 20px rgba(10, 92, 54, 0.08);
+position: sticky;
+top: 0;
+z-index: 1000;
+border-bottom: 3px solid #0a5c36;
+}
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 8px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo-link {
+display: flex;
+align-items: center;
+gap: 10px;
+text-decoration: none;
+cursor: pointer;
+}
+.logo-emblem {
+width: 45px;
+height: 45px;
+background: linear-gradient(135deg, #0a5c36 0%, #1e824c 100%);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.4rem;
+font-weight: 800;
+color: white;
+box-shadow: 0 4px 12px rgba(10, 92, 54, 0.2);
+flex-shrink: 0;
+}
+.brand-text-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.coaching-main-title {
+font-size: 1.4rem;
+font-weight: 800;
+color: #0a5c36;
+letter-spacing: -0.5px;
+line-height: 1.1;
+}
+.coaching-subtitle {
+font-size: 0.75rem;
+color: #556c5e;
+font-weight: 700;
+letter-spacing: 0.3px;
+margin-top: 1px;
+text-transform: uppercase;
+}
+.coaching-tagline {
+font-size: 0.65rem;
+color: #f5a623;
+font-weight: 600;
+margin-top: 1px;
+letter-spacing: 0.1px;
+}
+.header-right {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.timer-box {
+background: rgba(10, 92, 54, 0.08);
+padding: 6px 15px;
+border-radius: 8px;
+font-weight: 700;
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+gap: 5px;
+color: #0a5c36;
+}
+.timer-box.danger { background: var(--alert-danger); color: white; animation: pulse 1s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.user-info { background: #0a5c36; color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; }
+
+.main-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.hub-header { text-align: center; margin-bottom: 30px; }
+.hub-header h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 10px; }
+.set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+.set-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+.set-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(26,122,74,0.1); }
+.set-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.set-name { font-size: 1.3rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; font-family: 'Syne', sans-serif;}
+.set-topic { font-size: 0.95rem; color: var(--text-meta); margin-bottom: 15px; height: 40px; }
+.set-meta-info { display: flex; justify-content: center; gap: 10px; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
+.set-meta-info span { background: var(--bg-main); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+.attempt-badge { position: absolute; top: 10px; right: 10px; background: #ffeeba; color: #856404; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+.attempt-badge.locked { background: var(--alert-danger); color: white; border: none; }
+
+.quiz-info { background: var(--bg-card); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+.q-block { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.q-text { font-size: 1.2rem; font-weight: bold; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
+.options-grid { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 1.05rem; }
+.opt:hover:not(.selected):not(.correct):not(.wrong) { background: var(--bg-main); border-color: var(--primary); }
+.opt.selected { background: var(--bg-selected); border-color: var(--primary); }
+.opt-circle { min-width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Syne', sans-serif; color: var(--text-meta); flex-shrink: 0; }
+.opt.selected .opt-circle { background: var(--primary); color: white; border-color: var(--primary); }
+.opt.correct { background: #e8f7ef; border-color: var(--correct); }
+.opt.correct .opt-circle { background: var(--correct); border-color: var(--correct); color: white; }
+.opt.wrong { background: #fdf0f0; border-color: var(--alert-danger); }
+.opt.wrong .opt-circle { background: var(--alert-danger); border-color: var(--alert-danger); color: white; }
+.explanation { margin-top: 15px; padding: 15px; background: #e8f4ec; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #2c4035; line-height: 1.5;}
+.btn-submit { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; font-family: 'Tiro Bangla', serif; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(26,122,74,0.2); transition: 0.2s; }
+.btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+.btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: bold;}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto;}
+.modal-box { background: white; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin: auto;}
+.modal-box input { width: 100%; padding: 12px 15px; margin: 10px 0; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: 'Syne', sans-serif; box-sizing: border-box; outline: none; transition: 0.2s; }
+.modal-box input:focus { border-color: var(--primary); }
+.result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto; padding: 20px; }
+.result-box { background: white; padding: 2.5rem 2rem; border-radius: 16px; width: 100%; max-width: 450px; text-align: center; margin: auto; }
+.result-score { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin: 15px 0; }
+.result-bars { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.result-bar { background: var(--bg-main); padding: 15px; border-radius: 12px; width: 100px; border: 1px solid var(--border-color); }
+
+@media (max-width: 768px) {
+.header-container { flex-direction: column; gap: 10px; text-align: center; padding: 10px 10px; }
+.logo-link { flex-direction: column; gap: 6px; }
+.brand-text-container { text-align: center; }
+.coaching-main-title { font-size: 1.2rem; }
+.coaching-subtitle { font-size: 0.7rem; }
+.coaching-tagline { font-size: 0.6rem; }
+.header-right { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="#" class="logo-link" onclick="location.reload(); return false;">
+            <div class="logo-emblem" id="dynamicEmblem">🖨️</div>
+            <div class="brand-text-container">
+                <span class="coaching-main-title" id="dynamicTitle">History - Chapter 5</span>
+                <span class="coaching-subtitle" id="dynamicSubtitle">বিকল্প চিন্তা ও উদ্যোগ: ছাপাখানা, বিজ্ঞান ও কারিগরি শিক্ষা এবং রবীন্দ্রভাবনা</span>
+                <span class="coaching-tagline" id="dynamicTagline">দশম শ্রেণি (Class 10)</span>
+            </div>
+        </a>
+        <div class="header-right">
+            <div class="timer-box en-font hidden" id="timerBox">⏱ <span id="timerDisplay">10:00</span></div>
+            <div class="user-info en-font" id="userDisplay" style="font-weight: bold;">👤 Guest</div>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <div id="hubView">
+        <div class="hub-header">
+            <h1 style="color: var(--primary); margin-bottom: 10px;">ইতিহাস - Class 10 Chapter 5</h1>
+            <p style="color: var(--text-meta);">বিকল্প চিন্তা ও উদ্যোগ: ছাপাখানা, বিজ্ঞান ও কারিগরি শিক্ষা এবং রবীন্দ্রভাবনা</p>
+        </div>
+        <div class="set-grid" id="setGrid"></div>
+        <div style="text-align:center; margin-top:40px;">
+            <button class="btn-primary" style="background:var(--text-meta); width: auto; padding: 12px 25px;" onclick="window.history.back()">← Main Dashboard-এ ফিরুন</button>
+        </div>
+    </div>
+
+    <div id="quizView" class="hidden">
+        <div class="quiz-info">
+            <div id="quizTitle">Set Name</div>
+            <div id="quizMetaInfo" class="en-font">15 Questions | 10 Mins</div>
+        </div>
+        <div id="quizList"></div>
+        <button class="btn-submit" id="submitTestBtn" onclick="submitQuiz()">Test জমা দিন ও ফলাফল দেখুন</button>
+    </div>
+
+</div>
+
+<div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-box">
+        <h2 style="color: var(--primary); margin-top:0;">লগইন করুন</h2>
+        <p style="color: var(--text-meta); margin-bottom: 15px; font-size: 0.9rem;">Test শুরু করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন</p>
+        <div id="loginSetName" style="background: var(--bg-main); padding: 8px; border-radius: 8px; font-weight:bold; color:var(--primary); margin-bottom:15px; font-family: 'Syne', sans-serif; font-size: 0.95rem;">Set Name</div>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()">
+        <div id="loginError" class="hidden" style="color: var(--alert-danger); margin: 10px 0; font-weight:bold; font-size: 0.9rem;"></div>
+        <div style="display: flex; gap: 10px; margin-top:15px; justify-content: center;">
+            <button class="btn-primary" style="width: 100%; padding: 12px;" onclick="doLogin()">লগইন করুন</button>
+            <button class="btn-primary" style="background: var(--alert-danger); width: 100%; padding: 12px;" onclick="closeLogin()">বাতিল</button>
+        </div>
+    </div>
+</div>
+
+<div class="result-overlay hidden" id="resultModal">
+    <div class="result-box">
+        <div style="font-size: 3.5rem; margin-bottom:0; line-height: 1;" id="resultIcon">🌟</div>
+        <h2 style="margin:10px 0; color: var(--text-main);">আপনার ফলাফল</h2>
+        <div class="result-score en-font" id="finalScore">100%</div>
+        <div id="resultGrade" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--accent);">অসাধারণ!</div>
+        <div class="result-bars">
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbCorrect">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">সঠিক</div>
+            </div>
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--alert-danger);" class="en-font" id="rbWrong">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">ভুল / স্কিপ</div>
+            </div>
+        </div>
+        <p style="background: var(--bg-main); padding: 10px; border-radius: 8px; color:var(--text-meta); font-weight:bold; font-size:0.95rem; margin-bottom:25px;" id="attemptInfo" class="en-font">বাকি আছে 9 বার</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="btn-primary" style="background: #28a745; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="closeResultModal()">উত্তর ও ব্যাখ্যা দেখুন</button>
+            <button class="btn-primary" style="background: #17a2b8; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="restartQuiz()">আবার চেষ্টা করো</button>
+            <button class="btn-primary" style="background: var(--text-meta); width: 100%; padding: 14px; font-size: 1.05rem;" onclick="window.location.reload()">Chapter Hub-এ ফিরুন</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// DYNAMIC BRANDING LOGIC
+// ============================================================
+const STORE_CONFIGS = {
+    "guru": {
+        title: "Guru Book Store Jhalda",
+        mainTitle: "Guru Book Store",
+        subtitle: "Jhalda",
+        tagline: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        emblem: "G"
+    },
+    "saraswati": {
+        title: "Saraswati Book Store",
+        mainTitle: "Saraswati Book Store",
+        subtitle: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        tagline: "শিক্ষা ও প্রগতির বিশ্বস্ত সঙ্গী",
+        emblem: "S"
+    }
+};
+
+function applyBranding() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let storeKey = urlParams.get('store') || localStorage.getItem("activeStore") || "";
+    storeKey = storeKey.toLowerCase();
+
+    if (storeKey && STORE_CONFIGS[storeKey]) {
+        const config = STORE_CONFIGS[storeKey];
+        document.title = `${config.title} - Class 10 History Chapter 5`;
+        document.getElementById("dynamicEmblem").innerText = config.emblem;
+        document.getElementById("dynamicTitle").innerText = config.mainTitle;
+        document.getElementById("dynamicSubtitle").innerText = config.subtitle;
+        document.getElementById("dynamicTagline").innerText = config.tagline;
+        localStorage.setItem("activeStore", storeKey);
+    } else {
+        document.title = "Class 10 History Chapter 5 - বিকল্প চিন্তা ও উদ্যোগ: ছাপাখানা, বিজ্ঞান ও কারিগরি শিক্ষা এবং রবীন্দ্রভাবনা";
+        document.getElementById("dynamicEmblem").innerText = "🖨️";
+        document.getElementById("dynamicTitle").innerText = "History - Chapter 5";
+        document.getElementById("dynamicSubtitle").innerText = "বিকল্প চিন্তা ও উদ্যোগ: ছাপাখানা, বিজ্ঞান ও কারিগরি শিক্ষা এবং রবীন্দ্রভাবনা";
+        document.getElementById("dynamicTagline").innerText = "দশম শ্রেণি (Class 10)";
+    }
+}
+
+// ============================================================
+// QUIZ DATA - 8 SETS (TOTAL 120 QUESTIONS)
+// ============================================================
+const STORAGE_KEY_ATTEMPTS = "testBazarAttempts_History_Ch5_Sets";
+const MAX_ATTEMPTS = 10;
+const TIME_LIMIT = 10 * 60;
+
+// ============================================================
+// সেট ১: বাংলায় ছাপাখানার বিকাশ
+// ============================================================
+const SET1 = {
+    name: "Set 1",
+    icon: "🖨️",
+    topic: "বাংলায় ছাপাখানার বিকাশ",
+    questions: [
+        { q: "১. 'আধুনিক ছাপাখানার জনক' কাকে বলা হয়?", opts: ["চার্লস উইলকিন্স", "জোহানেস গুটেনবার্গ", "জেমস অগাস্টাস হিকি", "পঞ্চানন কর্মকার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জার্মানির মেইনজ শহরে ১৪৫৪ খ্রিস্টাব্দে সর্বপ্রথম আধুনিক মুদ্রণযন্ত্র আবিষ্কার করার জন্য জোহানেস গুটেনবার্গকে আধুনিক ছাপাখানার জনক বলা হয়।" },
+        { q: "২. ভারতে সর্বপ্রথম আধুনিক ছাপাখানা কারা প্রতিষ্ঠা করেছিল?", opts: ["ইংরেজরা", "ফরাসিরা", "পোর্তুগিজরা", "ওলন্দাজরা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৫৫৬ খ্রিস্টাব্দে গোয়াতে পোর্তুগিজরা নিজেদের প্রয়োজনে ভারতে সর্বপ্রথম আধুনিক ছাপাখানা প্রতিষ্ঠা করেছিল।" },
+        { q: "৩. বাংলায় প্রথম ছাপাখানা কোথায় স্থাপিত হয়?", opts: ["কলকাতায়", "হুগলিতে", "মেদিনীপুরে", "ঢাকায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বাংলায় প্রথম ছাপাখানা ১৭৭৮ খ্রিস্টাব্দে হুগলিতে প্রতিষ্ঠিত হয়।" },
+        { q: "৪. চার্লস উইলকিন্সকে বাংলায় কী বলা হয়?", opts: ["বাংলার গুটেনবার্গ", "বাংলার টাইপোগ্রাফার", "আধুনিকতার জনক", "মুদ্রণ শিল্পের জনক"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বাংলা মুদ্রণশিল্পে অসামান্য অবদানের জন্য চার্লস উইলকিন্সকে বাংলার গুটেনবার্গ বলা হয়।" },
+        { q: "৫. 'আ গ্রামার অফ দ্য বেঙ্গল ল্যাঙ্গুয়েজ' গ্রন্থটি কার লেখা?", opts: ["উইলিয়াম কেরি", "জেমস অগাস্টাস হিকি", "নাথানিয়েল ব্রাসি হ্যালহেড", "জন ক্লার্ক মার্শম্যান"], ans: 2, exp: "<b>ব্যাখ্যা:</b> হ্যালহেড এই বিখ্যাত বাংলা ব্যাকরণ গ্রন্থটি রচনা করেন যা ১৭৭৮ খ্রিস্টাব্দে মুদ্রিত হয়।" },
+        { q: "৬. হ্যালহেডের বাংলা ব্যাকরণ গ্রন্থটি কবে মুদ্রিত হয়?", opts: ["১৭৫৭ খ্রিস্টাব্দে", "১৭৭৮ খ্রিস্টাব্দে", "১৮০০ খ্রিস্টাব্দে", "১৮১৮ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> চার্লস উইলকিন্সের তৈরি বাংলা হরফে ১৭৭৮ খ্রিস্টাব্দে হুগলির ছাপাখানা থেকে হ্যালহেডের এই ব্যাকরণ গ্রন্থটি মুদ্রিত হয়।" },
+        { q: "৭. আধুনিক বইয়ের ব্যাবসার পথপ্রদর্শক কাকে বলা হয়?", opts: ["গঙ্গাকিশোর ভট্টাচার্য", "উইলিয়াম কেরি", "ঈশ্বরচন্দ্র বিদ্যাসাগর", "উপেন্দ্রকিশোর রায়চৌধুরী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উনবিংশ শতাব্দীতে ছাপাখানাকে একটি পেশাদারি ব্যাবসা হিসেবে গ্রহণ করে সেটিকে সফল বাণিজ্যিক রূপ দেওয়ার জন্য ঈশ্বরচন্দ্র বিদ্যাসাগরকে আধুনিক বইয়ের ব্যাবসার পথপ্রদর্শক বলা হয়।" },
+        { q: "৮. ঈশ্বরচন্দ্র বিদ্যাসাগর তাঁর বন্ধু মদনমোহন তর্কালংকারের সঙ্গে যৌথভাবে কোন্ ছাপাখানা স্থাপন করেন?", opts: ["গুপ্ত প্রেস", "সংস্কৃত প্রেস", "ইউ. রায় অ্যান্ড সন্স", "বাঙ্গালা গেজেটি প্রেস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮৪৭ খ্রিস্টাব্দে কলকাতার আমহার্স্ট স্ট্রিটে বিদ্যাসাগর ও মদনমোহন তর্কালংকার যৌথভাবে সংস্কৃত প্রেস নামে একটি ছাপাখানা স্থাপন করেন।" },
+        { q: "৯. শ্রীরামপুর মিশন প্রেস কবে প্রতিষ্ঠিত হয়?", opts: ["১৭৭৮ খ্রিস্টাব্দে", "১৮০০ খ্রিস্টাব্দে", "১৮১৮ খ্রিস্টাব্দে", "১৮৩৫ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বাংলায় মুদ্রণ শিল্পের বিকাশে ১৮০০ খ্রিস্টাব্দে প্রতিষ্ঠিত শ্রীরামপুর মিশন প্রেস এক যুগান্তকারী ভূমিকা পালন করে।" },
+        { q: "১০. শ্রীরামপুর মিশন প্রেসের প্রতিষ্ঠাতা কারা?", opts: ["উইলিয়াম কেরি, মার্শম্যান, ওয়ার্ড", "চার্লস উইলকিন্স, পঞ্চানন কর্মকার, হ্যালহেড", "রামমোহন রায়, বিদ্যাসাগর, রাধাকান্ত দেব", "ডিরোজিও, ডেভিড হেয়ার, বেথুন"], ans: 0, exp: "<b>ব্যাখ্যা:</b> উইলিয়াম কেরি, জশুয়া মার্শম্যান এবং উইলিয়াম ওয়ার্ড-এর যৌথ উদ্যোগে শ্রীরামপুর মিশন প্রেস প্রতিষ্ঠিত হয়।" },
+        { q: "১১. 'দিগদর্শন' ও 'সমাচার দর্পণ' পত্রিকা কবে প্রকাশিত হয়?", opts: ["১৭৮০ খ্রিস্টাব্দে", "১৮০০ খ্রিস্টাব্দে", "১৮১৮ খ্রিস্টাব্দে", "১৮৫৭ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> শ্রীরামপুর মিশন প্রেস থেকে ১৮১৮ খ্রিস্টাব্দে এই দুটি ঐতিহাসিক পত্রিকা প্রকাশিত হয়।" },
+        { q: "১২. বিদ্যাসাগরের 'বর্ণপরিচয়' কবে প্রকাশিত হয়?", opts: ["১৮৪৭ খ্রিস্টাব্দে", "১৮৫৫ খ্রিস্টাব্দে", "১৮৬০ খ্রিস্টাব্দে", "১৮৮৫ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বাংলার শিশুশিক্ষার ভিত্তি হিসেবে ঈশ্বরচন্দ্র বিদ্যাসাগর ১৮৫৫ খ্রিস্টাব্দে বর্ণপরিচয় প্রকাশ করেন।" },
+        { q: "১৩. উপেন্দ্রকিশোর রায়চৌধুরীর লেখা প্রথম বই কোনটি?", opts: ["টুনটুনির বই", "ছেলেদের রামায়ণ", "গুপী গায়েন বাঘা বাইন", "সেকালের কথা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> যোগীন্দ্রনাথ সরকারের সিটি বুক সোসাইটি থেকে উপেন্দ্রকিশোরের লেখা প্রথম বই ছেলেদের রামায়ণ প্রকাশিত হয়েছিল।" },
+        { q: "১৪. ভারতে প্রথম হাফটোন ব্লক ছাপার সূচনা কোন্ প্রতিষ্ঠান থেকে হয়?", opts: ["শ্রীরামপুর মিশন প্রেস", "সংস্কৃত প্রেস", "গুপ্ত যন্ত্র", "ইউ. রায় অ্যান্ড সন্স"], ans: 3, exp: "<b>ব্যাখ্যা:</b> প্রসেস ক্যামেরা নিয়ে মৌলিক গবেষণা করে উপেন্দ্রকিশোর রায়চৌধুরীর ইউ. রায় অ্যান্ড সন্স প্রতিষ্ঠান থেকেই প্রথম হাফটোন ব্লক ছাপার সূচনা হয়েছিল।" },
+        { q: "১৫. উপেন্দ্রকিশোর রায়চৌধুরী কবে 'ইউ. রায় অ্যান্ড সন্স' প্রতিষ্ঠা করেন?", opts: ["১৮৮৫ খ্রিস্টাব্দে", "১৮৯৫ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে", "১৯১৩ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মুদ্রণশিল্পকে আধুনিক রূপ দিতে ১৮৯৫ খ্রিস্টাব্দে তিনি ইউ. রায় অ্যান্ড সন্স নামক বিখ্যাত প্রতিষ্ঠানটি গড়ে তোলেন。" }
+    ]
+};
+
+// ============================================================
+// সেট ২: বিজ্ঞান শিক্ষার বিকাশ
+// ============================================================
+const SET2 = {
+    name: "Set 2",
+    icon: "🔬",
+    topic: "বিজ্ঞান শিক্ষার বিকাশ",
+    questions: [
+        { q: "১. ইন্ডিয়ান অ্যাসোসিয়েশন ফর দ্য কাল্টিভেশন অফ সায়েন্স (IACS) কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৫৭ খ্রিস্টাব্দে", "১৮৭৬ খ্রিস্টাব্দে", "১৯০৬ খ্রিস্টাব্দে", "১৯১৭ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতবর্ষে বিজ্ঞানচর্চাকে প্রাতিষ্ঠানিক রূপ দিতে ১৮৭৬ খ্রিস্টাব্দে IACS প্রতিষ্ঠিত হয়।" },
+        { q: "২. IACS কে প্রতিষ্ঠা করেন?", opts: ["আচার্য জগদীশচন্দ্র বসু", "প্রফুল্লচন্দ্র রায়", "ডা. মহেন্দ্রলাল সরকার", "সত্যেন্দ্রনাথ বসু"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্রখ্যাত চিকিৎসক ও বিজ্ঞানানুরাগী ডা. মহেন্দ্রলাল সরকারের উদ্যোগে IACS প্রতিষ্ঠিত হয়।" },
+        { q: "৩. কলকাতা বিজ্ঞান কলেজ কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৭৬ খ্রিস্টাব্দে", "১৯০৬ খ্রিস্টাব্দে", "১৯১৪ খ্রিস্টাব্দে", "১৯১৭ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> স্যার আশুতোষ মুখোপাধ্যায়ের প্রচেষ্টায় ১৯১৪ খ্রিস্টাব্দে কলকাতা বিজ্ঞান কলেজ (University College of Science) প্রতিষ্ঠিত হয়।" },
+        { q: "৪. কলকাতা বিজ্ঞান কলেজের প্রতিষ্ঠাতা কে ছিলেন?", opts: ["তারকনাথ পালিত", "রাসবিহারী ঘোষ", "স্যার আশুতোষ মুখোপাধ্যায়", "নীলরতন সরকার"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কলকাতা বিশ্ববিদ্যালয়ের তৎকালীন উপাচার্য স্যার আশুতোষ মুখোপাধ্যায় এই বিজ্ঞান কলেজ প্রতিষ্ঠা করেন।" },
+        { q: "৫. বসু বিজ্ঞান মন্দির (Bose Institute) কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৭৬ খ্রিস্টাব্দে", "১৯০৬ খ্রিস্টাব্দে", "১৯১৪ খ্রিস্টাব্দে", "১৯১৭ খ্রিস্টাব্দে"], ans: 3, exp: "<b>ব্যাখ্যা:</b> আচার্য জগদীশচন্দ্র বসু বিজ্ঞান গবেষণার উদ্দেশ্যে ১৯১৭ খ্রিস্টাব্দে বসু বিজ্ঞান মন্দির প্রতিষ্ঠা করেন。" },
+        { q: "৬. বসু বিজ্ঞান মন্দির কে প্রতিষ্ঠা করেন?", opts: ["প্রফুল্লচন্দ্র রায়", "সত্যেন্দ্রনাথ বসু", "আচার্য জগদীশচন্দ্র বসু", "মেঘনাদ সাহা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্রখ্যাত বিজ্ঞানী আচার্য জগদীশচন্দ্র বসু বিজ্ঞান গবেষণার জন্য এই প্রতিষ্ঠানটি গড়ে তোলেন।" },
+        { q: "৭. জগদীশচন্দ্র বসু কোন্ যন্ত্র আবিষ্কার করে প্রমাণ করেন উদ্ভিদেরও প্রাণ আছে?", opts: ["ক্রেসকোগ্রাফ", "সিসমোগ্রাফ", "টেলিগ্রাফ", "স্পেকট্রোমিটার"], ans: 0, exp: "<b>ব্যাখ্যা:</b> জগদীশচন্দ্র বসু তাঁর আবিষ্কৃত ক্রেসকোগ্রাফ যন্ত্রের সাহায্যে উদ্ভিদের অত্যন্ত সূক্ষ্ম বৃদ্ধি পরিমাপ করে তাদের প্রাণ ও অনুভূতির অস্তিত্ব প্রমাণ করেন।" },
+        { q: "৮. 'আ হিস্ট্রি অফ হিন্দু কেমিস্ট্রি' গ্রন্থটি কার লেখা?", opts: ["ডা. মহেন্দ্রলাল সরকার", "আচার্য প্রফুল্লচন্দ্র রায়", "জগদীশচন্দ্র বসু", "মেঘনাদ সাহা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রাচীন ভারতের রসায়ন চর্চার ইতিহাস তুলে ধরতে আচার্য প্রফুল্লচন্দ্র রায় এই অসামান্য গ্রন্থটি রচনা করেন।" },
+        { q: "৯. বেঙ্গল কেমিক্যালস কে প্রতিষ্ঠা করেন?", opts: ["তারকনাথ পালিত", "নীলরতন সরকার", "আচার্য প্রফুল্লচন্দ্র রায়", "উপেন্দ্রকিশোর রায়চৌধুরী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতে রাসায়নিক শিল্প ও স্বদেশি শিল্পের বিকাশে আচার্য প্রফুল্লচন্দ্র রায় ১৯০১ সালে বেঙ্গল কেমিক্যালস প্রতিষ্ঠা করেন。" },
+        { q: "১০. কলকাতা মেডিক্যাল কলেজ কবে প্রতিষ্ঠিত হয়?", opts: ["১৮১৭ খ্রিস্টাব্দে", "১৮৩৫ খ্রিস্টাব্দে", "১৮৫৭ খ্রিস্টাব্দে", "১৯০৬ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতে পাশ্চাত্য চিকিৎসা বিজ্ঞান চর্চার প্রধান কেন্দ্র হিসেবে ১৮৩৫ খ্রিস্টাব্দে কলকাতা মেডিক্যাল কলেজ প্রতিষ্ঠিত হয়।" },
+        { q: "১১. কলকাতা মেডিক্যাল কলেজে সর্বপ্রথম শবব্যবচ্ছেদ কে করেছিলেন?", opts: ["ডা. মহেন্দ্রলাল সরকার", "কাদম্বিনী গঙ্গোপাধ্যায়", "মধুসূদন গুপ্ত", "রাধাগোবিন্দ কর"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সামাজিক কুসংস্কার ভেঙে ১৮৩৬ সালে কলকাতা মেডিক্যাল কলেজে মধুসূদন গুপ্ত প্রথম শবব্যবচ্ছেদ করেছিলেন。" },
+        { q: "১২. জাতীয় বিজ্ঞান আকাদেমি কবে প্রতিষ্ঠিত হয়?", opts: ["১৯১৪ খ্রিস্টাব্দে", "১৯১৭ খ্রিস্টাব্দে", "১৯৩০ খ্রিস্টাব্দে", "১৯৩৫ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতে বিজ্ঞানচর্চার প্রসার ঘটাতে ১৯৩০ খ্রিস্টাব্দে জাতীয় বিজ্ঞান আকাদেমি প্রতিষ্ঠিত হয়。" },
+        { q: "১৩. রামন এফেক্ট কে আবিষ্কার করেন?", opts: ["সত্যেন্দ্রনাথ বসু", "মেঘনাদ সাহা", "চন্দ্রশেখর ভেঙ্কট রামন", "জগদীশচন্দ্র বসু"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বিখ্যাত পদার্থবিদ সি. ভি. রামন ১৯২৮ সালে রামন এফেক্ট আবিষ্কার করেন।" },
+        { q: "১৪. সি. ভি. রামন কবে নোবেল পুরস্কার পান?", opts: ["১৯১৩ খ্রিস্টাব্দে", "১৯২৮ খ্রিস্টাব্দে", "১৯৩০ খ্রিস্টাব্দে", "১৯৩৫ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> আলোর বিচ্ছুরণ সংক্রান্ত রামন এফেক্ট আবিষ্কারের জন্য তিনি ১৯৩০ সালে পদার্থবিদ্যায় নোবেল পুরস্কার লাভ করেন।" },
+        { q: "১৫. উপেন্দ্রকিশোর রায়চৌধুরী শিশুদের জন্য কোন্ বিখ্যাত পত্রিকা প্রকাশ করেন?", opts: ["সখা", "সন্দেশ", "মুকুল", "বালক"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯১৩ খ্রিস্টাব্দে শিশু ও কিশোরদের জন্য উপেন্দ্রকিশোর রায়চৌধুরী সন্দেশ পত্রিকা প্রকাশ করেন。" }
+    ]
+};
+
+// ============================================================
+// সেট ৩: কারিগরি শিক্ষার বিকাশ
+// ============================================================
+const SET3 = {
+    name: "Set 3",
+    icon: "⚙️",
+    topic: "কারিগরি শিক্ষার বিকাশ",
+    questions: [
+        { q: "১. জাতীয় শিক্ষা পরিষদ (National Council of Education) কবে গঠিত হয়?", opts: ["১৯০২ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে", "১৯০৬ খ্রিস্টাব্দে", "১৯১১ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বঙ্গভঙ্গ বিরোধী স্বদেশি আন্দোলনের সময় ঔপনিবেশিক শিক্ষার বিকল্প হিসেবে ১৯০৬ খ্রিস্টাব্দে জাতীয় শিক্ষা পরিষদ গঠিত হয়।" },
+        { q: "২. জাতীয় শিক্ষা পরিষদের প্রথম সভাপতি কে ছিলেন?", opts: ["অরবিন্দ ঘোষ", "রাসবিহারী ঘোষ", "হীরেন্দ্রনাথ দত্ত", "সতীশচন্দ্র মুখোপাধ্যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিশিষ্ট আইনজীবী ও জাতীয়তাবাদী নেতা রাসবিহারী ঘোষ জাতীয় শিক্ষা পরিষদের প্রথম সভাপতি নিযুক্ত হন।" },
+        { q: "৩. বেঙ্গল টেকনিক্যাল ইনস্টিটিউট (BTI) কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৫৬ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে", "১৯০৬ খ্রিস্টাব্দে", "১৯১৪ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> স্বদেশি যুগে কারিগরি শিক্ষার প্রসারের উদ্দেশ্যে ১৯০৬ খ্রিস্টাব্দের ২৫ জুলাই বেঙ্গল টেকনিক্যাল ইনস্টিটিউট প্রতিষ্ঠিত হয়।" },
+        { q: "৪. বেঙ্গল টেকনিক্যাল ইনস্টিটিউটের প্রথম অধ্যক্ষ কে ছিলেন?", opts: ["প্রমথনাথ বসু", "অরবিন্দ ঘোষ", "নীলরতন সরকার", "তারকনাথ পালিত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জাতীয়তাবাদী ভাবধারায় প্রতিষ্ঠিত এই কারিগরি শিক্ষা প্রতিষ্ঠানের প্রথম অধ্যক্ষের দায়িত্ব গ্রহণ করেন অরবিন্দ ঘোষ।" },
+        { q: "৫. যাদবপুর বিশ্ববিদ্যালয় কবে প্রতিষ্ঠিত হয়?", opts: ["১৯০৬ খ্রিস্টাব্দে", "১৯২১ খ্রিস্টাব্দে", "১৯৪৭ খ্রিস্টাব্দে", "১৯৫৫ খ্রিস্টাব্দে"], ans: 3, exp: "<b>ব্যাখ্যা:</b> বেঙ্গল টেকনিক্যাল ইনস্টিটিউট (BTI) পরবর্তীতে ১৯৫৫ খ্রিস্টাব্দে যাদবপুর বিশ্ববিদ্যালয় রূপে আত্মপ্রকাশ করে।" },
+        { q: "৬. শিবপুর ইঞ্জিনিয়ারিং কলেজ কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৩৫ খ্রিস্টাব্দে", "১৮৫৬ খ্রিস্টাব্দে", "১৯০৬ খ্রিস্টাব্দে", "১৯১৪ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতে আধুনিক ইঞ্জিনিয়ারিং শিক্ষার অন্যতম প্রাচীন প্রতিষ্ঠান হিসেবে ১৮৫৬ খ্রিস্টাব্দে শিবপুর ইঞ্জিনিয়ারিং কলেজ প্রতিষ্ঠিত হয়।" },
+        { q: "৭. 'গোলদিঘির গোলামখানা' কাকে বলা হত?", opts: ["প্রেসিডেন্সি কলেজকে", "কলকাতা বিশ্ববিদ্যালয়কে", "হিন্দু কলেজকে", "ফোর্ট উইলিয়াম কলেজকে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ঔপনিবেশিক ব্রিটিশ শিক্ষাব্যবস্থায় কলকাতা বিশ্ববিদ্যালয় কেরানি তৈরির কারখানায় পরিণত হয়েছে মনে করে ব্যঙ্গ করে একে গোলদিঘির গোলামখানা বলা হত।" },
+        { q: "৮. 'স্বদেশি আন্দোলন ও বাংলার কারিগরি শিক্ষা' বিষয়ে ডন সোসাইটি কে প্রতিষ্ঠা করেন?", opts: ["অরবিন্দ ঘোষ", "সতীশচন্দ্র মুখোপাধ্যায়", "রাসবিহারী ঘোষ", "তারকনাথ পালিত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ছাত্রদের মধ্যে স্বদেশি চেতনা ও কারিগরি শিক্ষার প্রতি আগ্রহ বাড়াতে সতীশচন্দ্র মুখোপাধ্যায় ১৯০২ সালে ডন সোসাইটি প্রতিষ্ঠা করেন।" },
+        { q: "৯. কার্লাইল সার্কুলার কবে জারি হয়?", opts: ["১৯০২ খ্রিস্টাব্দে", "১৯০৪ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে", "১৯০৬ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বঙ্গভঙ্গ বিরোধী আন্দোলনে ছাত্রদের অংশগ্রহণ রুখতে ব্রিটিশ সরকার ১৯০৫ খ্রিস্টাব্দে কুখ্যাত কার্লাইল সার্কুলার জারি করে।" },
+        { q: "১০. অ্যান্টি-সার্কুলার সোসাইটি কে প্রতিষ্ঠা করেন?", opts: ["সতীশচন্দ্র মুখোপাধ্যায়", "শচীন্দ্রপ্রসাদ বসু", "কৃষ্ণকুমার মিত্র", "সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কার্লাইল সার্কুলারের প্রতিবাদে এবং বিতাড়িত ছাত্রদের বিকল্প শিক্ষার ব্যবস্থা করতে শচীন্দ্রপ্রসাদ বসু অ্যান্টি-সার্কুলার সোসাইটি প্রতিষ্ঠা করেন।" },
+        { q: "১১. জাতীয় শিক্ষা পরিষদের উদ্দেশ্য কী ছিল?", opts: ["পাশ্চাত্য ভাষার প্রসার", "স্বদেশি আদর্শে শিক্ষাদান", "ব্রিটিশদের সাহায্য করা", "কেরানি তৈরি করা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ঔপনিবেশিক শিক্ষার পরিবর্তে জাতীয়তাবোধ ও স্বদেশি আদর্শে ভারতীয়দের শিক্ষাদান করাই ছিল জাতীয় শিক্ষা পরিষদের মূল উদ্দেশ্য।" },
+        { q: "১২. তারকনাথ পালিত কেন বিখ্যাত?", opts: ["জাতীয় কংগ্রেস প্রতিষ্ঠায়", "বেঙ্গল টেকনিক্যাল ইনস্টিটিউট প্রতিষ্ঠায় সাহায্য করার জন্য", "নীল বিদ্রোহের নেতা হিসেবে", "চিকিৎসাবিজ্ঞানে অবদানের জন্য"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ব্যারিস্টার তারকনাথ পালিতের বিশাল আর্থিক অনুদান ও উদ্যোগে বেঙ্গল টেকনিক্যাল ইনস্টিটিউট প্রতিষ্ঠিত হয়েছিল。" },
+        { q: "১৩. ডন সোসাইটি কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৭৬ খ্রিস্টাব্দে", "১৯০২ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে", "১৯০৬ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ব্রিটিশ প্রবর্তিত শিক্ষাব্যবস্থার ত্রুটিগুলি দূর করে ছাত্রদের স্বাবলম্বী করার উদ্দেশ্যে ১৯০২ সালে ডন সোসাইটি প্রতিষ্ঠিত হয়。" },
+        { q: "১৪. 'বেঙ্গল কেমিক্যালস অ্যান্ড ফার্মাসিউটিক্যালস' কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৭৬ খ্রিস্টাব্দে", "১৮৯৫ খ্রিস্টাব্দে", "১৯০১ খ্রিস্টাব্দে", "১৯০৬ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> স্বদেশি শিল্পের বিকাশে আচার্য প্রফুল্লচন্দ্র রায় ১৯০১ খ্রিস্টাব্দে বেঙ্গল কেমিক্যালস প্রতিষ্ঠা করেন。" },
+        { q: "১৫. 'বিদ্যা বণিক' কাকে বলা হয়?", opts: ["গঙ্গাকিশোর ভট্টাচার্য", "ঈশ্বরচন্দ্র বিদ্যাসাগর", "উপেন্দ্রকিশোর রায়চৌধুরী", "রামমোহন রায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বইয়ের ব্যাবসায় সফল বাণিজ্যিক উদ্যোগ গ্রহণ করার কারণে ঐতিহাসিক বিনয় ঘোষ ঈশ্বরচন্দ্র বিদ্যাসাগরকে বিদ্যা বণিক আখ্যা দিয়েছেন。" }
+    ]
+};
+
+// ============================================================
+// সেট ৪: রবীন্দ্রনাথের শিক্ষাচিন্তা ও বিশ্বভারতী
+// ============================================================
+const SET4 = {
+    name: "Set 4",
+    icon: "📖",
+    topic: "রবীন্দ্রনাথের শিক্ষাচিন্তা ও বিশ্বভারতী",
+    questions: [
+        { q: "১. বিশ্বভারতী বিশ্ববিদ্যালয়ের আনুষ্ঠানিক সূচনা কবে ঘটে?", opts: ["১৯০১ খ্রিস্টাব্দে", "১৯১৩ খ্রিস্টাব্দে", "১৯২১ খ্রিস্টাব্দে", "১৯৫১ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> শিক্ষার্থীকে শুধু প্রকৃতির মধ্যে নয়, মানুষের মধ্যে মুক্তি দেওয়ার আহ্বানে ১৯২১ খ্রিস্টাব্দের ২২ ডিসেম্বর বিশ্ববিদ্যালয় হিসেবে বিশ্বভারতীর আনুষ্ঠানিক সূচনা ঘটে。" },
+        { q: "২. 'বিদেশী শিক্ষাবিধি রেলকামরার দীপের মতো...' - এটি রবীন্দ্রনাথের কোন্ প্রবন্ধের উক্তি?", opts: ["শিক্ষার হেরফের", "শিক্ষার বিকিরণ", "শিক্ষা সমাজ", "তোতা কাহিনী"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ঔপনিবেশিক শিক্ষাব্যবস্থা যে সমাজে কিছু সুবিধাভোগী ও সাধারণ মানুষের মধ্যে বৈষম্য তৈরি করছে তা বোঝাতে রবীন্দ্রনাথ শিক্ষার বিকিরণ প্রবন্ধে এই উক্তিটি করেছিলেন।" },
+        { q: "৩. মাতৃভাষার মাধ্যমে শিক্ষার ওপর জোর দিতে গিয়ে কে বলেছিলেন 'মাতৃভাষা মাতৃদুগ্ধসম'?", opts: ["ঈশ্বরচন্দ্র বিদ্যাসাগর", "রবীন্দ্রনাথ ঠাকুর", "স্বামী বিবেকানন্দ", "রামমোহন রায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মাতৃভাষার মাধ্যমে শিক্ষার্থীর সার্বিক বিকাশে জোর দিতে গিয়ে রবীন্দ্রনাথ ঠাকুর তাঁর শিক্ষাদর্শে 'মাতৃভাষা মাতৃদুগ্ধসম' উক্তিটি করেছিলেন。" },
+        { q: "৪. রবীন্দ্রনাথ ঠাকুর কবে শান্তিনিকেতন আশ্রম প্রতিষ্ঠা করেন?", opts: ["১৮৬৩ খ্রিস্টাব্দে", "১৯০১ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে", "১৯২১ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রকৃতির কোলে মুক্তাঙ্গনে শিক্ষাদানের উদ্দেশ্যে রবীন্দ্রনাথ ঠাকুর ১৯০১ খ্রিস্টাব্দে শান্তিনিকেতনে ব্রহ্মচর্যাশ্রম প্রতিষ্ঠা করেন。" },
+        { q: "৫. বিশ্বভারতী কবে কেন্দ্রীয় বিশ্ববিদ্যালয়ের মর্যাদা পায়?", opts: ["১৯২১ খ্রিস্টাব্দে", "১৯৪৭ খ্রিস্টাব্দে", "১৯৫১ খ্রিস্টাব্দে", "১৯৫৬ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> স্বাধীনতার পর ১৯৫১ খ্রিস্টাব্দে ভারত সরকার বিশ্বভারতীকে কেন্দ্রীয় বিশ্ববিদ্যালয়ের (Central University) মর্যাদা প্রদান করে。" },
+        { q: "৬. বিশ্বভারতীর প্রথম উপাচার্য কে ছিলেন?", opts: ["রবীন্দ্রনাথ ঠাকুর", "রথীন্দ্রনাথ ঠাকুর", "ইন্দিরা দেবী চৌধুরানী", "ক্ষিতিমোহন সেন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯৫১ সালে বিশ্বভারতী কেন্দ্রীয় বিশ্ববিদ্যালয়ের মর্যাদা পাওয়ার পর রবীন্দ্রনাথের জ্যেষ্ঠ পুত্র রথীন্দ্রনাথ ঠাকুর এর প্রথম উপাচার্য নিযুক্ত হন。" },
+        { q: "৭. রবীন্দ্রনাথের শিক্ষাচিন্তার মূল ভিত্তি কী ছিল?", opts: ["কেবলমাত্র পাশ্চাত্য শিক্ষা", "প্রকৃতি, মানুষ ও শিক্ষার সমন্বয়", "ধর্মীয় শিক্ষা", "যান্ত্রিক ও পুথিগত শিক্ষা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> রবীন্দ্রনাথ মনে করতেন প্রকৃত শিক্ষা কেবল চার দেওয়ালের মধ্যে সীমাবদ্ধ নয়, বরং প্রকৃতি ও মানুষের সঙ্গে গভীর সংযোগই শিক্ষার মূল ভিত্তি。" },
+        { q: "৮. শ্রীনিকেতন কবে প্রতিষ্ঠিত হয়?", opts: ["১৯০১ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে", "১৯২১ খ্রিস্টাব্দে", "১৯২২ খ্রিস্টাব্দে"], ans: 3, exp: "<b>ব্যাখ্যা:</b> পল্লি উন্নয়ন ও গ্রাম পুনর্গঠনের লক্ষ্যে রবীন্দ্রনাথ শান্তিনিকেতনের অদূরে ১৯২২ খ্রিস্টাব্দে শ্রীনিকেতন প্রতিষ্ঠা করেন。" },
+        { q: "৯. শ্রীনিকেতন প্রতিষ্ঠার মূল উদ্দেশ্য কী ছিল?", opts: ["উচ্চশিক্ষার প্রসার", "পল্লি পুনর্গঠন ও কারিগরি শিক্ষা", "রাজনৈতিক আন্দোলন", "সামরিক প্রশিক্ষণ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> গ্রামের সাধারণ মানুষের অর্থনৈতিক ও সামাজিক উন্নয়ন এবং কৃষির পাশাপাশি কুটিরশিল্প ও কারিগরি শিক্ষার প্রসার ঘটানোই ছিল শ্রীনিকেতনের উদ্দেশ্য。" },
+        { q: "১০. রবীন্দ্রনাথ ঠাকুর কাকে বিশ্বভারতীর কাজে সাহায্য করার জন্য আমন্ত্রণ জানান?", opts: ["প্যাট্রিক গেডেস", "লিওনার্ড এলমহার্স্ট", "লর্ড কার্জন", "চার্লস অ্যান্ড্রুজ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শ্রীনিকেতন প্রতিষ্ঠা ও পল্লি উন্নয়নের কাজে সাহায্য করার জন্য রবীন্দ্রনাথ ইংরেজ কৃষি-অর্থনীতিবিদ লিওনার্ড এলমহার্স্টকে ভারতে আমন্ত্রণ জানান।" },
+        { q: "১১. রবীন্দ্রনাথের লেখা একটি শিক্ষামূলক প্রবন্ধের নাম কী?", opts: ["গোরা", "শিক্ষার হেরফের", "আনন্দমঠ", "বর্তমান ভারত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> রবীন্দ্রনাথ তাঁর শিক্ষার হেরফের প্রবন্ধে ঔপনিবেশিক শিক্ষাব্যবস্থার ত্রুটিগুলি তুলে ধরে মাতৃভাষায় শিক্ষার ওপর জোর দিয়েছিলেন。" },
+        { q: "১২. রবীন্দ্রনাথ ঠাকুর নোবেল পুরস্কার কবে পান?", opts: ["১৯০৫ খ্রিস্টাব্দে", "১৯১১ খ্রিস্টাব্দে", "১৯১৩ খ্রিস্টাব্দে", "১৯২১ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> তাঁর বিখ্যাত কাব্যগ্রন্থ গীতাঞ্জলি (Song Offerings)-এর জন্য ১৯১৩ খ্রিস্টাব্দে তিনি সাহিত্যে নোবেল পুরস্কার লাভ করেন。" },
+        { q: "১৩. রবীন্দ্রনাথের মতে প্রকৃত শিক্ষা কী?", opts: ["যা মানুষকে কেরানি বানায়", "যা মানুষকে প্রকৃতির সঙ্গে যুক্ত করে", "যা কেবল অর্থ উপার্জন শেখায়", "যা কেবল পরীক্ষা পাস করতে শেখায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> রবীন্দ্রনাথ মনে করতেন যে শিক্ষা মানুষকে চার দেওয়ালের বন্দিদশা থেকে মুক্ত করে প্রকৃতির সঙ্গে একাত্ম করে, তাই-ই প্রকৃত শিক্ষা。" },
+        { q: "১৪. শান্তিনিকেতন আশ্রম কে প্রথম শুরু করেন?", opts: ["দ্বারকানাথ ঠাকুর", "মহর্ষি দেবেন্দ্রনাথ ঠাকুর", "রবীন্দ্রনাথ ঠাকুর", "অবনীন্দ্রনাথ ঠাকুর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> রবীন্দ্রনাথের পিতা মহর্ষি দেবেন্দ্রনাথ ঠাকুর ১৮৬৩ খ্রিস্টাব্দে বোলপুরের কাছে ভুবনডাঙায় এই আশ্রম প্রতিষ্ঠা করেছিলেন。" },
+        { q: "১৫. শান্তিনিকেতনে রবীন্দ্রনাথ কোন্ পদ্ধতিতে শিক্ষাদানের পক্ষপাতী ছিলেন?", opts: ["যান্ত্রিক পদ্ধতি", "মুক্তাঙ্গনে প্রকৃতির কোলে শিক্ষাদান", "শুধুমাত্র ইংরেজি ভাষায় শিক্ষাদান", "কঠোর শাস্তির মাধ্যমে শিক্ষাদান"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রাচীন তপোবনের আদর্শে অনুপ্রাণিত হয়ে রবীন্দ্রনাথ চার দেওয়ালের বাইরে মুক্তাঙ্গনে প্রকৃতির কোলে শিক্ষাদানের পক্ষপাতী ছিলেন。" }
+    ]
+};
+
+// ============================================================
+// সেট ৫: ছাপাখানার বিস্তার ও প্রকাশনার গভীর তথ্য
+// ============================================================
+const SET5 = {
+    name: "Set 5",
+    icon: "📚",
+    topic: "ছাপাখানার বিস্তার ও প্রকাশনার গভীর তথ্য",
+    questions: [
+        { q: "১. প্রথম বাঙালি প্রকাশক ও পুস্তক বিক্রেতা কে ছিলেন?", opts: ["ঈশ্বরচন্দ্র বিদ্যাসাগর", "উপেন্দ্রকিশোর রায়চৌধুরী", "গঙ্গাকিশোর ভট্টাচার্য", "উইলিয়াম কেরি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> শ্রীরামপুর মিশনে কম্পোজিটর হিসেবে কাজ করা গঙ্গাকিশোর ভট্টাচার্য ছিলেন প্রথম বাঙালি প্রকাশক ও পুস্তক বিক্রেতা, যিনি বাঙ্গালা গেজেটি প্রেস স্থাপন করেন।" },
+        { q: "২. 'বাঙ্গালা গেজেটি' কবে প্রকাশিত হয়?", opts: ["১৭৮০ খ্রিস্টাব্দে", "১৮০০ খ্রিস্টাব্দে", "১৮১৮ খ্রিস্টাব্দে", "১৮৩৫ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> গঙ্গাকিশোর ভট্টাচার্যের সম্পাদনায় ১৮১৮ খ্রিস্টাব্দে প্রথম সচিত্র বাংলা সাপ্তাহিক সংবাদপত্র বাঙ্গালা গেজেটি প্রকাশিত হয়。" },
+        { q: "৩. 'সমাচার দর্পণ' পত্রিকার সম্পাদক কে ছিলেন?", opts: ["জন ক্লার্ক মার্শম্যান", "উইলিয়াম কেরি", "জেমস অগাস্টাস হিকি", "গঙ্গাকিশোর ভট্টাচার্য"], ans: 0, exp: "<b>ব্যাখ্যা:</b> শ্রীরামপুর মিশন থেকে ১৮১৮ সালে প্রকাশিত বাংলা ভাষার প্রথম সাপ্তাহিক পত্রিকা সমাচার দর্পণ-এর সম্পাদক ছিলেন জে. সি. মার্শম্যান।" },
+        { q: "৪. 'দিগদর্শন' কী ধরনের পত্রিকা ছিল?", opts: ["সাপ্তাহিক পত্রিকা", "পাক্ষিক পত্রিকা", "মাসিক পত্রিকা", "দৈনিক পত্রিকা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৮১৮ সালের এপ্রিলে শ্রীরামপুর মিশন থেকে প্রকাশিত দিগদর্শন ছিল বাংলা ভাষার প্রথম মাসিক পত্রিকা।" },
+        { q: "৫. শ্রীরামপুর ত্রয়ী কাদের বলা হয়?", opts: ["রামমোহন, বিদ্যাসাগর, ডিরোজিও", "কেরি, মার্শম্যান, ওয়ার্ড", "লালন, হাসন, সিরাজ", "হ্যালহেড, উইলকিন্স, পঞ্চানন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শ্রীরামপুর মিশন ও প্রেসের প্রতিষ্ঠাতা তিন মিশনারি— উইলিয়াম কেরি, জশুয়া মার্শম্যান এবং উইলিয়াম ওয়ার্ডকে একত্রে শ্রীরামপুর ত্রয়ী বলা হয়।" },
+        { q: "৬. শিশুশিক্ষার বই 'শিশু শিক্ষা' (১৮৪৯ খ্রি.) কে রচনা করেন?", opts: ["ঈশ্বরচন্দ্র বিদ্যাসাগর", "মদনমোহন তর্কালংকার", "রামমোহন রায়", "ডেভিড হেয়ার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> শিশুশিক্ষার ক্ষেত্রে মাইলস্টোন হিসেবে ১৮৪৯ খ্রিস্টাব্দে মদনমোহন তর্কালংকার শিশু শিক্ষা নামক প্রাইমার বা অক্ষর পরিচয়ের বইটি লেখেন।" },
+        { q: "৭. ঈশ্বরচন্দ্র বিদ্যাসাগর ১৮৪৭ খ্রিস্টাব্দে কলকাতার কলেজ স্ট্রিটে যে বইয়ের দোকানটি খোলেন তার নাম কী ছিল?", opts: ["ইউ. রায় অ্যান্ড সন্স", "সংস্কৃত প্রেস ডিপজিটারি", "স্কুল বুক সোসাইটি", "সিটি বুক সোসাইটি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বইয়ের ব্যাবসাকে উন্নত পর্যায়ে নিয়ে যেতে বিদ্যাসাগর ১৮৪৭ খ্রিস্টাব্দে সংস্কৃত প্রেস ডিপজিটারি নামে প্রথম বইয়ের দোকানঘর খোলেন。" },
+        { q: "৮. 'বর্ণপরিচয়' এর কয়টি ভাগ?", opts: ["একটি", "দুটি", "তিনটি", "চারটি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ঈশ্বরচন্দ্র বিদ্যাসাগর রচিত বাংলার অক্ষর পরিচয়ের এই ঐতিহাসিক বইটির দুটি ভাগ রয়েছে— প্রথম ভাগ ও দ্বিতীয় ভাগ。" },
+        { q: "৯. 'কথামালা' কে রচনা করেন?", opts: ["মদনমোহন তর্কালংকার", "রবীন্দ্রনাথ ঠাকুর", "ঈশ্বরচন্দ্র বিদ্যাসাগর", "উপেন্দ্রকিশোর রায়চৌধুরী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ঈশপের গল্পগুলিকে বাংলায় অনুবাদ করে বিদ্যাসাগর শিশুদের নীতিশিক্ষার জন্য ১৮৫৬ সালে কথামালা রচনা করেন。" },
+        { q: "১০. শিশুসাহিত্যিক উপেন্দ্রকিশোর রায়চৌধুরীর পূর্বনাম কী ছিল?", opts: ["কামদারঞ্জন রায়", "হরিকিশোর রায়", "সুকুমার রায়", "কালীনাথ রায়"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ময়মনসিংহের জমিদার হরিকিশোর রায়চৌধুরী তাঁকে দত্তক নেওয়ার আগে উপেন্দ্রকিশোরের পূর্বনাম ছিল কামদারঞ্জন রায়。" },
+        { q: "১১. উপেন্দ্রকিশোর রায়চৌধুরীর লেখা প্রথম বই কোনটি?", opts: ["গুপী গায়েন বাঘা বাইন", "টুনটুনির বই", "ছেলেদের রামায়ণ", "আবোল-তাবোল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> যোগীন্দ্রনাথ সরকারের সিটি বুক সোসাইটি থেকে উপেন্দ্রকিশোরের লেখা প্রথম বই ছেলেদের রামায়ণ প্রকাশিত হয়েছিল。" },
+        { q: "১২. উপেন্দ্রকিশোর বিদেশে ছাপাখানার আধুনিক প্রযুক্তি শেখার জন্য কাকে পাঠান?", opts: ["সত্যজিৎ রায়কে", "সুকুমার রায়কে", "গগনেন্দ্রনাথ ঠাকুরকে", "সুবিনয় রায়কে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মুদ্রণ প্রযুক্তির উন্নত জ্ঞান অর্জনের জন্য তিনি তাঁর জ্যেষ্ঠ পুত্র সুকুমার রায়কে ইংল্যান্ডে পাঠিয়েছিলেন。" },
+        { q: "১৩. সন্দেশ পত্রিকা কবে প্রথম প্রকাশিত হয়?", opts: ["১৮৯৫ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে", "১৯১৩ খ্রিস্টাব্দে", "১৯২১ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উপেন্দ্রকিশোর রায়চৌধুরীর সম্পাদনায় ১৯১৩ খ্রিস্টাব্দে ছোটোদের জন্য এই বিখ্যাত মাসিক পত্রিকাটির প্রকাশ শুরু হয়。" },
+        { q: "১৪. হাফটোন ব্লক প্রিন্টিং পদ্ধতি কে আবিষ্কার করেন?", opts: ["পঞ্চানন কর্মকার", "চার্লস উইলকিন্স", "গঙ্গাকিশোর ভট্টাচার্য", "উপেন্দ্রকিশোর রায়চৌধুরী"], ans: 3, exp: "<b>ব্যাখ্যা:</b> প্রসেস ক্যামেরা ও মুদ্রণ কৌশল নিয়ে গবেষণা করে উপেন্দ্রকিশোর আধুনিক হাফটোন ব্লক প্রিন্টিং পদ্ধতি আবিষ্কার করেন。" },
+        { q: "১৫. 'ইউ. রায় অ্যান্ড সন্স' কবে প্রাইভেট লিমিটেড কোম্পানিতে পরিণত হয়?", opts: ["১৮৯৫ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে", "১৯১৪ খ্রিস্টাব্দে", "১৯২১ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উপেন্দ্রকিশোরের প্রতিষ্ঠিত এই প্রতিষ্ঠানটি ছাপাখানা জগতের এক মহীরুহ হিসেবে ১৯১৪ সালে লিমিটেড কোম্পানিতে রূপান্তরিত হয়。" }
+    ]
+};
+
+// ============================================================
+// সেট ৬: জাতীয় শিক্ষা পরিষদ ও কারিগরি শিক্ষা
+// ============================================================
+const SET6 = {
+    name: "Set 6",
+    icon: "🏛️",
+    topic: "জাতীয় শিক্ষা পরিষদ ও কারিগরি শিক্ষা",
+    questions: [
+        { q: "১. জাতীয় শিক্ষা পরিষদ গঠনের প্রস্তাব কে দেন?", opts: ["রবীন্দ্রনাথ ঠাকুর", "হীরেন্দ্রনাথ দত্ত", "সতীশচন্দ্র মুখোপাধ্যায়", "অরবিন্দ ঘোষ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯০৫ সালের ১৬ নভেম্বর পার্ক স্ট্রিটের এক সভায় বিশিষ্ট আইনজীবী ও পণ্ডিত হীরেন্দ্রনাথ দত্ত জাতীয় শিক্ষা পরিষদ গঠনের প্রস্তাব দেন।" },
+        { q: "২. জাতীয় শিক্ষা পরিষদের প্রথম সম্পাদক কে ছিলেন?", opts: ["হীরেন্দ্রনাথ দত্ত ও আশুতোষ চৌধুরী", "রাসবিহারী ঘোষ", "অরবিন্দ ঘোষ", "গুরুদাস বন্দ্যোপাধ্যায়"], ans: 0, exp: "<b>ব্যাখ্যা:</b> জাতীয় শিক্ষা পরিষদের সভাপতি ছিলেন রাসবিহারী ঘোষ এবং যুগ্ম সম্পাদক ছিলেন হীরেন্দ্রনাথ দত্ত ও আশুতোষ চৌধুরী。" },
+        { q: "৩. বেঙ্গল টেকনিক্যাল ইনস্টিটিউট বর্তমানে কী নামে পরিচিত?", opts: ["কলকাতা বিশ্ববিদ্যালয়", "প্রেসিডেন্সি বিশ্ববিদ্যালয়", "যাদবপুর বিশ্ববিদ্যালয়", "শিবপুর ইঞ্জিনিয়ারিং কলেজ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯০৬ সালে প্রতিষ্ঠিত বেঙ্গল টেকনিক্যাল ইনস্টিটিউট (BTI) পরবর্তীতে ১৯৫৫ সালে যাদবপুর বিশ্ববিদ্যালয় হিসেবে উন্নীত হয়。" },
+        { q: "৪. 'স্বদেশি ভাণ্ডার' কে স্থাপন করেন?", opts: ["সরলা দেবী চৌধুরানী", "রবীন্দ্রনাথ ঠাকুর", "সতীশচন্দ্র মুখোপাধ্যায়", "প্রফুল্লচন্দ্র রায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> স্বদেশি শিল্পের প্রসার এবং দেশীয় তাঁতিদের তৈরি কাপড় বিক্রির জন্য রবীন্দ্রনাথ ঠাকুর ১৮৯৭ খ্রিস্টাব্দে স্বদেশি ভাণ্ডার স্থাপন করেন。" },
+        { q: "৫. বাংলায় একটি জাতীয় বিশ্ববিদ্যালয় গড়ে তোলার জন্য রাজা সুবোধচন্দ্র মল্লিক কত টাকা দান করেছিলেন?", opts: ["পঞ্চাশ হাজার টাকা", "এক লক্ষ টাকা", "পাঁচ লক্ষ টাকা", "দশ লক্ষ টাকা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯০৫ খ্রিস্টাব্দে জাতীয় বিশ্ববিদ্যালয় গড়ে তোলার উদ্যোগে রাজা সুবোধচন্দ্র মল্লিক এক লক্ষ টাকা দান করেছিলেন。" },
+        { q: "৬. ১৯০৬ খ্রিস্টাব্দের আগস্ট মাসে প্রতিষ্ঠিত 'বেঙ্গল ন্যাশনাল কলেজ'-এর প্রথম অধ্যক্ষ কে ছিলেন?", opts: ["অরবিন্দ ঘোষ", "প্রমথনাথ বসু", "রবীন্দ্রনাথ ঠাকুর", "তারকনাথ পালিত"], ans: 0, exp: "<b>ব্যাখ্যা:</b> সাধারণ শিক্ষার জন্য প্রতিষ্ঠিত বেঙ্গল ন্যাশনাল কলেজের প্রথম অধ্যক্ষের দায়িত্ব গ্রহণ করেছিলেন জাতীয়তাবাদী নেতা শ্রী অরবিন্দ ঘোষ。" },
+        { q: "৭. কার্লাইল সার্কুলার, লিয়ন সার্কুলার, পেডলার সার্কুলার প্রভৃতি কী উদ্দেশ্যে জারি করা হয়েছিল?", opts: ["বিজ্ঞান শিক্ষার প্রসারে", "বঙ্গভঙ্গ আন্দোলনে ছাত্রদের অংশগ্রহণ বন্ধ করতে", "কারিগরি শিক্ষার উন্নতিতে", "ছাপাখানার প্রসারে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বঙ্গভঙ্গ বিরোধী আন্দোলনকে দুর্বল করার উদ্দেশ্যে এবং যাতে ছাত্ররা এতে যুক্ত হতে না পারে, সেজন্য ইংরেজ সরকার এই সার্কুলারগুলি জারি করে。" },
+        { q: "৮. রবীন্দ্রনাথ ঠাকুরের 'তোতা কাহিনী' প্রবন্ধে কীসের সমালোচনা করা হয়েছে?", opts: ["ব্রিটিশ বিচারব্যবস্থার", "হিন্দুধর্মের গোঁড়ামির", "ঔপনিবেশিক শিক্ষার মুখস্থ ও যান্ত্রিক পদ্ধতির", "স্বদেশি আন্দোলনের"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ঔপনিবেশিক শিক্ষাব্যবস্থার ত্রুটি এবং যান্ত্রিক পদ্ধতিতে মুখস্থ বিদ্যার প্রসার বোঝাতে রবীন্দ্রনাথ ঠাকুর তাঁর তোতা কাহিনী প্রবন্ধে এর তীব্র সমালোচনা করেছেন。" },
+        { q: "৯. ডন সোসাইটি কোথায় প্রতিষ্ঠিত হয়?", opts: ["ঢাকায়", "কলকাতায়", "মেদিনীপুরে", "শ্রীরামপুরে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সতীশচন্দ্র মুখোপাধ্যায়ের উদ্যোগে ১৯০২ খ্রিস্টাব্দে কলকাতার মেট্রোপলিটান ইনস্টিটিউটে ডন সোসাইটি প্রতিষ্ঠিত হয়。" },
+        { q: "১০. যাদবপুর বিশ্ববিদ্যালয় প্রতিষ্ঠায় কোন্ শিক্ষাপ্রতিষ্ঠানের ভূমিকা সবচেয়ে বেশি?", opts: ["হিন্দু কলেজ", "বেঙ্গল ন্যাশনাল কলেজ", "বেঙ্গল টেকনিক্যাল ইনস্টিটিউট", "ডন সোসাইটি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কারিগরি শিক্ষার প্রসারে প্রতিষ্ঠিত বেঙ্গল টেকনিক্যাল ইনস্টিটিউটই (BTI) কালের বিবর্তনে যাদবপুর বিশ্ববিদ্যালয়ে রূপান্তরিত হয়。" },
+        { q: "১১. 'গোলদিঘির গোলামখানা' বলে কলকাতা বিশ্ববিদ্যালয়কে কে ব্যঙ্গ করেছিলেন?", opts: ["রবীন্দ্রনাথ ঠাকুর", "সতীশচন্দ্র মুখোপাধ্যায়", "ব্রহ্মবান্ধব উপাধ্যায়", "অরবিন্দ ঘোষ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> কলকাতা বিশ্ববিদ্যালয় শুধুমাত্র ব্রিটিশদের অনুগত কেরানি তৈরি করছে, এই যুক্তিতে ব্রহ্মবান্ধব উপাধ্যায় একে গোলদিঘির গোলামখানা বলে ব্যঙ্গ করেন。" },
+        { q: "১২. জাতীয় শিক্ষা পরিষদ কতগুলি বিদ্যালয় প্রতিষ্ঠা করেছিল?", opts: ["প্রায় ২৫টি", "প্রায় ৫০টি", "প্রায় ৭৫টি", "প্রায় ১০০টি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> জাতীয় শিক্ষা পরিষদের অনুপ্রেরণায় পূর্ব ও পশ্চিম বাংলা মিলিয়ে প্রায় ৭৫টি জাতীয় বিদ্যালয় প্রতিষ্ঠিত হয়েছিল。" },
+        { q: "১৩. কারিগরি শিক্ষার বিকাশে প্রমথনাথ বসুর ভূমিকা কী ছিল?", opts: ["তিনি বেঙ্গল কেমিক্যালস প্রতিষ্ঠা করেন", "তিনি বেঙ্গল টেকনিক্যাল ইনস্টিটিউটের অধ্যক্ষ হন", "তিনি প্রথম বাঙালি ইঞ্জিনিয়ার ছিলেন", "তিনি ডন সোসাইটি প্রতিষ্ঠা করেন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রখ্যাত ভূবিজ্ঞানী প্রমথনাথ বসু বেঙ্গল টেকনিক্যাল ইনস্টিটিউটের (BTI) অধ্যক্ষ হিসেবে কারিগরি শিক্ষার প্রসারে গুরুত্বপূর্ণ ভূমিকা রাখেন。" },
+        { q: "১৪. 'ইন্ডিয়ান সোসাইটি অফ ওরিয়েন্টাল আর্ট' কে প্রতিষ্ঠা করেন?", opts: ["রবীন্দ্রনাথ ঠাকুর", "গগনেন্দ্রনাথ ঠাকুর", "নন্দলাল বসু", "অবনীন্দ্রনাথ ঠাকুর"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ভারতীয় প্রাচ্য শিল্পের পুনরুজ্জীবন এবং স্বদেশি ভাবধারায় শিল্পচর্চার জন্য ১৯০৭ সালে অবনীন্দ্রনাথ ঠাকুর এটি প্রতিষ্ঠা করেন。" },
+        { q: "১৫. বেঙ্গল ন্যাশনাল স্কুল এন্ড কলেজের প্রথম সভাপতি কে ছিলেন?", opts: ["অরবিন্দ ঘোষ", "রাসবিহারী ঘোষ", "সতীশচন্দ্র মুখোপাধ্যায়", "তারকনাথ পালিত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জাতীয় শিক্ষা পরিষদের অধীনে ১৯০৬ সালে প্রতিষ্ঠিত বেঙ্গল ন্যাশনাল স্কুল ও কলেজের প্রথম সভাপতি ছিলেন রাসবিহারী ঘোষ。" }
+    ]
+};
+
+// ============================================================
+// সেট ৭: রবীন্দ্রভাবনা ও বিশ্বভারতী (গভীর তথ্য)
+// ============================================================
+const SET7 = {
+    name: "Set 7",
+    icon: "🕊️",
+    topic: "রবীন্দ্রভাবনা ও বিশ্বভারতী (গভীর তথ্য)",
+    questions: [
+        { q: "১. বিশ্বভারতীর আচার্য কে হন?", opts: ["পশ্চিমবঙ্গের রাজ্যপাল", "ভারতের রাষ্ট্রপতি", "ভারতের প্রধানমন্ত্রী", "পশ্চিমবঙ্গের মুখ্যমন্ত্রী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯৫১ সালের বিশ্বভারতী আইন অনুযায়ী ভারতের প্রধানমন্ত্রী পদাধিকারবলে বিশ্বভারতী বিশ্ববিদ্যালয়ের আচার্য হন。" },
+        { q: "২. রবীন্দ্রনাথ ঠাকুর কত সালে 'শিক্ষার হেরফের' প্রবন্ধ লেখেন?", opts: ["১৮৯২ সালে", "১৯০১ সালে", "১৯০৫ সালে", "১৯২১ সালে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ঔপনিবেশিক শিক্ষাব্যবস্থার গলদ তুলে ধরে রবীন্দ্রনাথ ১৮৯২ খ্রিস্টাব্দে শিক্ষার হেরফের প্রবন্ধটি রচনা করেন。" },
+        { q: "৩. বিশ্বভারতীকে কে 'ভারতের একটি জাতীয় তীর্থ' বলেছিলেন?", opts: ["জওহরলাল নেহরু", "মহাত্মা গান্ধি", "সুভাষচন্দ্র বসু", "অরবিন্দ ঘোষ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিশ্বভারতীর সর্বজনীন আদর্শ ও উন্মুক্ত পরিবেশ দেখে মুগ্ধ হয়ে মহাত্মা গান্ধি একে ভারতের একটি জাতীয় তীর্থ বলে অভিহিত করেছিলেন。" },
+        { q: "৪. শ্রীনিকেতন প্রতিষ্ঠায় রবীন্দ্রনাথকে কে আর্থিক সাহায্য করেন?", opts: ["লিওনার্ড এলমহার্স্ট", "ডরোথি এলমহার্স্ট", "তারকনাথ পালিত", "সুবোধচন্দ্র মল্লিক"], ans: 1, exp: "<b>ব্যাখ্যা:</b> গ্রামোন্নয়নের জন্য শ্রীনিকেতন গড়ে তোলার বিশাল আর্থিক দায়িত্ব গ্রহণ করেছিলেন লিওনার্ড এলমহার্স্টের স্ত্রী ডরোথি এলমহার্স্ট (স্ট্রেট)।" },
+        { q: "৫. ব্রতী বালক সংগঠন কে প্রতিষ্ঠা করেন?", opts: ["সতীশচন্দ্র মুখোপাধ্যায়", "স্বামী বিবেকানন্দ", "রবীন্দ্রনাথ ঠাকুর", "ভগিনী নিবেদিতা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> শান্তিনিকেতনের ছাত্রদের মধ্যে শৃঙ্খলবোধ ও সমাজসেবার আদর্শ গড়ে তুলতে রবীন্দ্রনাথ বয় স্কাউটদের আদলে ব্রতী বালক সংগঠন তৈরি করেন。" },
+        { q: "৬. শান্তিনিকেতনে 'পৌষ মেলা' কবে শুরু হয়?", opts: ["১৮৬৩ খ্রিস্টাব্দে", "১৮৯৪ খ্রিস্টাব্দে", "১৯০১ খ্রিস্টাব্দে", "১৯২১ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মহর্ষি দেবেন্দ্রনাথ ঠাকুরের ব্রাহ্মধর্মে দীক্ষা গ্রহণের দিনটিকে স্মরণ করে ১৮৯৪ সাল থেকে শান্তিনিকেতনে পৌষ মেলার সূচনা হয়。" },
+        { q: "৭. শান্তিনিকেতনে প্রথম কলাভবন কবে প্রতিষ্ঠিত হয়?", opts: ["১৯০১ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে", "১৯১৯ খ্রিস্টাব্দে", "১৯২১ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> শিল্প ও ললিতকলা চর্চার উদ্দেশ্যে ১৯১৯ খ্রিস্টাব্দে শান্তিনিকেতনে কলাভবন প্রতিষ্ঠিত হয়。" },
+        { q: "৮. কলাভবনের প্রথম অধ্যক্ষ কে ছিলেন?", opts: ["অবনীন্দ্রনাথ ঠাকুর", "গগনেন্দ্রনাথ ঠাকুর", "রামকিঙ্কর বেইজ", "নন্দলাল বসু"], ans: 3, exp: "<b>ব্যাখ্যা:</b> শান্তিনিকেতনের কলাভবনের দায়িত্বভার গ্রহণ করেন প্রখ্যাত চিত্রশিল্পী নন্দলাল বসু。" },
+        { q: "৯. বিশ্বভারতীর বিদ্যাভবনে প্রথম কে গবেষণা শুরু করেন?", opts: ["ক্ষিতিমোহন সেন", "বিধুশেখর শাস্ত্রী", "সুকুমার সেন", "রথীন্দ্রনাথ ঠাকুর"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বিশ্বভারতীর বিদ্যাভবনে প্রাচীন ভারতীয় সংস্কৃতি ও ধর্ম নিয়ে প্রথম গবেষণার কাজ শুরু করেন পণ্ডিত ক্ষিতিমোহন সেন。" },
+        { q: "১০. 'রাশিয়ার চিঠি' গ্রন্থে রবীন্দ্রনাথ কীসের প্রশংসা করেছেন?", opts: ["রাশিয়ার সামরিক শক্তির", "রাশিয়ার কৃষি ব্যবস্থার", "রাশিয়ার সর্বজনীন শিক্ষাব্যবস্থার", "রাশিয়ার শিল্পায়নের"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯৩০ সালে রাশিয়া ভ্রমণ করে রবীন্দ্রনাথ সেদেশের গণশিক্ষার বিস্তার ও সর্বজনীন শিক্ষাব্যবস্থা দেখে গভীরভাবে মুগ্ধ হয়ে রাশিয়ার চিঠি রচনা করেন。" },
+        { q: "১১. রবীন্দ্রনাথের শিক্ষাদর্শনের মূল কথা কী ছিল?", opts: ["কঠোর নিয়মকানুন", "স্বাধীন ও আনন্দময় পরিবেশে শিক্ষা", "কেবল পুঁথিগত শিক্ষা", "ধর্মীয় অনুশাসন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> রবীন্দ্রনাথ মনে করতেন শিক্ষা হবে আনন্দময়, যেখানে শিশু প্রকৃতির কোলে স্বাধীনভাবে নিজের সুপ্ত প্রতিভার বিকাশ ঘটাতে পারবে。" },
+        { q: "১২. বিশ্বভারতী কথার অর্থ কী?", opts: ["বিশ্বের বিশ্ববিদ্যালয়", "বিশ্বের সঙ্গে ভারতের মিলন", "ভারতের বিশ্বরূপ", "বিশ্বের ভারত জ্ঞান"], ans: 1, exp: "<b>ব্যাখ্যা:</b> যে প্রতিষ্ঠানে ভারত সমগ্র বিশ্বের সঙ্গে এক নীড়ে মিলিত হতে পারে, সেই আদর্শ থেকেই বিশ্বভারতী নামকরণ করা হয় ('যত্র বিশ্বং ভবত্যেকনীড়ম')।" },
+        { q: "১৩. শান্তিনিকেতন আশ্রমের পূর্ব নাম কী ছিল?", opts: ["ভুবনডাঙা", "বোলপুর", "খোয়াই", "কোপাই"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মহর্ষি দেবেন্দ্রনাথ ঠাকুর ভুবনডাঙা নামক একটি নির্জন স্থানে জমি কিনে সেখানে শান্তিনিকেতন আশ্রম গড়ে তুলেছিলেন。" },
+        { q: "১৪. শান্তিনিকেতনের হিন্দি ভবনের প্রতিষ্ঠাতা কে ছিলেন?", opts: ["রবীন্দ্রনাথ ঠাকুর", "হাজারিপ্রসাদ দ্বিবেদী", "ক্ষতিমোহন সেন", "মহাত্মা গান্ধি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> হিন্দি ভাষা ও সাহিত্যের গবেষণার জন্য বিশ্বভারতীতে পণ্ডিত হাজারিপ্রসাদ দ্বিবেদীর উদ্যোগে হিন্দি ভবন প্রতিষ্ঠিত হয়。" },
+        { q: "১৫. ১৯৫৬ খ্রিস্টাব্দে বিশ্বভারতীর উপাচার্যের পদ কে লাভ করেন?", opts: ["রথীন্দ্রনাথ ঠাকুর", "ইন্দিরা দেবী চৌধুরানী", "অমর্ত্য সেন", "সত্যজিৎ রায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> রবীন্দ্রনাথের জ্যেষ্ঠপুত্র রথীন্দ্রনাথ ঠাকুরের পর পরবর্তীকালে ১৯৫৬ খ্রিস্টাব্দে তাঁর ভ্রাতুষ্পুত্রী ইন্দিরা দেবী চৌধুরানী উপাচার্যের পদ লাভ করেছিলেন。" }
+    ]
+};
+
+// ============================================================
+// সেট ৮: বিকল্প উদ্যোগের বিবিধ অংশ
+// ============================================================
+const SET8 = {
+    name: "Set 8",
+    icon: "🧩",
+    topic: "বিকল্প উদ্যোগের বিবিধ অংশ",
+    questions: [
+        { q: "১. ১৮০৭ খ্রিস্টাব্দে বাবুরাম কোন্ প্রেসটি প্রতিষ্ঠা করেছিলেন?", opts: ["হিন্দুস্তানি প্রেস", "সংস্কৃত প্রেস", "শ্রীরামপুর মিশন প্রেস", "অনারেবল কোম্পানিজ প্রেস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উনবিংশ শতাব্দীর গোড়ায় ছাপাখানার প্রসারের যুগে ১৮০৭ খ্রিস্টাব্দে বাবুরামের উদ্যোগে সংস্কৃত প্রেস গড়ে উঠেছিল。" },
+        { q: "২. 'বাঙ্গালা ব্যাকরণ' গ্রন্থটি কে রচনা করেন?", opts: ["উইলিয়াম কেরি", "হ্যালহেড", "রামমোহন রায়", "মৃত্যুঞ্জয় বিদ্যালংকার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নাথানিয়েল ব্রাসি হ্যালহেড বাংলা ভাষার প্রথম পূর্ণাঙ্গ ব্যাকরণ এ গ্রামার অফ দ্য বেঙ্গল ল্যাঙ্গুয়েজ (১৭৭৮) রচনা করেন。" },
+        { q: "৩. ফোর্ট উইলিয়াম কলেজ কবে প্রতিষ্ঠিত হয়?", opts: ["১৭৭৮ খ্রিস্টাব্দে", "১৮০০ খ্রিস্টাব্দে", "১৮১৭ খ্রিস্টাব্দে", "১৮৩৫ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ব্রিটিশ সিভিলিয়ানদের ভারতীয় ভাষা ও সংস্কৃতি শেখানোর জন্য লর্ড ওয়েলেসলি ১৮০০ খ্রিস্টাব্দে ফোর্ট উইলিয়াম কলেজ প্রতিষ্ঠা করেন。" },
+        { q: "৪. ছাপাখানা ও বইয়ের ব্যাবসায়িক সাফল্যের জন্য অধ্যাপক বিনয় ঘোষ কাকে 'বিদ্যা বণিক' বলে অভিহিত করেছেন?", opts: ["গঙ্গাকিশোর ভট্টাচার্য", "উপেন্দ্রকিশোর রায়চৌধুরী", "ঈশ্বরচন্দ্র বিদ্যাসাগর", "মদনমোহন তর্কালংকার"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বইয়ের ব্যাবসায় অবাধ বাণিজ্য নীতি প্রয়োগ করে একচেটিয়া আধিপত্য বজায় রাখার জন্য বিনয় ঘোষ বিদ্যাসাগরকে বিদ্যা বণিক বলেছিলেন。" },
+        { q: "৫. প্রথম সচিত্র বাংলা বই 'অন্নদামঙ্গল' কার ছাপাখানা থেকে প্রকাশিত হয়েছিল?", opts: ["চার্লস উইলকিন্সের", "গঙ্গাকিশোর ভট্টাচার্যের", "উপেন্দ্রকিশোরের", "শ্রীরামপুর মিশন থেকে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রথম বাঙালি প্রকাশক গঙ্গাকিশোর ভট্টাচার্য তাঁর বাঙ্গালা গেজেটি প্রেস থেকে ভারতচন্দ্রের অন্নদামঙ্গল প্রকাশ করেন, যা ছিল প্রথম সচিত্র বাংলা বই。" },
+        { q: "৬. শ্রীরামপুর মিশন প্রেস থেকে কতগুলি ভাষায় বই ছাপা হত?", opts: ["প্রায় ১০টি", "প্রায় ২০টি", "প্রায় ৩০টি", "প্রায় ৪০টি"], ans: 3, exp: "<b>ব্যাখ্যা:</b> শ্রীরামপুর মিশন প্রেস অত্যন্ত উন্নত ছিল এবং সেখান থেকে ভারতের প্রায় ৪০টি বিভিন্ন আঞ্চলিক ভাষায় বই ছাপা হত。" },
+        { q: "৭. 'ক্যালকাটা জার্নাল' পত্রিকার সম্পাদক কে ছিলেন?", opts: ["জেমস অগাস্টাস হিকি", "জেমস সিল্ক বাকিংহাম", "উইলিয়াম কেরি", "জন ক্লার্ক মার্শম্যান"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮১৮ সালে জেমস সিল্ক বাকিংহামের সম্পাদনায় ক্যালকাটা জার্নাল প্রকাশিত হয়, যা সেকালের একটি অত্যন্ত প্রভাবশালী পত্রিকা ছিল。" },
+        { q: "৮. প্রথম বাংলা সাপ্তাহিক পত্রিকা কোনটি?", opts: ["দিগদর্শন", "বেঙ্গল গেজেট", "সমাচার দর্পণ", "সংবাদ প্রভাকর"], ans: 2, exp: "<b>ব্যাখ্যা:</b> শ্রীরামপুর মিশন থেকে জে. সি. মার্শম্যানের সম্পাদনায় ১৮১৮ সালের ২৩ মে সমাচার দর্পণ প্রকাশিত হয়, যা ছিল প্রথম বাংলা সাপ্তাহিক পত্রিকা。" },
+        { q: "৯. ক্যালকাটা স্কুল বুক সোসাইটি কবে প্রতিষ্ঠিত হয়?", opts: ["১৮১৭ খ্রিস্টাব্দে", "১৮১৮ খ্রিস্টাব্দে", "১৮৩৫ খ্রিস্টাব্দে", "১৮৫৪ খ্রিস্টাব্দে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ডেভিড হেয়ার ও রাধাকান্ত দেবের উদ্যোগে সুলভে ও বিনামূল্যে পাঠ্যপুস্তক বিতরণের জন্য ১৮১৭ খ্রিস্টাব্দে এটি প্রতিষ্ঠিত হয়。" },
+        { q: "১০. ক্যালকাটা স্কুল সোসাইটি কবে প্রতিষ্ঠিত হয়?", opts: ["১৮১৭ খ্রিস্টাব্দে", "১৮১৮ খ্রিস্টাব্দে", "১৮৩৫ খ্রিস্টাব্দে", "১৮৫৪ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> স্কুল বুক সোসাইটি প্রতিষ্ঠার ঠিক এক বছর পর ১৮১৮ খ্রিস্টাব্দে নতুন বিদ্যালয় স্থাপন ও শিক্ষার প্রসারে ক্যালকাটা স্কুল সোসাইটি প্রতিষ্ঠিত হয়。" },
+        { q: "১১. 'বেঙ্গল ইঞ্জিনিয়ারিং কলেজ' কোথায় অবস্থিত?", opts: ["যাদবপুরে", "কলকাতায়", "শিবপুরে", "খড়গপুরে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের প্রাচীনতম কারিগরি শিক্ষা প্রতিষ্ঠানগুলির মধ্যে অন্যতম বেঙ্গল ইঞ্জিনিয়ারিং কলেজ হাওড়ার শিবপুরে অবস্থিত。" },
+        { q: "১২. রবীন্দ্রনাথের মতে ঔপনিবেশিক শিক্ষার বৃহত্তর উদ্দেশ্য পালনে ব্যর্থ হওয়ার কারণ কী?", opts: ["এটি শুধুমাত্র ব্যাবহারিক ও উপার্জনের ছোটো লক্ষ্য পূরণ করে", "এটি সমাজতন্ত্র শেখায় না", "এটি প্রাচীন সংস্কৃত শেখায় না", "এটি বিজ্ঞানে অতিরিক্ত জোর দেয়"], ans: 0, exp: "<b>ব্যাখ্যা:</b> রবীন্দ্রনাথ মনে করতেন ঔপনিবেশিক শিক্ষা মানবজীবনের পূর্ণতাসাধন না করে শুধুমাত্র কেরানি তৈরি ও উপার্জনের ছোটো লক্ষ্য পূরণ করে。" },
+        { q: "১৩. রবীন্দ্রনাথের বিদ্যালয় জীবনকে সমাজ ও গ্রাম জীবনের সঙ্গে যুক্ত করার সফল রূপ কোনটি ছিল?", opts: ["ব্রহ্মচর্যাশ্রম", "শ্রীনিকেতন", "কলকাতা বিজ্ঞান কলেজ", "এশিয়াটিক সোসাইটি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> হাতেকলমে ব্যাবহারিক শিক্ষা এবং পল্লি উন্নয়নের জন্য শান্তিনিকেতনের কাছে সুরুল গ্রামে ১৯২২ সালে তিনি শ্রীনিকেতন প্রতিষ্ঠা করেন。" },
+        { q: "১৪. 'বসু বিজ্ঞান মন্দির' এর প্রতীক কী ছিল?", opts: ["বজ্র", "পদ্ম", "চক্র", "সূর্য"], ans: 0, exp: "<b>ব্যাখ্যা:</b> জগদীশচন্দ্র বসু স্থাপিত বসু বিজ্ঞান মন্দিরের প্রতীক বা লোগো হিসেবে বজ্র-কে গ্রহণ করা হয়েছিল。" },
+        { q: "১৫. 'প্রবাসী' পত্রিকার সম্পাদক কে ছিলেন?", opts: ["রবীন্দ্রনাথ ঠাকুর", "রামানন্দ চট্টোপাধ্যায়", "উপেন্দ্রকিশোর রায়চৌধুরী", "সুকুমার রায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯০১ সালে প্রখ্যাত সাংবাদিক রামানন্দ চট্টোপাধ্যায়ের সম্পাদনায় এলাহাবাদ থেকে প্রবাসী পত্রিকাটির প্রকাশ শুরু হয়。" }
+    ]
+};
+
+// ============================================================
+// সব সেট একত্রে
+// ============================================================
+const QUIZ_SETS = {
+    "1": SET1,
+    "2": SET2,
+    "3": SET3,
+    "4": SET4,
+    "5": SET5,
+    "6": SET6,
+    "7": SET7,
+    "8": SET8
+};
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+let loggedInUser = null;
+let currentSetId = null;
+let questions = [];
+let score = 0;
+let wrongAnswers = 0;
+let userAnswers = {};
+let isReviewMode = false;
+let timerInterval;
+let timeLeft = TIME_LIMIT;
+
+window.onload = () => {
+    applyBranding();
+    buildHub();
+};
+
+function buildHub() {
+    const grid = document.getElementById('setGrid');
+    grid.innerHTML = '';
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+
+    for(let id in QUIZ_SETS) {
+        const set = QUIZ_SETS[id];
+        let attemptCount = 0;
+        let isLocked = false;
+
+        if(loggedInUser) {
+            attemptCount = userAttempts[loggedInUser + "_" + id] || 0;
+            isLocked = attemptCount >= MAX_ATTEMPTS;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'set-card';
+        let badge = '';
+        if(loggedInUser) {
+            badge = `<div class="attempt-badge ${isLocked ? 'locked' : ''} en-font">${isLocked ? 'সম্পূর্ণ' : attemptCount + '/' + MAX_ATTEMPTS}</div>`;
+        }
+
+        card.innerHTML = `
+            ${badge}
+            <div class="set-icon">${set.icon}</div>
+            <div class="set-name">${set.name}</div>
+            <div class="set-topic">${set.topic}</div>
+            <div class="set-meta-info en-font">
+                <span>${set.questions.length} Qs</span>
+                <span>10 Mins</span>
+            </div>
+        `;
+        card.onclick = () => { selectSet(id); };
+        grid.appendChild(card);
+    }
+}
+
+function selectSet(setId) {
+    if(loggedInUser) {
+        let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+        let attemptCount = userAttempts[loggedInUser + "_" + setId] || 0;
+        if(attemptCount >= MAX_ATTEMPTS) {
+            alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+            return;
+        }
+        startQuiz(setId);
+    } else {
+        currentSetId = setId;
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginError').classList.add('hidden');
+        document.getElementById('loginSetName').innerText = QUIZ_SETS[setId].name + ": " + QUIZ_SETS[setId].topic;
+        document.getElementById('loginModal').classList.remove('hidden');
+    }
+}
+
+function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+
+function doLogin() {
+    const u = document.getElementById('loginUsername').value.trim();
+    const p = document.getElementById('loginPassword').value.trim();
+    const err = document.getElementById('loginError');
+    const GLOBAL_USERS = JSON.parse(localStorage.getItem("testBazarGlobalUsers")) || {};
+
+    if(!u || !p) { err.innerText = "ইউজারনেম এবং পাসওয়ার্ড দিন!"; err.classList.remove('hidden'); return; }
+
+    if(GLOBAL_USERS[u] && GLOBAL_USERS[u] === p) {
+        loggedInUser = u;
+        document.getElementById('userDisplay').innerText = `👤 ${u}`;
+        closeLogin();
+        buildHub();
+        if(currentSetId) {
+            startQuiz(currentSetId);
+        }
+    } else {
+        err.innerText = "ইউজারনেম বা পাসওয়ার্ড ভুল!";
+        err.classList.remove('hidden');
+    }
+}
+
+function incrementAttempt(user, setId) {
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let key = user + "_" + setId;
+    userAttempts[key] = (userAttempts[key] || 0) + 1;
+    localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(userAttempts));
+}
+
+function startQuiz(setId) {
+    currentSetId = setId;
+    incrementAttempt(loggedInUser, setId);
+    questions = QUIZ_SETS[setId].questions;
+    userAnswers = {};
+    isReviewMode = false;
+    score = 0;
+    wrongAnswers = 0;
+    timeLeft = TIME_LIMIT;
+
+    document.getElementById('hubView').classList.add('hidden');
+    document.getElementById('resultModal').classList.add('hidden');
+    document.getElementById('quizView').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('danger');
+    document.getElementById('submitTestBtn').classList.remove('hidden');
+    document.getElementById('quizTitle').innerText = QUIZ_SETS[setId].name + " | " + QUIZ_SETS[setId].topic;
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tick, 1000);
+    renderQuestions();
+}
+
+function tick() {
+    timeLeft--;
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    document.getElementById('timerDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if (timeLeft <= 60) document.getElementById('timerBox').classList.add('danger');
+    if (timeLeft <= 0) { submitQuiz(); }
+}
+
+const LABELS = ['A', 'B', 'C', 'D'];
+
+function renderQuestions() {
+    const quizList = document.getElementById('quizList');
+    let html = '';
+    questions.forEach((q, i) => {
+        html += `<div class="q-block" id="qBlock_${i}">
+            <div class="q-text">${q.q}</div>
+            <div class="options-grid">`;
+        q.opts.forEach((opt, j) => {
+            html += `<div class="opt" id="opt_${i}_${j}" onclick="selectOpt(${i}, ${j})">
+                <div class="opt-circle">${LABELS[j]}</div>
+                <div class="opt-text">${opt}</div>
+            </div>`;
+        });
+        html += `</div>
+            <div class="explanation hidden" id="exp_${i}">${q.exp}</div>
+        </div>`;
+    });
+    quizList.innerHTML = html;
+    window.scrollTo(0, 0);
+}
+
+function selectOpt(qIdx, optIdx) {
+    if (isReviewMode) return;
+    userAnswers[qIdx] = optIdx;
+    const block = document.getElementById(`qBlock_${qIdx}`);
+    const opts = block.querySelectorAll('.opt');
+    opts.forEach(o => o.classList.remove('selected'));
+    document.getElementById(`opt_${qIdx}_${optIdx}`).classList.add('selected');
+}
+
+function submitQuiz() {
+    if (isReviewMode) return;
+    const answeredCount = Object.keys(userAnswers).length;
+    if (timeLeft > 0 && answeredCount < questions.length) {
+        const confirmSubmit = confirm(`আপনি মাত্র ${answeredCount} টি প্রশ্নের উত্তর দিয়েছেন। আপনি কি সত্যিই Test জমা দিতে চান?`);
+        if(!confirmSubmit) return;
+    }
+    isReviewMode = true;
+    clearInterval(timerInterval);
+    document.getElementById('timerBox').classList.add('hidden');
+    document.getElementById('submitTestBtn').classList.add('hidden');
+
+    score = 0;
+    wrongAnswers = 0;
+    questions.forEach((q, i) => {
+        const selected = userAnswers[i];
+        const block = document.getElementById(`qBlock_${i}`);
+        const opts = block.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.remove('selected'));
+        if (selected !== undefined) {
+            if (selected === q.ans) {
+                score++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('correct');
+            } else {
+                wrongAnswers++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('wrong');
+                document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+            }
+        } else {
+            document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+        }
+        document.getElementById(`exp_${i}`).classList.remove('hidden');
+    });
+
+    const skipped = questions.length - (score + wrongAnswers);
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('rbCorrect').textContent = score;
+    document.getElementById('rbWrong').textContent = wrongAnswers + skipped;
+
+    let icon = '💪', grade = 'চেষ্টা চালিয়ে যাও!';
+    if(pct >= 90) { icon = '🌟'; grade = 'অসাধারণ!'; }
+    else if(pct >= 70) { icon = '👍'; grade = 'খুব ভালো!'; }
+    else if(pct >= 50) { icon = '📚'; grade = 'ভালো চেষ্টা!'; }
+
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultGrade').textContent = grade;
+
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    let remaining = MAX_ATTEMPTS - attemptCount;
+    document.getElementById('attemptInfo').innerText = `বাকি আছে ${remaining} বার Test দেওয়ার সুযোগ (সর্বোচ্চ ${MAX_ATTEMPTS} বার)`;
+    document.getElementById('resultModal').classList.remove('hidden');
+}
+
+function closeResultModal() {
+    document.getElementById('resultModal').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+    closeResultModal();
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    if(attemptCount >= MAX_ATTEMPTS) {
+        alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+        document.getElementById('quizView').classList.add('hidden');
+        document.getElementById('hubView').classList.remove('hidden');
+        buildHub();
+        return;
+    }
+    startQuiz(currentSetId);
+}
+</script>
+</body>
+</html>
