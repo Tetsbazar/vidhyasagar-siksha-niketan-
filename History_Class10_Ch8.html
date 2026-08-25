@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 History Chapter 8</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #1a7a4a; --primary-hover: #2aad68; --accent: #f9a825;
+--bg-main: #f0faf4; --bg-card: #ffffff; --bg-selected: #e8f4ec;
+--text-main: #1c2e24; --text-meta: #5a7a66; --border-color: #c5dccb;
+--alert-danger: #dc3545; --correct: #28a745;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Tiro Bangla', serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+.en-font { font-family: 'Syne', sans-serif; }
+.hidden { display: none !important; }
+
+.header {
+background: #ffffff;
+box-shadow: 0 4px 20px rgba(10, 92, 54, 0.08);
+position: sticky;
+top: 0;
+z-index: 1000;
+border-bottom: 3px solid #0a5c36;
+}
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 8px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo-link {
+display: flex;
+align-items: center;
+gap: 10px;
+text-decoration: none;
+cursor: pointer;
+}
+.logo-emblem {
+width: 45px;
+height: 45px;
+background: linear-gradient(135deg, #0a5c36 0%, #1e824c 100%);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.4rem;
+font-weight: 800;
+color: white;
+box-shadow: 0 4px 12px rgba(10, 92, 54, 0.2);
+flex-shrink: 0;
+}
+.brand-text-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.coaching-main-title {
+font-size: 1.4rem;
+font-weight: 800;
+color: #0a5c36;
+letter-spacing: -0.5px;
+line-height: 1.1;
+}
+.coaching-subtitle {
+font-size: 0.75rem;
+color: #556c5e;
+font-weight: 700;
+letter-spacing: 0.3px;
+margin-top: 1px;
+text-transform: uppercase;
+}
+.coaching-tagline {
+font-size: 0.65rem;
+color: #f5a623;
+font-weight: 600;
+margin-top: 1px;
+letter-spacing: 0.1px;
+}
+.header-right {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.timer-box {
+background: rgba(10, 92, 54, 0.08);
+padding: 6px 15px;
+border-radius: 8px;
+font-weight: 700;
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+gap: 5px;
+color: #0a5c36;
+}
+.timer-box.danger { background: var(--alert-danger); color: white; animation: pulse 1s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.user-info { background: #0a5c36; color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; }
+
+.main-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.hub-header { text-align: center; margin-bottom: 30px; }
+.hub-header h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 10px; }
+.set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+.set-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+.set-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(26,122,74,0.1); }
+.set-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.set-name { font-size: 1.3rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; font-family: 'Syne', sans-serif;}
+.set-topic { font-size: 0.95rem; color: var(--text-meta); margin-bottom: 15px; height: 40px; }
+.set-meta-info { display: flex; justify-content: center; gap: 10px; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
+.set-meta-info span { background: var(--bg-main); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+.attempt-badge { position: absolute; top: 10px; right: 10px; background: #ffeeba; color: #856404; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+.attempt-badge.locked { background: var(--alert-danger); color: white; border: none; }
+
+.quiz-info { background: var(--bg-card); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+.q-block { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.q-text { font-size: 1.2rem; font-weight: bold; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
+.options-grid { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 1.05rem; }
+.opt:hover:not(.selected):not(.correct):not(.wrong) { background: var(--bg-main); border-color: var(--primary); }
+.opt.selected { background: var(--bg-selected); border-color: var(--primary); }
+.opt-circle { min-width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Syne', sans-serif; color: var(--text-meta); flex-shrink: 0; }
+.opt.selected .opt-circle { background: var(--primary); color: white; border-color: var(--primary); }
+.opt.correct { background: #e8f7ef; border-color: var(--correct); }
+.opt.correct .opt-circle { background: var(--correct); border-color: var(--correct); color: white; }
+.opt.wrong { background: #fdf0f0; border-color: var(--alert-danger); }
+.opt.wrong .opt-circle { background: var(--alert-danger); border-color: var(--alert-danger); color: white; }
+.explanation { margin-top: 15px; padding: 15px; background: #e8f4ec; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #2c4035; line-height: 1.5;}
+.btn-submit { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; font-family: 'Tiro Bangla', serif; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(26,122,74,0.2); transition: 0.2s; }
+.btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+.btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: bold;}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto;}
+.modal-box { background: white; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin: auto;}
+.modal-box input { width: 100%; padding: 12px 15px; margin: 10px 0; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: 'Syne', sans-serif; box-sizing: border-box; outline: none; transition: 0.2s; }
+.modal-box input:focus { border-color: var(--primary); }
+.result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto; padding: 20px; }
+.result-box { background: white; padding: 2.5rem 2rem; border-radius: 16px; width: 100%; max-width: 450px; text-align: center; margin: auto; }
+.result-score { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin: 15px 0; }
+.result-bars { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.result-bar { background: var(--bg-main); padding: 15px; border-radius: 12px; width: 100px; border: 1px solid var(--border-color); }
+
+@media (max-width: 768px) {
+.header-container { flex-direction: column; gap: 10px; text-align: center; padding: 10px 10px; }
+.logo-link { flex-direction: column; gap: 6px; }
+.brand-text-container { text-align: center; }
+.coaching-main-title { font-size: 1.2rem; }
+.coaching-subtitle { font-size: 0.7rem; }
+.coaching-tagline { font-size: 0.6rem; }
+.header-right { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="#" class="logo-link" onclick="location.reload(); return false;">
+            <div class="logo-emblem" id="dynamicEmblem">🇮🇳</div>
+            <div class="brand-text-container">
+                <span class="coaching-main-title" id="dynamicTitle">History - Chapter 8</span>
+                <span class="coaching-subtitle" id="dynamicSubtitle">উত্তর-ঔপনিবেশিক ভারত: বিশ শতকের দ্বিতীয় পর্ব (১৯৪৭-১৯৬৪)</span>
+                <span class="coaching-tagline" id="dynamicTagline">দশম শ্রেণি (Class 10)</span>
+            </div>
+        </a>
+        <div class="header-right">
+            <div class="timer-box en-font hidden" id="timerBox">⏱ <span id="timerDisplay">10:00</span></div>
+            <div class="user-info en-font" id="userDisplay" style="font-weight: bold;">👤 Guest</div>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <div id="hubView">
+        <div class="hub-header">
+            <h1 style="color: var(--primary); margin-bottom: 10px;">ইতিহাস - Class 10 Chapter 8</h1>
+            <p style="color: var(--text-meta);">উত্তর-ঔপনিবেশিক ভারত: বিশ শতকের দ্বিতীয় পর্ব (১৯৪৭-১৯৬৪)</p>
+        </div>
+        <div class="set-grid" id="setGrid"></div>
+        <div style="text-align:center; margin-top:40px;">
+            <button class="btn-primary" style="background:var(--text-meta); width: auto; padding: 12px 25px;" onclick="window.history.back()">← Main Dashboard-এ ফিরুন</button>
+        </div>
+    </div>
+
+    <div id="quizView" class="hidden">
+        <div class="quiz-info">
+            <div id="quizTitle">Set Name</div>
+            <div id="quizMetaInfo" class="en-font">15 Questions | 10 Mins</div>
+        </div>
+        <div id="quizList"></div>
+        <button class="btn-submit" id="submitTestBtn" onclick="submitQuiz()">Test জমা দিন ও ফলাফল দেখুন</button>
+    </div>
+
+</div>
+
+<div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-box">
+        <h2 style="color: var(--primary); margin-top:0;">লগইন করুন</h2>
+        <p style="color: var(--text-meta); margin-bottom: 15px; font-size: 0.9rem;">Test শুরু করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন</p>
+        <div id="loginSetName" style="background: var(--bg-main); padding: 8px; border-radius: 8px; font-weight:bold; color:var(--primary); margin-bottom:15px; font-family: 'Syne', sans-serif; font-size: 0.95rem;">Set Name</div>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()">
+        <div id="loginError" class="hidden" style="color: var(--alert-danger); margin: 10px 0; font-weight:bold; font-size: 0.9rem;"></div>
+        <div style="display: flex; gap: 10px; margin-top:15px; justify-content: center;">
+            <button class="btn-primary" style="width: 100%; padding: 12px;" onclick="doLogin()">লগইন করুন</button>
+            <button class="btn-primary" style="background: var(--alert-danger); width: 100%; padding: 12px;" onclick="closeLogin()">বাতিল</button>
+        </div>
+    </div>
+</div>
+
+<div class="result-overlay hidden" id="resultModal">
+    <div class="result-box">
+        <div style="font-size: 3.5rem; margin-bottom:0; line-height: 1;" id="resultIcon">🌟</div>
+        <h2 style="margin:10px 0; color: var(--text-main);">আপনার ফলাফল</h2>
+        <div class="result-score en-font" id="finalScore">100%</div>
+        <div id="resultGrade" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--accent);">অসাধারণ!</div>
+        <div class="result-bars">
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbCorrect">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">সঠিক</div>
+            </div>
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--alert-danger);" class="en-font" id="rbWrong">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">ভুল / স্কিপ</div>
+            </div>
+        </div>
+        <p style="background: var(--bg-main); padding: 10px; border-radius: 8px; color:var(--text-meta); font-weight:bold; font-size:0.95rem; margin-bottom:25px;" id="attemptInfo" class="en-font">বাকি আছে 9 বার</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="btn-primary" style="background: #28a745; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="closeResultModal()">উত্তর ও ব্যাখ্যা দেখুন</button>
+            <button class="btn-primary" style="background: #17a2b8; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="restartQuiz()">আবার চেষ্টা করো</button>
+            <button class="btn-primary" style="background: var(--text-meta); width: 100%; padding: 14px; font-size: 1.05rem;" onclick="window.location.reload()">Chapter Hub-এ ফিরুন</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// DYNAMIC BRANDING LOGIC
+// ============================================================
+const STORE_CONFIGS = {
+    "guru": {
+        title: "Guru Book Store Jhalda",
+        mainTitle: "Guru Book Store",
+        subtitle: "Jhalda",
+        tagline: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        emblem: "G"
+    },
+    "saraswati": {
+        title: "Saraswati Book Store",
+        mainTitle: "Saraswati Book Store",
+        subtitle: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        tagline: "শিক্ষা ও প্রগতির বিশ্বস্ত সঙ্গী",
+        emblem: "S"
+    }
+};
+
+function applyBranding() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let storeKey = urlParams.get('store') || localStorage.getItem("activeStore") || "";
+    storeKey = storeKey.toLowerCase();
+
+    if (storeKey && STORE_CONFIGS[storeKey]) {
+        const config = STORE_CONFIGS[storeKey];
+        document.title = `${config.title} - Class 10 History Chapter 8`;
+        document.getElementById("dynamicEmblem").innerText = config.emblem;
+        document.getElementById("dynamicTitle").innerText = config.mainTitle;
+        document.getElementById("dynamicSubtitle").innerText = config.subtitle;
+        document.getElementById("dynamicTagline").innerText = config.tagline;
+        localStorage.setItem("activeStore", storeKey);
+    } else {
+        document.title = "Class 10 History Chapter 8 - উত্তর-ঔপনিবেশিক ভারত: বিশ শতকের দ্বিতীয় পর্ব (১৯৪৭-১৯৬৪)";
+        document.getElementById("dynamicEmblem").innerText = "🇮🇳";
+        document.getElementById("dynamicTitle").innerText = "History - Chapter 8";
+        document.getElementById("dynamicSubtitle").innerText = "উত্তর-ঔপনিবেশিক ভারত: বিশ শতকের দ্বিতীয় পর্ব (১৯৪৭-১৯৬৪)";
+        document.getElementById("dynamicTagline").innerText = "দশম শ্রেণি (Class 10)";
+    }
+}
+
+// ============================================================
+// QUIZ DATA - 5 SETS (TOTAL 75 QUESTIONS)
+// ============================================================
+const STORAGE_KEY_ATTEMPTS = "testBazarAttempts_History_Ch8_Sets";
+const MAX_ATTEMPTS = 10;
+const TIME_LIMIT = 10 * 60;
+
+// ============================================================
+// সেট ১: দেশভাগ, উদ্বাস্তু সমস্যা ও স্মৃতিকথা
+// ============================================================
+const SET1 = {
+    name: "সেট ১",
+    icon: "🇮🇳",
+    topic: "দেশভাগ, উদ্বাস্তু সমস্যা ও স্মৃতিকথা",
+    questions: [
+        { q: "১. স্বাধীন ভারতের প্রথম গভর্নর জেনারেল কে ছিলেন?", opts: ["লর্ড মাউন্টব্যাটেন", "চক্রবর্তী রাজাগোপালাচারী", "জওহরলাল নেহরু", "সর্দার বল্লভভাই প্যাটেল"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ১৯৪৭ খ্রিস্টাব্দের ১৫ আগস্ট ভারত স্বাধীন হলে স্বাধীন ভারতের প্রথম গভর্নর জেনারেল নিযুক্ত হন লর্ড মাউন্টব্যাটেন।" },
+        { q: "২. স্বাধীন ভারতের প্রথম ভারতীয় গভর্নর জেনারেল কে ছিলেন?", opts: ["জওহরলাল নেহরু", "চক্রবর্তী রাজাগোপালাচারী", "ড. রাজেন্দ্র প্রসাদ", "সর্দার প্যাটেল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> লর্ড মাউন্টব্যাটেনের পর ১৯৪৮ সালের জুন মাসে স্বাধীন ভারতের প্রথম এবং শেষ ভারতীয় গভর্নর জেনারেল হন চক্রবর্তী রাজাগোপালাচারী।" },
+        { q: "৩. 'ছেড়ে আসা গ্রাম' গ্রন্থটি কে রচনা করেন?", opts: ["দক্ষিণারঞ্জন বসু", "প্রফুল্লচন্দ্র চক্রবর্তী", "হিরন্ময় বন্দ্যোপাধ্যায়", "আবু ইসহাক"], ans: 0, exp: "<b>ব্যাখ্যা:</b> দেশভাগের যন্ত্রণা ও মাতৃভূমি ছেড়ে আসার করুণ কাহিনি নিয়ে দক্ষিণারঞ্জন বসু 'ছেড়ে আসা গ্রাম' গ্রন্থটি সংকলন করেছিলেন।" },
+        { q: "৪. 'মার্জিনাল ম্যান' বা 'প্রান্তিক মানব' গ্রন্থের রচয়িতা কে?", opts: ["প্রফুল্লচন্দ্র রায়", "প্রফুল্লচন্দ্র চক্রবর্তী", "হিরন্ময় বন্দ্যোপাধ্যায়", "নীরদচন্দ্র চৌধুরী"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রফুল্লচন্দ্র চক্রবর্তীর 'দ্য মার্জিনাল ম্যান' গ্রন্থে বাংলার উদ্বাস্তুদের জীবন এবং বিভিন্ন কলোনি গড়ে ওঠার নিখুঁত ছবি তুলে ধরা হয়েছে।" },
+        { q: "৫. 'উদ্বাস্তু' নামক গ্রন্থটি কার রচনা?", opts: ["হিরন্ময় বন্দ্যোপাধ্যায়", "শঙ্খ ঘোষ", "সলমন রুশদি", "সুফিয়া কামাল"], ans: 0, exp: "<b>ব্যাখ্যা:</b> তৎকালীন পুনর্বাসন কমিশনার হিরন্ময় বন্দ্যোপাধ্যায় তাঁর 'উদ্বাস্তু' গ্রন্থে দেশভাগের পর ছিন্নমূল মানুষদের সমস্যা ও পুনর্বাসনের ইতিহাস তুলে ধরেছেন।" },
+        { q: "৬. 'মিডনাইটস চিলড্রেন' গ্রন্থটি কে রচনা করেছেন?", opts: ["সলমন রুশদি", "খুশবন্ত সিং", "নীরদচন্দ্র চৌধুরী", "অন্নদাশংকর রায়"], ans: 0, exp: "<b>ব্যাখ্যা:</b> দেশভাগের যন্ত্রণা ও তৎকালীন জনজীবনের করুণ চিত্র ফুটে উঠেছে সলমন রুশদির রচিত বিখ্যাত গ্রন্থ 'মিডনাইটস চিলড্রেন'-এ।" },
+        { q: "৭. 'সূর্য দীঘল বাড়ী' নামক দেশভাগ সম্পর্কিত গ্রন্থটি কে লিখেছেন?", opts: ["শঙ্খ ঘোষ", "আবু ইসহাক", "মিহির সেনগুপ্ত", "ঋত্বিক ঘটক"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দেশভাগের মর্মান্তিক প্রেক্ষাপটে রচিত অন্যতম প্রামাণ্য গ্রন্থ হলো আবু ইসহাকের 'সূর্য দীঘল বাড়ী'।" },
+        { q: "৮. 'একাত্তরের ডায়েরি' নামক স্মৃতিকথামূলক গ্রন্থটি কে লিখেছেন?", opts: ["সুফিয়া কামাল", "লীলা নাগ", "মণিকুন্তলা সেন", "কল্পনা দত্ত"], ans: 0, exp: "<b>ব্যাখ্যা:</b> দেশভাগ ও মুক্তিযুদ্ধের স্মৃতি নিয়ে সুফিয়া কামালের লেখা অনবদ্য স্মৃতিকথা হলো 'একাত্তরের ডায়েরি'।" },
+        { q: "৯. 'অটোবায়োগ্রাফি অফ অ্যান আননোন ইন্ডিয়ান' গ্রন্থের রচয়িতা কে?", opts: ["নীরদচন্দ্র চৌধুরী", "এন. কে. বোস", "প্রফুল্লচন্দ্র রায়", "আবু ইসহাক"], ans: 0, exp: "<b>ব্যাখ্যা:</b> দেশভাগের ফলে উদ্ভূত দাঙ্গা ও ধ্বংসের ছবি নীরদচন্দ্র চৌধুরীর আত্মজীবনীমূলক গ্রন্থ 'অটোবায়োগ্রাফি অফ অ্যান আননোন ইন্ডিয়ান'-এ লিপিবদ্ধ করা হয়েছে।" },
+        { q: "১০. 'কেয়াপাতার নৌকা' নামক দেশভাগের প্রেক্ষাপটে রচিত গ্রন্থটির লেখক কে?", opts: ["প্রফুল্লচন্দ্র রায়", "প্রফুল্লচন্দ্র চক্রবর্তী", "দক্ষিণারঞ্জন বসু", "মানিক বন্দ্যোপাধ্যায়"], ans: 0, exp: "<b>ব্যাখ্যা:</b> দেশভাগের ফলে উদ্ভূত হিংসা, ধ্বংস ও সাম্প্রদায়িক দাঙ্গার বিবরণ প্রফুল্লচন্দ্র রায়ের 'কেয়াপাতার নৌকা' গ্রন্থে তুলে ধরা হয়েছে।" },
+        { q: "১১. 'সুপুরিবনের সারি' গ্রন্থটি কার লেখা?", opts: ["শঙ্খ ঘোষ", "সুফিয়া কামাল", "জয়ন্তী বসু", "লীলা সেন"], ans: 0, exp: "<b>ব্যাখ্যা:</b> প্রখ্যাত কবি ও সাহিত্যিক শঙ্খ ঘোষ তাঁর 'সুপুরিবনের সারি' গ্রন্থে দেশভাগ ও ফেলে আসা জন্মভূমির স্মৃতি লিপিবদ্ধ করেছেন।" },
+        { q: "১২. 'শিকড়ের সন্ধানে' নামক স্মৃতিকথামূলক গ্রন্থটি কে লিখেছেন?", opts: ["কালীপ্রসাদ মুখোপাধ্যায়", "হিরন্ময় বন্দ্যোপাধ্যায়", "দক্ষিণারঞ্জন বসু", "অন্নদাশংকর রায়"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ছেড়ে আসা মাতৃভূমির টান ও বেদনার চিত্র অত্যন্ত নিপুণভাবে প্রকাশ পেয়েছে কালীপ্রসাদ মুখোপাধ্যায়ের 'শিকড়ের সন্ধানে' গ্রন্থে।" },
+        { q: "১৩. ভারত ও পাকিস্তানের মধ্যে সীমানা নির্ধারণকারী রেখার নাম কী?", opts: ["ম্যাকমোহন লাইন", "র‍্যাডক্লিফ লাইন", "ডুরান্ড লাইন", "লাইন অফ কন্ট্রোল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সিরিল র‍্যাডক্লিফের নেতৃত্বে গঠিত সীমানা কমিশনের দ্বারা ভারত ও পাকিস্তানের মধ্যে যে সীমানা নির্ধারিত হয়, তা র‍্যাডক্লিফ লাইন নামে পরিচিত।" },
+        { q: "১৪. মাউন্টব্যাটেন পরিকল্পনা অনুযায়ী কোন্ তারিখে ভারতে ক্ষমতা হস্তান্তরের কথা ঘোষণা করা হয়েছিল?", opts: ["৩ জুন ১৯৪৭", "১৮ জুলাই ১৯৪৭", "১৫ আগস্ট ১৯৪৭", "২৬ জানুয়ারি ১৯৫০"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ১৯৪৭ খ্রিস্টাব্দের ৩ জুন ভারতের গভর্নর জেনারেল মাউন্টব্যাটেন ভারত বিভাগ ও ক্ষমতা হস্তান্তরের বিষয়ে যে পরিকল্পনা ঘোষণা করেন তা 'মাউন্টব্যাটেন পরিকল্পনা' নামে পরিচিত।" },
+        { q: "১৫. 'নেহরু-লিয়াকত চুক্তি' বা দিল্লি চুক্তি কবে স্বাক্ষরিত হয়?", opts: ["১৯৪৮ খ্রিস্টাব্দে", "১৯৪৯ খ্রিস্টাব্দে", "১৯৫০ খ্রিস্টাব্দে", "১৯৫২ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> স্বাধীনতা লাভের পর সংখ্যালঘুদের নিরাপত্তা সুনিশ্চিত করার লক্ষ্যে ১৯৫০ খ্রিস্টাব্দে ভারতের প্রধানমন্ত্রী নেহরু এবং পাকিস্তানের প্রধানমন্ত্রী লিয়াকতের মধ্যে এই চুক্তি স্বাক্ষরিত হয়।" }
+    ]
+};
+
+// ============================================================
+// সেট ২: দেশীয় রাজ্যগুলির অন্তর্ভুক্তি
+// ============================================================
+const SET2 = {
+    name: "সেট ২",
+    icon: "🤝",
+    topic: "দেশীয় রাজ্যগুলির অন্তর্ভুক্তি",
+    questions: [
+        { q: "১. স্বাধীনতার প্রাক্কালে ভারতে দেশীয় রাজ্যের সংখ্যা আনুমানিক কত ছিল?", opts: ["২০০-এর কাছাকাছি", "৪০০-এর কাছাকাছি", "৬০০-এর কাছাকাছি", "৮০০-এর কাছাকাছি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> স্বাধীনতার প্রাক্কালে ভারতে প্রায় ৫৬২টি বা ৬০০-এর কাছাকাছি দেশীয় রাজ্য ছিল।" },
+        { q: "২. দেশীয় রাজ্যগুলির ভারতভুক্তির ক্ষেত্রে কে সবচেয়ে গুরুত্বপূর্ণ ভূমিকা পালন করেন?", opts: ["জওহরলাল নেহরু", "সর্দার বল্লভভাই প্যাটেল", "ড. রাজেন্দ্র প্রসাদ", "মহাত্মা গান্ধি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতের তৎকালীন স্বরাষ্ট্রমন্ত্রী সর্দার বল্লভভাই প্যাটেল দেশীয় রাজ্যগুলিকে ভারতের সাথে যুক্ত করতে সবচেয়ে শক্তিশালী ভূমিকা নেন।" },
+        { q: "৩. ভারতের 'লৌহমানব' (Iron Man of India) কাকে বলা হয়?", opts: ["বি. আর. আম্বেদকর", "সর্দার বল্লভভাই প্যাটেল", "লাল বাহাদুর শাস্ত্রী", "সুভাষচন্দ্র বসু"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দেশীয় রাজ্যগুলির ভারতভুক্তির ক্ষেত্রে দৃঢ় ও অনড় পদক্ষেপ গ্রহণ করার জন্য সর্দার বল্লভভাই প্যাটেলকে ভারতের লৌহমানব বলা হয়।" },
+        { q: "৪. স্বাধীনতার সময় কাশ্মীরের মহারাজা কে ছিলেন?", opts: ["বোধচন্দ্র সিংহ", "গুলাব সিং", "হরি সিং", "করণ সিং"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের স্বাধীনতা লাভের সময় কাশ্মীরের হিন্দু মহারাজা ছিলেন হরি সিং, যিনি প্রাথমিকভাবে স্বাধীন থাকতে চেয়েছিলেন।" },
+        { q: "৫. কাশ্মীর আনুষ্ঠানিকভাবে কবে ভারতের অন্তর্ভুক্ত হয়?", opts: ["১৫ আগস্ট ১৯৪৭", "২৬ অক্টোবর ১৯৪৭", "১ জানুয়ারি ১৯৪৮", "২৬ জানুয়ারি ১৯৫০"], ans: 1, exp: "<b>ব্যাখ্যা:</b> পাক মদতপুষ্ট পাঠান উপজাতিরা কাশ্মীর আক্রমণ করলে মহারাজা হরি সিং ২৬ অক্টোবর ১৯৪৭ সালে 'ভারতভুক্তি দলিলে' স্বাক্ষর করেন।" },
+        { q: "৬. জুনাগড় রাজ্যটি কবে ভারতের অন্তর্ভুক্ত হয়?", opts: ["১৯৪৭ খ্রিস্টাব্দে", "১৯৪৮ খ্রিস্টাব্দে", "১৯৪৯ খ্রিস্টাব্দে", "১৯৫০ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> গণভোটের মাধ্যমে জনগণের প্রবল দাবির মুখে ১৯৪৮ সালের ফেব্রুয়ারি মাসে জুনাগড় সরকারিভাবে ভারতের অন্তর্ভুক্ত হয়।" },
+        { q: "৭. হায়দ্রাবাদ রাজ্যের শাসকের উপাধি কী ছিল?", opts: ["নবাব", "মহারাজা", "নিজাম", "সুলতান"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের বৃহত্তম দেশীয় রাজ্য হায়দ্রাবাদের শাসকের উপাধি ছিল নিজাম। তিনি প্রাথমিকভাবে স্বাধীন থাকতে চেয়েছিলেন।" },
+        { q: "৮. কোন্ সামরিক অভিযানের মাধ্যমে হায়দ্রাবাদ ভারতের অন্তর্ভুক্ত হয়?", opts: ["অপারেশন ব্লু স্টার", "অপারেশন পোলো", "অপারেশন বিজয়", "অপারেশন ক্যাকটাস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নিজামের রাজাকার বাহিনীর অত্যাচার বাড়তে থাকলে ভারত সরকার 'অপারেশন পোলো' নামক পুলিশি অভিযানের মাধ্যমে হায়দ্রাবাদ দখল করে।" },
+        { q: "৯. 'অপারেশন পোলো' কবে পরিচালিত হয়েছিল?", opts: ["১৯৪৭ খ্রিস্টাব্দে", "১৯৪৮ খ্রিস্টাব্দে", "১৯৫০ খ্রিস্টাব্দে", "১৯৬১ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯৪৮ সালের সেপ্টেম্বর মাসে জেনারেল জে. এন. চৌধুরীর নেতৃত্বে 'অপারেশন পোলো' পরিচালিত হয়।" },
+        { q: "১০. জুনাগড় ভারতভুক্তির সময় সেখানকার নবাব কে ছিলেন?", opts: ["মহব্বত খান", "কাসিম রজভি", "হরি সিং", "উসমান আলি খান"], ans: 0, exp: "<b>ব্যাখ্যা:</b> জুনাগড়ের নবাব মহব্বত খান পাকিস্তানের সাথে যুক্ত হতে চাইলে জনগণ বিদ্রোহ করে এবং তিনি পাকিস্তানে পালিয়ে যান।" },
+        { q: "১১. স্বাধীন ভারতের প্রথম স্বরাষ্ট্রমন্ত্রী কে ছিলেন?", opts: ["জওহরলাল নেহরু", "মৌলানা আবুল কালাম আজাদ", "সর্দার বল্লভভাই প্যাটেল", "ড. বি. আর. আম্বেদকর"], ans: 2, exp: "<b>ব্যাখ্যা:</b> স্বাধীন ভারতের প্রথম উপ-প্রধানমন্ত্রী ও স্বরাষ্ট্রমন্ত্রী ছিলেন সর্দার বল্লভভাই প্যাটেল।" },
+        { q: "১২. 'ইন্সট্রুমেন্ট অফ অ্যাকসেশন' (Instrument of Accession) বা ভারতভুক্তি দলিলে সই করেছিলেন কোন্ শাসক?", opts: ["কাশ্মীরের মহারাজা হরি সিং", "হায়দ্রাবাদের নিজাম", "জুনাগড়ের নবাব", "ভোপালের নবাব"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পাক হানাদারদের হাত থেকে রাজ্য বাঁচাতে কাশ্মীরের মহারাজা হরি সিং ভারতের সাথে 'ইন্সট্রুমেন্ট অফ অ্যাকসেশন'-এ স্বাক্ষর করেছিলেন।" },
+        { q: "১৩. গোয়া, দমন ও দিউ কাদের উপনিবেশ ছিল?", opts: ["ইংরেজদের", "ফরাসিদের", "পোর্তুগিজদের", "ওলন্দাজদের"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের স্বাধীনতা লাভের পরও গোয়া, দমন ও দিউ পোর্তুগিজদের উপনিবেশ হিসেবে থেকে গিয়েছিল।" },
+        { q: "১৪. গোয়া কবে ভারতের অন্তর্ভুক্ত হয়?", opts: ["১৯৫৪ খ্রিস্টাব্দে", "১৯৫৫ খ্রিস্টাব্দে", "১৯৬১ খ্রিস্টাব্দে", "১৯৭৫ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারত সরকার ১৯৬১ খ্রিস্টাব্দে 'অপারেশন বিজয়'-এর মাধ্যমে গোয়াকে পোর্তুগিজ শাসনমুক্ত করে ভারতের অন্তর্ভুক্ত করে।" },
+        { q: "১৫. ফরাসিদের উপনিবেশ পন্ডিচেরি (পুদুচেরি) কবে ভারতের অন্তর্ভুক্ত হয়?", opts: ["১৯৪৭ খ্রিস্টাব্দে", "১৯৪৮ খ্রিস্টাব্দে", "১৯৫৪ খ্রিস্টাব্দে", "১৯৬১ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯৫৪ খ্রিস্টাব্দে চুক্তির মাধ্যমে ফ্রান্স সরকার পন্ডিচেরি, চন্দননগর, কারিকল ও মাহে ভারতের হাতে তুলে দেয়।" }
+    ]
+};
+
+// ============================================================
+// সেট ৩: ভাষাভিত্তিক রাজ্য পুনর্গঠন
+// ============================================================
+const SET3 = {
+    name: "সেট ৩",
+    icon: "🗺️",
+    topic: "ভাষাভিত্তিক রাজ্য পুনর্গঠন",
+    questions: [
+        { q: "১. ভাষাভিত্তিক প্রদেশ কমিশন বা 'দর কমিশন' (Dar Commission) কবে গঠিত হয়?", opts: ["১৯৪৭ খ্রিস্টাব্দে", "১৯৪৮ খ্রিস্টাব্দে", "১৯৫০ খ্রিস্টাব্দে", "১৯৫৩ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভাষার ভিত্তিতে রাজ্য পুনর্গঠনের দাবি খতিয়ে দেখতে ১৯৪৮ সালে এস. কে. দর-এর নেতৃত্বে এই কমিশন গঠিত হয়।" },
+        { q: "২. জে.ভি.পি. (JVP) কমিটির সদস্য কারা ছিলেন?", opts: ["জওহরলাল, বল্লভভাই, পট্টভি", "জওহরলাল, বিনোবা, প্রসাদ", "জিন্নাহ, বল্লভভাই, প্যাটেল", "জওহরলাল, বল্লভভাই, পন্থ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ১৯৪৮ সালে কংগ্রেসের জয়পুর অধিবেশনে জওহরলাল নেহরু, বল্লভভাই প্যাটেল এবং পট্টভি সীতারামাইয়াকে নিয়ে JVP কমিটি গঠিত হয়।" },
+        { q: "৩. স্বাধীন ভারতের প্রথম ভাষাভিত্তিক রাজ্য কোনটি?", opts: ["গুজরাট", "মহারাষ্ট্র", "অন্ধ্রপ্রদেশ", "কেরালা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মাদ্রাজ প্রদেশ ভেঙে তেলেগু ভাষাভাষীদের জন্য গঠিত অন্ধ্রপ্রদেশ হলো স্বাধীন ভারতের প্রথম ভাষাভিত্তিক রাজ্য।" },
+        { q: "৪. অন্ধ্রপ্রদেশ রাজ্যটি কবে গঠিত হয়?", opts: ["১৯৪৮ খ্রিস্টাব্দে", "১৯৫০ খ্রিস্টাব্দে", "১৯৫৩ খ্রিস্টাব্দে", "১৯৫৬ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্রবল গণ-আন্দোলনের চাপে পড়ে ভারত সরকার ১৯৫৩ সালের ১ অক্টোবর অন্ধ্রপ্রদেশ রাজ্য গঠন করতে বাধ্য হয়।" },
+        { q: "৫. পৃথক অন্ধ্রপ্রদেশ রাজ্যের দাবিতে কে ৫৬ দিন অনশন করে প্রাণত্যাগ করেন?", opts: ["রামালু পোট্টি", "পট্টি শ্রীরামালু", "টি. প্রকাশম", "ই. ভি. রামস্বামী"], ans: 1, exp: "<b>ব্যাখ্যা:</b> গান্ধিবাদী নেতা পট্টি শ্রীরামালু পৃথক অন্ধ্রপ্রদেশের দাবিতে ৫৬ দিন অনশন করার পর ১৯৫২ সালের ১৫ ডিসেম্বর মৃত্যুবরণ করেন।" },
+        { q: "৬. 'রাজ্য পুনর্গঠন কমিশন' (State Reorganization Commission) কবে গঠিত হয়?", opts: ["১৯৪৮ খ্রিস্টাব্দে", "১৯৫৩ খ্রিস্টাব্দে", "১৯৫৫ খ্রিস্টাব্দে", "১৯৫৬ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সমগ্র ভারতের রাজ্যগুলিকে ভাষার ভিত্তিতে পুনর্গঠনের জন্য ১৯৫৩ সালে এই কমিশন গঠিত হয়েছিল।" },
+        { q: "৭. রাজ্য পুনর্গঠন কমিশনের সভাপতি কে ছিলেন?", opts: ["হৃদয়নাথ কুঞ্জরু", "কে. এম. পানিক্কর", "সৈয়দ ফজল আলি", "সর্দার প্যাটেল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ফজল আলির সভাপতিত্বে এই কমিশন গঠিত হয়, যার অপর দুই সদস্য ছিলেন হৃদয়নাথ কুঞ্জরু এবং কে. এম. পানিক্কর।" },
+        { q: "৮. 'রাজ্য পুনর্গঠন আইন' (State Reorganization Act) কবে পাস হয়?", opts: ["১৯৫৩ খ্রিস্টাব্দে", "১৯৫৫ খ্রিস্টাব্দে", "১৯৫৬ খ্রিস্টাব্দে", "১৯৬০ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> রাজ্য পুনর্গঠন কমিশনের রিপোর্টের ভিত্তিতে ১৯৫৬ সালের নভেম্বর মাসে পার্লামেন্টে রাজ্য পুনর্গঠন আইন পাস হয়।" },
+        { q: "৯. ১৯৫৬ সালে রাজ্য পুনর্গঠন আইনের ভিত্তিতে ভারতে কয়টি রাজ্য গঠিত হয়েছিল?", opts: ["১৪টি রাজ্য ও ৬টি কেন্দ্রশাসিত অঞ্চল", "১৫টি রাজ্য ও ৫টি কেন্দ্রশাসিত অঞ্চল", "১৬টি রাজ্য ও ৩টি কেন্দ্রশাসিত অঞ্চল", "২৮টি রাজ্য ও ৮টি কেন্দ্রশাসিত অঞ্চল"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ১৯৫৬ সালের আইন অনুযায়ী সমগ্র ভারতকে ১৪টি রাজ্য এবং ৬টি কেন্দ্রশাসিত অঞ্চলে বিভক্ত করা হয়েছিল।" },
+        { q: "১০. বোম্বাই রাজ্য ভেঙে কবে মহারাষ্ট্র ও গুজরাট নামে দুটি আলাদা রাজ্য গঠিত হয়?", opts: ["১৯৫৬ খ্রিস্টাব্দে", "১৯৬০ খ্রিস্টাব্দে", "১৯৬৬ খ্রিস্টাব্দে", "১৯৭২ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মারাঠি ও গুজরাটি ভাষাভাষীদের মধ্যে দ্বন্দ্বের ফলে ১৯৬০ সালে বোম্বাই প্রদেশকে ভেঙে মহারাষ্ট্র ও গুজরাট রাজ্য গঠন করা হয়।" },
+        { q: "১১. পাঞ্জাব রাজ্য ভেঙে কবে পাঞ্জাব ও হরিয়ানা রাজ্য গঠিত হয়?", opts: ["১৯৬০ খ্রিস্টাব্দে", "১৯৬৬ খ্রিস্টাব্দে", "১৯৭১ খ্রিস্টাব্দে", "২০০০ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভাষার ভিত্তিতে ১৯৬৬ সালে পাঞ্জাব রাজ্যকে দ্বিখণ্ডিত করে পাঞ্জাব ও হিন্দিভাষী হরিয়ানা রাজ্য গঠিত হয়।" },
+        { q: "১২. মেঘালয় রাজ্য কবে গঠিত হয়?", opts: ["১৯৬০ খ্রিস্টাব্দে", "১৯৬৬ খ্রিস্টাব্দে", "১৯৭২ খ্রিস্টাব্দে", "১৯৮৭ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> আসাম রাজ্য ভেঙে ১৯৭২ খ্রিস্টাব্দে মেঘালয় রাজ্য আত্মপ্রকাশ করেছিল।" },
+        { q: "১৩. ভারতীয় সংবিধানে বর্তমানে মোট কয়টি ভাষা স্বীকৃত?", opts: ["১৪টি", "১৮টি", "২২টি", "২৪টি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের সংবিধানে অষ্টম তফশিলে বর্তমানে সরকারি ভাষা হিসেবে মোট ২২টি ভাষাকে স্বীকৃতি দেওয়া হয়েছে।" },
+        { q: "১৪. সংবিধানে শুরুতে কয়টি ভাষাকে স্বীকৃতি দেওয়া হয়েছিল?", opts: ["১০টি", "১৪টি", "১৮টি", "২২টি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯৫০ সালে সংবিধান কার্যকর হওয়ার সময় মাত্র ১৪টি ভাষাকে স্বীকৃতি দেওয়া হয়েছিল।" },
+        { q: "১৫. সরকারি ভাষা আইন (Official Language Act) কবে পাস হয়?", opts: ["১৯৫০ খ্রিস্টাব্দে", "১৯৫৬ খ্রিস্টাব্দে", "১৯৬৩ খ্রিস্টাব্দে", "১৯৬৫ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অহিন্দিভাষী রাজ্যগুলির আপত্তির কারণে ১৯৬৩ খ্রিস্টাব্দে সরকারি ভাষা আইন পাস করে ইংরেজির ব্যবহার বজায় রাখার কথা বলা হয়।" }
+    ]
+};
+
+// ============================================================
+// সেট ৪: নেহরু যুগ, পররাষ্ট্রনীতি ও ভারতের সংবিধান
+// ============================================================
+const SET4 = {
+    name: "সেট ৪",
+    icon: "📜",
+    topic: "নেহরু যুগ, পররাষ্ট্রনীতি ও ভারতের সংবিধান",
+    questions: [
+        { q: "১. ভারতের সংবিধান কবে কার্যকরী হয়?", opts: ["১৫ আগস্ট ১৯৪৭", "২৬ নভেম্বর ১৯৪৯", "২৬ জানুয়ারি ১৯৫০", "১৫ আগস্ট ১৯৫০"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ড. আম্বেদকরের নেতৃত্বে রচিত ভারতের সংবিধান ২৬ জানুয়ারি ১৯৫০ সালে আনুষ্ঠানিকভাবে কার্যকরী হয়।" },
+        { q: "২. ভারতের সংবিধান সভার (গণপরিষদ) খসড়া কমিটির সভাপতি কে ছিলেন?", opts: ["ড. রাজেন্দ্র প্রসাদ", "জওহরলাল নেহরু", "ড. বি. আর. আম্বেদকর", "সর্দার প্যাটেল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> খসড়া কমিটির সভাপতি ড. বি. আর. আম্বেদকরকে ভারতীয় সংবিধানের প্রধান রূপকার বা স্থপতি বলা হয়।" },
+        { q: "৩. স্বাধীন ভারতের প্রথম রাষ্ট্রপতি কে ছিলেন?", opts: ["ড. সর্বপল্লী রাধাকৃষ্ণণ", "জওহরলাল নেহরু", "ড. রাজেন্দ্র প্রসাদ", "ভি. ভি. গিরি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯৫০ সালের ২৬ জানুয়ারি ভারত সাধারণতন্ত্রে পরিণত হলে গণপরিষদের সভাপতি ড. রাজেন্দ্র প্রসাদ ভারতের প্রথম রাষ্ট্রপতি হন।" },
+        { q: "৪. ভারত কবে সাধারণতন্ত্র বা প্রজাতন্ত্র হিসেবে আত্মপ্রকাশ করে?", opts: ["১৫ আগস্ট ১৯৪৭", "২৬ নভেম্বর ১৯৪৯", "২৬ জানুয়ারি ১৯৫০", "১ মে ১৯৫০"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯৫০ সালের ২৬ জানুয়ারি সংবিধান কার্যকর হওয়ার সাথে সাথেই ভারত একটি সার্বভৌম গণতান্ত্রিক সাধারণতন্ত্রে পরিণত হয়।" },
+        { q: "৫. স্বাধীন ভারতের প্রথম প্রধানমন্ত্রী কে ছিলেন?", opts: ["সর্দার বল্লভভাই প্যাটেল", "জওহরলাল নেহরু", "লাল বাহাদুর শাস্ত্রী", "ইন্দিরা গান্ধি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯৪৭ সালে স্বাধীনতার পর জওহরলাল নেহরু স্বাধীন ভারতের প্রথম প্রধানমন্ত্রী হিসেবে শপথ গ্রহণ করেন।" },
+        { q: "৬. 'পঞ্চশীল' নীতি কবে স্বাক্ষরিত হয়?", opts: ["১৯৫০ খ্রিস্টাব্দে", "১৯৫৪ খ্রিস্টাব্দে", "১৯৬২ খ্রিস্টাব্দে", "১৯৬৬ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিশ্বশান্তি প্রতিষ্ঠার লক্ষ্যে ১৯৫৪ খ্রিস্টাব্দে ভারত ও চীনের মধ্যে বিখ্যাত 'পঞ্চশীল' বা পাঁচটি নীতি স্বাক্ষরিত হয়েছিল।" },
+        { q: "৭. পঞ্চশীল চুক্তি কাদের মধ্যে স্বাক্ষরিত হয়?", opts: ["ভারত ও পাকিস্তান", "ভারত ও চীন", "ভারত ও রাশিয়া", "ভারত ও আমেরিকা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতের প্রধানমন্ত্রী জওহরলাল নেহরু এবং চীনের প্রধানমন্ত্রী চৌ-এন-লাই-এর মধ্যে পঞ্চশীল চুক্তি স্বাক্ষরিত হয়েছিল।" },
+        { q: "৮. 'জোটনিরপেক্ষ আন্দোলন' (NAM)-এর রূপকার কে ছিলেন?", opts: ["মহাত্মা গান্ধি", "মার্শাল টিটো", "জওহরলাল নেহরু", "সুকর্ণ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ঠান্ডা লড়াইয়ের যুগে মার্কিন বা সোভিয়েত কোনো জোটে যোগ না দিয়ে স্বাধীন পররাষ্ট্রনীতি অনুসরণ করার জন্য নেহরু জোটনিরপেক্ষ আন্দোলন গড়ে তোলেন।" },
+        { q: "৯. ভারত ও চীনের মধ্যে সীমানা নির্ধারণকারী রেখার নাম কী?", opts: ["র‍্যাডক্লিফ লাইন", "ম্যাকমোহন লাইন", "ডুরান্ড লাইন", "ম্যাগিনট লাইন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯১৪ খ্রিস্টাব্দের সিমলা চুক্তি অনুসারে স্যার ম্যাকমোহন ভারত ও চীনের মধ্যে যে সীমানা নির্ধারণ করেন তা ম্যাকমোহন লাইন নামে পরিচিত।" },
+        { q: "১০. ভারত-চীন যুদ্ধ কবে সংঘটিত হয়েছিল?", opts: ["১৯৫৪ খ্রিস্টাব্দে", "১৯৬২ খ্রিস্টাব্দে", "১৯৬৫ খ্রিস্টাব্দে", "১৯৭১ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯৬২ সালের ২০ অক্টোবর চীন ভারতের অরুণাচল প্রদেশ (নেফা) এবং লাদাখ অঞ্চলে ব্যাপক আক্রমণ চালায়, যা ভারত-চীন যুদ্ধ নামে পরিচিত।" },
+        { q: "১১. 'তাসখন্দ চুক্তি' (Tashkent Agreement) কবে স্বাক্ষরিত হয়?", opts: ["১৯৬২ খ্রিস্টাব্দে", "১৯৬৫ খ্রিস্টাব্দে", "১৯৬৬ খ্রিস্টাব্দে", "১৯৭১ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯৬৫ সালের ভারত-পাকিস্তান যুদ্ধের পর শান্তি স্থাপনের উদ্দেশ্যে ১৯৬৬ সালের ১০ জানুয়ারি তাসখন্দ চুক্তি স্বাক্ষরিত হয়।" },
+        { q: "১২. তাসখন্দ চুক্তি কাদের মধ্যে স্বাক্ষরিত হয়?", opts: ["ভারত ও চীন", "ভারত ও রাশিয়া", "ভারত ও পাকিস্তান", "পাকিস্তান ও চীন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের প্রধানমন্ত্রী লাল বাহাদুর শাস্ত্রী এবং পাকিস্তানের রাষ্ট্রপতি আয়ুব খানের মধ্যে এই চুক্তি স্বাক্ষরিত হয়েছিল।" },
+        { q: "১৩. স্বাধীন ভারতের প্রথম সাধারণ নির্বাচন কবে অনুষ্ঠিত হয়?", opts: ["১৯৪৭-৪৮ খ্রিস্টাব্দে", "১৯৫০-৫১ খ্রিস্টাব্দে", "১৯৫১-৫২ খ্রিস্টাব্দে", "১৯৫২-৫৩ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> স্বাধীন ভারতের নতুন সংবিধান অনুযায়ী ১৯৫১ সালের অক্টোবর থেকে ১৯৫২ সালের ফেব্রুয়ারি পর্যন্ত প্রথম সাধারণ নির্বাচন অনুষ্ঠিত হয়।" },
+        { q: "১৪. যোজনা কমিশন বা পরিকল্পনা কমিশন (Planning Commission) কবে গঠিত হয়?", opts: ["১৯৪৮ খ্রিস্টাব্দে", "১৯৫০ খ্রিস্টাব্দে", "১৯৫১ খ্রিস্টাব্দে", "১৯৫৬ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দেশের সার্বিক অর্থনৈতিক উন্নয়নের জন্য জওহরলাল নেহরুর উদ্যোগে ১৯৫০ সালের ১৫ মার্চ যোজনা কমিশন গঠিত হয়েছিল।" },
+        { q: "১৫. ভারতের প্রথম পঞ্চবার্ষিকী পরিকল্পনা কবে শুরু হয়?", opts: ["১৯৫০ খ্রিস্টাব্দে", "১৯৫১ খ্রিস্টাব্দে", "১৯৫৬ খ্রিস্টাব্দে", "১৯৬১ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কৃষির উন্নয়নকে অগ্রাধিকার দিয়ে ১৯৫১ খ্রিস্টাব্দে ভারতের প্রথম পঞ্চবার্ষিকী পরিকল্পনা শুরু হয়।" }
+    ]
+};
+
+// ============================================================
+// সেট ৫: অষ্টম অধ্যায়ের খুঁটিনাটি ও সাহিত্যকর্মের গভীরে
+// ============================================================
+const SET5 = {
+    name: "সেট ৫",
+    icon: "📚",
+    topic: "অষ্টম অধ্যায়ের খুঁটিনাটি ও সাহিত্যকর্মের গভীরে",
+    questions: [
+        { q: "১. 'একটি দেশের পররাষ্ট্রনীতি তার অর্থনৈতিক নীতির ফলাফল।' - এই মন্তব্যটি কে করেছিলেন?", opts: ["সর্দার প্যাটেল", "ইন্দিরা গান্ধি", "জওহরলাল নেহরু", "মনমোহন সিং"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের প্রথম প্রধানমন্ত্রী জওহরলাল নেহরু বিশ্বাস করতেন যে, একটি দেশের বিদেশনীতি মূলত সেই দেশের অভ্যন্তরীণ অর্থনৈতিক চাহিদা ও নীতির দ্বারাই পরিচালিত হয়।" },
+        { q: "২. ভারতের পারমাণবিক কর্মসূচির জনক বা রূপকার কাকে বলা হয়?", opts: ["এ.পি.জে. আবদুল কালাম", "রাজা রামান্না", "ড. হোমি জে. ভাবা", "মেঘনাদ সাহা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্রধানমন্ত্রী নেহরুর নির্দেশে এবং বিখ্যাত বিজ্ঞানী ড. হোমি ভাবার দূরদর্শী চিন্তাধারার ওপর ভিত্তি করেই ভারতের পারমাণবিক কর্মসূচির শক্ত ভিত রচিত হয়েছিল।" },
+        { q: "৩. দেশভাগের কারণে সৃষ্ট বিশ্বের বৃহত্তম গণ-অভিবাসনকে ইংরেজিতে কী বলা হয়?", opts: ["Great Escape", "Mass Exodus বা Largest Migration", "Partition Shift", "Demographic Transition"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারত ও পাকিস্তানের বিপুল সংখ্যক মানুষের নিজেদের ভিটেমাটি ছেড়ে চলে আসার এই মর্মান্তিক ঘটনা ইতিহাসে 'বিশ্বের বৃহত্তম গণ-অভিবাসন বা পরিযান' (Largest Migration) নামে পরিচিত।" },
+        { q: "৪. দেশভাগের পর স্বাধীনোত্তর ভারতের প্রথম পাঁচ বছরকে কী যুগ বলা হয়?", opts: ["স্বাধীনতার যুগ", "পুনর্গঠনের যুগ", "পুনর্বাসনের যুগ", "উদ্বাস্তু যুগ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> নেহরু সরকার উদ্বাস্তুদের ত্রাণের ও পুনর্বাসনের ব্যবস্থা করেন, এই কারণে স্বাধীনতা লাভের পরবর্তী পাঁচ বছরকে 'পুনর্বাসনের যুগ' (Years of Rehabilitation) বলা হয়।" },
+        { q: "৫. 'লক্ষ্মীছাড়া দীনতার আবর্জনা' এবং 'এক বিস্তীর্ণ পঙ্কশয্যা' — দেশভাগ সম্পর্কে এই কথাগুলি কে বলেছিলেন?", opts: ["মহাত্মা গান্ধি", "রবীন্দ্রনাথ ঠাকুর", "কাজী নজরুল ইসলাম", "সুভাষচন্দ্র বসু"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিশ্বকবি রবীন্দ্রনাথ ঠাকুর তাঁর 'সভ্যতার সংকট' প্রবন্ধে ভারতভূমির বিভাজন ও চরম পরিণতির প্রেক্ষাপটে এই মন্তব্য করেছিলেন।" },
+        { q: "৬. জুনাগড়ের নবাব পাকিস্তানে পালিয়ে গেলে কে সেখানে সৈন্য পাঠানোর সিদ্ধান্ত নিয়েছিলেন?", opts: ["লর্ড মাউন্টব্যাটেন", "জওহরলাল নেহরু", "সর্দার বল্লভভাই প্যাটেল", "চক্রবর্তী রাজা গোপালাচারী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> খাদ্য পরিস্থিতির অবনতি এবং নবাবের পলায়নের পর সর্দার প্যাটেল জুনাগড়ে সৈন্য পাঠানোর সিদ্ধান্ত নেন।" },
+        { q: "৭. মণিপুর দেশীয় রাজ্যের মহারাজা কে ছিলেন, যিনি ভারতের সঙ্গে চুক্তি স্বাক্ষর করেছিলেন?", opts: ["বোধচন্দ্র সিংহ", "হরি সিং", "গুলাব সিং", "জ্ঞানেন্দ্র"], ans: 0, exp: "<b>ব্যাখ্যা:</b> স্বাধীনতার প্রাক্কালে মণিপুরের মহারাজা বোধচন্দ্র সিংহ স্বায়ত্তশাসন বজায় রাখার আশ্বাসে ভারতের সঙ্গে অন্তর্ভুক্তিমূলক চুক্তিতে স্বাক্ষর করেন।" },
+        { q: "৮. ভারতের কোন্ দেশীয় রাজ্যে সর্বপ্রথম সর্বজনীন প্রাপ্তবয়স্কের ভোটাধিকারের ভিত্তিতে নির্বাচন অনুষ্ঠিত হয়েছিল?", opts: ["জুনাগড়", "হায়দ্রাবাদ", "কাশ্মীর", "মণিপুর"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ১৯৪৮ খ্রিস্টাব্দের জুন মাসে মণিপুরে সর্বজনীন প্রাপ্তবয়স্কের ভোটাধিকারের ভিত্তিতে নির্বাচন অনুষ্ঠিত হয়।" },
+        { q: "৯. ১৯৫০ খ্রিস্টাব্দে চীন কোন্ অঞ্চলটি অধিকার করে নেয়, যা পূর্বে বাফার রাষ্ট্র হিসেবে কাজ করত?", opts: ["নেপাল", "ভুটান", "তিব্বত", "আকসাই চীন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৯৫০ সালে চীন তিব্বত আক্রমণ ও দখল করলে ভারতের সীমানায় সরাসরি চীনের সেনা চলে আসে।" },
+        { q: "১০. ১৯৫৯ খ্রিস্টাব্দে তিব্বতে চীনবিরোধী বিদ্রোহের পর কে ভারতে পালিয়ে আসেন?", opts: ["মাও জে দং", "চৌ এন লাই", "দলাই লামা", "প্যানচেন লামা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> তিব্বতের ধর্মগুরু চতুর্দশ দলাই লামা চীনের হাত থেকে বাঁচতে ভারতে আশ্রয় নিলে, চীন একে ভারতের 'শত্রুতামূলক আচরণ' বলে।" },
+        { q: "১১. 'দ্য মার্জিনাল ম্যান' গ্রন্থে কাদের কথা বলা হয়েছে?", opts: ["কৃষকদের কথা", "শ্রমিকদের কথা", "উদ্বাস্তুদের কথা", "আদিবাসীদের কথা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্রফুল্লচন্দ্র চক্রবর্তীর এই গ্রন্থে মূলত দেশভাগের ফলে পূর্ববঙ্গ থেকে আসা উদ্বাস্তুদের জীবনসংগ্রামের কথা বলা হয়েছে।" },
+        { q: "১২. ভারতের স্বাধীনতা আইন পাস হওয়ার সময় ব্রিটেনের প্রধানমন্ত্রী কে ছিলেন?", opts: ["উইনস্টন চার্চিল", "ক্লিমেন্ট অ্যাটলি", "লর্ড মাউন্টব্যাটেন", "র‍্যামসে ম্যাকডোনাল্ড"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯৪৭ সালে ভারতের স্বাধীনতা আইন পাস হওয়ার সময় ব্রিটেনের লেবার পার্টির নেতা ক্লিমেন্ট অ্যাটলি প্রধানমন্ত্রী ছিলেন।" },
+        { q: "১৩. দেশীয় রাজ্য দপ্তরের (States Department) প্রধান কে ছিলেন?", opts: ["জওহরলাল নেহরু", "ভি. পি. মেনন", "সর্দার বল্লভভাই প্যাটেল", "ড. রাজেন্দ্র প্রসাদ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> স্বাধীন ভারতে দেশীয় রাজ্যগুলির অন্তর্ভুক্তির দায়িত্ব নিয়ে সর্দার বল্লভভাই প্যাটেলের নেতৃত্বে 'স্টেট ডিপার্টমেন্ট' বা দেশীয় রাজ্য দপ্তর গঠিত হয়েছিল।" },
+        { q: "১৪. দেশীয় রাজ্য দপ্তরের সচিব কে ছিলেন?", opts: ["ভি. পি. মেনন", "মাউন্টব্যাটেন", "কৃষ্ণ মেনন", "জওহরলাল নেহরু"], ans: 0, exp: "<b>ব্যাখ্যা:</b> সর্দার প্যাটেলের সহকারী হিসেবে ভি. পি. মেনন (V.P. Menon) দেশীয় রাজ্য দপ্তরের সচিবের দায়িত্ব পালন করেছিলেন।" },
+        { q: "১৫. ভারতের সংবিধানে বর্তমানে (হালনাগাদ) কয়টি রাজ্য ও কেন্দ্রশাসিত অঞ্চল রয়েছে?", opts: ["২৯টি রাজ্য ও ৭টি কেন্দ্রশাসিত অঞ্চল", "২৮টি রাজ্য ও ৯টি কেন্দ্রশাসিত অঞ্চল", "২৮টি রাজ্য ও ৮টি কেন্দ্রশাসিত অঞ্চল", "২৭টি রাজ্য ও ৮টি কেন্দ্রশাসিত অঞ্চল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> জম্মু ও কাশ্মীর রাজ্যের মর্যাদা হারানোর পর (২০১৯) এবং দাদরা-নগর হাভেলি ও দমন-দিউ একত্রীকরণের পর বর্তমানে ভারতে ২৮টি অঙ্গরাজ্য এবং ৮টি কেন্দ্রশাসিত অঞ্চল রয়েছে।" }
+    ]
+};
+
+// ============================================================
+// সব সেট একত্রে
+// ============================================================
+const QUIZ_SETS = {
+    "1": SET1,
+    "2": SET2,
+    "3": SET3,
+    "4": SET4,
+    "5": SET5
+};
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+let loggedInUser = null;
+let currentSetId = null;
+let questions = [];
+let score = 0;
+let wrongAnswers = 0;
+let userAnswers = {};
+let isReviewMode = false;
+let timerInterval;
+let timeLeft = TIME_LIMIT;
+
+window.onload = () => {
+    applyBranding();
+    buildHub();
+};
+
+function buildHub() {
+    const grid = document.getElementById('setGrid');
+    grid.innerHTML = '';
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+
+    for(let id in QUIZ_SETS) {
+        const set = QUIZ_SETS[id];
+        let attemptCount = 0;
+        let isLocked = false;
+
+        if(loggedInUser) {
+            attemptCount = userAttempts[loggedInUser + "_" + id] || 0;
+            isLocked = attemptCount >= MAX_ATTEMPTS;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'set-card';
+        let badge = '';
+        if(loggedInUser) {
+            badge = `<div class="attempt-badge ${isLocked ? 'locked' : ''} en-font">${isLocked ? 'সম্পূর্ণ' : attemptCount + '/' + MAX_ATTEMPTS}</div>`;
+        }
+
+        card.innerHTML = `
+            ${badge}
+            <div class="set-icon">${set.icon}</div>
+            <div class="set-name">${set.name}</div>
+            <div class="set-topic">${set.topic}</div>
+            <div class="set-meta-info en-font">
+                <span>${set.questions.length} Qs</span>
+                <span>10 Mins</span>
+            </div>
+        `;
+        card.onclick = () => { selectSet(id); };
+        grid.appendChild(card);
+    }
+}
+
+function selectSet(setId) {
+    if(loggedInUser) {
+        let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+        let attemptCount = userAttempts[loggedInUser + "_" + setId] || 0;
+        if(attemptCount >= MAX_ATTEMPTS) {
+            alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+            return;
+        }
+        startQuiz(setId);
+    } else {
+        currentSetId = setId;
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginError').classList.add('hidden');
+        document.getElementById('loginSetName').innerText = QUIZ_SETS[setId].name + ": " + QUIZ_SETS[setId].topic;
+        document.getElementById('loginModal').classList.remove('hidden');
+    }
+}
+
+function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+
+function doLogin() {
+    const u = document.getElementById('loginUsername').value.trim();
+    const p = document.getElementById('loginPassword').value.trim();
+    const err = document.getElementById('loginError');
+    const GLOBAL_USERS = JSON.parse(localStorage.getItem("testBazarGlobalUsers")) || {};
+
+    if(!u || !p) { err.innerText = "ইউজারনেম এবং পাসওয়ার্ড দিন!"; err.classList.remove('hidden'); return; }
+
+    if(GLOBAL_USERS[u] && GLOBAL_USERS[u] === p) {
+        loggedInUser = u;
+        document.getElementById('userDisplay').innerText = `👤 ${u}`;
+        closeLogin();
+        buildHub();
+        if(currentSetId) {
+            startQuiz(currentSetId);
+        }
+    } else {
+        err.innerText = "ইউজারনেম বা পাসওয়ার্ড ভুল!";
+        err.classList.remove('hidden');
+    }
+}
+
+function incrementAttempt(user, setId) {
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let key = user + "_" + setId;
+    userAttempts[key] = (userAttempts[key] || 0) + 1;
+    localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(userAttempts));
+}
+
+function startQuiz(setId) {
+    currentSetId = setId;
+    incrementAttempt(loggedInUser, setId);
+    questions = QUIZ_SETS[setId].questions;
+    userAnswers = {};
+    isReviewMode = false;
+    score = 0;
+    wrongAnswers = 0;
+    timeLeft = TIME_LIMIT;
+
+    document.getElementById('hubView').classList.add('hidden');
+    document.getElementById('resultModal').classList.add('hidden');
+    document.getElementById('quizView').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('danger');
+    document.getElementById('submitTestBtn').classList.remove('hidden');
+    document.getElementById('quizTitle').innerText = QUIZ_SETS[setId].name + " | " + QUIZ_SETS[setId].topic;
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tick, 1000);
+    renderQuestions();
+}
+
+function tick() {
+    timeLeft--;
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    document.getElementById('timerDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if (timeLeft <= 60) document.getElementById('timerBox').classList.add('danger');
+    if (timeLeft <= 0) { submitQuiz(); }
+}
+
+const LABELS = ['A', 'B', 'C', 'D'];
+
+function renderQuestions() {
+    const quizList = document.getElementById('quizList');
+    let html = '';
+    questions.forEach((q, i) => {
+        html += `<div class="q-block" id="qBlock_${i}">
+            <div class="q-text">${q.q}</div>
+            <div class="options-grid">`;
+        q.opts.forEach((opt, j) => {
+            html += `<div class="opt" id="opt_${i}_${j}" onclick="selectOpt(${i}, ${j})">
+                <div class="opt-circle">${LABELS[j]}</div>
+                <div class="opt-text">${opt}</div>
+            </div>`;
+        });
+        html += `</div>
+            <div class="explanation hidden" id="exp_${i}">${q.exp}</div>
+        </div>`;
+    });
+    quizList.innerHTML = html;
+    window.scrollTo(0, 0);
+}
+
+function selectOpt(qIdx, optIdx) {
+    if (isReviewMode) return;
+    userAnswers[qIdx] = optIdx;
+    const block = document.getElementById(`qBlock_${qIdx}`);
+    const opts = block.querySelectorAll('.opt');
+    opts.forEach(o => o.classList.remove('selected'));
+    document.getElementById(`opt_${qIdx}_${optIdx}`).classList.add('selected');
+}
+
+function submitQuiz() {
+    if (isReviewMode) return;
+    const answeredCount = Object.keys(userAnswers).length;
+    if (timeLeft > 0 && answeredCount < questions.length) {
+        const confirmSubmit = confirm(`আপনি মাত্র ${answeredCount} টি প্রশ্নের উত্তর দিয়েছেন। আপনি কি সত্যিই Test জমা দিতে চান?`);
+        if(!confirmSubmit) return;
+    }
+    isReviewMode = true;
+    clearInterval(timerInterval);
+    document.getElementById('timerBox').classList.add('hidden');
+    document.getElementById('submitTestBtn').classList.add('hidden');
+
+    score = 0;
+    wrongAnswers = 0;
+    questions.forEach((q, i) => {
+        const selected = userAnswers[i];
+        const block = document.getElementById(`qBlock_${i}`);
+        const opts = block.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.remove('selected'));
+        if (selected !== undefined) {
+            if (selected === q.ans) {
+                score++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('correct');
+            } else {
+                wrongAnswers++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('wrong');
+                document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+            }
+        } else {
+            document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+        }
+        document.getElementById(`exp_${i}`).classList.remove('hidden');
+    });
+
+    const skipped = questions.length - (score + wrongAnswers);
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('rbCorrect').textContent = score;
+    document.getElementById('rbWrong').textContent = wrongAnswers + skipped;
+
+    let icon = '💪', grade = 'চেষ্টা চালিয়ে যাও!';
+    if(pct >= 90) { icon = '🌟'; grade = 'অসাধারণ!'; }
+    else if(pct >= 70) { icon = '👍'; grade = 'খুব ভালো!'; }
+    else if(pct >= 50) { icon = '📚'; grade = 'ভালো চেষ্টা!'; }
+
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultGrade').textContent = grade;
+
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    let remaining = MAX_ATTEMPTS - attemptCount;
+    document.getElementById('attemptInfo').innerText = `বাকি আছে ${remaining} বার Test দেওয়ার সুযোগ (সর্বোচ্চ ${MAX_ATTEMPTS} বার)`;
+    document.getElementById('resultModal').classList.remove('hidden');
+}
+
+function closeResultModal() {
+    document.getElementById('resultModal').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+    closeResultModal();
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    if(attemptCount >= MAX_ATTEMPTS) {
+        alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+        document.getElementById('quizView').classList.add('hidden');
+        document.getElementById('hubView').classList.remove('hidden');
+        buildHub();
+        return;
+    }
+    startQuiz(currentSetId);
+}
+</script>
+</body>
+</html>
