@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 History Chapter 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #1a7a4a; --primary-hover: #2aad68; --accent: #f9a825;
+--bg-main: #f0faf4; --bg-card: #ffffff; --bg-selected: #e8f4ec;
+--text-main: #1c2e24; --text-meta: #5a7a66; --border-color: #c5dccb;
+--alert-danger: #dc3545; --correct: #28a745;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Tiro Bangla', serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+.en-font { font-family: 'Syne', sans-serif; }
+.hidden { display: none !important; }
+
+.header {
+background: #ffffff;
+box-shadow: 0 4px 20px rgba(10, 92, 54, 0.08);
+position: sticky;
+top: 0;
+z-index: 1000;
+border-bottom: 3px solid #0a5c36;
+}
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 8px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo-link {
+display: flex;
+align-items: center;
+gap: 10px;
+text-decoration: none;
+cursor: pointer;
+}
+.logo-emblem {
+width: 45px;
+height: 45px;
+background: linear-gradient(135deg, #0a5c36 0%, #1e824c 100%);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.4rem;
+font-weight: 800;
+color: white;
+box-shadow: 0 4px 12px rgba(10, 92, 54, 0.2);
+flex-shrink: 0;
+}
+.brand-text-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.coaching-main-title {
+font-size: 1.4rem;
+font-weight: 800;
+color: #0a5c36;
+letter-spacing: -0.5px;
+line-height: 1.1;
+}
+.coaching-subtitle {
+font-size: 0.75rem;
+color: #556c5e;
+font-weight: 700;
+letter-spacing: 0.3px;
+margin-top: 1px;
+text-transform: uppercase;
+}
+.coaching-tagline {
+font-size: 0.65rem;
+color: #f5a623;
+font-weight: 600;
+margin-top: 1px;
+letter-spacing: 0.1px;
+}
+.header-right {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.timer-box {
+background: rgba(10, 92, 54, 0.08);
+padding: 6px 15px;
+border-radius: 8px;
+font-weight: 700;
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+gap: 5px;
+color: #0a5c36;
+}
+.timer-box.danger { background: var(--alert-danger); color: white; animation: pulse 1s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.user-info { background: #0a5c36; color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.95rem; }
+
+.main-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.hub-header { text-align: center; margin-bottom: 30px; }
+.hub-header h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 10px; }
+.set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+.set-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+.set-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(26,122,74,0.1); }
+.set-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.set-name { font-size: 1.3rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; font-family: 'Syne', sans-serif;}
+.set-topic { font-size: 0.95rem; color: var(--text-meta); margin-bottom: 15px; height: 40px; }
+.set-meta-info { display: flex; justify-content: center; gap: 10px; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
+.set-meta-info span { background: var(--bg-main); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+.attempt-badge { position: absolute; top: 10px; right: 10px; background: #ffeeba; color: #856404; font-size: 0.8rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+.attempt-badge.locked { background: var(--alert-danger); color: white; border: none; }
+
+.quiz-info { background: var(--bg-card); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+.q-block { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.q-text { font-size: 1.2rem; font-weight: bold; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
+.options-grid { display: flex; flex-direction: column; gap: 10px; }
+.opt { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 1.05rem; }
+.opt:hover:not(.selected):not(.correct):not(.wrong) { background: var(--bg-main); border-color: var(--primary); }
+.opt.selected { background: var(--bg-selected); border-color: var(--primary); }
+.opt-circle { min-width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Syne', sans-serif; color: var(--text-meta); flex-shrink: 0; }
+.opt.selected .opt-circle { background: var(--primary); color: white; border-color: var(--primary); }
+.opt.correct { background: #e8f7ef; border-color: var(--correct); }
+.opt.correct .opt-circle { background: var(--correct); border-color: var(--correct); color: white; }
+.opt.wrong { background: #fdf0f0; border-color: var(--alert-danger); }
+.opt.wrong .opt-circle { background: var(--alert-danger); border-color: var(--alert-danger); color: white; }
+.explanation { margin-top: 15px; padding: 15px; background: #e8f4ec; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #2c4035; line-height: 1.5;}
+.btn-submit { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; font-family: 'Tiro Bangla', serif; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(26,122,74,0.2); transition: 0.2s; }
+.btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+.btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Tiro Bangla', serif; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: bold;}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto;}
+.modal-box { background: white; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin: auto;}
+.modal-box input { width: 100%; padding: 12px 15px; margin: 10px 0; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: 'Syne', sans-serif; box-sizing: border-box; outline: none; transition: 0.2s; }
+.modal-box input:focus { border-color: var(--primary); }
+.result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; overflow-y: auto; padding: 20px; }
+.result-box { background: white; padding: 2.5rem 2rem; border-radius: 16px; width: 100%; max-width: 450px; text-align: center; margin: auto; }
+.result-score { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin: 15px 0; }
+.result-bars { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.result-bar { background: var(--bg-main); padding: 15px; border-radius: 12px; width: 100px; border: 1px solid var(--border-color); }
+
+@media (max-width: 768px) {
+.header-container { flex-direction: column; gap: 10px; text-align: center; padding: 10px 10px; }
+.logo-link { flex-direction: column; gap: 6px; }
+.brand-text-container { text-align: center; }
+.coaching-main-title { font-size: 1.2rem; }
+.coaching-subtitle { font-size: 0.7rem; }
+.coaching-tagline { font-size: 0.6rem; }
+.header-right { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="#" class="logo-link" onclick="location.reload(); return false;">
+            <div class="logo-emblem" id="dynamicEmblem">🏛️</div>
+            <div class="brand-text-container">
+                <span class="coaching-main-title" id="dynamicTitle">History - Chapter 4</span>
+                <span class="coaching-subtitle" id="dynamicSubtitle">সংঘবদ্ধতার গোড়ার কথা: বৈশিষ্ট্য ও বিশ্লেষণ</span>
+                <span class="coaching-tagline" id="dynamicTagline">দশম শ্রেণি (Class 10)</span>
+            </div>
+        </a>
+        <div class="header-right">
+            <div class="timer-box en-font hidden" id="timerBox">⏱ <span id="timerDisplay">10:00</span></div>
+            <div class="user-info en-font" id="userDisplay" style="font-weight: bold;">👤 Guest</div>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <div id="hubView">
+        <div class="hub-header">
+            <h1 style="color: var(--primary); margin-bottom: 10px;">ইতিহাস - Class 10 Chapter 4</h1>
+            <p style="color: var(--text-meta);">সংঘবদ্ধতার গোড়ার কথা: বৈশিষ্ট্য ও বিশ্লেষণ</p>
+        </div>
+        <div class="set-grid" id="setGrid"></div>
+        <div style="text-align:center; margin-top:40px;">
+            <button class="btn-primary" style="background:var(--text-meta); width: auto; padding: 12px 25px;" onclick="window.history.back()">← Main Dashboard-এ ফিরুন</button>
+        </div>
+    </div>
+
+    <div id="quizView" class="hidden">
+        <div class="quiz-info">
+            <div id="quizTitle">Set Name</div>
+            <div id="quizMetaInfo" class="en-font">15 Questions | 10 Mins</div>
+        </div>
+        <div id="quizList"></div>
+        <button class="btn-submit" id="submitTestBtn" onclick="submitQuiz()">Test জমা দিন ও ফলাফল দেখুন</button>
+    </div>
+
+</div>
+
+<div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-box">
+        <h2 style="color: var(--primary); margin-top:0;">লগইন করুন</h2>
+        <p style="color: var(--text-meta); margin-bottom: 15px; font-size: 0.9rem;">Test শুরু করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন</p>
+        <div id="loginSetName" style="background: var(--bg-main); padding: 8px; border-radius: 8px; font-weight:bold; color:var(--primary); margin-bottom:15px; font-family: 'Syne', sans-serif; font-size: 0.95rem;">Set Name</div>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()">
+        <div id="loginError" class="hidden" style="color: var(--alert-danger); margin: 10px 0; font-weight:bold; font-size: 0.9rem;"></div>
+        <div style="display: flex; gap: 10px; margin-top:15px; justify-content: center;">
+            <button class="btn-primary" style="width: 100%; padding: 12px;" onclick="doLogin()">লগইন করুন</button>
+            <button class="btn-primary" style="background: var(--alert-danger); width: 100%; padding: 12px;" onclick="closeLogin()">বাতিল</button>
+        </div>
+    </div>
+</div>
+
+<div class="result-overlay hidden" id="resultModal">
+    <div class="result-box">
+        <div style="font-size: 3.5rem; margin-bottom:0; line-height: 1;" id="resultIcon">🌟</div>
+        <h2 style="margin:10px 0; color: var(--text-main);">আপনার ফলাফল</h2>
+        <div class="result-score en-font" id="finalScore">100%</div>
+        <div id="resultGrade" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--accent);">অসাধারণ!</div>
+        <div class="result-bars">
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--primary);" class="en-font" id="rbCorrect">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">সঠিক</div>
+            </div>
+            <div class="result-bar">
+                <div style="font-size:1.8rem; font-weight: 800; color:var(--alert-danger);" class="en-font" id="rbWrong">0</div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-meta);">ভুল / স্কিপ</div>
+            </div>
+        </div>
+        <p style="background: var(--bg-main); padding: 10px; border-radius: 8px; color:var(--text-meta); font-weight:bold; font-size:0.95rem; margin-bottom:25px;" id="attemptInfo" class="en-font">বাকি আছে 9 বার</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="btn-primary" style="background: #28a745; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="closeResultModal()">উত্তর ও ব্যাখ্যা দেখুন</button>
+            <button class="btn-primary" style="background: #17a2b8; width: 100%; padding: 14px; font-size: 1.05rem;" onclick="restartQuiz()">আবার চেষ্টা করো</button>
+            <button class="btn-primary" style="background: var(--text-meta); width: 100%; padding: 14px; font-size: 1.05rem;" onclick="window.location.reload()">Chapter Hub-এ ফিরুন</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// DYNAMIC BRANDING LOGIC
+// ============================================================
+const STORE_CONFIGS = {
+    "guru": {
+        title: "Guru Book Store Jhalda",
+        mainTitle: "Guru Book Store",
+        subtitle: "Jhalda",
+        tagline: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        emblem: "G"
+    },
+    "saraswati": {
+        title: "Saraswati Book Store",
+        mainTitle: "Saraswati Book Store",
+        subtitle: "বইয়ের এক নির্ভরযোগ্য প্রতিষ্ঠান",
+        tagline: "শিক্ষা ও প্রগতির বিশ্বস্ত সঙ্গী",
+        emblem: "S"
+    }
+};
+
+function applyBranding() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let storeKey = urlParams.get('store') || localStorage.getItem("activeStore") || "";
+    storeKey = storeKey.toLowerCase();
+
+    if (storeKey && STORE_CONFIGS[storeKey]) {
+        const config = STORE_CONFIGS[storeKey];
+        document.title = `${config.title} - Class 10 History Chapter 4`;
+        document.getElementById("dynamicEmblem").innerText = config.emblem;
+        document.getElementById("dynamicTitle").innerText = config.mainTitle;
+        document.getElementById("dynamicSubtitle").innerText = config.subtitle;
+        document.getElementById("dynamicTagline").innerText = config.tagline;
+        localStorage.setItem("activeStore", storeKey);
+    } else {
+        document.title = "Class 10 History Chapter 4 - সংঘবদ্ধতার গোড়ার কথা: বৈশিষ্ট্য ও বিশ্লেষণ";
+        document.getElementById("dynamicEmblem").innerText = "🏛️";
+        document.getElementById("dynamicTitle").innerText = "History - Chapter 4";
+        document.getElementById("dynamicSubtitle").innerText = "সংঘবদ্ধতার গোড়ার কথা: বৈশিষ্ট্য ও বিশ্লেষণ";
+        document.getElementById("dynamicTagline").innerText = "দশম শ্রেণি (Class 10)";
+    }
+}
+
+// ============================================================
+// QUIZ DATA - 8 SETS (TOTAL 120 QUESTIONS)
+// ============================================================
+const STORAGE_KEY_ATTEMPTS = "testBazarAttempts_History_Ch4_Sets";
+const MAX_ATTEMPTS = 10;
+const TIME_LIMIT = 10 * 60;
+
+// ============================================================
+// সেট ১: ১৮৫৭-এর মহাবিদ্রোহ (কারণ, চরিত্র ও প্রকৃতি)
+// ============================================================
+const SET1 = {
+    name: "Set 1",
+    icon: "⚔️",
+    topic: "১৮৫৭-এর মহাবিদ্রোহ (কারণ, চরিত্র ও প্রকৃতি)",
+    questions: [
+        { q: "১৮৫৭ খ্রিস্টাব্দের সিপাহি বিদ্রোহের প্রথম শহিদ কে ছিলেন?", opts: ["তাঁতিয়া টোপি", "মঙ্গল পান্ডে", "কুনওয়ার সিং", "বখত খান"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮৫৭ খ্রিস্টাব্দের ২৯ মার্চ ব্যারাকপুরের বেঙ্গল আর্মির ব্রাহ্মণ সিপাহি মঙ্গল পান্ডে প্রকাশ্যে জনৈক ইংরেজ কর্মচারিকে গুলি করে প্রথম বিদ্রোহের আগুন জ্বালান এবং তাঁর ফাঁসি হয়।" },
+        { q: "১৮৫৭-এর মহাবিদ্রোহে দিল্লিতে কে নেতৃত্ব দিয়েছিলেন?", opts: ["নানাসাহেব", "বেগম হজরতমহল", "বখত খান", "বাহাদুর খান"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ব্যারাকপুর ও মিরাটের পর মহাবিদ্রোহ দিল্লিতে ছড়িয়ে পড়লে সেখানে অন্যতম প্রধান নেতৃত্ব দিয়েছিলেন বখত খান।" },
+        { q: "১৮৫৭-এর মহাবিদ্রোহে বিহারে কে নেতৃত্ব প্রদান করেন?", opts: ["কুনওয়ার সিং", "তাঁতিয়া টোপি", "রানি লক্ষ্মীবাই", "বাহাদুর শাহ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ১৮৫৭ খ্রিস্টাব্দের মহাবিদ্রোহ যখন ভারতের নানা প্রান্তে ছড়িয়ে পড়ে, তখন বিহারে এই বিদ্রোহের নেতৃত্ব দিয়েছিলেন স্থানীয় জমিদার কুনওয়ার সিং।" },
+        { q: '"এই বিদ্রোহ ছিল একান্তভাবেই সিপাহিদের অভ্যুত্থান" – উক্তিটি কার?', opts: ["দুর্গাদাস বন্দ্যোপাধ্যায়", "কিশোরী চাঁদ মিত্র", "সৈয়দ আহমেদ খান", "দাদাভাই নওরোজি"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মহাবিদ্রোহকে নিছক সিপাহি বিদ্রোহ প্রমাণ করতে গিয়ে কিশোরী চাঁদ মিত্র বলেছিলেন যে, এতে গণআন্দোলনের কোনো উপাদান ছিল না।" },
+        { q: "কোন্ ইংরেজ ঐতিহাসিক ১৮৫৭-এর বিদ্রোহকে 'জাতীয় বিদ্রোহ' বলে উল্লেখ করেছেন?", opts: ["জন লরেন্স", "রবার্টস", "জন সিলি", "হোমস বা ম্যালেসন"], ans: 3, exp: "<b>ব্যাখ্যা:</b> ইংরেজ ঐতিহাসিক হোমস, ডাফ, ম্যালেসন, জে. বি. নর্টন, আউট্রাম প্রমুখ ১৮৫৭-এর এই অভ্যুত্থানকে নিছক সিপাহি বিদ্রোহ না বলে 'জাতীয় বিদ্রোহ' বলেছেন।" },
+        { q: "বৈজ্ঞানিক সমাজতন্ত্রবাদের জনক কার্ল মার্কস ১৮৫৭ সালের বিদ্রোহকে কী বলেছেন?", opts: ["সামন্ত বিদ্রোহ", "সিপাহি বিদ্রোহ", "জাতীয় বিদ্রোহ", "কৃষক বিদ্রোহ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বৈজ্ঞানিক সমাজতন্ত্রবাদের জনক কার্ল মার্কস তাঁর লেখায় এই বিদ্রোহের ব্যাপকতা দেখে একে 'জাতীয় বিদ্রোহ' বলে আখ্যায়িত করেছেন।" },
+        { q: "'সিভিল রেবেলিয়ন ইন দ্য ইন্ডিয়ান মিউটিনিস' গ্রন্থটি কে রচনা করেন?", opts: ["শশীভূষণ চৌধুরী", "সুশোভন সরকার", "রুদ্রাংশু মুখোপাধ্যায়", "রণজিৎ গুহ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ঐতিহাসিক শশীভূষণ চৌধুরী তাঁর এই গ্রন্থে ১৮৫৭-এর মহাবিদ্রোহের গণচরিত্র বিশ্লেষণ করে একে 'জাতীয় বিদ্রোহ' বা 'গণ বিদ্রোহ' বলে অভিহিত করেছেন।" },
+        { q: "কোন্ ঘোষণাপত্রের মাধ্যমে বিদ্রোহীরা হিন্দু ও মুসলিম ঐক্য এবং ইংরেজ বিতাড়নের আহ্বান জানিয়েছিল?", opts: ["আজমগড় ঘোষণা", "মিরাট ঘোষণা", "দিল্লি ঘোষণা", "কানপুর ঘোষণা"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মহাবিদ্রোহ চলাকালে 'আজমগড় ঘোষণা'-র মাধ্যমে বিদ্রোহীরা হিন্দু ও মুসলিম ঐক্য প্রতিষ্ঠা এবং ইংরেজদের ভারত থেকে বিতাড়নের ডাক দিয়েছিল।" },
+        { q: "কে সিপাহি বিদ্রোহকে 'ভারতের প্রথম স্বাধীনতা সংগ্রাম' বলে উল্লেখ করেছেন?", opts: ["রমেশচন্দ্র মজুমদার", "বিনায়ক দামোদর সাভারকার", "সুরেন্দ্রনাথ সেন", "রজনী পাম দত্ত"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিনায়ক দামোদর সাভারকার মনে করেন যে, সমগ্র ভারতে সব শ্রেণির মানুষ এতে অংশ নিয়েছিল, তাই এটি ভারতের প্রথম স্বাধীনতা সংগ্রাম।" },
+        { q: "বিনায়ক দামোদর সাভারকার কোন্ গ্রন্থে মহাবিদ্রোহকে 'ভারতের প্রথম স্বাধীনতা সংগ্রাম' বলেছেন?", opts: ["দ্য ইন্ডিয়ান ওয়ার অফ ইনডিপেন্ডেন্স", "দ্য সিপাহি মিউটিনি", "এইটিন ফিফটি-সেভেন", "ডিসকভারি অফ ইন্ডিয়া"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বিনায়ক দামোদর সাভারকার তাঁর বিখ্যাত গ্রন্থ 'দ্য ইন্ডিয়ান ওয়ার অফ ইনডিপেন্ডেন্স'-এ এই বিদ্রোহকে স্বাধীনতা সংগ্রামের মর্যাদা দিয়েছেন।" },
+        { q: '"এই বিদ্রোহ-প্রথম নয়, জাতীয় নয় এবং স্বাধীনতা সংগ্রাম নয়" - কে বলেছেন?', opts: ["সুশোভন সরকার", "সুরেন্দ্রনাথ সেন", "ড. রমেশচন্দ্র মজুমদার", "কার্ল মার্কস"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ঐতিহাসিক রমেশচন্দ্র মজুমদার তাঁর গ্রন্থে তথ্যপ্রমাণ দিয়ে দেখিয়েছেন যে, এই বিদ্রোহ সারা ভারতে ছড়ায়নি এবং এর কোনো জাতীয় লক্ষ্য ছিল না, তাই এটি স্বাধীনতা সংগ্রাম নয়।" },
+        { q: "'এইটিন ফিফটি-সেভেন' (Eighteen Fifty-Seven) গ্রন্থটির রচয়িতা কে?", opts: ["সুরেন্দ্রনাথ সেন", "রজনী পাম দত্ত", "রমেশচন্দ্র মজুমদার", "শশীভূষণ চৌধুরী"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ঐতিহাসিক সুরেন্দ্রনাথ সেন তাঁর সংকলিত 'Eighteen Fifty-Seven' গ্রন্থে দেখিয়েছেন যে ১৮৫৭-এর বিদ্রোহীদের কোনো জাতীয় লক্ষ্য ও কর্মসূচি ছিল না।" },
+        { q: "মহাবিদ্রোহকে 'মৃতপ্রায় সামন্তশ্রেণির মৃত্যুকালীন আর্তনাদ' বলে কে কটাক্ষ করেছেন?", opts: ["সুরেন্দ্রনাথ সেন", "ড. রমেশচন্দ্র মজুমদার", "রজনী পাম দত্ত", "রণজিৎ গুহ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নতুন ঔপনিবেশিক ব্যবস্থায় সামন্তরা ক্ষতিগ্রস্ত হয়ে এই বিদ্রোহে অংশ নিয়েছিল বলে ড. রমেশচন্দ্র মজুমদার একে 'মৃতপ্রায় সামন্তশ্রেণির মৃত্যুকালীন আর্তনাদ' বলেছেন।" },
+        { q: "কোন্ ঐতিহাসিক ১৮৫৭-এর বিদ্রোহে কৃষকদের ভূমিকা উল্লেখ করে একে 'কৃষক বিদ্রোহ' বলেছেন?", opts: ["তালমিজ খালদুন", "রণজিৎ গুহ", "গৌতম ভদ্র", "শশীভূষণ চৌধুরী"], ans: 0, exp: "<b>ব্যাখ্যা:</b> মার্কসবাদী ধারার ঐতিহাসিক তালমিজ খালদুন এই বিদ্রোহে কৃষকদের স্বতঃস্ফূর্ত অংশগ্রহণের বিষয়টি বিশ্লেষণ করে একে 'কৃষক বিদ্রোহ' আখ্যা দিয়েছেন।" },
+        { q: "মহাবিদ্রোহের সময় বিদ্রোহীরা কাকে 'ভারতের সম্রাট' বলে ঘোষণা করেছিল?", opts: ["নানা সাহেব", "দ্বিতীয় বাহাদুর শাহ", "দ্বিতীয় বাজিরাও", "বখত খান"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মহাবিদ্রোহের সময় বিদ্রোহীরা সিংহাসনচ্যুত শেষ মোগল সম্রাট দ্বিতীয় বাহাদুর শাহকে 'ভারতের সম্রাট' বলে ঘোষণা করে ইংরেজদের বিরুদ্ধে ঝাঁপিয়ে পড়েছিল।" }
+    ]
+};
+
+// ============================================================
+// সেট ২: শিক্ষিত সমাজ ও মহারানির ঘোষণাপত্র
+// ============================================================
+const SET2 = {
+    name: "Set 2",
+    icon: "📜",
+    topic: "শিক্ষিত সমাজ ও মহারানির ঘোষণাপত্র",
+    questions: [
+        { q: "১৮৫৭ খ্রিস্টাব্দের মহাবিদ্রোহের প্রতি শিক্ষিত বাঙালি সমাজের মনোভাব কেমন ছিল?", opts: ["পূর্ণ সমর্থন করেছিল", "সশস্ত্র অংশগ্রহণ করেছিল", "নীরব দর্শক ছিল বা বিরোধিতা করেছিল", "কৃষকদের সঙ্গে যোগ দিয়েছিল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বাঙালি বুদ্ধিজীবী সম্প্রদায় এবং উচ্চ ও মধ্যবিত্ত শ্রেণির অধিকাংশ ধনী সম্প্রদায় সিপাহি বিদ্রোহ থেকে দূরে ছিল এবং প্রায় নীরব দর্শকের ভূমিকা পালন করেছিল।" },
+        { q: "মহাবিদ্রোহ দমনের সময় কোন্ বড়োেলাট কলকাতা থেকে সৈন্য সংগ্রহ করে দিল্লিতে পাঠিয়েছিলেন?", opts: ["লর্ড ডালহৌসি", "লর্ড ওয়েলেসলি", "লর্ড ক্যানিং", "লর্ড উইলিয়াম বেন্টিঙ্ক"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মহাবিদ্রোহ দমনের সময় তৎকালীন গভর্নর জেনারেল লর্ড ক্যানিং কলকাতা থেকে সৈন্য সংগ্রহ করে দিল্লিতে পাঠাতে সক্ষম হয়েছিলেন।" },
+        { q: "কোন্ ঐতিহাসিক বলেছেন যে 'নিজেদের শ্রেণিস্বার্থে' বাঙালি বুদ্ধিজীবীরা ইংরেজ সরকারকে সমর্থন করেছিল?", opts: ["রমেশচন্দ্র মজুমদার", "প্রমোদ সেনগুপ্ত", "সুশোভন সরকার", "সুরেন্দ্রনাথ সেন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রমোদ সেনগুপ্ত বলেছেন যে, নিজেদের ব্যক্তিগত তথা শ্রেণিস্বার্থে বাঙালি বুদ্ধিজীবীরা ইংরেজ সরকারকে সমর্থন করেছিল কারণ তারা ব্রিটিশদের অফিস-আদালতে কাজ করত।" },
+        { q: "কোন্ পত্রিকায় ১৮৫৭-এর বিদ্রোহীদের ধ্বংস কামনা করা হয়েছিল?", opts: ["সংবাদ প্রভাকর", "সংবাদ ভাস্কর", "সমাচার দর্পণ", "হিন্দু প্যাট্রিয়ট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সমকালীন বাঙালি শিক্ষিত সমাজের একাংশ এতটাই ব্রিটিশ-অনুগত ছিল যে, 'সংবাদ ভাস্কর' পত্রিকায় প্রকাশ্যে বিদ্রোহীদের ধ্বংস কামনা করা হয়েছিল।" },
+        { q: "'সংবাদ প্রভাকর' পত্রিকায় কে এই বিদ্রোহ দমনে ব্রিটিশের সাফল্য প্রার্থনা করেছিলেন?", opts: ["ঈশ্বরচন্দ্র গুপ্ত", "হরিশচন্দ্র মুখোপাধ্যায়", "দ্বারকানাথ বিদ্যাভূষণ", "বঙ্কিমচন্দ্র চট্টোপাধ্যায়"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বিখ্যাত কবি ও সাংবাদিক ঈশ্বরচন্দ্র গুপ্ত 'সংবাদ প্রভাকর' পত্রিকায় মহাবিদ্রোহের সমালোচনা করে ব্রিটিশদের সাফল্য প্রার্থনা করে প্রবন্ধ প্রকাশ করেছিলেন।" },
+        { q: "কলকাতায় হিন্দু মেট্রোপলিটান কলেজ ও নিজের রাজবাড়িতে সভা করে কে বিদ্রোহীদের নিন্দা করেছিলেন?", opts: ["দ্বারকানাথ ঠাকুর", "রাধাকান্ত দেব", "প্রসন্নকুমার ঠাকুর", "রামমোহন রায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> রক্ষণশীল হিন্দু সমাজের নেতা রাধাকান্ত দেবের উদ্যোগে কলকাতায় সভা করে বিদ্রোহীদের নিন্দা ও বিরোধিতা এবং ব্রিটিশ সরকারকে সমর্থনের প্রস্তাব গ্রহণ করা হয়।" },
+        { q: "ব্রিটিশ পার্লামেন্টে কবে 'ভারত শাসন আইন' বা 'An Act for the Better Government of India' পাস হয়?", opts: ["১৮৫৭ খ্রিস্টাব্দে", "১৮৫৮ খ্রিস্টাব্দে", "১৮৬০ খ্রিস্টাব্দে", "১৮৬১ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মহাবিদ্রোহের পর ১৮৫৮ খ্রিস্টাব্দের ২ আগস্ট ব্রিটিশ পার্লামেন্টে এই আইনটি পাস করে ভারতের শাসনভার কোম্পানির হাত থেকে রানি ভিক্টোরিয়ার হাতে তুলে দেওয়া হয়।" },
+        { q: "দেশীয় রাজ্যগুলিতে সিংহাসনের উত্তরাধিকার সংক্রান্ত কোনো বিরোধ দেখা দিলে কার সিদ্ধান্ত চূড়ান্ত বলে বিবেচিত হবে?", opts: ["সুপ্রিম কোর্টের", "ব্রিটিশ পার্লামেন্টের", "ভাইসরয়ের", "দেশীয় রাজাদের"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ঘোষণাপত্রে বলা হয়েছিল যে, দেশীয় রাজ্যগুলিতে সিংহাসন নিয়ে উত্তরাধিকার সংক্রান্ত বিরোধ দেখা দিলে ভাইসরয়ের সিদ্ধান্তই চূড়ান্ত বলে মান্য করা হবে।" },
+        { q: "মহারানির শাসনকালকে 'প্রতিশ্রুতিভঙ্গের অধ্যায়' বলে কে সমালোচনা করেছেন?", opts: ["রমেশচন্দ্র মজুমদার", "সুরেন্দ্রনাথ সেন", "সুশোভন সরকার", "বিপান চন্দ্র"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ব্রিটিশ সরকার ঘোষণাপত্রের প্রতিশ্রুতিগুলি বাস্তবায়িত না করে উলটে বিভেদনীতি প্রয়োগ করায় ড. রমেশচন্দ্র মজুমদার মহারানির শাসনকালকে 'প্রতিশ্রুতিভঙ্গের অধ্যায়' বলেছেন।" },
+        { q: "মহারানির ঘোষণাপত্র (Proclamation) কবে প্রকাশিত হয়?", opts: ["১ জানুয়ারি ১৮৫৮", "১ নভেম্বর ১৮৫৮", "১৫ আগস্ট ১৮৫৭", "২৬ জানুয়ারি ১৮৬০"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮৫৮ খ্রিস্টাব্দের ১ নভেম্বর মহারানি ভিক্টোরিয়ার ঘোষণাপত্র প্রকাশিত হয়, যার মাধ্যমে ভারতে সরাসরি ব্রিটিশ রাজতন্ত্রের শাসন শুরু হয়।" },
+        { q: "মহারানির ঘোষণাপত্রটি কে আনুষ্ঠানিকভাবে পাঠ করেছিলেন?", opts: ["লর্ড ডালহৌসি", "লর্ড উইলিয়াম বেন্টিঙ্ক", "লর্ড ক্যানিং", "লর্ড মাউন্টব্যাটেন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতের প্রথম ভাইসরয় লর্ড ক্যানিং ১৮৫৮ খ্রিস্টাব্দের ১ নভেম্বর এলাহাবাদের দরবারে আনুষ্ঠানিকভাবে মহারানির ঘোষণাপত্রটি পাঠ করেছিলেন।" },
+        { q: "মহারানির ঘোষণাপত্রটি কোথায় আনুষ্ঠানিকভাবে পাঠ করা হয়?", opts: ["কলকাতায়", "দিল্লির লালকেল্লায়", "এলাহাবাদের দরবারে", "মাদ্রাজ প্রেসিডেন্সিতে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> লর্ড ক্যানিং এলাহাবাদে আয়োজিত এক বিশাল দরবারে মহারানি ভিক্টোরিয়ার এই ঘোষণাপত্রটি পাঠ করেছিলেন।" },
+        { q: "মহারানির ঘোষণাপত্রে ভারতীয়দের কী অধিকারের কথা বলা হয়েছিল?", opts: ["বিনামূল্যে জমি", "সরকারি চাকরিতে যোগ্যতার ভিত্তিতে সমান অধিকার", "ধর্মীয় স্বাধীনতা হরণ", "সশস্ত্র সেনাবাহিনী গঠনের অধিকার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ঘোষণাপত্রে স্পষ্ট বলা হয় যে জাতি, ধর্ম, বর্ণ নির্বিশেষে যোগ্যতার ভিত্তিতে ভারতীয়রা ব্রিটিশ সরকারের অধীনে সরকারি চাকরিতে সমান অধিকার লাভ করবে।" },
+        { q: "১৮৫৮ সালের ভারত শাসন আইন অনুসারে ভারতের শাসনতান্ত্রিক প্রধান কে হন?", opts: ["গভর্নর জেনারেল", "ভারতসচিব (Secretary of State for India)", "মহারানি ভিক্টোরিয়া", "ব্রিটিশ প্রধানমন্ত্রী"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮৫৮ সালের আইনে ইংল্যান্ডে ১৫ জন সদস্যবিশিষ্ট একটি ইন্ডিয়া কাউন্সিল তৈরি হয়, যার প্রধান বা সভাপতি হিসেবে 'ভারতসচিব' বা Secretary of State for India নিযুক্ত হন।" },
+        { q: "মহাবিদ্রোহের পর ভারতের প্রথম ভাইসরয় বা রাজপ্রতিনিধি কে নিযুক্ত হন?", opts: ["লর্ড কার্জন", "লর্ড ডালহৌসি", "লর্ড রিপন", "লর্ড ক্যানিং"], ans: 3, exp: "<b>ব্যাখ্যা:</b> মহারানির ঘোষণাপত্রের পর গভর্নর জেনারেলের উপাধি পালটে 'ভাইসরয়' বা রানির প্রতিনিধি রাখা হয় এবং লর্ড ক্যানিং ভারতের প্রথম ভাইসরয় হন।" }
+    ]
+};
+
+// ============================================================
+// সেট ৩: সভাসমিতির যুগ (জমিদার সভা ও হিন্দুমেলা)
+// ============================================================
+const SET3 = {
+    name: "Set 3",
+    icon: "🏛️",
+    topic: "সভাসমিতির যুগ (জমিদার সভা ও হিন্দুমেলা)",
+    questions: [
+        { q: "উনবিংশ শতাব্দীকে 'সভাসমিতির যুগ' (Age of Association) বলে কে অভিহিত করেছেন?", opts: ["ড. রমেশচন্দ্র মজুমদার", "ড. অনীল শীল", "চার্লস মেটকাফ", "সুশোভন সরকার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> উনবিংশ শতাব্দীতে জাতীয়তাবাদের বিকাশের অনিবার্য ফল হিসেবে যে প্রচুর রাজনৈতিক সংগঠন গড়ে উঠেছিল, তার জন্য ঐতিহাসিক অনীল শীল এই সময়কালকে 'সভাসমিতির যুগ' বলেছেন।" },
+        { q: "অনীল শীল তাঁর কোন্ গ্রন্থে উনবিংশ শতাব্দীকে 'Age of Association' বলেছেন?", opts: ["দ্য ইমার্জেন্স অফ ইন্ডিয়ান ন্যাশনালিজম", "দ্য সিপাহি মিউটিনি", "ন্যাশনালিজম ইন ইন্ডিয়া", "অ্যানাদার সাইড অফ সাইলেন্স"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ঐতিহাসিক অনীল শীল তাঁর বিখ্যাত গ্রন্থ 'The Emergence of Indian Nationalism'-এ উনবিংশ শতাব্দীকে সভাসমিতির যুগ বলে চিহ্নিত করেছেন।" },
+        { q: "ভারতে প্রথম সংগঠিত নিয়মতান্ত্রিক আন্দোলন কে গড়ে তুলেছিলেন?", opts: ["সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়", "রাজা রামমোহন রায়", "ঈশ্বরচন্দ্র বিদ্যাসাগর", "দেবেন্দ্রনাথ ঠাকুর"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮২৪ থেকে ১৮৩০ খ্রিস্টাব্দের মধ্যে ভারতে সর্বপ্রথম সংগঠিতভাবে নিয়মতান্ত্রিক রাজনৈতিক আন্দোলনের সূত্রপাত করেছিলেন রাজা রামমোহন রায়।" },
+        { q: "'বঙ্গভাষা প্রকাশিকা সভা' কবে প্রতিষ্ঠিত হয়?", opts: ["১৮২৮ খ্রিস্টাব্দে", "১৮৩৬ খ্রিস্টাব্দে", "১৮৩৮ খ্রিস্টাব্দে", "১৮৪৩ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> রাজা রামমোহন রায়ের অনুগামীদের ঐকান্তিক প্রচেষ্টায় ১৮৩৬ খ্রিস্টাব্দে কলকাতায় 'বঙ্গভাষা প্রকাশিকা সভা' নামে রাজনৈতিক সংগঠনটি গড়ে ওঠে।" },
+        { q: '"জমিদার সভাই হল ভারতের স্বাধীনতার অগ্রদূতা" উক্তিটি কার?', opts: ["সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়", "রাজেন্দ্রলাল মিত্র", "বঙ্কিমচন্দ্র চট্টোপাধ্যায়", "ড. অনীল শীল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> এই সমিতি ভারতবাসীকে স্বাধীন মতামত প্রকাশের পথ দেখিয়েছিল, তাই ঐতিহাসিক রাজেন্দ্রলাল মিত্র জমিদার সভাকে ভারতের স্বাধীনতার অগ্রদূত বলে মনে করেন।" },
+        { q: "নবগোপাল মিত্রের 'চৈত্রমেলা' পরবর্তীকালে কী নামে পরিচিত হয়?", opts: ["হিন্দুমেলা", "ভারত সভা", "জাতীয় মেলা", "স্বদেশি মেলা"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ১৮৬৭ খ্রিস্টাব্দে নবগোপাল মিত্রের উদ্যোগে 'চৈত্রমেলা'-র সূচনা হয়, যা পরবর্তীকালে হিন্দুমেলা নামে ব্যাপক পরিচিত লাভ করে।" },
+        { q: "হিন্দুমেলার অন্যতম উদ্দেশ্য কী ছিল?", opts: ["ব্রিটিশ সরকারের বিরোধিতা করা", "মুসলিমদের ঐক্যবদ্ধ করা", "স্বদেশি শিল্পের উৎপাদন বৃদ্ধি ও অতীত গৌরব প্রচার করা", "পাশ্চাত্য শিক্ষার প্রসার"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অতীত ঐতিহ্য ও গৌরবগাথা প্রচারের মাধ্যমে হিন্দুদের ঐক্যবদ্ধ করা এবং স্বদেশি শিল্পের উৎপাদন বৃদ্ধির মাধ্যমে আত্মনির্ভরশীল করে তোলাই ছিল হিন্দুমেলার অন্যতম প্রধান উদ্দেশ্য।" },
+        { q: "বঙ্গভাষা প্রকাশিকা সভার প্রথম সভাপতি কে ছিলেন?", opts: ["গৌরীশংকর তর্কাগীশ", "রামমোহন রায়", "দেবেন্দ্রনাথ ঠাকুর", "দ্বারকানাথ ঠাকুর"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ১৮৩৬ খ্রিস্টাব্দে প্রতিষ্ঠিত বঙ্গভাষা প্রকাশিকা সভার প্রথম সভাপতি হিসেবে নির্বাচিত হয়েছিলেন গৌরীশংকর তর্কাগীশ।" },
+        { q: "জমিদার সভার প্রথম সভাপতি কে ছিলেন?", opts: ["দ্বারকানাথ ঠাকুর", "রাধাকান্ত দেব", "প্রসন্নকুমার ঠাকুর", "রামমোহন রায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> জমিদারদের স্বার্থরক্ষায় গঠিত জমিদার সভার প্রথম সভাপতি ছিলেন রক্ষণশীল হিন্দু নেতা রাধাকান্ত দেব।" },
+        { q: "জমিদার সভা (Landholders' Society) কবে প্রতিষ্ঠিত হয়?", opts: ["১৮২৮ খ্রিস্টাব্দে", "১৮৩৬ খ্রিস্টাব্দে", "১৮৩৮ খ্রিস্টাব্দে", "১৮৪৩ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> দ্বারকানাথ ঠাকুর, রাধাকান্ত দেব প্রমুখের উদ্যোগে ১৮৩৮ খ্রিস্টাব্দে জমিদার সভা প্রতিষ্ঠিত হয়।" },
+        { q: "জমিদার সভার প্রধান উদ্দেশ্য কী ছিল?", opts: ["কৃষকদের স্বার্থরক্ষা", "জমিদারদের স্বার্থরক্ষা", "পাশ্চাত্য শিক্ষার প্রসার", "সশস্ত্র বিদ্রোহ সংগঠিত করা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> নাম থেকেই বোঝা যায়, এই সভার মূল লক্ষ্য ছিল বাংলা, বিহার ও উড়িষ্যার জমিদারদের স্বার্থরক্ষা করা এবং ব্রিটিশ সরকারের কাছে দাবিদাওয়া পেশ করা।" },
+        { q: "হিন্দুমেলার অপর নাম কী ছিল?", opts: ["চৈত্র মেলা", "মাঘ মেলা", "স্বদেশি মেলা", "বসন্ত মেলা"], ans: 0, exp: "<b>ব্যাখ্যা:</b> চৈত্র মাসের সংক্রান্তিতে এটি প্রথম অনুষ্ঠিত হতো বলে নবগোপাল মিত্র প্রতিষ্ঠিত এই মেলার অপর নাম ছিল 'চৈত্র মেলা'।" },
+        { q: "হিন্দুমেলা কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৬৭ খ্রিস্টাব্দে", "১৮৭৬ খ্রিস্টাব্দে", "১৮৮৫ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> হিন্দু ধর্মানুরাগ ও জাতীয়তাবোধ জাগিয়ে তোলার উদ্দেশ্যে ১৮৬৭ খ্রিস্টাব্দে হিন্দুমেলা প্রতিষ্ঠিত হয়।" },
+        { q: "হিন্দুমেলার প্রতিষ্ঠায় নবগোপাল মিত্রকে কে ব্যাপকভাবে সাহায্য করেছিলেন?", opts: ["সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়", "রাজনারায়ণ বসু", "বঙ্কিমচন্দ্র চট্টোপাধ্যায়", "স্বামী বিবেকানন্দ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> হিন্দুমেলার প্রতিষ্ঠার ক্ষেত্রে নবগোপাল মিত্রকে বুদ্ধি ও পরামর্শ দিয়ে বিশেষভাবে সাহায্য করেছিলেন জাতীয়তাবাদী নেতা রাজনারায়ণ বসু।" },
+        { q: "'জাতীয় গৌরব সম্পাদনী সভা' কে প্রতিষ্ঠা করেন?", opts: ["রাজনারায়ণ বসু", "নবগোপাল মিত্র", "দ্বিজেন্দ্রনাথ ঠাকুর", "সত্যেন্দ্রনাথ ঠাকুর"], ans: 0, exp: "<b>ব্যাখ্যা:</b> স্বদেশি ভাবধারা প্রসারের উদ্দেশ্যে রাজনারায়ণ বসু এই 'জাতীয় গৌরব সম্পাদনী সভা' প্রতিষ্ঠা করেছিলেন, যা হিন্দুমেলার আদর্শকে প্রভাবিত করে。" }
+    ]
+};
+
+// ============================================================
+// সেট ৪: ভারতসভা ও লেখায়-রেখায় জাতীয়তাবাদ
+// ============================================================
+const SET4 = {
+    name: "Set 4",
+    icon: "🖋️",
+    topic: "ভারতসভা ও লেখায়-রেখায় জাতীয়তাবাদ",
+    questions: [
+        { q: "'ভারতসভা' বা 'ইন্ডিয়ান অ্যাসোসিয়েশন' কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৬৭ খ্রিস্টাব্দে", "১৮৭৫ খ্রিস্টাব্দে", "১৮৭৬ খ্রিস্টাব্দে", "১৮৮৫ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৮৭৬ খ্রিস্টাব্দের ২৬ জুলাই কলকাতার অ্যালবার্ট হলে অনুষ্ঠিত এক বিশাল জনসভা থেকে ভারতসভা বা ইন্ডিয়ান অ্যাসোসিয়েশন-এর জন্ম হয়।" },
+        { q: "বঙ্কিমচন্দ্র চট্টোপাধ্যায়ের 'আনন্দমঠ' উপন্যাসটি কোন্ ঐতিহাসিক ঘটনার পটভূমিকায় রচিত?", opts: ["মহাবিদ্রোহ (১৮৫৭)", "নীল বিদ্রোহ", "ছিয়াত্তরের মন্বন্তর ও সন্ন্যাসী বিদ্রোহ", "চুয়াড় বিদ্রোহ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৭৭০ খ্রিস্টাব্দের ছিয়াত্তরের মন্বন্তর ও সন্ন্যাসী বিদ্রোহের পটভূমিকায় লেখা 'আনন্দমঠ' উনবিংশ শতাব্দীর জাতীয়তাবাদের বিকাশে ব্যাপক সহায়তা করেছিল।" },
+        { q: "'বন্দেমাতরম' সংগীতটি বঙ্কিমচন্দ্র চট্টোপাধ্যায় কবে রচনা করেছিলেন?", opts: ["১৮৭০ খ্রিস্টাব্দে", "১৮৭২ খ্রিস্টাব্দে", "১৮৭৫ খ্রিস্টাব্দে", "১৮৮২ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> দেশমাতার বন্দনা করে ১৮৭৫ খ্রিস্টাব্দে বঙ্কিমচন্দ্র চট্টোপাধ্যায় এই বিখ্যাত গানটি রচনা করেন, যা পরে 'আনন্দমঠ' উপন্যাসের অন্তর্ভুক্ত হয়।" },
+        { q: '"ভুলিও না-তুমি জন্ম হইতেই মায়ের জন্য বলিপ্রদত্ত।" – এই বিখ্যাত উক্তিটি কার?', opts: ["নেতাজি সুভাষচন্দ্র বসু", "স্বামী বিবেকানন্দ", "বঙ্কিমচন্দ্র চট্টোপাধ্যায়", "সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিদেশি ব্রিটিশ শাসন থেকে ভারতমাতাকে মুক্ত করার জন্য স্বামী বিবেকানন্দ তাঁর 'বর্তমান ভারত' গ্রন্থে এই আহ্বান জানিয়েছিলেন।" },
+        { q: "রবীন্দ্রনাথ ঠাকুরের 'গোরা' উপন্যাসটি প্রথম কোন্ পত্রিকায় ধারাবাহিকভাবে প্রকাশিত হয়?", opts: ["বঙ্গদর্শন", "তত্ত্ববোধিনী", "প্রবাসী", "ভারতী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> রবীন্দ্রনাথ ঠাকুর বঙ্গভঙ্গ বিরোধী আন্দোলনের সময়কালে রচিত 'গোরা' উপন্যাসটি প্রথম 'প্রবাসী' পত্রিকায় ১৯০৭ থেকে ১৯০৯ খ্রিস্টাব্দ পর্যন্ত ধারাবাহিকভাবে প্রকাশ করেন।" },
+        { q: "'গোরা' উপন্যাসে রবীন্দ্রনাথ ঠাকুর কোন্ আদর্শের প্রচার করেছেন?", opts: ["উগ্র হিন্দুত্ববাদ", "সশস্ত্র বিপ্লববাদ", "সর্বভারতীয় ও বিশ্ব মানবতাবাদ বা অসাম্প্রদায়িক মনোভাব", "পাশ্চাত্য শিক্ষার অনুকরণ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> 'গোরা' উপন্যাসের মাধ্যমে রবীন্দ্রনাথ ঠাকুর জাতি, ধর্ম, বর্ণের সংকীর্ণতা ও সাম্প্রদায়িকতার বিরোধিতা করে অসাম্প্রদায়িক মনোভাব ও বিশ্ব মানবতাবাদের আদর্শ প্রচার করেছেন।" },
+        { q: "'ভারতমাতা' চিত্রটি কে অঙ্কন করেছিলেন?", opts: ["গগনেন্দ্রনাথ ঠাকুর", "অবনীন্দ্রনাথ ঠাকুর", "রবীন্দ্রনাথ ঠাকুর", "নন্দলাল বসু"], ans: 1, exp: "<b>ব্যাখ্যা:</b> 'নব্যবঙ্গ চিত্রকলার জনক' অবনীন্দ্রনাথ ঠাকুর স্বদেশি যুগে ভারতীয়দের দেশপ্রেমে উদ্বুদ্ধ করার উদ্দেশ্যে এই বিখ্যাত 'ভারতমাতা' চিত্রটি অঙ্কন করেন।" },
+        { q: "ভারতসভার প্রথম সম্পাদক কে ছিলেন?", opts: ["সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়", "শিবনাথ শাস্ত্রী", "আনন্দমোহন বসু", "কৃষ্ণদাস পাল"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতসভার প্রতিষ্ঠার সময় প্রথম সভাপতি হন রেভারেন্ড কৃষ্ণমোহন বন্দ্যোপাধ্যায় এবং সম্পাদক নিযুক্ত হন আনন্দমোহন বসু।" },
+        { q: "ভারতসভা প্রতিষ্ঠার অন্যতম প্রধান উদ্দেশ্য কী ছিল?", opts: ["সশস্ত্র বিদ্রোহ সংগঠিত করা", "শক্তিশালী জনমত গঠন ও রাজনৈতিক ঐক্য", "কৃষকদের ঋণ মকুব", "শিক্ষাপ্রতিষ্ঠান স্থাপন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতবাসীর মধ্যে রাজনৈতিক স্বার্থে ঐক্যবদ্ধ ও শক্তিশালী জনমত গঠন করে নিয়মতান্ত্রিক আন্দোলন করাই ছিল ভারতসভার প্রধান উদ্দেশ্য।" },
+        { q: "ইলবার্ট বিল বিতর্কের (১৮৮৩) সময় ভারতের ভাইসরয় কে ছিলেন?", opts: ["লর্ড লিটন", "লর্ড ডালহৌসি", "লর্ড রিপন", "লর্ড কার্জন"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উদারপন্থী ভাইসরয় লর্ড রিপনের শাসনকালে তাঁর আইন সচিব সি. পি. ইলবার্ট এই বিতর্কিত বিলটি উত্থাপন করেছিলেন।" },
+        { q: "ইলবার্ট বিলের পক্ষে ভারতীয়রা কোন্ সভা গঠন করেছিল?", opts: ["ইন্ডিয়ান লিগ", "ইন্ডিয়ান অ্যাসোসিয়েশন বা ভারতসভা", "জাতীয় কংগ্রেস", "পুনা সার্বজনিক সভা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ইউরোপীয়দের ডিফেন্স অ্যাসোসিয়েশনের পালটা হিসেবে ভারতসভার উদ্যোগে সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়ের নেতৃত্বে ভারতীয়রা এই বিলের পক্ষে আন্দোলন করেন।" },
+        { q: "'দি বেঙ্গলি' পত্রিকার সম্পাদক কে ছিলেন?", opts: ["বঙ্কিমচন্দ্র চট্টোপাধ্যায়", "হরিশচন্দ্র মুখোপাধ্যায়", "সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়", "শিশিরকুমার ঘোষ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ভারতসভার রাজনৈতিক মতাদর্শ ও দাবিদাওয়া মানুষের কাছে পৌঁছে দিতে সুরেন্দ্রনাথ বন্দ্যোপাধ্যায় 'দি বেঙ্গলি' পত্রিকা সম্পাদনা করতেন।" },
+        { q: "অস্ত্র আইন (Arms Act - ১৮৭৮) কে পাস করেছিলেন?", opts: ["লর্ড ক্যানিং", "লর্ড লিটন", "লর্ড রিপন", "লর্ড ডাফরিন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতীয়দের বিনা লাইসেন্সে অস্ত্র রাখা নিষিদ্ধ করে ১৮৭৮ খ্রিস্টাব্দে লর্ড লিটন এই বৈষম্যমূলক অস্ত্র আইন পাস করেছিলেন।" },
+        { q: "দেশীয় মুদ্রণযন্ত্র আইন (Vernacular Press Act - ১৮৭৮) কে পাস করেছিলেন?", opts: ["লর্ড লিটন", "লর্ড রিপন", "লর্ড কার্জন", "লর্ড ওয়েলেসলি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> দেশীয় ভাষায় প্রকাশিত সংবাদপত্রগুলির কণ্ঠরোধ করার জন্য লর্ড লিটন ১৮৭৮ খ্রিস্টাব্দে এই দমনমূলক আইনটি পাস করেছিলেন।" },
+        { q: "সিভিল সার্ভিস (I.C.S) পরীক্ষায় ভারতীয়দের বসার বয়স কমানোর প্রতিবাদে কে প্রথম সুর চড়িয়েছিলেন?", opts: ["সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়", "রামমোহন রায়", "দাদাভাই নওরোজি", "উমেশচন্দ্র বন্দ্যোপাধ্যায়"], ans: 0, exp: "<b>ব্যাখ্যা:</b> লর্ড লিটন আই.সি.এস. পরীক্ষায় বসার বয়স ২১ থেকে কমিয়ে ১৯ বছর করলে সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়ের নেতৃত্বে ভারতসভা তীব্র আন্দোলন গড়ে তোলে。" }
+    ]
+};
+
+// ============================================================
+// সেট ৫: ঐতিহাসিকদের বিশ্লেষণ ও অন্যান্য দিক
+// ============================================================
+const SET5 = {
+    name: "Set 5",
+    icon: "🔍",
+    topic: "ঐতিহাসিকদের বিশ্লেষণ ও অন্যান্য দিক",
+    questions: [
+        { q: "১৮৫৭-র মহাবিদ্রোহের সময় 'সংবাদ ভাস্কর' ও 'সংবাদ প্রভাকর' পত্রিকা দুটি কীরূপ মনোভাব দেখিয়েছিল?", opts: ["ব্রিটিশদের সমর্থন ও বিদ্রোহীদের নিন্দা", "বিদ্রোহীদের সমর্থন", "সম্পূর্ণ নিরপেক্ষ", "মহাবিদ্রোহীদের অর্থসাহায্য"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বাঙালি বুদ্ধিজীবীদের একাংশ ব্রিটিশ শাসনকে কল্যাণকর মনে করতেন। তাই 'সংবাদ ভাস্কর' পত্রিকায় বিদ্রোহীদের ধ্বংস কামনা করা হয় এবং ঈশ্বরচন্দ্র গুপ্ত 'সংবাদ প্রভাকর' পত্রিকায় বিদ্রোহ দমনে ব্রিটিশের সাফল্য প্রার্থনা করেন।" },
+        { q: "মহাবিদ্রোহের সময় কে কলকাতা হিন্দু মেট্রোপলিটান কলেজে সভা করে ব্রিটিশদের সমর্থনের প্রস্তাব গ্রহণ করেন?", opts: ["দেবেন্দ্রনাথ ঠাকুর", "রাধাকান্ত দেব", "ঈশ্বরচন্দ্র বিদ্যাসাগর", "হরিশচন্দ্র মুখোপাধ্যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বিদ্রোহ শুরু হলে রক্ষণশীল হিন্দু সমাজের নেতা রাধাকান্ত দেবের উদ্যোগে তাঁর শোভাবাজার রাজবাড়ি ও হিন্দু মেট্রোপলিটান কলেজে সভা করে বিদ্রোহীদের নিন্দা ও সরকারকে সমর্থনের প্রস্তাব গ্রহণ করা হয়।" },
+        { q: "ঐতিহাসিক প্রমোদ সেনগুপ্তের মতে, বাঙালি বুদ্ধিজীবীরা কেন মহাবিদ্রোহকে সমর্থন করেননি?", opts: ["ব্রিটিশদের ভয়ে", "বিদ্রোহীদের অহিংস নীতির অভাবে", "নিজেদের ব্যক্তিগত ও শ্রেণিস্বার্থে", "তারা কৃষকদের সমর্থন করছিল বলে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> প্রমোদ সেনগুপ্ত বলেছেন যে, নিজেদের ব্যক্তিগত তথা শ্রেণিস্বার্থে বাঙালি বুদ্ধিজীবী সম্প্রদায় ইংরেজ সরকারকে সমর্থন করেছিল কারণ তারা ইংরেজদের অফিসে কেরানি বা দোভাষীর কাজ করে জীবিকানির্বাহ করত।" },
+        { q: "মার্কসবাদী ঐতিহাসিক তালমিজ খালদুন মহাবিদ্রোহকে কী আখ্যা দিয়েছেন?", opts: ["সামন্ত বিদ্রোহ", "সিপাহি বিদ্রোহ", "কৃষক বিদ্রোহ", "প্রথম স্বাধীনতা সংগ্রাম"], ans: 2, exp: "<b>ব্যাখ্যা:</b> মার্কসবাদী ধারার ঐতিহাসিক তালমিজ খালদুন এই বিদ্রোহে কৃষকদের স্বতঃস্ফূর্ত অংশগ্রহণের ভূমিকার কথা উল্লেখ করে একে 'কৃষক বিদ্রোহ' বলেছেন।" },
+        { q: "নিম্নবর্গের (Subaltern) ঐতিহাসিক হিসেবে কারা ১৮৫৭-র মহাবিদ্রোহ নিয়ে আলোচনা করেছেন?", opts: ["রণজিৎ গুহ ও গৌতম ভদ্র", "রমেশচন্দ্র মজুমদার ও সুরেন্দ্রনাথ সেন", "ডাফ ও ম্যালেসন", "রজনী পাম দত্ত ও কার্ল মার্কস"], ans: 0, exp: "<b>ব্যাখ্যা:</b> নিম্নবর্গের ঐতিহাসিক রণজিৎ গুহ, গৌতম ভদ্র প্রমুখ তথ্যপ্রমাণ দিয়ে দেখিয়েছেন যে মহাবিদ্রোহে নিম্নবর্গের মানুষ শুধু অংশই নেয়নি, নেতৃত্ব দানেও এগিয়ে এসেছিল।" },
+        { q: "মহারানির ঘোষণাপত্রে দেশীয় রাজাদের কোন হারানো অধিকারটি ফিরিয়ে দেওয়া হয়?", opts: ["চিরস্থায়ী বন্দোবস্ত", "দত্তক পুত্র গ্রহণের অধিকার", "সেনাবাহিনী গঠনের অধিকার", "কর মকুবের অধিকার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> এই ঘোষণাপত্রে লর্ড ডালহৌসির 'স্বত্ববিলোপ নীতি' পরিত্যক্ত হয় এবং দেশীয় রাজাদের দত্তক পুত্র গ্রহণের অধিকার ফিরিয়ে দেওয়া হয়।" },
+        { q: "মহাবিদ্রোহে কোন কোন প্রদেশের রাজারা বা সৈন্যরা ব্রিটিশদের সাহায্য করেছিল বলে ঐতিহাসিকরা উল্লেখ করেছেন?", opts: ["অযোধ্যা ও ঝাঁসি", "বিহার ও কানপুর", "হায়দরাবাদের নিজাম এবং গুরখা ও নেপালি সৈন্যরা", "মেদিনীপুর ও বাঁকুড়া"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ড. রমেশচন্দ্র মজুমদার দেখিয়েছেন যে, হায়দরাবাদের নিজামের মতো দেশীয় রাজারা এবং গুরখা ও নেপালি সৈন্যরা এই বিদ্রোহ দমনে ব্রিটিশ সরকারের পক্ষ নিয়েছিল।" },
+        { q: "ইংরেজ ঐতিহাসিক হোমস, ডাফ, ম্যালেসন, জে. বি. নর্টন প্রমুখ মহাবিদ্রোহকে কী বলেছেন?", opts: ["সিপাহি বিদ্রোহ", "সামন্ত বিদ্রোহ", "জাতীয় বিদ্রোহ", "কৃষক বিদ্রোহ"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ব্রিটিশ ঐতিহাসিকদের এই নির্দিষ্ট গোষ্ঠীটি মহাবিদ্রোহের ব্যাপকতা বিচার করে একে 'জাতীয় বিদ্রোহ' বা National Revolt বলেছেন।" },
+        { q: "দাদাভাই নওরোজি, রাজনারায়ণ বসু, সৈয়দ আহমেদ খান প্রমুখ ভারতীয় ঐতিহাসিক মহাবিদ্রোহকে কী বলে মনে করতেন?", opts: ["জাতীয় বিদ্রোহ", "সিপাহি বিদ্রোহ", "স্বাধীনতা সংগ্রাম", "নিম্নবর্গের বিদ্রোহ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বেশ কিছু ভারতীয় ঐতিহাসিক ও চিন্তাশীল ব্যক্তিবর্গ মনে করেন যে, ১৮৫৭ খ্রিস্টাব্দের এই ঘটনাটি ছিল নিছক সিপাহিদের বিদ্রোহ।" },
+        { q: "ব্রিটিশ পার্লামেন্টের টোরি দলের কোন সদস্য মহাবিদ্রোহকে 'জাতীয় বিদ্রোহ' বলেছিলেন?", opts: ["ম্যাকডোনাল্ড", "উইনস্টন চার্চিল", "ডিসরেলি", "উইলিয়াম বেন্টিঙ্ক"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ব্রিটিশ পার্লামেন্টের টোরি দলের বিখ্যাত সদস্য বেঞ্জামিন ডিসরেলি এই বিদ্রোহের ব্যাপকতা লক্ষ করে একে 'জাতীয় বিদ্রোহ' বলে স্বীকার করেছিলেন。" },
+        { q: "মহাবিদ্রোহের ব্যর্থতা সত্ত্বেও এটি ভারতের ইতিহাসে কোন বড়ো রাজনৈতিক পরিবর্তন এনেছিল?", opts: ["কৃষকদের ঋণ মকুব", "কোম্পানির শাসনের অবসান ও ব্রিটিশ পার্লামেন্টের প্রত্যক্ষ শাসন", "কংগ্রেস প্রতিষ্ঠা", "চিরস্থায়ী বন্দোবস্তের অবসান"], ans: 1, exp: "<b>ব্যাখ্যা:</b> এই বিদ্রোহের ফলে ভারতে ব্রিটিশ ইস্ট ইন্ডিয়া কোম্পানির শাসনের অবসান হয় এবং ব্রিটিশ পার্লামেন্ট সরাসরি ভারতের শাসনভার ইংল্যান্ডের রানির হাতে তুলে দেয়।" },
+        { q: "মহারানির ঘোষণাপত্রে ব্রিটিশ সরকার সামাজিক ক্ষেত্রে কী প্রতিশ্রুতি দিয়েছিল?", opts: ["সতীদাহ প্রথা ফিরিয়ে দেওয়া", "ভারতীয়দের ধর্মীয় ও সামাজিক অধিকারে হস্তক্ষেপ না করা", "বাল্যবিবাহ চালু করা", "খ্রিস্টধর্ম গ্রহণ বাধ্যতামূলক করা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সিপাহি বিদ্রোহের অন্যতম কারণ ছিল ধর্মীয় আঘাত, তাই ঘোষণাপত্রে বলা হয় যে ভারতীয়দের ধর্মীয় ও সামাজিক অধিকারে ব্রিটিশ সরকার আর হস্তক্ষেপ করবে পুনরায় করবে না।" },
+        { q: "মহারানির ঘোষণাপত্র অনুযায়ী দেশীয় রাজ্যগুলির সিংহাসনের উত্তরাধিকার সংক্রান্ত বিরোধের চূড়ান্ত সিদ্ধান্ত কে নেবেন?", opts: ["ব্রিটিশ রানি", "গভর্নর জেনারেল", "ভাইসরয়", "দেশীয় রাজারা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ঘোষণাপত্রে স্পষ্টভাবে বলা হয় যে, দেশীয় রাজ্যগুলিতে সিংহাসন বা উত্তরাধিকার নিয়ে কোনো বিরোধ দেখা দিলে রাজপ্রতিনিধি বা ভাইসরয়ের সিদ্ধান্তই চূড়ান্ত বলে বিবেচিত হবে。" },
+        { q: "তাঁতিয়া টোপির প্রকৃত নাম কী ছিল?", opts: ["ধোন্দুপন্থ", "রামচন্দ্র পান্ডুরঙ্গ টোপি", "মনিকর্ণিকা", "বখত খান"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মহাবিদ্রোহের অন্যতম বীর নেতা তাঁতিয়া টোপির প্রকৃত নাম ছিল রামচন্দ্র পান্ডুরঙ্গ টোপি, যিনি কানপুরে নানাসাহেবের সেনাপতি ছিলেন。" },
+        { q: "মহাবিদ্রোহে ঝাঁসির রানি লক্ষ্মীবাইয়ের পতন কবে ঘটে?", opts: ["১৮৫৭ খ্রিস্টাব্দের ১০ মে", "১৮৫৮ খ্রিস্টাব্দের ১৭ জুন", "১৮৫৯ খ্রিস্টাব্দের ২ মার্চ", "১৮৬০ খ্রিস্টাব্দের ১৫ আগস্ট"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ব্রিটিশ সেনাপতি হিউরোজের বিরুদ্ধে বীরবিক্রমে লড়াই করে ১৮৫৮ খ্রিস্টাব্দের ১৭ জুন গোয়ালিয়রের যুদ্ধে রানি লক্ষ্মীবাই বীরগতি প্রাপ্ত হন。" }
+    ]
+};
+
+// ============================================================
+// সেট ৬: রাজনৈতিক সভাসমিতির যুগ
+// ============================================================
+const SET6 = {
+    name: "Set 6",
+    icon: "🏛️",
+    topic: "রাজনৈতিক সভাসমিতির যুগ",
+    questions: [
+        { q: "'ব্রিটিশ ইন্ডিয়া সোসাইটি' (১৮৩৯) কে প্রতিষ্ঠা করেন?", opts: ["উইলিয়াম অ্যাডাম", "জর্জ টমসন", "দ্বারকানাথ ঠাকুর", "ডেভিড হেয়ার"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ভারতে রাজনৈতিক সচেতনতা ও সংঘবদ্ধতার প্রাথমিক যুগে ১৮৩৯ খ্রিস্টাব্দে উইলিয়াম অ্যাডাম 'ব্রিটিশ ইন্ডিয়া সোসাইটি' প্রতিষ্ঠা করেছিলেন।" },
+        { q: "'বেঙ্গল ব্রিটিশ ইন্ডিয়া সোসাইটি' (১৮৪৩) কার উদ্যোগে প্রতিষ্ঠিত হয়?", opts: ["উইলিয়াম অ্যাডাম", "জর্জ টমসন", "দাদাভাই নওরোজি", "আনন্দমোহন বসু"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮৪৩ খ্রিস্টাব্দে জর্জ টমসনের উদ্যোগে বাংলায় রাজনৈতিক দাবিদাওয়া আদায়ের উদ্দেশ্যে 'বেঙ্গল ব্রিটিশ ইন্ডিয়া সোসাইটি' গড়ে ওঠে।" },
+        { q: "১৮৮৩ খ্রিস্টাব্দে কলকাতায় অনুষ্ঠিত 'সর্বভারতীয় জাতীয় সম্মেলন'-কে কে 'জাতীয় কংগ্রেসের মহড়া' বলে অভিহিত করেছেন?", opts: ["সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়", "অমলেশ ত্রিপাঠী", "রমেশচন্দ্র মজুমদার", "অনীল শীল"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮৮৩ সালে সুরেন্দ্রনাথের উদ্যোগে অনুষ্ঠিত 'All Indian National Conference'-এর গুরুত্ব বিশ্লেষণ করতে গিয়ে ঐতিহাসিক অমলেশ ত্রিপাঠী একে 'জাতীয় কংগ্রেসের মহড়া' বলেছেন।" },
+        { q: "'ইন্ডিয়ান লিগ' কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৭৫ খ্রিস্টাব্দে", "১৮৭৬ খ্রিস্টাব্দে", "১৮৮৩ খ্রিস্টাব্দে", "১৮৮৫ খ্রিস্টাব্দে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> জাতীয়তাবোধ জাগরণের উদ্দেশ্যে শিশিরকুমার ঘোষ ও হেমন্তকুমার ঘোষের উদ্যোগে ১৮৭৫ খ্রিস্টাব্দে ইন্ডিয়ান লিগ প্রতিষ্ঠিত হয়।" },
+        { q: "'ইন্ডিয়ান লিগ'-এর প্রতিষ্ঠাতা কে ছিলেন?", opts: ["সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়", "শিশিরকুমার ঘোষ", "উমেশচন্দ্র বন্দ্যোপাধ্যায়", "আনন্দমোহন বসু"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রখ্যাত সাংবাদিক ও জাতীয়তাবাদী নেতা শিশিরকুমার ঘোষ ১৮৭৫ খ্রিস্টাব্দে ইন্ডিয়ান লিগ প্রতিষ্ঠা করেছিলেন。" },
+        { q: "সর্বভারতীয় জাতীয় সম্মেলন (National Conference) প্রথম কবে অনুষ্ঠিত হয়?", opts: ["১৮৭৬ খ্রিস্টাব্দে", "১৮৮৩ খ্রিস্টাব্দে", "১৮৮৫ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়ের উদ্যোগে এবং ভারতসভার ব্যবস্থাপনায় ১৮৮৩ খ্রিস্টাব্দে কলকাতায় প্রথম সর্বভারতীয় জাতীয় সম্মেলন অনুষ্ঠিত হয়。" },
+        { q: "পুনা সার্বজনিক সভা কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৬৭ খ্রিস্টাব্দে", "১৮৭০ খ্রিস্টাব্দে", "১৮৭৬ খ্রিস্টাব্দে", "১৮৮৫ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> মারাঠি জাতীয়তাবাদের উন্মেষ ঘটাতে ১৮৭০ খ্রিস্টাব্দে পুনা সার্বজনিক সভা প্রতিষ্ঠিত হয়েছিল。" },
+        { q: "পুনা সার্বজনিক সভার অন্যতম প্রধান প্রতিষ্ঠাতা কে ছিলেন?", opts: ["মহাদেব গোবিন্দ রানাডে", "বালগঙ্গাধর তিলক", "গোপালকৃষ্ণ গোখলে", "দাদাভাই নওরোজি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> পুনা সার্বজনিক সভা প্রতিষ্ঠায় মহাদেব গোবিন্দ রানাডে এবং গণেশ বাসুদেব যোশি প্রমুখের প্রধান ভূমিকা ছিল。" },
+        { q: "মাদ্রাজ মহাজন সভা কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৭৬ খ্রিস্টাব্দে", "১৮৮৪ খ্রিস্টাব্দে", "১৮৮৫ খ্রিস্টাব্দে", "১৮৯২ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> দক্ষিণ ভারতে রাজনৈতিক অধিকার আদায়ের উদ্দেশ্যে ১৮৮৪ খ্রিস্টাব্দে মাদ্রাজ মহাজন সভা প্রতিষ্ঠিত হয়。" },
+        { q: "বোম্বাই প্রেসিডেন্সি অ্যাসোসিয়েশন কবে গঠিত হয়?", opts: ["১৮৭০ খ্রিস্টাব্দে", "১৮৭৬ খ্রিস্টাব্দে", "১৮৮৫ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ফিরোজ শাহ মেহতা, বদ্রুদ্দিন তয়েবজি এবং কে. টি. তেলাং-এর উদ্যোগে ১৮৮৫ খ্রিস্টাব্দে বোম্বাই প্রেসিডেন্সি অ্যাসোসিয়েশন গঠিত হয়。" },
+        { q: "ইলবার্ট বিল বিতর্কের মূল কারণ কী ছিল?", opts: ["কৃষকদের কর বৃদ্ধি", "শ্বেতাঙ্গদের বিচারের অধিকার ভারতীয় বিচারকদের প্রদান", "অস্ত্র রাখার অধিকার হরণ", "সংবাদপত্রের স্বাধীনতা হরণ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ইলবার্ট বিলে ভারতীয় বিচারকদের শ্বেতাঙ্গ বা ইউরোপীয়দের বিচার করার অধিকার দেওয়া হয়েছিল, যা শ্বেতাঙ্গরা তীব্রভাবে মেনে নিতে অস্বীকার করে。" },
+        { q: "জাতীয় কংগ্রেস কবে প্রতিষ্ঠিত হয়?", opts: ["১৮৭৬ খ্রিস্টাব্দে", "১৮৮৩ খ্রিস্টাব্দে", "১৮৮৫ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অ্যালান অক্টাভিয়ান হিউম-এর উদ্যোগে ১৮৮৫ খ্রিস্টাব্দে ভারতীয় জাতীয় কংগ্রেস প্রতিষ্ঠিত হয়。" },
+        { q: "জাতীয় কংগ্রেসের প্রথম সভাপতি কে ছিলেন?", opts: ["সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়", "উমেশচন্দ্র বন্দ্যোপাধ্যায়", "দাদাভাই নওরোজি", "অ্যালান অক্টাভিয়ান হিউম"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রখ্যাত বাঙালি আইনজীবী উমেশচন্দ্র বন্দ্যোপাধ্যায় (W.C. Bonnerjee) ছিলেন জাতীয় কংগ্রেসের প্রথম সভাপতি。" },
+        { q: "জাতীয় কংগ্রেসের প্রথম অধিবেশন কোথায় অনুষ্ঠিত হয়?", opts: ["কলকাতার অ্যালবার্ট হলে", "বোম্বাইয়ের গোকুলদাস তেজপাল সংস্কৃত কলেজে", "মাদ্রাজে", "পুনেতে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮৮৫ খ্রিস্টাব্দের ২৮ ডিসেম্বর বোম্বাইয়ের গোকুলদাস তেজপাল সংস্কৃত কলেজে জাতীয় কংগ্রেসের প্রথম অধিবেশন অনুষ্ঠিত হয়েছিল。" },
+        { q: '"জমিদার সভা" এবং "বেঙ্গল ব্রিটিশ ইন্ডিয়া সোসাইটি" মিলিত হয়ে কোন নতুন সংগঠন তৈরি করে?', opts: ["ভারতসভা", "ব্রিটিশ ইন্ডিয়ান অ্যাসোসিয়েশন", "ইন্ডিয়ান লিগ", "জাতীয় কংগ্রেস"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮৫১ খ্রিস্টাব্দে জমিদারদের এই দুটি সংগঠন নিজেদের মধ্যে মিশে গিয়ে ব্রিটিশ ইন্ডিয়ান অ্যাসোসিয়েশন (British Indian Association) গঠন করে。" }
+    ]
+};
+
+// ============================================================
+// সেট ৭: সাহিত্যে জাতীয়তাবোধের বিকাশ
+// ============================================================
+const SET7 = {
+    name: "Set 7",
+    icon: "📖",
+    topic: "সাহিত্যে জাতীয়তাবোধের বিকাশ",
+    questions: [
+        { q: "প্রাক্-ব্রিটিশ যুগে ভারতে কোনো জাতিতত্ব গড়ে ওঠেনি- এটি ভ্যালেন্টাইন চিরল তাঁর কোন্ গ্রন্থে দাবি করেছেন?", opts: ["দ্য রেনেসাঁস ইন ইন্ডিয়া", "ইন্ডিয়া আনরেস্ট (India Unrest)", "বর্তমান ভারত", "এ নেশন ইন মেকিং"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতীয় জাতীয়তাবাদের পটভূমি বিশ্লেষণ করতে গিয়ে ভ্যালেন্টাইন চিরল তাঁর 'India Unrest' গ্রন্থে জোর দিয়ে বলেছেন যে প্রাক্-ব্রিটিশ যুগে ভারতে জাতিতত্ত্ব গড়ে ওঠেনি।" },
+        { q: "কোন্ ঐতিহাসিকদের মতে ভারতীয় জাতীয়তাবাদ ছিল 'ইন্দো-ব্রিটিশ সহযোগিতার পরিণাম'?", opts: ["রণজিৎ গুহ ও পার্থ চট্টোপাধ্যায়", "গর্ডন জনসন, গ্যালাগার ও বেকার", "অমলেশ ত্রিপাঠী ও সুশোভন সরকার", "রমেশচন্দ্র মজুমদার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ঐতিহাসিক গ্যালাগার, বেকার বা গর্ডন জনসন মনে করেন যে, ভারতে জাতীয়তাবাদের যে বিকাশ ঘটেছিল তা মূলত ইন্দো-ব্রিটিশ সহযোগিতারই পরিণাম।" },
+        { q: "বঙ্কিমচন্দ্রের জাতীয়তাবাদী চিন্তার কটি পর্যায় লক্ষ করা যায়?", opts: ["দুটি", "তিনটি", "চারটি", "পাঁচটি"], ans: 0, exp: "<b>ব্যাখ্যা:</b> বঙ্কিমচন্দ্রের জাতীয়তাবাদী চিন্তার মূলত দুটি পর্যায় লক্ষ করা যায়- প্রাথমিকভাবে সাহিত্যকেন্দ্রিক/সাংস্কৃতিক এবং পরে সর্বভারতীয় জাতীয় চেতনার নির্মাণ।" },
+        { q: "বঙ্কিমচন্দ্র চট্টোপাধ্যায় সর্বভারতীয় জাতীয় চেতনার নির্মাণে কোন্ হাতিয়ারটি ব্যবহার করেছিলেন?", opts: ["পাশ্চাত্য শিক্ষা", "আধুনিক যুক্তিবাদের আলোয় এক নতুন হিন্দুধর্ম", "সমাজতন্ত্র", "সশস্ত্র বিপ্লব"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বাঙালি জাতীয়তাবাদের গন্ডি অতিক্রম করে সর্বভারতীয় জাতীয় চেতনার নির্মাণ করতে তিনি আধুনিক যুক্তিবাদের আলোয় এক নতুন ও আধুনিক হিন্দুধর্মকে হাতিয়ার করেছিলেন।" },
+        { q: "'আনন্দমঠ' উপন্যাসের সন্তানদল কী ধ্বনি দিয়ে দেশোদ্ধারে ঝাঁপিয়ে পড়েছিল?", opts: ["ইনকিলাব জিন্দাবাদ", "জয় হিন্দ", "'হরে মুরারে', 'জয় জগদীশ হরে' ও 'বন্দেমাতরম'", "করো অথবা মরো"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উপন্যাসে উল্লেখিত আনন্দমঠের সর্বত্যাগী সন্তানদল দেশকে মা হিসেবে কল্পনা করে 'হরে মুরারে', 'জয় জগদীশ হরে', এবং 'বন্দেমাতরম' ধ্বনি দিয়ে লড়াইয়ে ঝাঁপিয়ে পড়েছিল।" },
+        { q: "বঙ্কিমচন্দ্র চট্টোপাধ্যায় তাঁর 'আনন্দমঠ' উপন্যাসে দেশমাতৃকার কোন্ রূপটিকে 'মা যা হবেন' বলে বর্ণনা করেছেন?", opts: ["জগদ্ধাত্রী মূর্তি", "কালিমা মূর্তি", "দশভুজা মূর্তি", "অন্নপূর্ণা মূর্তি"], ans: 2, exp: "<b>ব্যাখ্যা:</b> উপন্যাসে দেশমাতার তিনটি রূপের মধ্যে ভবিষ্যৎ রূপ অর্থাৎ 'মা যা হবেন' বলতে তিনি দশভুজা মূর্তিকে বুঝিয়েছেন, যিনি দশহাতে দশদিক রক্ষা করছেন।" },
+        { q: "স্বামী বিবেকানন্দ কবে শিকাগোর বিশ্ব ধর্মসম্মেলনে যোগ দিয়েছিলেন?", opts: ["১৮৮২ খ্রিস্টাব্দে", "১৮৮৫ খ্রিস্টাব্দে", "১৮৯৩ খ্রিস্টাব্দে", "১৮৯৯ খ্রিস্টাব্দে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ১৮৯৩ খ্রিস্টাব্দে শিকাগোর বিশ্ব ধর্মসম্মেলনে স্বামী বিবেকানন্দ হিন্দুধর্মের উদারতা ও সহনশীলতার আদর্শ তুলে ধরে ভারতীয় জাতিকে গর্বিত করেছিলেন।" },
+        { q: '"লৌহকঠিন পেশি, ইস্পাত দৃঢ় স্নায়ু বজ্রের শক্তি দিয়ে গড়া মন" - গড়ে তোলার কথা কে বলেছিলেন?', opts: ["বঙ্কিমচন্দ্র চট্টোপাধ্যায়", "স্বামী বিবেকানন্দ", "রবীন্দ্রনাথ ঠাকুর", "অরবিন্দ ঘোষ"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতবাসীকে শারীরিক ও মানসিকভাবে শক্তিশালী করতে স্বামী বিবেকানন্দ এই বিখ্যাত উক্তিটি করেছিলেন。" },
+        { q: "'বর্তমান ভারত' প্রবন্ধে স্বামী বিবেকানন্দ কোন্ যুগের পর ভারতে বৈশ্যদের শাসন প্রতিষ্ঠিত হয়েছে বলে দেখিয়েছেন?", opts: ["বৈদিক যুগের পর", "মোগল যুগের পর", "বৌদ্ধযুগ থেকে ক্ষত্রিয়দের পর ব্রিটিশদের আগমনে", "গুপ্ত যুগের পর"], ans: 2, exp: "<b>ব্যাখ্যা:</b> তিনি ইতিহাসকে চক্রাকারে বিভাজন করে দেখিয়েছেন যে, বৈদিক যুগে ব্রাহ্মণ, বৌদ্ধযুগে ক্ষত্রিয় এবং শেষে ব্রিটিশদের আগমনে ভারতে বৈশ্যদের শাসন প্রতিষ্ঠিত হয়েছে।" },
+        { q: '"হে ভারত, ইহাই প্রবল বিভীষিকা। পাশ্চাত্য অনুকরণ মোহ এমনই প্রবল হইতেছে..." - উক্তিটি কোন্ গ্রন্থে?', opts: ["আনন্দমঠ", "গোরা", "বর্তমান ভারত", "পরিব্রাজক"], ans: 2, exp: "<b>ব্যাখ্যা:</b> পাশ্চাত্যের অন্ধ অনুকরণের তীব্র সমালোচনা করে স্বামী বিবেকানন্দ তাঁর 'বর্তমান ভারত' গ্রন্থে এই সাবধানবাণী উচ্চারণ করেছিলেন।" },
+        { q: '"ভারতের সমাজ আমার শিশুশয্যা, আমার যৌবনের উপবন, আমার বার্ধক্যের বারাণসী।" - উক্তিটি কে করেছেন?', opts: ["রবীন্দ্রনাথ ঠাকুর", "স্বামী বিবেকানন্দ", "নেতাজি সুভাষচন্দ্র বসু", "সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতের মাটিকে ভালোবেসে দেশপ্রেমের মন্ত্রে ভারতবাসীকে দীক্ষিত করতে স্বামী বিবেকানন্দ তাঁর গ্রন্থে এই কালজয়ী কথাটি লিখেছিলেন。" },
+        { q: "'গোরা' উপন্যাসের প্রধান চরিত্রের নাম কী?", opts: ["মহেন্দ্র", "ভবানী", "গোরা বা গৌরমোহন", "বিনয়"], ans: 2, exp: "<b>ব্যাখ্যা:</b> রবীন্দ্রনাথ ঠাকুরের লেখা এই উপন্যাসের প্রধান চরিত্র হলো আইরিশ বংশোদ্ভূত ব্রাহ্মণ পালিত সন্তান গোরা বা গৌরমোহন。" },
+        { q: "বঙ্কিমচন্দ্র চট্টোপাধ্যায়ের 'আনন্দমঠ' কবে গ্রন্থাকারে প্রকাশিত হয়?", opts: ["১৮৭৫ খ্রিস্টাব্দে", "১৮৮২ খ্রিস্টাব্দে", "১৮৮৫ খ্রিস্টাব্দে", "১৯০৫ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> বঙ্গদর্শন পত্রিকায় ধারাবাহিকভাবে প্রকাশের পর ১৮৮২ খ্রিস্টাব্দে 'আনন্দমঠ' উপন্যাসটি গ্রন্থাকারে প্রকাশিত হয়。" },
+        { q: "'বর্তমান ভারত' গ্রন্থটি প্রথম কোন্ পত্রিকায় ধারাবাহিকভাবে প্রকাশিত হয়?", opts: ["বঙ্গদর্শন", "উদ্বোধন", "তত্ত্ববোধিনী", "প্রবাসী"], ans: 1, exp: "<b>ব্যাখ্যা:</b> স্বামী বিবেকানন্দের লেখা 'বর্তমান ভারত' প্রবন্ধটি প্রথম রামকৃষ্ণ মঠের মুখপত্র 'উদ্বোধন' পত্রিকায় ১৮৯৯ খ্রিস্টাব্দে ধারাবাহিকভাবে প্রকাশিত হয়েছিল。" },
+        { q: "'বন্দে মাতরম' সংগীতটি আনন্দমঠ উপন্যাসে কোন্ বিদ্রোহের পটভূমিতে গাওয়া হয়েছে?", opts: ["সন্ন্যাসী বিদ্রোহ", "মহাবিদ্রোহ", "নীল বিদ্রোহ", "সাঁওতাল বিদ্রোহ"], ans: 0, exp: "<b>ব্যাখ্যা:</b> ছিয়াত্তরের মন্বন্তর ও সন্ন্যাসী বিদ্রোহের পটভূমিতে রচিত এই উপন্যাসে সন্তানদল মাতৃভূমির বন্দনায় এই সংগীতটি গাইত。" }
+    ]
+};
+
+// ============================================================
+// সেট ৮: রেখায় জাতীয়তাবোধ ও বিবিধ অংশ
+// ============================================================
+const SET8 = {
+    name: "Set 8",
+    icon: "🎨",
+    topic: "রেখায় জাতীয়তাবোধ ও বিবিধ অংশ",
+    questions: [
+        { q: "'ভারতমাতা' চিত্রটিতে মায়ের পায়ের পাতা কোথায় অবস্থিত বলে কল্পিত হয়েছে?", opts: ["হিমালয়ে", "বঙ্গোপসাগরে", "কন্যাকুমারিতে", "আরব সাগরে"], ans: 2, exp: "<b>ব্যাখ্যা:</b> অবনীন্দ্রনাথ ঠাকুর তাঁর ভারতমাতা চিত্রে ভারতের ভৌগোলিক বিশালতা বোঝাতে মায়ের মাথা কাশ্মীরে এবং পায়ের পাতা কন্যাকুমারিতে অবস্থিত বলে কল্পনা করেছেন।" },
+        { q: "'ভারতমাতা' চিত্রে ভারতমাতার মাথা কোথায় অবস্থিত বলে কল্পনা করা হয়েছে?", opts: ["কাশ্মীরে", "তিব্বতে", "নেপালে", "দিল্লিতে"], ans: 0, exp: "<b>ব্যাখ্যা:</b> অখণ্ড ভারতের প্রতীক হিসেবে অবনীন্দ্রনাথের এই ছবিতে ভারতমাতার মাথা ভারতের সর্বউত্তরে কাশ্মীরে অবস্থিত বলে দেখানো হয়েছে。" },
+        { q: "অবনীন্দ্রনাথ ঠাকুরের স্মৃতিচারণামূলক কোন্ গ্রন্থে 'বঙ্গমাতা' (ভারতমাতা) চিত্রটি অঙ্কনের উল্লেখ আছে?", opts: ["বাগেশ্বরী প্রবন্ধমালা", "আপন কথা", "চিত্রকথা", "ভারতশিল্প"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৯০৫ খ্রিস্টাব্দে আঁকা এই ছবিটি সম্পর্কে অবনীন্দ্রনাথ ঠাকুরের লেখা 'আপন কথা' নামক আত্মজীবনীমূলক গ্রন্থে স্পষ্ট উল্লেখ পাওয়া যায়。" },
+        { q: "'East and West' (ইস্ট অ্যান্ড ওয়েস্ট) নামক ব্যঙ্গচিত্রটি কার আঁকা?", opts: ["অবনীন্দ্রনাথ ঠাকুর", "রবীন্দ্রনাথ ঠাকুর", "গগনেন্দ্রনাথ ঠাকুর", "নন্দলাল বসু"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সমকালীন সমাজকে বিদ্রূপ করে গগনেন্দ্রনাথ ঠাকুর 'East and West' নামক এই বিখ্যাত ব্যঙ্গচিত্রটি অঙ্কন করেছিলেন。" },
+        { q: "'East and West' ব্যঙ্গচিত্রে গগনেন্দ্রনাথ ঠাকুর কী সমালোচনা করেছেন?", opts: ["ব্রাহ্মণদের গোঁড়ামির", "ঔপনিবেশিক শিক্ষার", "শাড়ি ও হাই হিল পরা বাঙালি মেয়ের পাশ্চাত্য সংস্কৃতির অন্ধ অনুকরণের", "বাবু সংস্কৃতির"], ans: 2, exp: "<b>ব্যাখ্যা:</b> এই ব্যঙ্গচিত্রে তিনি দেখিয়েছেন কীভাবে এক বাঙালি মেয়ে শাড়ি ও বিদেশি হিল পরে বিদেশিদের সঙ্গে নাচছে, যা পাশ্চাত্য সংস্কৃতির অন্ধ অনুকরণের তীব্র সমালোচনা。" },
+        { q: "'প্রচণ্ড মমতা' নামক ব্যঙ্গচিত্রটিতে কী আঁকা হয়েছে?", opts: ["ইংরেজদের অত্যাচারের ছবি", "বিধবাদের দুর্দশা", "জমিদারদের শোষণ", "স্বদেশি আন্দোলন"], ans: 0, exp: "<b>ব্যাখ্যা:</b> গগনেন্দ্রনাথ ঠাকুর তাঁর 'প্রচণ্ড মমতা' নামক ব্যঙ্গচিত্রটিতে ব্রিটিশ পুলিশ ও ইংরেজদের দ্বারা সাধারণ ভারতীয়দের ওপর অমানবিক অত্যাচারের ছবি ফুটিয়ে তুলেছিলেন。" },
+        { q: "গগনেন্দ্রনাথ ঠাকুর হিন্দু বিধবাদের দুর্দশা বোঝাতে কোন্ ব্যঙ্গচিত্রটি এঁকেছেন?", opts: ["খল ব্রাহ্মণ", "অদ্ভুত লোক", "নির্জলা একাদশী পালনের করুণ চিত্র", "বিদ্যার কারখানা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> সমাজের দ্বিচারিতা তুলে ধরতে গিয়ে তিনি হিন্দু বিধবাদের অমানবিক প্রথা 'নির্জলা একাদশী পালনের করুণ চিত্র' তাঁর ব্যঙ্গচিত্রের মাধ্যমে প্রকাশ করেছিলেন。" },
+        { q: "রামমোহন রায়ের উদ্যোগে কবে ভারতে প্রথম সংগঠিত নিয়মতান্ত্রিক আন্দোলন শুরু হয়েছিল?", opts: ["১৮০০-১৮১০ খ্রিস্টাব্দের মধ্যে", "১৮২৪-১৮৩০ খ্রিস্টাব্দের মধ্যে", "১৮৩৬-১৮৪০ খ্রিস্টাব্দের মধ্যে", "১৮৫৭ খ্রিস্টাব্দে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ভারতে প্রথম সংগঠিত নিয়মতান্ত্রিক রাজনৈতিক আন্দোলনের সূত্রপাত ঘটেছিল রাজা রামমোহন রায়ের উদ্যোগে মূলত ১৮২৪ থেকে ১৮৩০ খ্রিস্টাব্দের মধ্যবর্তী সময়ে。" },
+        { q: "বঙ্গভাষা প্রকাশিকা সভা ১৮২৮ সালের কোন্ সরকারি নীতির তীব্র প্রতিবাদ করেছিল?", opts: ["সতীদাহ প্রথা রদ", "নিষ্কর জমির ওপর কর বসানোর নীতির", "ইংরেজি শিক্ষা প্রবর্তন", "অরণ্য আইন"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮২৮ খ্রিস্টাব্দে ব্রিটিশ ইস্ট ইন্ডিয়া কোম্পানি নিষ্কর ভূমির ওপর কর বসালে বঙ্গভাষা প্রকাশিকা সভা এর বিরুদ্ধে সোচ্চার হয়ে একটি জনসভা গঠনের চেষ্টা করেছিল。" },
+        { q: "১৮৭৭ খ্রিস্টাব্দে আই.সি.এস. (I.C.S.) পরীক্ষায় ভারতীয়দের বসার বয়স কমানোর বিরুদ্ধে কোন্ সংগঠন প্রথম তীব্র আন্দোলন গড়ে তোলে?", opts: ["জমিদার সভা", "ভারতসভা", "জাতীয় কংগ্রেস", "হিন্দুমেলা"], ans: 1, exp: "<b>ব্যাখ্যা:</b> লর্ড লিটন আই.সি.এস. পরীক্ষায় বয়স ২১ থেকে কমিয়ে ১৯ বছর করলে সুরেন্দ্রনাথ বন্দ্যোপাধ্যায়ের 'ভারতসভা' এর প্রতিবাদে সারা দেশ জুড়ে তীব্র আন্দোলন গড়ে তোলে。" },
+        { q: "ভারতমাতা চিত্রটিতে মায়ের পা দুটি কোথায় ধুয়ে যাচ্ছে বলে বর্ণনা করা হয়েছে?", opts: ["গঙ্গার জলে", "নীল সমুদ্রের জলে", "ব্রহ্মপুত্রের জলে", "সিন্ধু নদের জলে"], ans: 1, exp: "<b>ব্যাখ্যা:</b> কন্যাকুমারিতে মায়ের পায়ের পাতা অবস্থিত— এই ভাবনার ওপর ভিত্তি করে চিত্রটিতে দেখানো হয়েছে যে মায়ের পা দুটি নীল সমুদ্রের জলে ধুয়ে যাচ্ছে。" },
+        { q: "১৮৫৭-র মহাবিদ্রোহের সময় কোন্ পত্রিকা ব্রিটিশদের সাফল্য প্রার্থনা করেছিল?", opts: ["হিন্দু প্যাট্রিয়ট", "সোমপ্রকাশ", "সংবাদ প্রভাকর", "গ্রামবার্ত্তা প্রকাশিকা"], ans: 2, exp: "<b>ব্যাখ্যা:</b> ঈশ্বরচন্দ্র গুপ্ত তাঁর 'সংবাদ প্রভাকর' পত্রিকায় মহাবিদ্রোহের সমালোচনা করেন এবং বিদ্রোহ দমনে ব্রিটিশ সরকারের সাফল্য প্রার্থনা করেন。" },
+        { q: "গগনেন্দ্রনাথ ঠাকুরের ব্যঙ্গচিত্রগুলি কোন কোন পত্রিকায় মূলত ছাপা হতো?", opts: ["যুগান্তর ও বন্দে মাতরম", "প্রবাসী ও মডার্ন রিভিউ", "তত্ত্ববোধিনী ও বঙ্গদর্শন", "সোমপ্রকাশ ও সঞ্জীবনী"], ans: 1, exp: "<b>ব্যাখ্যা:</b> প্রখ্যাত সাংবাদিক রামানন্দ চট্টোপাধ্যায়ের উদ্যোগে গগনেন্দ্রনাথের বহু ব্যঙ্গচিত্র তৎকালীন বিখ্যাত পত্রিকা 'প্রবাসী' এবং 'মডার্ন রিভিউ'-তে নিয়মিত ছাপা হয়েছিল。" },
+        { q: "আনন্দমঠ উপন্যাসে মহেন্দ্র, কল্যাণী, ভবানন্দ ও শান্তি কোন্ দলের সদস্য ছিলেন?", opts: ["অনুশীলন সমিতি", "যুগান্তর দল", "সন্তানদল", "পাগলপন্থী"], ans: 2, exp: "<b>ব্যাখ্যা:</b> বঙ্কিমচন্দ্রের উপন্যাসে উল্লেখিত এই চরিত্রগুলি হলেন আনন্দমঠের সর্বত্যাগী সন্ন্যাসী, যাঁরা সংসার ত্যাগ করে 'সন্তানদল'-এর সদস্য হয়েছিলেন。" },
+        { q: "লর্ড ক্যানিং-কে ভারতের প্রথম 'ভাইসরয়' বা রাজপ্রতিনিধি হিসেবে কোন্ আইনে নিযুক্ত করা হয়?", opts: ["১৮৩৩-এর চার্টার অ্যাক্ট", "১৮৫৮ সালের ভারত শাসন আইন বা মহারানির ঘোষণাপত্র", "ইলবার্ট বিল", "১৯০৯ সালের মর্লে-মিন্টো সংস্কার"], ans: 1, exp: "<b>ব্যাখ্যা:</b> ১৮৫৮ খ্রিস্টাব্দের ভারত শাসন আইন অনুযায়ী ভারতের শাসনভার সরাসরি রানির হাতে যায় এবং লর্ড ক্যানিং ভারতের প্রথম ভাইসরয় নিযুক্ত হন。" }
+    ]
+};
+
+// ============================================================
+// সব সেট একত্রে
+// ============================================================
+const QUIZ_SETS = {
+    "1": SET1,
+    "2": SET2,
+    "3": SET3,
+    "4": SET4,
+    "5": SET5,
+    "6": SET6,
+    "7": SET7,
+    "8": SET8
+};
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+let loggedInUser = null;
+let currentSetId = null;
+let questions = [];
+let score = 0;
+let wrongAnswers = 0;
+let userAnswers = {};
+let isReviewMode = false;
+let timerInterval;
+let timeLeft = TIME_LIMIT;
+
+window.onload = () => {
+    applyBranding();
+    buildHub();
+};
+
+function buildHub() {
+    const grid = document.getElementById('setGrid');
+    grid.innerHTML = '';
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+
+    for(let id in QUIZ_SETS) {
+        const set = QUIZ_SETS[id];
+        let attemptCount = 0;
+        let isLocked = false;
+
+        if(loggedInUser) {
+            attemptCount = userAttempts[loggedInUser + "_" + id] || 0;
+            isLocked = attemptCount >= MAX_ATTEMPTS;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'set-card';
+        let badge = '';
+        if(loggedInUser) {
+            badge = `<div class="attempt-badge ${isLocked ? 'locked' : ''} en-font">${isLocked ? 'সম্পূর্ণ' : attemptCount + '/' + MAX_ATTEMPTS}</div>`;
+        }
+
+        card.innerHTML = `
+            ${badge}
+            <div class="set-icon">${set.icon}</div>
+            <div class="set-name">${set.name}</div>
+            <div class="set-topic">${set.topic}</div>
+            <div class="set-meta-info en-font">
+                <span>${set.questions.length} Qs</span>
+                <span>10 Mins</span>
+            </div>
+        `;
+        card.onclick = () => { selectSet(id); };
+        grid.appendChild(card);
+    }
+}
+
+function selectSet(setId) {
+    if(loggedInUser) {
+        let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+        let attemptCount = userAttempts[loggedInUser + "_" + setId] || 0;
+        if(attemptCount >= MAX_ATTEMPTS) {
+            alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+            return;
+        }
+        startQuiz(setId);
+    } else {
+        currentSetId = setId;
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginError').classList.add('hidden');
+        document.getElementById('loginSetName').innerText = QUIZ_SETS[setId].name + ": " + QUIZ_SETS[setId].topic;
+        document.getElementById('loginModal').classList.remove('hidden');
+    }
+}
+
+function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+
+function doLogin() {
+    const u = document.getElementById('loginUsername').value.trim();
+    const p = document.getElementById('loginPassword').value.trim();
+    const err = document.getElementById('loginError');
+    const GLOBAL_USERS = JSON.parse(localStorage.getItem("testBazarGlobalUsers")) || {};
+
+    if(!u || !p) { err.innerText = "ইউজারনেম এবং পাসওয়ার্ড দিন!"; err.classList.remove('hidden'); return; }
+
+    if(GLOBAL_USERS[u] && GLOBAL_USERS[u] === p) {
+        loggedInUser = u;
+        document.getElementById('userDisplay').innerText = `👤 ${u}`;
+        closeLogin();
+        buildHub();
+        if(currentSetId) {
+            startQuiz(currentSetId);
+        }
+    } else {
+        err.innerText = "ইউজারনেম বা পাসওয়ার্ড ভুল!";
+        err.classList.remove('hidden');
+    }
+}
+
+function incrementAttempt(user, setId) {
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let key = user + "_" + setId;
+    userAttempts[key] = (userAttempts[key] || 0) + 1;
+    localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(userAttempts));
+}
+
+function startQuiz(setId) {
+    currentSetId = setId;
+    incrementAttempt(loggedInUser, setId);
+    questions = QUIZ_SETS[setId].questions;
+    userAnswers = {};
+    isReviewMode = false;
+    score = 0;
+    wrongAnswers = 0;
+    timeLeft = TIME_LIMIT;
+
+    document.getElementById('hubView').classList.add('hidden');
+    document.getElementById('resultModal').classList.add('hidden');
+    document.getElementById('quizView').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('hidden');
+    document.getElementById('timerBox').classList.remove('danger');
+    document.getElementById('submitTestBtn').classList.remove('hidden');
+    document.getElementById('quizTitle').innerText = QUIZ_SETS[setId].name + " | " + QUIZ_SETS[setId].topic;
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tick, 1000);
+    renderQuestions();
+}
+
+function tick() {
+    timeLeft--;
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    document.getElementById('timerDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if (timeLeft <= 60) document.getElementById('timerBox').classList.add('danger');
+    if (timeLeft <= 0) { submitQuiz(); }
+}
+
+const LABELS = ['A', 'B', 'C', 'D'];
+
+function renderQuestions() {
+    const quizList = document.getElementById('quizList');
+    let html = '';
+    questions.forEach((q, i) => {
+        html += `<div class="q-block" id="qBlock_${i}">
+            <div class="q-text">${q.q}</div>
+            <div class="options-grid">`;
+        q.opts.forEach((opt, j) => {
+            html += `<div class="opt" id="opt_${i}_${j}" onclick="selectOpt(${i}, ${j})">
+                <div class="opt-circle">${LABELS[j]}</div>
+                <div class="opt-text">${opt}</div>
+            </div>`;
+        });
+        html += `</div>
+            <div class="explanation hidden" id="exp_${i}">${q.exp}</div>
+        </div>`;
+    });
+    quizList.innerHTML = html;
+    window.scrollTo(0, 0);
+}
+
+function selectOpt(qIdx, optIdx) {
+    if (isReviewMode) return;
+    userAnswers[qIdx] = optIdx;
+    const block = document.getElementById(`qBlock_${qIdx}`);
+    const opts = block.querySelectorAll('.opt');
+    opts.forEach(o => o.classList.remove('selected'));
+    document.getElementById(`opt_${qIdx}_${optIdx}`).classList.add('selected');
+}
+
+function submitQuiz() {
+    if (isReviewMode) return;
+    const answeredCount = Object.keys(userAnswers).length;
+    if (timeLeft > 0 && answeredCount < questions.length) {
+        const confirmSubmit = confirm(`আপনি মাত্র ${answeredCount} টি প্রশ্নের উত্তর দিয়েছেন। আপনি কি সত্যিই Test জমা দিতে চান?`);
+        if(!confirmSubmit) return;
+    }
+    isReviewMode = true;
+    clearInterval(timerInterval);
+    document.getElementById('timerBox').classList.add('hidden');
+    document.getElementById('submitTestBtn').classList.add('hidden');
+
+    score = 0;
+    wrongAnswers = 0;
+    questions.forEach((q, i) => {
+        const selected = userAnswers[i];
+        const block = document.getElementById(`qBlock_${i}`);
+        const opts = block.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.remove('selected'));
+        if (selected !== undefined) {
+            if (selected === q.ans) {
+                score++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('correct');
+            } else {
+                wrongAnswers++;
+                document.getElementById(`opt_${i}_${selected}`).classList.add('wrong');
+                document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+            }
+        } else {
+            document.getElementById(`opt_${i}_${q.ans}`).classList.add('correct');
+        }
+        document.getElementById(`exp_${i}`).classList.remove('hidden');
+    });
+
+    const skipped = questions.length - (score + wrongAnswers);
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('rbCorrect').textContent = score;
+    document.getElementById('rbWrong').textContent = wrongAnswers + skipped;
+
+    let icon = '💪', grade = 'চেষ্টা চালিয়ে যাও!';
+    if(pct >= 90) { icon = '🌟'; grade = 'অসাধারণ!'; }
+    else if(pct >= 70) { icon = '👍'; grade = 'খুব ভালো!'; }
+    else if(pct >= 50) { icon = '📚'; grade = 'ভালো চেষ্টা!'; }
+
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultGrade').textContent = grade;
+
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    let remaining = MAX_ATTEMPTS - attemptCount;
+    document.getElementById('attemptInfo').innerText = `বাকি আছে ${remaining} বার Test দেওয়ার সুযোগ (সর্বোচ্চ ${MAX_ATTEMPTS} বার)`;
+    document.getElementById('resultModal').classList.remove('hidden');
+}
+
+function closeResultModal() {
+    document.getElementById('resultModal').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+    closeResultModal();
+    let userAttempts = JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || {};
+    let attemptCount = userAttempts[loggedInUser + "_" + currentSetId] || 0;
+    if(attemptCount >= MAX_ATTEMPTS) {
+        alert(`⚠️ আপনি এই সেটের সর্বোচ্চ ${MAX_ATTEMPTS} বার Test দিয়েছেন।`);
+        document.getElementById('quizView').classList.add('hidden');
+        document.getElementById('hubView').classList.remove('hidden');
+        buildHub();
+        return;
+    }
+    startQuiz(currentSetId);
+}
+</script>
+</body>
+</html>
